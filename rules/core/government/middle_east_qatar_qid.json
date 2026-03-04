@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.middle_east_qatar_qid",
+  "qualified_id": "core.government.middle_east_qatar_qid",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Qatar ID (QID)",
+  "description": "Detects Qatar national ID card numbers.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Qatar",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "11 digits",
+    "official_name": "Qatar ID / البطاقة الشخصية",
+    "note": "Law No. 13 of 2016 on Personal Data Privacy",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]{11}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "QA_QID",
+          "reversible": false
+        }
+      },
+      "message": "Qatar QID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.972876Z",
+  "regions": [
+    "QA"
+  ]
+}

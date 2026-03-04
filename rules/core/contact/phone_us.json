@@ -1,0 +1,58 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.phone_us",
+  "qualified_id": "core.contact.phone_us",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "US Phone Number",
+  "description": "Detects US phone numbers in various formats: (XXX) XXX-XXXX, (XXX)XXX-XXXX, XXX-XXX-XXXX, XXX.XXX.XXXX, XXX XXX XXXX. Supports optional +1 or 1 country code. Allows all valid exchange codes (0-9).",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "ccpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "formats": [
+      "(XXX) XXX-XXXX",
+      "(XXX)XXX-XXXX",
+      "XXX-XXX-XXXX",
+      "XXX.XXX.XXXX",
+      "XXX XXX XXXX",
+      "+1 XXX XXX XXXX",
+      "1-XXX-XXX-XXXX"
+    ],
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:\\+?1[\\s.-]?)?(?:\\([2-9]\\d{2}\\)[\\s.-]?|[2-9]\\d{2}[\\s.-]?)[0-9]\\d{2}[\\s.-]?\\d{4}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4,
+          "preserve_format": true
+        }
+      },
+      "message": "US phone number masked, last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "US"
+  ]
+}

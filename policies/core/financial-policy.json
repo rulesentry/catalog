@@ -1,0 +1,41 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.financial",
+  "qualified_id": "core.policy.financial",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Financial Data Policy",
+  "description": "Global baseline policy for financial data protection. Covers all financial rules including credit cards, bank accounts, routing numbers, IBAN, cryptocurrency addresses, and securities identifiers across all regions.",
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 45,
+  "tags": [
+    "financial",
+    "banking",
+    "global"
+  ],
+  "rule_categories": [
+    {
+      "category_id": "financial",
+      "mode": "all"
+    }
+  ],
+  "metadata": {
+    "frameworks": ["PCI-DSS 4.0", "GLBA", "SOX"],
+    "compliance_scope": "Global financial data protection",
+    "review_cycle": "quarterly",
+    "owner": "finance-compliance-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-13T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-02-13T00:00:00Z",
+  "modified_by": "claude-code"
+}

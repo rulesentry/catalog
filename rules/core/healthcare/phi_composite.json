@@ -1,0 +1,62 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.phi_composite",
+  "qualified_id": "core.healthcare.phi_composite",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "PHI Composite Detection",
+  "summary": "Triggers when both a medical record number and date of birth appear together",
+  "description": "Composite rule that triggers only when both a medical identifier (MRN) and a personal identifier (DOB) appear together in the same content. This combination constitutes Protected Health Information (PHI) under HIPAA and warrants elevated protection.",
+  "category_id": "healthcare",
+  "rule_kind": "composite",
+  "severity": "critical",
+  "profiles": ["hipaa", "production"],
+  "regions": ["US"],
+  "tags": ["phi", "healthcare", "composite", "hipaa"],
+  "metadata": {
+    "compliance_notes": "Combination of medical + personal identifiers constitutes PHI under HIPAA Privacy Rule",
+    "composite_logic": "Triggers when MRN AND DOB are both present in the same content"
+  },
+  "evaluation": {
+    "evaluation_type": "composite",
+    "operator": "all",
+    "evaluations": [
+      {
+        "evaluation_type": "rule_ref",
+        "rule_id": "healthcare.mrn_detect",
+        "pinned_version": "1.0.0"
+      },
+      {
+        "evaluation_type": "rule_ref",
+        "rule_id": "personal.date_of_birth",
+        "pinned_version": "1.0.0"
+      }
+    ],
+    "effect": {
+      "type": "block",
+      "rationale": "compliance",
+      "message": "PHI detected: medical record number combined with date of birth constitutes Protected Health Information under HIPAA. Content blocked pending review."
+    },
+    "side_effects": [
+      {
+        "type": "audit",
+        "level": "warn",
+        "target": "compliance-log",
+        "config": {
+          "include_rule_id": true,
+          "include_match_count": true,
+          "alert": true
+        }
+      }
+    ]
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/healthcare"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

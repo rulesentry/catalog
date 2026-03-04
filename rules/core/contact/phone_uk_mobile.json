@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.phone_uk_mobile",
+  "qualified_id": "core.contact.phone_uk_mobile",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UK Mobile Phone Number",
+  "description": "Detects UK mobile phone numbers starting with 07. Supports various formatting styles including spaces, dashes, and parentheses.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "07XXX XXXXXX",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:\\+44\\s?7|07)(?:\\d{3}[\\s.-]?\\d{6}|\\d{9})\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4,
+          "preserve_format": true
+        }
+      },
+      "message": "UK mobile number masked, last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "UK"
+  ]
+}

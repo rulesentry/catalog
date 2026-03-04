@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "network.domain_name",
+  "qualified_id": "core.network.domain_name",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Domain Name",
+  "description": "Detects domain names (e.g., example.com, subdomain.example.co.uk). Excludes common email patterns to avoid false positives.",
+  "category_id": "network",
+  "rule_kind": "atomic",
+  "severity": "info",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "note": "May match domains in emails; email rules will match full addresses with higher priority. Uses tld_reject validator to exclude common file extensions (txt, pdf, json, etc.) from matching as domain TLDs.",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 55,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Za-z0-9][-A-Za-z0-9]{0,62}(?:\\.[A-Za-z0-9][-A-Za-z0-9]{0,62})*\\.[A-Za-z]{2,}\\b",
+      "engine": "regex",
+      "validator": "tld_reject",
+      "validator_params": {
+        "reject_tlds": [
+          "txt", "csv", "json", "xml", "yml", "yaml", "toml", "log", "md",
+          "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx",
+          "zip", "tar", "gz", "rar",
+          "exe", "dll", "bat", "sh",
+          "png", "jpg", "jpeg", "gif", "svg", "webp", "ico",
+          "css", "scss", "wasm", "map"
+        ]
+      }
+    },
+    "effect": {
+      "type": "info",
+      "message": "Domain name detected (informational only)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

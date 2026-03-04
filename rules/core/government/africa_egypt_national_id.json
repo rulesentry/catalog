@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.africa_egypt_national_id",
+  "qualified_id": "core.government.africa_egypt_national_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Egyptian National ID Number",
+  "description": "Detects Egyptian national identity card numbers. Encodes century, birth date, governorate, and sequence.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Egypt",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "14 digits (C YY MM DD GG SSSS S where C=century, YY=year, MM=month, DD=day, GG=governorate, SSSS=sequence, S=gender)",
+    "official_name": "الرقم القومي (National ID)",
+    "note": "Data Protection Law No. 151 of 2020",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[23][0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])[0-9]{2}[0-9]{5}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "EG_ID",
+          "reversible": false
+        }
+      },
+      "message": "Egypt national ID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.914858Z",
+  "regions": [
+    "EG"
+  ]
+}

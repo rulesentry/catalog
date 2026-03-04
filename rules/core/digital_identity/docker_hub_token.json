@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.docker_hub_token",
+  "qualified_id": "core.digital_identity.docker_hub_token",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Docker Hub Access Token",
+  "description": "Detects Docker Hub personal access tokens. Can push/pull images, modify repositories.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "dckr_pat_[A-Za-z0-9_-]{32,}",
+    "risk": "Container registry access, image tampering",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bdckr_pat_[A-Za-z0-9_-]{32,}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[DOCKER_HUB_TOKEN]"
+        }
+      },
+      "message": "Docker Hub Token redacted - redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.353727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

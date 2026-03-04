@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.gitlab_personal_access_token",
+  "qualified_id": "core.digital_identity.gitlab_personal_access_token",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "GitLab Personal Access Token",
+  "description": "Detects GitLab Personal Access Tokens. Format: glpat- prefix. Can access repositories, CI/CD, and API.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "glpat-[A-Za-z0-9_-]{20,64}",
+    "risk": "GitLab repository and CI/CD access",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 95,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bglpat-[A-Za-z0-9_-]{20,64}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[GITLAB_PERSONAL_ACCESS_TOKEN]"
+        }
+      },
+      "message": "GitLab Personal Access Token redacted - redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

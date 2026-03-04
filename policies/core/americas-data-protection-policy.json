@@ -1,0 +1,87 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.americas-data-protection",
+  "qualified_id": "core.policy.americas-data-protection",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Americas Data Protection Policy",
+  "description": "Data protection policy for non-US Americas jurisdictions. Covers Canadian PIPEDA, Brazilian LGPD, and other regional data protection requirements for government ID detection across CA, MX, BR, AR, CL, and CO.",
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "CA", "MX", "BR", "AR", "CL", "CO"
+  ],
+  "priority": 55,
+  "tags": [
+    "americas",
+    "data-protection",
+    "government-id",
+    "pipeda",
+    "lgpd"
+  ],
+  "rules": [
+    {
+      "rule_id": "government.canadian_sin",
+      "pinned_version": "1.0.0",
+      "priority": 95,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Canadian Social Insurance Number detection for PIPEDA compliance"
+    },
+    {
+      "rule_id": "government.americas_mexico_curp",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Mexican CURP (Clave Unica de Registro de Poblacion) detection"
+    },
+    {
+      "rule_id": "government.americas_brazil_cpf",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Brazilian CPF (Cadastro de Pessoas Fisicas) detection for LGPD compliance"
+    },
+    {
+      "rule_id": "government.americas_argentina_dni",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Argentine DNI (Documento Nacional de Identidad) detection"
+    },
+    {
+      "rule_id": "government.americas_chile_rut",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Chilean RUT (Rol Unico Tributario) detection"
+    },
+    {
+      "rule_id": "government.americas_colombia_cc",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Colombian CC (Cedula de Ciudadania) detection"
+    }
+  ],
+  "metadata": {
+    "frameworks": ["PIPEDA", "LGPD", "Ley de Proteccion de Datos Personales"],
+    "compliance_scope": "Americas (non-US) government ID protection",
+    "review_cycle": "semi-annual",
+    "owner": "compliance-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-26T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-02-26T00:00:00Z",
+  "modified_by": "claude-code"
+}

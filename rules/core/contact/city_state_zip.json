@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.city_state_zip",
+  "qualified_id": "core.contact.city_state_zip",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "City, State, ZIP (US Format)",
+  "description": "Detects US-style city, state, ZIP combinations (e.g., San Francisco, CA 94102).",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "ccpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "City, ST XXXXX",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 55,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*,\\s+[A-Z]{2}\\s+\\d{5}(?:-\\d{4})?\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "inference",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[CITY_STATE_ZIP]"
+        }
+      },
+      "message": "City, state, ZIP redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "US"
+  ]
+}

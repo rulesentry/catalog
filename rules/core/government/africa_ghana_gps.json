@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.africa_ghana_gps",
+  "qualified_id": "core.government.africa_ghana_gps",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Ghana Card (Ghana Integrated Personal ID)",
+  "description": "Detects Ghanaian national identification card numbers.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Ghana",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "15 characters (GHA-XXXXXXXXX-X)",
+    "official_name": "Ghana Card",
+    "note": "Data Protection Act, 2012 (Act 843)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bGHA-[0-9]{9}-[0-9]\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "GH_ID",
+          "reversible": false
+        }
+      },
+      "message": "Ghana GPS address tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.914858Z",
+  "regions": [
+    "GH"
+  ]
+}

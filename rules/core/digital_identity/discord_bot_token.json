@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.discord_bot_token",
+  "qualified_id": "core.digital_identity.discord_bot_token",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Discord Bot Token",
+  "description": "Detects Discord bot tokens. Can control Discord bots, access server data, send messages.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "[MNO][A-Za-z0-9]{23,25}\\.[A-Za-z0-9_-]{6}\\.[A-Za-z0-9_-]{27}",
+    "risk": "Bot hijacking, server data access",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[MNO][A-Za-z0-9]{23,25}\\.[A-Za-z0-9_-]{6}\\.[A-Za-z0-9_-]{27}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[DISCORD_BOT_TOKEN]"
+        }
+      },
+      "message": "Discord Bot Token redacted - redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.353727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

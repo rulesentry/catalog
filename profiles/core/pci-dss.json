@@ -1,0 +1,22 @@
+{
+  "$schema": "../../json-schema/profile.schema.json",
+  "id": "pci-dss",
+  "type": "profile",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "PCI-DSS Compliance Framework",
+  "caption": "PCI-DSS",
+  "description": "Payment Card Industry Data Security Standard (PCI-DSS) compliance framework for protecting cardholder data. Covers card numbers, CVVs, PINs, and authentication data.",
+  "profile_type": "compliance_framework",
+  "frameworks": ["PCI-DSS 4.0"],
+  "display_order": 40,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/profiles"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

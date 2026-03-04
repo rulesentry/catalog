@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.isin",
+  "qualified_id": "core.financial.isin",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "ISIN (International Securities Identifier)",
+  "description": "Detects International Securities Identification Numbers with Luhn checksum validation. ISIN is a 12-character code that uniquely identifies securities (stocks, bonds, derivatives) globally.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production",
+    "sec",
+    "mifid"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "ISIN MOD-10 (ISO 6166)",
+    "standard": "ISO 6166",
+    "format": "2-letter country code + 9 alphanumeric + 1 check digit",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{2}[A-Z0-9]{9}\\d\\b",
+      "engine": "regex",
+      "validator": "isin_mod10"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 2,
+          "visible_suffix": 3
+        }
+      },
+      "message": "ISIN masked (ISO 6166 MOD-10 validated), country code and check digit visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

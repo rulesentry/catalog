@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.zip_code_us",
+  "qualified_id": "core.contact.zip_code_us",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "US ZIP Code",
+  "description": "Detects US ZIP codes in 5-digit (XXXXX) and ZIP+4 (XXXXX-XXXX) formats.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "ccpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "formats": [
+      "XXXXX",
+      "XXXXX-XXXX"
+    ],
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{5}(?:-\\d{4})?\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 3
+        }
+      },
+      "message": "US ZIP code masked, first 3 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "US"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "../../json-schema/category.schema.json",
+  "id": "personal",
+  "type": "category",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Personal Information",
+  "description": "Rules detecting personally identifiable information (PII) such as dates of birth, names, and other personal identifiers.",
+  "frameworks": ["HIPAA", "GDPR", "CCPA"],
+  "examples": ["date of birth", "full name", "age", "gender"],
+  "display_order": 10,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/personal"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

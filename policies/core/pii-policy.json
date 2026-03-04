@@ -1,0 +1,45 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.pii",
+  "qualified_id": "core.policy.pii",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "PII Protection Policy",
+  "description": "Global baseline policy for personally identifiable information. Covers personal attributes and contact information across all regions. Government ID detection is delegated to regional policies (US-PII, EU-GDPR, UK-DPA, APAC, Americas, EMEA).",
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 40,
+  "tags": [
+    "pii",
+    "identity",
+    "contact"
+  ],
+  "rule_categories": [
+    {
+      "category_id": "personal",
+      "mode": "all"
+    },
+    {
+      "category_id": "contact",
+      "mode": "all"
+    }
+  ],
+  "metadata": {
+    "frameworks": ["ISO 27701", "NIST Privacy Framework"],
+    "compliance_scope": "Global PII protection baseline",
+    "review_cycle": "quarterly",
+    "owner": "compliance-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-13T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-02-13T00:00:00Z",
+  "modified_by": "claude-code"
+}

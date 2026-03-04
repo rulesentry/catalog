@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.routing_number",
+  "qualified_id": "core.financial.routing_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "US Routing Number (Checksum Validated)",
+  "description": "Detects US bank routing numbers (ABA routing transit numbers) with checksum validation to reduce false positives.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "glba",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "ABA routing number checksum",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{9}\\b",
+      "engine": "regex",
+      "validator": "routing_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4
+        }
+      },
+      "message": "Bank routing number masked (checksum validated), last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "US"
+  ]
+}

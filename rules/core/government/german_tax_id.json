@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.german_tax_id",
+  "qualified_id": "core.government.german_tax_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "German Tax ID (Steueridentifikationsnummer)",
+  "description": "Detects German tax identification numbers. Format: 11 digits.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "XXXXXXXXXXX (11 digits)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:steuer|tax|steuernummer|tax\\s+id)[:\\s]+\\d{11}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DE_TAX",
+          "reversible": false
+        }
+      },
+      "message": "German tax ID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "DE"
+  ]
+}

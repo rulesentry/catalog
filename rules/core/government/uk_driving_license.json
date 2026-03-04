@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.uk_driving_license",
+  "qualified_id": "core.government.uk_driving_license",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UK Driving License Number",
+  "description": "Detects UK driving license numbers. Format: 5 letters (surname) + 6 digits (DOB) + 2 letters (initials) + 3 chars (checksum).",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "MORGA657054SM9IJ (16 characters)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{5}\\d{6}[A-Z]{2}\\d[A-Z]{2}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "UK_DL",
+          "reversible": false
+        }
+      },
+      "message": "UK driving license tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "UK"
+  ]
+}

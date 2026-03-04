@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.eu_french_carte_nationale",
+  "qualified_id": "core.government.eu_french_carte_nationale",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "French National ID (Carte Nationale d'Identité)",
+  "description": "Detects French national identity card numbers. Format: 12 alphanumeric characters.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "country": "France",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "12 alphanumeric characters",
+    "official_name": "Carte Nationale d'Identité",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]{12}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "CNI"
+        }
+      },
+      "message": "French national ID tokenized per GDPR"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.958370Z",
+  "regions": [
+    "FR"
+  ]
+}

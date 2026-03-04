@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.fax_number",
+  "qualified_id": "core.contact.fax_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Fax Number",
+  "description": "Detects fax numbers with explicit 'Fax:' or 'F:' prefix. Uses international phone number patterns.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:Fax|F):\\s*\\+?\\d[\\d\\s.-]{7,}\\d\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4
+        }
+      },
+      "message": "Fax number masked, last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

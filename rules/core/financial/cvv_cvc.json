@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.cvv_cvc",
+  "qualified_id": "core.financial.cvv_cvc",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "CVV/CVC Security Code",
+  "description": "Detects credit card CVV/CVC security codes (3-4 digits). PCI-DSS prohibits storage of CVV codes after authorization.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "pci-dss",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "pci_dss_note": "CVV/CVC storage prohibited per PCI-DSS requirement 3.2",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 95,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:cvv|cvc|cid|csc|cvn|security\\s+code)[:\\s]*\\d{3,4}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[CVV_CVC]"
+        }
+      },
+      "message": "CVV/CVC redacted - storage prohibited by PCI-DSS 3.2"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

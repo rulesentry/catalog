@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.asia_hong_kong_hkid",
+  "qualified_id": "core.government.asia_hong_kong_hkid",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Hong Kong ID Card Number (HKID)",
+  "description": "Detects Hong Kong Identity Card numbers with check digit validation.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Hong Kong SAR",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Weighted modulo-11 check digit",
+    "format": "1-2 letters + 6 digits + check digit (parentheses) (e.g., A123456(7))",
+    "official_name": "香港身份證 (HKID Card)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{1,2}[0-9]{6}\\([0-9A]\\)\\b",
+      "engine": "regex",
+      "validator": "hkid_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "HK_ID",
+          "reversible": false
+        }
+      },
+      "message": "Hong Kong HKID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.944288Z",
+  "regions": [
+    "HK"
+  ]
+}

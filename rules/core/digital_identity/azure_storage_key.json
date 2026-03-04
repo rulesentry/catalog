@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.azure_storage_key",
+  "qualified_id": "core.digital_identity.azure_storage_key",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Azure Storage Account Key",
+  "description": "Detects Microsoft Azure Storage Account keys. 88-character base64 strings with context (DefaultEndpointsProtocol or AccountKey) that grant full access to Azure Storage accounts.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "(?:DefaultEndpointsProtocol|AccountKey)=([a-zA-Z0-9+/=]{88})",
+    "risk": "Full Azure Storage access, data exfiltration",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:DefaultEndpointsProtocol|AccountKey)=([a-zA-Z0-9+/=]{88})",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[AZURE_STORAGE_KEY]"
+        }
+      },
+      "message": "Azure Storage Key redacted - redacted (critical security risk)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

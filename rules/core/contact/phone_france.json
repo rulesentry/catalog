@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.phone_france",
+  "qualified_id": "core.contact.phone_france",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "French Phone Number",
+  "description": "Detects French phone numbers with +33 country code or 0 prefix. French numbers are 10 digits starting with 0 (domestic) or 9 digits after +33.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "+33 X XX XX XX XX or 0X XX XX XX XX",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:\\b0[1-9]|\\+33\\s?[1-9])(?:[\\s.-]?\\d{2}){4}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "TEL"
+        }
+      },
+      "message": "French phone number tokenized"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "FR"
+  ]
+}

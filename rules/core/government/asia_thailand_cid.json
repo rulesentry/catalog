@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.asia_thailand_cid",
+  "qualified_id": "core.government.asia_thailand_cid",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Thailand Citizen ID Number",
+  "description": "Detects Thai national identification card numbers with MOD-11 checksum validation.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Thailand",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "MOD-11 checksum (last digit)",
+    "format": "13 digits (often written with spaces: 1 2345 67890 12 3)",
+    "official_name": "เลขประจำตัวประชาชน (Citizen ID)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]\\s?[0-9]{4}\\s?[0-9]{5}\\s?[0-9]{2}\\s?[0-9]\\b",
+      "engine": "regex",
+      "validator": "thailand_cid_mod11"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "TH_CID",
+          "reversible": false
+        }
+      },
+      "message": "Thailand CID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.944288Z",
+  "regions": [
+    "TH"
+  ]
+}

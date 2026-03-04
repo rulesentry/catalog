@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.americas_argentina_dni",
+  "qualified_id": "core.government.americas_argentina_dni",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Argentine DNI (Documento Nacional de Identidad)",
+  "description": "Detects Argentine national identity document numbers.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Argentina",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "7-8 digits (formatted with dots: XX.XXX.XXX)",
+    "official_name": "Documento Nacional de Identidad",
+    "note": "Law 25,326 Personal Data Protection",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]{1,2}[.]?[0-9]{3}[.]?[0-9]{3}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "AR_DNI",
+          "reversible": false
+        }
+      },
+      "message": "Argentina DNI tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.929760Z",
+  "regions": [
+    "AR"
+  ]
+}

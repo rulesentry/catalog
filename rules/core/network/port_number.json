@@ -1,0 +1,39 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "network.port_number",
+  "qualified_id": "core.network.port_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Port Number (with context)",
+  "description": "Detects TCP/UDP port numbers with explicit context (e.g., 'port 8080', ':3306'). May reveal service information.",
+  "category_id": "network",
+  "rule_kind": "atomic",
+  "severity": "info",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 55,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:port|Port)[:\\s]+\\d{1,5}\\b|:[0-9]{1,5}(?:\\s|/|$)",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "info",
+      "message": "Port number detected (informational only)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

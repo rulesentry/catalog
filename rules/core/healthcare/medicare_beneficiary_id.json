@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.medicare_beneficiary_id",
+  "qualified_id": "core.healthcare.medicare_beneficiary_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Medicare Beneficiary Identifier (MBI)",
+  "description": "Detects Medicare Beneficiary Identifiers (MBI) used since April 2018. Format: 1 character + AC-HJKMNP-RT-Y + AC-HJKMNP-RT-Y0-9 + digit + AC-HJKMNP-RT-Y + AC-HJKMNP-RT-Y0-9 + digit + 2 letters + 2 digits (e.g., 1AB2C3D4EF56). Excludes easily confused characters (S, L, O, I, B, Z).",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "hipaa",
+    "healthcare",
+    "phi-detection",
+    "production"
+  ],
+  "metadata": {
+    "country": "United States",
+    "official_name": "Medicare Beneficiary Identifier",
+    "phi_category": "Health Plan Beneficiary Number",
+    "hipaa_category": "Health plan beneficiary numbers",
+    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
+    "format": "New format since April 2018, replaces HICN",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[1-9][AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\\d[AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\\d[A-Z]{2}\\d{2}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "MEDICARE",
+          "reversible": false
+        }
+      },
+      "message": "Medicare beneficiary ID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-28T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.354727Z",
+  "regions": [
+    "US"
+  ]
+}

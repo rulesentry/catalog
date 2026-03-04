@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.eu_italian_codice_fiscale",
+  "qualified_id": "core.government.eu_italian_codice_fiscale",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Italian Tax Code (Codice Fiscale)",
+  "description": "Detects Italian tax identification codes with checksum validation. Format: 16 alphanumeric characters (surname, name, birth date, birthplace).",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "country": "Italy",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Codice Fiscale checksum (last character)",
+    "format": "6 letters + 2 digits + 1 letter + 2 digits + 4 alphanumeric + 1 check letter",
+    "official_name": "Codice Fiscale",
+    "note": "Encodes surname, name, birth date, and birthplace",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{6}[0-9LMNPQRSTUV]{2}[ABCDEHLMPRST][0-9LMNPQRSTUV]{2}[A-Z][0-9LMNPQRSTUV]{3}[A-Z]\\b",
+      "engine": "regex",
+      "validator": "codice_fiscale_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "IT_CF",
+          "reversible": false
+        }
+      },
+      "message": "Italian Codice Fiscale tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.958370Z",
+  "regions": [
+    "IT"
+  ]
+}

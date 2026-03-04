@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "personal.biometric_data",
+  "qualified_id": "core.personal.biometric_data",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Biometric Data (Height/Weight)",
+  "description": "Detects height and weight measurements with context. Can be considered biometric/health data under GDPR when linked to an individual.",
+  "category_id": "personal",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "hipaa",
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "note": "May be GDPR Article 9 special category data in healthcare context",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:Height|Weight)[:\\s]+\\d+(?:\\.\\d+)?\\s*(?:cm|m|ft|in|kg|lbs?|pounds?)\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[BIOMETRIC]"
+        }
+      },
+      "message": "Biometric data (height/weight) replaced"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.987271Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

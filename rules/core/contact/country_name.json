@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.country_name",
+  "qualified_id": "core.contact.country_name",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Country Name",
+  "description": "Detects common country names in addresses and contact information. Limited to most common countries to avoid false positives.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "info",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "note": "Limited to common countries to reduce false positives",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 50,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:United States|United Kingdom|Canada|Australia|Germany|France|Italy|Spain|Netherlands|Belgium|Switzerland|Austria|Sweden|Norway|Denmark|Finland|Ireland|Portugal|Greece|Poland|Czech Republic|Hungary|Romania|Bulgaria|Croatia|Slovenia|Slovakia|Estonia|Latvia|Lithuania|Luxembourg|Malta|Cyprus|India|China|Japan|South Korea|Singapore|Malaysia|Thailand|Indonesia|Philippines|Vietnam|New Zealand|Mexico|Brazil|Argentina|Chile|Colombia|Peru)\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "inference",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[COUNTRY]"
+        }
+      },
+      "message": "Country name replaced"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.phone_germany",
+  "qualified_id": "core.contact.phone_germany",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "German Phone Number",
+  "description": "Detects German phone numbers with +49 country code or 0 prefix. Supports various formatting styles.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "+49 XXX XXXXXXX or 0XXX XXXXXXX",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:\\+49\\s?|0)\\d{2,5}[\\s.-]?\\d{4,10}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4,
+          "preserve_format": true
+        }
+      },
+      "message": "German phone number masked, last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "DE"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "../../json-schema/category.schema.json",
+  "id": "healthcare",
+  "type": "category",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Healthcare / PHI",
+  "description": "Rules detecting protected health information (PHI) including medical record numbers, diagnosis codes, provider identifiers, and composite health data patterns.",
+  "frameworks": ["HIPAA", "HITECH"],
+  "examples": ["MRN", "ICD-10 code", "NPI", "PHI composite"],
+  "display_order": 40,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/healthcare"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "personal.patient_id",
+  "qualified_id": "core.personal.patient_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Patient ID",
+  "description": "Detects patient identification numbers with explicit 'Patient ID:', 'Patient Number:', or similar context. HIPAA PHI.",
+  "category_id": "personal",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "hipaa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "note": "HIPAA Protected Health Information (PHI)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 90,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:Patient\\s+(?:ID|Identifier|Number|No\\.?|#))[:\\s]+[A-Z0-9-]{6,20}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "PATIENT",
+          "reversible": false
+        }
+      },
+      "message": "Patient ID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.987271Z",
+  "regions": [
+    "US"
+  ]
+}

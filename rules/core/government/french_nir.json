@@ -1,0 +1,49 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.french_nir",
+  "qualified_id": "core.government.french_nir",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "French NIR (Social Security Number)",
+  "description": "Detects French Numéro d'Inscription au Répertoire (NIR/INSEE number) with MOD-97 checksum validation. Format: 15 digits.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "1 YYMMSS DDD CCC KK (15 digits)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[1-478]\\s?\\d{2}\\s?(?:0[1-9]|1[0-2])\\s?\\d{2}\\s?\\d{3}\\s?\\d{3}\\s?\\d{2}\\b",
+      "engine": "regex",
+      "validator": "french_nir_insee"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "NIR"
+        }
+      },
+      "message": "French NIR tokenized (MOD-97 validated)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "FR"
+  ]
+}

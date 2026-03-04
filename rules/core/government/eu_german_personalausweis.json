@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.eu_german_personalausweis",
+  "qualified_id": "core.government.eu_german_personalausweis",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "German National ID (Personalausweis)",
+  "description": "Detects German national identity card numbers. Format: Letter + 9 digits + check digit.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "country": "Germany",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "1 letter + 9 digits + 1 check digit (e.g., L01234567X)",
+    "official_name": "Personalausweis",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[CFGHJKLMNPRTVWXYZ][0-9]{9}[0-9]\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DE_ID",
+          "reversible": false
+        }
+      },
+      "message": "German Personalausweis tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.958370Z",
+  "regions": [
+    "DE"
+  ]
+}

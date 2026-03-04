@@ -1,0 +1,22 @@
+{
+  "$schema": "../../json-schema/profile.schema.json",
+  "id": "pdpa-sg",
+  "type": "profile",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Singapore PDPA Compliance Framework",
+  "caption": "PDPA-SG",
+  "description": "Personal Data Protection Act 2012 (PDPA) compliance framework for protecting personal data in Singapore.",
+  "profile_type": "compliance_framework",
+  "frameworks": ["PDPA 2012"],
+  "display_order": 60,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/profiles"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

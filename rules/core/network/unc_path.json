@@ -1,0 +1,47 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "network.unc_path",
+  "qualified_id": "core.network.unc_path",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UNC Network Path",
+  "description": "Detects Windows UNC (Universal Naming Convention) network paths (e.g., \\\\\\\\server\\\\share\\\\file). May reveal internal network structure.",
+  "category_id": "network",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "\\\\\\\\server\\\\share\\\\path",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\\\\\\\[A-Za-z0-9._-]+\\\\[A-Za-z0-9._$ -]+(?:\\\\[^\\s\\\\]*)*",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "inference",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[UNC_PATH]"
+        }
+      },
+      "message": "UNC path replaced"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

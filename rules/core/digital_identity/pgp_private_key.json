@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.pgp_private_key",
+  "qualified_id": "core.digital_identity.pgp_private_key",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "PGP Private Key",
+  "description": "Detects PGP/GPG private keys. Exposure allows decryption of encrypted messages and digital signature forgery.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "BEGIN PGP PRIVATE KEY BLOCK",
+    "risk": "Message decryption, signature forgery",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[PGP_PRIVATE_KEY]"
+        }
+      },
+      "message": "PGP Private Key redacted - redacted (critical security risk)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.353727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

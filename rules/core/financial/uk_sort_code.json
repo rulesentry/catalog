@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.uk_sort_code",
+  "qualified_id": "core.financial.uk_sort_code",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UK Sort Code (Format Validated)",
+  "description": "Detects UK bank sort codes with format validation. Sort codes identify UK bank branches.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "UK sort code format (6 digits)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:\\d{2}-\\d{2}-\\d{2}|\\d{2}\\s\\d{2}\\s\\d{2}|\\d{6})\\b",
+      "engine": "regex",
+      "validator": "sort_code_format"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 2
+        }
+      },
+      "message": "UK sort code masked (format validated), last 2 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "UK"
+  ]
+}

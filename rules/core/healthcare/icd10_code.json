@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.icd10_code",
+  "qualified_id": "core.healthcare.icd10_code",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "ICD-10 Diagnosis Code",
+  "summary": "Detects ICD-10 diagnosis codes with context markers indicating patient data",
+  "description": "Detects ICD-10 diagnosis and procedure codes in healthcare documents. Matches standard ICD-10-CM format (letter + 2 digits + optional decimal + up to 4 alphanumeric). Requires context markers to reduce false positives.",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": ["hipaa", "production"],
+  "regions": ["GLOBAL"],
+  "tags": ["phi", "healthcare", "diagnosis", "clinical"],
+  "metadata": {
+    "compliance_notes": "Diagnosis codes linked to a patient constitute PHI under HIPAA",
+    "format": "A00-Z99 with optional decimal extension (e.g., E11.65, J45.20)"
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:ICD-?10|diagnosis|dx|diagnostic\\s+code)[:\\s]+[A-Z]\\d{2}(?:\\.\\d{1,4})?\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "message": "ICD-10 diagnosis code redacted per HIPAA when linked to patient identity",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[ICD10_CODE]"
+        }
+      }
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/healthcare"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

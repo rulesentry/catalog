@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.lei",
+  "qualified_id": "core.financial.lei",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "LEI (Legal Entity Identifier)",
+  "description": "Detects Legal Entity Identifiers with MOD-97 checksum validation. LEI is a 20-character code that uniquely identifies legal entities participating in financial transactions globally.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production",
+    "mifid",
+    "sec"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "MOD-97 checksum (similar to IBAN)",
+    "standard": "ISO 17442",
+    "format": "18 alphanumeric + 2 check digits",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z0-9]{18}\\d{2}\\b",
+      "engine": "regex",
+      "validator": "iban_mod97"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 4,
+          "visible_suffix": 2
+        }
+      },
+      "message": "LEI masked (MOD-97 validated), prefix and check digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../json-schema/profile.schema.json",
+  "id": "hipaa",
+  "type": "profile",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "HIPAA Compliance Framework",
+  "caption": "HIPAA",
+  "description": "Health Insurance Portability and Accountability Act (HIPAA) compliance framework for protecting Protected Health Information (PHI). Covers the Privacy Rule, Security Rule, and Breach Notification Rule.",
+  "profile_type": "compliance_framework",
+  "frameworks": ["HIPAA 45 CFR 164", "HITECH Act"],
+  "display_order": 10,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/profiles"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

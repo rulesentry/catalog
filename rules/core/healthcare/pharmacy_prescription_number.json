@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.pharmacy_prescription_number",
+  "qualified_id": "core.healthcare.pharmacy_prescription_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Pharmacy Prescription Number",
+  "description": "Detects pharmacy prescription (Rx) tracking numbers. Format: 6-10 digits with contextual keywords (prescription, rx).",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "hipaa",
+    "healthcare",
+    "phi-detection",
+    "production"
+  ],
+  "metadata": {
+    "country": "United States",
+    "official_name": "Prescription Number",
+    "phi_category": "Medical Record Number",
+    "hipaa_category": "Medical record numbers",
+    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "target": "content",
+    "pattern": {
+      "pattern": "(?i)\\b(?:prescription|rx)\\s*(?:number|#)?\\s*:?\\s*(\\d{6,10})\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "RX",
+          "reversible": false
+        }
+      },
+      "message": "Pharmacy prescription number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-28T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.354727Z",
+  "regions": [
+    "US"
+  ]
+}

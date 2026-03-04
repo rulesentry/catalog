@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.sedol",
+  "qualified_id": "core.financial.sedol",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "SEDOL (UK/Irish Securities Identifier)",
+  "description": "Detects SEDOL numbers with checksum validation. SEDOL uniquely identifies securities traded on the London Stock Exchange and Irish Stock Exchange.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production",
+    "fca",
+    "gdpr"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "SEDOL checksum algorithm",
+    "standard": "London Stock Exchange",
+    "format": "6 alphanumeric characters + 1 check digit",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 75,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z0-9]{6}\\d\\b",
+      "engine": "regex",
+      "validator": "sedol_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 2
+        }
+      },
+      "message": "SEDOL masked (checksum validated), check digit visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "UK",
+    "IE"
+  ]
+}

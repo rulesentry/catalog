@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.ethereum_address",
+  "qualified_id": "core.financial.ethereum_address",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Ethereum Address",
+  "description": "Detects Ethereum cryptocurrency addresses with EIP-55 checksum validation. Ethereum addresses are 40-character hexadecimal strings (42 with 0x prefix) used for wallets and smart contracts.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "EIP-55 mixed-case checksum (basic validation)",
+    "standard": "EIP-55",
+    "format": "0x + 40 hexadecimal characters",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b0x[a-fA-F0-9]{40}\\b",
+      "engine": "regex",
+      "validator": "ethereum_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 6,
+          "visible_suffix": 4
+        }
+      },
+      "message": "Ethereum address masked (EIP-55 validated), 0x prefix and suffix visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

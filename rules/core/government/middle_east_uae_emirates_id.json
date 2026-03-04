@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.middle_east_uae_emirates_id",
+  "qualified_id": "core.government.middle_east_uae_emirates_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UAE Emirates ID",
+  "description": "Detects United Arab Emirates national identity card numbers.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "United Arab Emirates",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "15 digits (784-YYYY-NNNNNNN-N where 784 is UAE country code)",
+    "official_name": "Emirates ID / بطاقة الهوية",
+    "note": "Federal Decree-Law on Personal Data Protection",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b784[-]?[0-9]{4}[-]?[0-9]{7}[-]?[0-9]\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "AE_EID",
+          "reversible": false
+        }
+      },
+      "message": "UAE Emirates ID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.972876Z",
+  "regions": [
+    "AE"
+  ]
+}

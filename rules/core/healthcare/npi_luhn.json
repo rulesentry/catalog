@@ -1,0 +1,64 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.npi_luhn",
+  "qualified_id": "core.healthcare.npi_luhn",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "National Provider Identifier (NPI)",
+  "summary": "Detects US NPI numbers with Luhn checksum validation",
+  "description": "Detects US National Provider Identifier (NPI) numbers with Luhn checksum validation. NPI is a 10-digit number assigned to healthcare providers by CMS.",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "hipaa",
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "tags": [
+    "phi",
+    "healthcare",
+    "provider-id",
+    "hipaa"
+  ],
+  "metadata": {
+    "compliance_notes": "NPI is used in HIPAA transactions and is considered a provider identifier",
+    "format": "10 digits with Luhn check digit (prefix 80840 for Luhn calculation)"
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:NPI|National\\s+Provider)[:\\s#]+\\d{10}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      },
+      "validator": "luhn"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "message": "NPI number tokenized (Luhn validated) for de-identification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "NPI",
+          "reversible": false
+        }
+      }
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/healthcare"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

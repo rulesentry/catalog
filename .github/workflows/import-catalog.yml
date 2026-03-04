@@ -1,0 +1,77 @@
+name: Import to Catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rules/**'
+      - 'policies/**'
+      - 'categories/**'
+      - 'profiles/**'
+      - 'regions/**'
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect changed entity files
+        id: changes
+        run: |
+          changed=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- \
+            'rules/**/*.json' \
+            'policies/**/*.json' \
+            'categories/**/*.json' \
+            'profiles/**/*.json' \
+            'regions/**/*.json' \
+          | grep -v '^examples/' || true)
+          echo "files<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$changed" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+          count=$(echo "$changed" | grep -c '.' || true)
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      - name: Import changed files to catalog
+        if: steps.changes.outputs.count != '0'
+        env:
+          API_URL: ${{ vars.RULESENTRY_API_URL }}
+          IMPORT_KEY: ${{ secrets.IMPORT_API_KEY }}
+        run: |
+          failed=0
+          imported=0
+          skipped=0
+
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+
+            raw_url="https://raw.githubusercontent.com/${{ github.repository }}/main/${file}"
+            echo "Importing: $file"
+
+            status=$(curl -s -o /tmp/import-response.json -w '%{http_code}' \
+              -X POST "${API_URL}/api/v1/catalog/import-url" \
+              -H "Content-Type: application/json" \
+              -H "X-Import-Key: ${IMPORT_KEY}" \
+              -d "{\"url\": \"${raw_url}\", \"catalog\": \"public\"}")
+
+            if [ "$status" = "201" ]; then
+              echo "  ✓ Imported"
+              imported=$((imported + 1))
+            elif [ "$status" = "409" ]; then
+              echo "  → Skipped (already exists)"
+              skipped=$((skipped + 1))
+            else
+              echo "  ✗ Failed (HTTP $status)"
+              cat /tmp/import-response.json
+              failed=$((failed + 1))
+            fi
+          done <<< "${{ steps.changes.outputs.files }}"
+
+          echo ""
+          echo "Summary: $imported imported, $skipped skipped, $failed failed"
+
+          if [ "$failed" -gt 0 ]; then
+            exit 1
+          fi

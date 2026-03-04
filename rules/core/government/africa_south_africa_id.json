@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.africa_south_africa_id",
+  "qualified_id": "core.government.africa_south_africa_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "South African ID Number",
+  "description": "Detects South African identity numbers with Luhn checksum validation. Encodes birth date, gender, and citizenship.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "popia",
+    "production"
+  ],
+  "metadata": {
+    "country": "South Africa",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Luhn checksum (last digit)",
+    "format": "13 digits (YYMMDD SSSS C A Z where YYMMDD=birth date, SSSS=gender, C=citizenship, A=always 8, Z=checksum)",
+    "official_name": "South African ID Number",
+    "note": "POPIA (Protection of Personal Information Act) requires protection",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])[0-9]{4}[01]8[0-9]\\b",
+      "engine": "regex",
+      "validator": "luhn"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "ZA_ID",
+          "reversible": false
+        }
+      },
+      "message": "South Africa ID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.914858Z",
+  "regions": [
+    "ZA"
+  ]
+}

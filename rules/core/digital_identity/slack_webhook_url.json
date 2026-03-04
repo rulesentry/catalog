@@ -1,0 +1,49 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.slack_webhook_url",
+  "qualified_id": "core.digital_identity.slack_webhook_url",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Slack Webhook URL",
+  "description": "Detects Slack Incoming Webhook URLs. Can post messages to specific Slack channels.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "https://hooks.slack.com/services/...",
+    "risk": "Unauthorized channel posting, spam",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 75,
+    "target": "content",
+    "pattern": {
+      "pattern": "https://hooks\\.slack\\.com/services/[A-Z0-9]+/[A-Z0-9]+/[A-Za-z0-9]+",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "SLACK_WEBHOOK",
+          "reversible": true
+        }
+      },
+      "message": "Slack Webhook URL tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.353727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

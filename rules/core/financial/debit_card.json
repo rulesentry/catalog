@@ -1,0 +1,62 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.debit_card",
+  "qualified_id": "core.financial.debit_card",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Debit Card (Luhn Validated)",
+  "description": "Detects debit card numbers with Luhn checksum validation. Uses same pattern as credit cards but with debit-specific context detection.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "pci-dss",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Luhn checksum (ISO/IEC 7812-1)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 98,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:debit|checking)\\s+(?:card|account)[:\\s]+(?:\\d{4}[-\\s]?){3}\\d{4}",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      },
+      "validator": "luhn",
+      "validator_params": {
+        "strip_chars": " .-",
+        "reject_keywords": [
+          "example",
+          "test",
+          "sample"
+        ]
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4,
+          "preserve_format": true
+        }
+      },
+      "message": "Debit card masked (Luhn validated), last 4 digits visible per PCI-DSS"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

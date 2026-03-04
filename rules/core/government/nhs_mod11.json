@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.nhs_mod11",
+  "qualified_id": "core.government.nhs_mod11",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UK NHS Number (MOD-11 Validated)",
+  "description": "Detects UK National Health Service numbers with MOD-11 checksum validation. NHS numbers uniquely identify patients in the UK healthcare system.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "NHS MOD-11 checksum (NHS Scotland CHI specification)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{3}[\\s]?\\d{3}[\\s]?\\d{4}\\b",
+      "engine": "regex",
+      "validator": "nhs_mod11"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "NHS",
+          "reversible": false
+        }
+      },
+      "message": "NHS number tokenized (MOD-11 validated) for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "UK"
+  ]
+}

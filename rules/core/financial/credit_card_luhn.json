@@ -1,0 +1,73 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.credit_card_luhn",
+  "qualified_id": "core.financial.credit_card_luhn",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Credit Card (Luhn Validated)",
+  "description": "Detects credit card numbers with Luhn checksum validation to reduce false positives. Supports Visa, Mastercard, Discover, Amex, Diners Club, and JCB.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "pci-dss",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Luhn checksum (ISO/IEC 7812-1)",
+    "supported_issuers": [
+      "Visa",
+      "Mastercard",
+      "American Express",
+      "Discover",
+      "Diners Club",
+      "JCB"
+    ],
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:4\\d{3}|5[1-5]\\d{2}|6(?:011|5\\d{2})|3[47]\\d{2}|3(?:0[0-5]|[68]\\d)\\d|35(?:2[89]|[3-8]\\d))[-\\s]?\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}\\b|\\b3[47]\\d{2}[-\\s]?\\d{6}[-\\s]?\\d{5}\\b",
+      "engine": "regex",
+      "validator": "luhn",
+      "validator_params": {
+        "strip_chars": " .-",
+        "reject_keywords": [
+          "example card",
+          "test card",
+          "sample card",
+          "dummy card",
+          "fake card",
+          "placeholder",
+          "xxxx",
+          "0000 0000 0000 0000",
+          "1234 5678"
+        ]
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4,
+          "preserve_format": true
+        }
+      },
+      "message": "Credit card masked (Luhn validated), last 4 digits visible per PCI-DSS 3.4"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

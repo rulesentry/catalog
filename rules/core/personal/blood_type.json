@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "personal.blood_type",
+  "qualified_id": "core.personal.blood_type",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Blood Type",
+  "description": "Detects blood type mentions (e.g., 'Blood Type: O+', 'A-', 'AB+'). Considered sensitive health data under GDPR Article 9 and HIPAA PHI.",
+  "category_id": "personal",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "hipaa",
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "note": "GDPR Article 9 - special category data, HIPAA PHI",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 75,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:Blood\\s+Type|Blood\\s+Group)[:\\s]+(?:A|B|AB|O)[+-]\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[BLOOD_TYPE]"
+        }
+      },
+      "message": "Blood type replaced per GDPR Article 9 / HIPAA"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.987271Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

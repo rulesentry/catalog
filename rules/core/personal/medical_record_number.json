@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "personal.medical_record_number",
+  "qualified_id": "core.personal.medical_record_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Medical Record Number (MRN)",
+  "description": "Detects medical record numbers with explicit 'MRN:', 'Medical Record:', or 'Chart Number:' context. Format varies by healthcare provider.",
+  "category_id": "personal",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "hipaa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "note": "HIPAA Protected Health Information (PHI)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 90,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:MRN|Medical\\s+Record\\s+(?:Number|No\\.?|#)?|Chart\\s+(?:Number|No\\.?|#)?)[:\\s]+[A-Z0-9-]{6,20}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "MRN",
+          "reversible": false
+        }
+      },
+      "message": "Medical record number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.987271Z",
+  "regions": [
+    "US"
+  ]
+}

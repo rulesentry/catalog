@@ -1,0 +1,119 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.apac-data-privacy",
+  "qualified_id": "core.policy.apac-data-privacy",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "APAC Data Privacy Policy",
+  "description": "Data privacy policy for Asia-Pacific jurisdictions. Covers Singapore PDPA, Japan APPI, Australia Privacy Act, India DPDP Act, and government ID detection across AU, JP, IN, CN, HK, KR, TW, and TH.",
+  "profiles": [
+    "pdpa-sg",
+    "production"
+  ],
+  "regions": [
+    "APAC"
+  ],
+  "priority": 60,
+  "tags": [
+    "apac",
+    "pdpa",
+    "data-privacy",
+    "asia-pacific"
+  ],
+  "rules": [
+    {
+      "rule_id": "government.singapore_nric",
+      "pinned_version": "1.0.0",
+      "priority": 100,
+      "attached_at": "2026-02-10T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Singapore NRIC/FIN detection for PDPA compliance"
+    },
+    {
+      "rule_id": "government.australian_tfn",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Australian Tax File Number detection for Privacy Act 1988 compliance"
+    },
+    {
+      "rule_id": "government.asia_japanese_my_number",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Japanese My Number (bare 12-digit) with check digit validation for APPI compliance"
+    },
+    {
+      "rule_id": "government.japan_my_number",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Japanese My Number (contextual prefix pattern) for APPI compliance"
+    },
+    {
+      "rule_id": "government.indian_aadhaar",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Indian Aadhaar number detection for DPDP Act 2023 compliance"
+    },
+    {
+      "rule_id": "government.china_id_card",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Chinese national ID card number detection for PIPL compliance"
+    },
+    {
+      "rule_id": "government.asia_hong_kong_hkid",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Hong Kong HKID detection for PDPO compliance"
+    },
+    {
+      "rule_id": "government.asia_south_korea_rrn",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "South Korea Resident Registration Number for PIPA compliance"
+    },
+    {
+      "rule_id": "government.asia_taiwan_nid",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Taiwan National ID detection for PDPA compliance"
+    },
+    {
+      "rule_id": "government.asia_thailand_cid",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Thailand Citizen ID detection for PDPA compliance"
+    }
+  ],
+  "metadata": {
+    "frameworks": ["PDPA 2012", "APPI", "Privacy Act 1988", "DPDP Act 2023", "PIPL", "PDPO", "PIPA"],
+    "compliance_scope": "APAC personal data protection",
+    "review_cycle": "semi-annual",
+    "owner": "apac-compliance-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

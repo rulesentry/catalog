@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.singapore_nric",
+  "qualified_id": "core.government.singapore_nric",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Singapore NRIC/FIN",
+  "description": "Detects Singapore National Registration Identity Card (NRIC) and Foreign Identification Number (FIN) with checksum validation. Format: X1234567X (letter + 7 digits + checksum letter).",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "pdpa-sg",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "X1234567X (letter + 7 digits + checksum letter)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[STFGM]\\d{7}[A-Z]\\b",
+      "engine": "regex",
+      "validator": "singapore_nric_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "NRIC",
+          "reversible": false
+        }
+      },
+      "message": "Singapore NRIC tokenized (checksum validated) for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "SG"
+  ]
+}

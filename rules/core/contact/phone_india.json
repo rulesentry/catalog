@@ -1,0 +1,49 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.phone_india",
+  "qualified_id": "core.contact.phone_india",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Indian Phone Number",
+  "description": "Detects Indian phone numbers with +91 country code. Includes mobile (10 digits starting with 6-9) and landline formats.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "+91 XXXXX XXXXX",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:\\+91[\\s.-]?)?[6-9]\\d{9}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4,
+          "preserve_format": true
+        }
+      },
+      "message": "Indian phone number masked, last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "IN"
+  ]
+}

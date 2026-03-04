@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.nino_checksum",
+  "qualified_id": "core.government.nino_checksum",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UK National Insurance Number (Checksum Validated)",
+  "description": "Detects UK National Insurance (NI) numbers with checksum validation. Format: 2 letters + 6 digits + 1 letter.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "UK NINO format and checksum validation",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 95,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z]\\s?\\d{2}\\s?\\d{2}\\s?\\d{2}\\s?[A-D]\\b",
+      "engine": "regex",
+      "validator": "nino_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "NINO",
+          "reversible": false
+        }
+      },
+      "message": "National Insurance number tokenized (checksum validated) for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "UK"
+  ]
+}

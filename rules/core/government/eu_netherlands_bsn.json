@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.eu_netherlands_bsn",
+  "qualified_id": "core.government.eu_netherlands_bsn",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Dutch Citizen Service Number (BSN)",
+  "description": "Detects Dutch BSN (Burgerservicenummer) with 11-test checksum validation.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "country": "Netherlands",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "11-test (elfproef) checksum",
+    "format": "9 digits (may be written with dots: 123.45.678)",
+    "official_name": "Burgerservicenummer",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]{3}[.]?[0-9]{2}[.]?[0-9]{3}\\b",
+      "engine": "regex",
+      "validator": "bsn_11test"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "NL_BSN",
+          "reversible": false
+        }
+      },
+      "message": "Netherlands BSN tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.958370Z",
+  "regions": [
+    "NL"
+  ]
+}

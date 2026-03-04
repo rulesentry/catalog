@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.middle_east_turkey_tc_kimlik",
+  "qualified_id": "core.government.middle_east_turkey_tc_kimlik",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Turkish TC Kimlik No (Turkish ID)",
+  "description": "Detects Turkish Republic citizenship ID numbers with custom checksum validation.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Turkey",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Custom Turkish ID checksum (10th and 11th digits)",
+    "format": "11 digits (cannot start with 0)",
+    "official_name": "TC Kimlik Numarası",
+    "note": "KVKK (Personal Data Protection Law No. 6698)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[1-9][0-9]{10}\\b",
+      "engine": "regex",
+      "validator": "tc_kimlik_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "TR_TC",
+          "reversible": false
+        }
+      },
+      "message": "Turkey TC Kimlik tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.972876Z",
+  "regions": [
+    "TR"
+  ]
+}

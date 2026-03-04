@@ -1,0 +1,49 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.indian_aadhaar",
+  "qualified_id": "core.government.indian_aadhaar",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Indian Aadhaar Number",
+  "description": "Detects Indian Aadhaar unique identification numbers with Verhoeff checksum validation. Format: XXXX-XXXX-XXXX (12 digits).",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "XXXX-XXXX-XXXX (12 digits)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}\\b",
+      "engine": "regex",
+      "validator": "indian_aadhaar_verhoeff"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "AADHAAR",
+          "reversible": false
+        }
+      },
+      "message": "Indian Aadhaar number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "IN"
+  ]
+}

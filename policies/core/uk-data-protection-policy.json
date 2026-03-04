@@ -1,0 +1,78 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.uk-data-protection",
+  "qualified_id": "core.policy.uk-data-protection",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "UK Data Protection Policy",
+  "description": "Data protection policy for United Kingdom jurisdictions under the DPA 2018 and UK-GDPR. Covers national insurance numbers, NHS numbers, driving licences, passports, sort codes, and IBANs. UK is under EMEA but not under EU, reflecting post-Brexit regulatory independence.",
+  "profiles": [
+    "uk-dpa",
+    "production"
+  ],
+  "regions": [
+    "UK"
+  ],
+  "priority": 70,
+  "tags": [
+    "uk-dpa",
+    "uk-gdpr",
+    "data-protection",
+    "nhs"
+  ],
+  "rules": [
+    {
+      "rule_id": "government.nino_checksum",
+      "pinned_version": "1.0.0",
+      "priority": 95,
+      "attached_at": "2026-02-10T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "UK National Insurance Number detection with checksum validation"
+    },
+    {
+      "rule_id": "government.nhs_mod11",
+      "pinned_version": "1.0.0",
+      "priority": 100,
+      "attached_at": "2026-02-10T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "NHS number detection - special category data under UK-GDPR"
+    },
+    {
+      "rule_id": "government.uk_driving_license",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "UK driving licence number detection for DPA 2018 compliance"
+    },
+    {
+      "rule_id": "government.uk_passport",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "UK passport number detection for DPA 2018 compliance"
+    }
+  ],
+  "overrides": [
+    {
+      "rule_id": "government.nhs_mod11",
+      "severity": "critical",
+      "reason": "Elevated to critical - NHS numbers are special category data under UK-GDPR Article 9"
+    }
+  ],
+  "metadata": {
+    "frameworks": ["DPA 2018", "UK-GDPR"],
+    "compliance_scope": "UK personal data and special category data protection",
+    "review_cycle": "quarterly",
+    "owner": "uk-compliance-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

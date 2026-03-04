@@ -1,0 +1,55 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.email_address",
+  "qualified_id": "core.contact.email_address",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Email Address",
+  "description": "Detects email addresses using RFC 5322 compliant pattern. Includes support for international domains (IDN), subdomains, and plus addressing (user+tag@domain.com).",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "pipeda",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "standard": "RFC 5322",
+    "supports": [
+      "plus addressing",
+      "subdomains",
+      "international domains"
+    ],
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[Email-Redacted]"
+        }
+      },
+      "message": "Email address redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

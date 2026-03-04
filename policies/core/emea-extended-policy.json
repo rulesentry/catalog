@@ -1,0 +1,119 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.emea-extended",
+  "qualified_id": "core.policy.emea-extended",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "EMEA Extended Data Protection Policy",
+  "description": "Data protection policy for Middle East and Africa jurisdictions under EMEA. Covers Turkey KVKK, Saudi PDPL, UAE DPL, South Africa POPIA, and other regional data protection requirements for government ID detection.",
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "TR", "IL", "SA", "AE", "QA", "EG", "GH", "KE", "NG", "ZA"
+  ],
+  "priority": 55,
+  "tags": [
+    "emea",
+    "middle-east",
+    "africa",
+    "data-protection",
+    "government-id"
+  ],
+  "rules": [
+    {
+      "rule_id": "government.middle_east_turkey_tc_kimlik",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Turkish TC Kimlik number detection for KVKK compliance"
+    },
+    {
+      "rule_id": "government.middle_east_israel_id",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Israeli national ID (Teudat Zehut) detection"
+    },
+    {
+      "rule_id": "government.middle_east_saudi_national_id",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Saudi national ID detection for PDPL compliance"
+    },
+    {
+      "rule_id": "government.middle_east_uae_emirates_id",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "UAE Emirates ID detection for DPL compliance"
+    },
+    {
+      "rule_id": "government.middle_east_qatar_qid",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Qatar QID (Qatar ID) detection"
+    },
+    {
+      "rule_id": "government.africa_egypt_national_id",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Egyptian national ID detection"
+    },
+    {
+      "rule_id": "government.africa_south_africa_id",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "South African ID number detection for POPIA compliance"
+    },
+    {
+      "rule_id": "government.africa_nigeria_nin",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Nigerian NIN (National Identification Number) detection for NDPR compliance"
+    },
+    {
+      "rule_id": "government.africa_kenya_id",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Kenyan national ID detection for DPA 2019 compliance"
+    },
+    {
+      "rule_id": "government.africa_ghana_gps",
+      "pinned_version": "1.0.0",
+      "priority": 80,
+      "attached_at": "2026-02-26T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Ghana GPS (Ghana Post GPS) address detection for DPA 2012 compliance"
+    }
+  ],
+  "metadata": {
+    "frameworks": ["KVKK", "PDPL", "POPIA", "NDPR", "DPA 2019"],
+    "compliance_scope": "EMEA (Middle East and Africa) government ID protection",
+    "review_cycle": "semi-annual",
+    "owner": "compliance-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-26T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-02-26T00:00:00Z",
+  "modified_by": "claude-code"
+}

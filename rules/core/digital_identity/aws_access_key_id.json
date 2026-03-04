@@ -1,0 +1,49 @@
+{
+  "_note": "Overlaps with credentials.aws_access_key_id. The credentials/ version is canonical for secret detection; this version retained for category-based policy inclusion.",
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.aws_access_key_id",
+  "qualified_id": "core.digital_identity.aws_access_key_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "AWS Access Key ID",
+  "description": "Detects Amazon Web Services (AWS) Access Key IDs. Format: AKIA followed by 16 alphanumeric characters. Exposure can lead to unauthorized access to AWS resources.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "AKIA[A-Z0-9]{16}",
+    "risk": "Complete AWS account compromise",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bAKIA[A-Z0-9]{16}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[AWS_ACCESS_KEY_ID]"
+        }
+      },
+      "message": "AWS Access Key ID redacted - must never be exposed (critical security risk)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

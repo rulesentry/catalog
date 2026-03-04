@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "network.ipv6_address",
+  "qualified_id": "core.network.ipv6_address",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "IPv6 Address",
+  "description": "Detects IPv6 addresses in standard and compressed notation (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334, ::1). GDPR personal data.",
+  "category_id": "network",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "Hexadecimal groups separated by colons",
+    "note": "GDPR considers IP addresses as personal data",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\\b|\\b::(?:[0-9a-fA-F]{1,4}:){0,6}[0-9a-fA-F]{1,4}\\b|\\b[0-9a-fA-F]{1,4}::(?:[0-9a-fA-F]{1,4}:){0,5}[0-9a-fA-F]{1,4}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 9
+        }
+      },
+      "message": "IPv6 address masked (GDPR), network prefix visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

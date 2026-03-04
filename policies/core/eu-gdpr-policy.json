@@ -1,0 +1,69 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.eu-gdpr",
+  "qualified_id": "core.policy.eu-gdpr",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "EU GDPR Data Protection Policy",
+  "description": "GDPR compliance policy for European Union jurisdictions. Protects personal data of EU residents including dates of birth, tax identifiers, and financial account numbers. Rules scoped to EU automatically apply to DE, FR, NL, ES, IT via region hierarchy.",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "regions": [
+    "EU"
+  ],
+  "priority": 75,
+  "tags": [
+    "gdpr",
+    "eu-compliance",
+    "personal-data",
+    "data-protection"
+  ],
+  "rules": [
+    {
+      "rule_id": "personal.date_of_birth_eu",
+      "pinned_version": "1.0.0",
+      "priority": 80,
+      "attached_at": "2026-02-10T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "EU-formatted DOB detection for GDPR compliance"
+    },
+    {
+      "rule_id": "government.eu_de_tax_id",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-02-10T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German tax ID detection for GDPR/BDSG compliance"
+    },
+    {
+      "rule_id": "financial.iban_mod97",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-02-10T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "IBAN detection for EU financial data protection"
+    }
+  ],
+  "rule_filters": [
+    {
+      "by_region": ["EU", "DE", "FR", "NL", "ES", "IT"],
+      "by_profile": ["gdpr"]
+    }
+  ],
+  "metadata": {
+    "frameworks": ["GDPR", "ePrivacy Directive"],
+    "compliance_scope": "EU personal data protection",
+    "review_cycle": "quarterly",
+    "owner": "eu-compliance-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

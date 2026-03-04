@@ -1,0 +1,60 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.pci-dss-global",
+  "qualified_id": "core.policy.pci-dss-global",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "PCI-DSS Global Payment Card Policy",
+  "description": "Global PCI-DSS compliance policy for payment card data protection. Selectively includes critical financial rules (credit cards, CVV, PIN) and applies PCI-DSS profile filtering. Overrides all financial rules to priority 100 to ensure they evaluate first.",
+  "profiles": [
+    "pci-dss",
+    "production"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 90,
+  "tags": [
+    "pci-dss",
+    "payment",
+    "cardholder-data",
+    "global"
+  ],
+  "rule_categories": [
+    {
+      "category_id": "financial",
+      "mode": "selective",
+      "include_rules": [
+        "financial.credit_card_luhn",
+        "financial.cvv_cvc",
+        "financial.pin_code"
+      ]
+    }
+  ],
+  "rule_filters": [
+    {
+      "by_profile": ["pci-dss"]
+    }
+  ],
+  "overrides": [
+    {
+      "rule_id": "financial.*",
+      "priority": 100,
+      "reason": "PCI-DSS rules evaluate first to ensure payment card data is always protected"
+    }
+  ],
+  "metadata": {
+    "frameworks": ["PCI-DSS 4.0"],
+    "compliance_scope": "Global payment card data protection",
+    "review_cycle": "quarterly",
+    "owner": "payment-security-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

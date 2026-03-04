@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "network.mac_address",
+  "qualified_id": "core.network.mac_address",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "MAC Address",
+  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Hardware addresses can be used for device tracking.",
+  "category_id": "network",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "formats": [
+      "XX:XX:XX:XX:XX:XX",
+      "XX-XX-XX-XX-XX-XX",
+      "XXXX.XXXX.XXXX"
+    ],
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}\\b|\\b(?:[0-9A-Fa-f]{4}\\.){2}[0-9A-Fa-f]{4}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 8,
+          "preserve_format": true
+        }
+      },
+      "message": "MAC address masked, OUI (vendor) prefix visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

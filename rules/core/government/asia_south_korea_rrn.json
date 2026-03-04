@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.asia_south_korea_rrn",
+  "qualified_id": "core.government.asia_south_korea_rrn",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "South Korean Resident Registration Number (RRN)",
+  "description": "Detects Korean RRN (Jumin Deungnok Beonho) with checksum validation. Format encodes birth date and gender.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "South Korea",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Weighted sum modulo checksum",
+    "format": "6 digits (YYMMDD) + 7 digits (gender/serial/checksum)",
+    "official_name": "주민등록번호 (Jumin Deungnok Beonho)",
+    "note": "PIPA (Personal Information Protection Act) requires strict handling",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 90,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]{6}-[1-4][0-9]{6}\\b",
+      "engine": "regex",
+      "validator": "rrn_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[KR_RRN]"
+        }
+      },
+      "message": "Korean RRN redacted per PIPA (Personal Information Protection Act)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.944288Z",
+  "regions": [
+    "KR"
+  ]
+}

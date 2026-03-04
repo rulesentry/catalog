@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.japan_my_number",
+  "qualified_id": "core.government.japan_my_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Japan My Number",
+  "description": "Detects Japanese Social Security and Tax Numbers (My Number). Format: XXXX-XXXX-XXXX (12 digits). Note: MOD-11 checksum validator to be implemented.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "XXXX-XXXX-XXXX (12 digits)",
+    "note": "MOD-11 checksum validator not yet implemented",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:my\\s+number|マイナンバー)[:\\s]+\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "MY_NUMBER",
+          "reversible": false
+        }
+      },
+      "message": "Japan My Number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "JP"
+  ]
+}

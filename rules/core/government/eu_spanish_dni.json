@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.eu_spanish_dni",
+  "qualified_id": "core.government.eu_spanish_dni",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Spanish National ID (DNI)",
+  "description": "Detects Spanish DNI (Documento Nacional de Identidad) with MOD-23 checksum validation.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "country": "Spain",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "MOD-23 checksum (letter calculated from number)",
+    "format": "8 digits + 1 letter (e.g., 12345678Z)",
+    "official_name": "Documento Nacional de Identidad",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]{8}[A-Z]\\b",
+      "engine": "regex",
+      "validator": "dni_mod23"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "ES_DNI",
+          "reversible": false
+        }
+      },
+      "message": "Spanish DNI tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.958370Z",
+  "regions": [
+    "ES"
+  ]
+}

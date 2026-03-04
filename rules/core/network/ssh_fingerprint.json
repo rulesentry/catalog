@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "network.ssh_fingerprint",
+  "qualified_id": "core.network.ssh_fingerprint",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "SSH Key Fingerprint",
+  "description": "Detects SSH key fingerprints in MD5 and SHA256 formats (e.g., 'SSH-RSA key fingerprint is ...').",
+  "category_id": "network",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "formats": [
+      "MD5 (16 hex pairs)",
+      "SHA256 (base64)"
+    ],
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:fingerprint|Fingerprint)[:\\s]+(?:(?:[0-9a-f]{2}:){15}[0-9a-f]{2}|SHA256:[A-Za-z0-9+/]{43})\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 8
+        }
+      },
+      "message": "SSH fingerprint masked, suffix visible for verification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

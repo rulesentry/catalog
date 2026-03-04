@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.github_oauth_token",
+  "qualified_id": "core.digital_identity.github_oauth_token",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "GitHub OAuth Access Token",
+  "description": "Detects GitHub OAuth access tokens. Format: gho_ prefix. Used by GitHub Apps and OAuth Apps.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "gho_[A-Za-z0-9_]{36}",
+    "risk": "GitHub App/OAuth compromise",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 95,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bgho_[A-Za-z0-9_]{36}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[GITHUB_OAUTH_TOKEN]"
+        }
+      },
+      "message": "GitHub OAuth Token redacted - redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

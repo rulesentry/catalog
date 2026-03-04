@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.asia_taiwan_nid",
+  "qualified_id": "core.government.asia_taiwan_nid",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Taiwan National ID (ROC ID)",
+  "description": "Detects Taiwan National Identification Card numbers with checksum validation.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Taiwan (ROC)",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Weighted checksum calculation",
+    "format": "1 letter + 9 digits (e.g., A123456789)",
+    "official_name": "身分證字號 (National ID)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z][12][0-9]{8}\\b",
+      "engine": "regex",
+      "validator": "taiwan_nid_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "TW_ID",
+          "reversible": false
+        }
+      },
+      "message": "Taiwan NID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.944288Z",
+  "regions": [
+    "TW"
+  ]
+}

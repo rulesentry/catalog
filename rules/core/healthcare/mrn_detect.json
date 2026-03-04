@@ -1,0 +1,63 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.mrn_detect",
+  "qualified_id": "core.healthcare.mrn_detect",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Medical Record Number (MRN)",
+  "summary": "Detects medical record numbers with explicit MRN context markers",
+  "description": "Detects medical record numbers (MRN) in healthcare documents. Requires explicit context markers like 'MRN:', 'Medical Record:', or 'Patient ID:' followed by alphanumeric identifiers.",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": ["hipaa", "production"],
+  "regions": ["US"],
+  "tags": ["phi", "healthcare", "medical-record", "hipaa"],
+  "metadata": {
+    "compliance_notes": "MRN is PHI under HIPAA Safe Harbor (18 identifiers)",
+    "false_positive_notes": "Requires explicit MRN context to avoid matching generic alphanumeric strings"
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 95,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:MRN|Medical\\s+Record(?:\\s+Number)?|Patient\\s+ID|Med\\s+Rec)[:\\s#]+(?:MRN-?)?[A-Z0-9]{6,12}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "message": "Medical Record Number redacted per HIPAA Safe Harbor requirements",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[MEDICAL_RECORD_NUMBER]"
+        }
+      }
+    },
+    "side_effects": [
+      {
+        "type": "audit",
+        "level": "info",
+        "target": "compliance-log",
+        "config": {
+          "include_rule_id": true,
+          "include_match_count": true
+        }
+      }
+    ]
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/healthcare"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

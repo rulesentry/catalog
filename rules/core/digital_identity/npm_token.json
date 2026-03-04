@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.npm_token",
+  "qualified_id": "core.digital_identity.npm_token",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "npm Access Token",
+  "description": "Detects npm (Node Package Manager) access tokens. Can publish packages, access private packages.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "npm_[A-Za-z0-9]{36}",
+    "risk": "Package publishing, supply chain attacks",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bnpm_[A-Za-z0-9]{36}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[NPM_TOKEN]"
+        }
+      },
+      "message": "npm Access Token redacted - redacted (supply chain risk)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.353727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

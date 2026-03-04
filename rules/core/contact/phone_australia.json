@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.phone_australia",
+  "qualified_id": "core.contact.phone_australia",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Australian Phone Number",
+  "description": "Detects Australian phone numbers including landlines (02, 03, 07, 08) and mobiles (04). Supports +61 international format.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "privacy-act-au",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "formats": [
+      "0X XXXX XXXX",
+      "+61 X XXXX XXXX"
+    ],
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:\\+61\\s?|0)[2-478](?:[\\s.-]?\\d{4}){2}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4,
+          "preserve_format": true
+        }
+      },
+      "message": "Australian phone number masked, last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "AU"
+  ]
+}

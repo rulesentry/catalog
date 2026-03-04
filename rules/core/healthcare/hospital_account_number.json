@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.hospital_account_number",
+  "qualified_id": "core.healthcare.hospital_account_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Hospital Account Number",
+  "description": "Detects hospital and facility patient account numbers and encounter identifiers. Format: 6-12 alphanumeric characters with contextual keywords (hospital, facility, account).",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "hipaa",
+    "healthcare",
+    "phi-detection",
+    "production"
+  ],
+  "metadata": {
+    "country": "United States",
+    "official_name": "Hospital Account Number",
+    "phi_category": "Account Number",
+    "hipaa_category": "Account numbers",
+    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "target": "content",
+    "pattern": {
+      "pattern": "(?i)\\b(?:hospital|facility|account)\\s*(?:number|#|id)?\\s*:?\\s*([A-Z0-9]{6,12})\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "HOSP_ACCT",
+          "reversible": false
+        }
+      },
+      "message": "Hospital account number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-28T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.354727Z",
+  "regions": [
+    "US"
+  ]
+}

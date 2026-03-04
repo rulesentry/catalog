@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.us_dea_number",
+  "qualified_id": "core.healthcare.us_dea_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "US DEA Number",
+  "description": "Detects Drug Enforcement Administration (DEA) registration numbers for healthcare providers authorized to prescribe controlled substances. Format: 2 letters + 7 digits (e.g., AB1234563).",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "hipaa",
+    "healthcare",
+    "phi-detection",
+    "production"
+  ],
+  "metadata": {
+    "country": "United States",
+    "official_name": "Drug Enforcement Administration Registration Number",
+    "phi_category": "Provider Identifier",
+    "hipaa_category": "National provider identifier",
+    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
+    "validator_algorithm": "Weighted sum MOD-10 checksum",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{2}\\d{7}\\b",
+      "engine": "regex",
+      "validator": "dea_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DEA",
+          "reversible": false
+        }
+      },
+      "message": "DEA number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-28T00:00:00Z",
+  "updated_at": "2026-01-29T00:00:00Z",
+  "regions": [
+    "US"
+  ]
+}

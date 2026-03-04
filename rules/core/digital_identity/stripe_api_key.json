@@ -1,0 +1,55 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.stripe_api_key",
+  "qualified_id": "core.digital_identity.stripe_api_key",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Stripe API Key",
+  "description": "Detects Stripe API keys (publishable and secret). Secret keys (sk_live_, sk_test_) grant full payment processing access.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production",
+    "pci-dss"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "formats": [
+      "sk_live_ (secret live)",
+      "sk_test_ (secret test)",
+      "pk_live_ (publishable)",
+      "pk_test_ (publishable)"
+    ],
+    "risk": "Payment processing access, financial fraud",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:sk|pk)_(?:live|test)_[A-Za-z0-9]{24,}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "STRIPEKEY",
+          "reversible": true
+        }
+      },
+      "message": "Stripe API Key tokenized with reversible mapping for financial audit trail"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

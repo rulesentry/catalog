@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "network.ssl_certificate_serial",
+  "qualified_id": "core.network.ssl_certificate_serial",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "SSL/TLS Certificate Serial Number",
+  "description": "Detects SSL/TLS certificate serial numbers with explicit context. Hexadecimal format.",
+  "category_id": "network",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:Serial\\s+Number|Certificate\\s+Serial)[:\\s]+(?:[0-9A-Fa-f]{2}[:\\s]?){8,20}[0-9A-Fa-f]{2}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "inference",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 8
+        }
+      },
+      "message": "SSL certificate serial masked, suffix visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.health_insurance_member_id",
+  "qualified_id": "core.healthcare.health_insurance_member_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Health Insurance Member ID",
+  "description": "Detects health insurance member/subscriber/policy identification numbers. Format: 6-20 alphanumeric characters with contextual keywords (member, subscriber, policy).",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "hipaa",
+    "healthcare",
+    "phi-detection",
+    "production"
+  ],
+  "metadata": {
+    "country": "United States",
+    "official_name": "Health Insurance Member Identifier",
+    "phi_category": "Health Plan Beneficiary Number",
+    "hipaa_category": "Health plan beneficiary numbers",
+    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "target": "content",
+    "pattern": {
+      "pattern": "(?i)\\b(?:member|subscriber|policy)\\s*(?:id|number|#)?\\s*:?\\s*([A-Z0-9]{6,20})\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "INSURANCE",
+          "reversible": false
+        }
+      },
+      "message": "Health insurance member ID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-28T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.354727Z",
+  "regions": [
+    "US"
+  ]
+}

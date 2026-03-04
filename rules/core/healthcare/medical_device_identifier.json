@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.medical_device_identifier",
+  "qualified_id": "core.healthcare.medical_device_identifier",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Medical Device UDI",
+  "description": "Detects FDA Unique Device Identifiers (UDI) for medical devices. Format: 8-30 alphanumeric characters with contextual keywords (udi, device id).",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "hipaa",
+    "healthcare",
+    "phi-detection",
+    "production"
+  ],
+  "metadata": {
+    "country": "United States",
+    "official_name": "Unique Device Identifier",
+    "phi_category": "Device Identifier",
+    "hipaa_category": "Device identifiers and serial numbers",
+    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "target": "content",
+    "pattern": {
+      "pattern": "(?i)\\b(?:udi|device\\s*id)\\s*:?\\s*([A-Z0-9]{8,30})\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "UDI",
+          "reversible": false
+        }
+      },
+      "message": "Medical device identifier tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-28T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.354727Z",
+  "regions": [
+    "US"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.ein",
+  "qualified_id": "core.government.ein",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "US Employer Identification Number (EIN)",
+  "description": "Detects US Employer Identification Numbers (Tax ID). Format: XX-XXXXXXX (9 digits).",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "glba",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "XX-XXXXXXX (9 digits)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 75,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:EIN|Tax ID|Employer ID|TIN)[:\\s]+\\d{2}[-\\s]?\\d{7}\\b",
+      "engine": "regex",
+      "validator": "ein_prefix_validation",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "EIN",
+          "reversible": false
+        }
+      },
+      "message": "EIN tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "US"
+  ]
+}

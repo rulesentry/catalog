@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.uk_passport",
+  "qualified_id": "core.government.uk_passport",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UK Passport Number",
+  "description": "Detects UK passport numbers. Format: 9 digits optionally preceded by two letters.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "[XX]XXXXXXXXX (9 digits, optionally 2 letter prefix)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 90,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:passport|passport\\s+no|passport\\s+number)[:\\s]+(?:[A-Z]{2})?\\d{9}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "PASSPORT",
+          "reversible": false
+        }
+      },
+      "message": "UK passport number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.350724Z",
+  "regions": [
+    "UK"
+  ]
+}

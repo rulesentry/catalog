@@ -1,0 +1,55 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.iban_mod97",
+  "qualified_id": "core.financial.iban_mod97",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "IBAN (MOD-97 Validated)",
+  "description": "Detects International Bank Account Numbers with MOD-97 checksum validation. Supports all 36 IBAN countries including EU, UK, Middle East, and more.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "sepa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "IBAN MOD-97 (ISO 13616)",
+    "supported_countries": "All 36 IBAN countries",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 90,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{2}\\d{2}[A-Z0-9]{4}\\d{7}(?:[A-Z0-9]?){0,16}\\b",
+      "engine": "regex",
+      "validator": "iban_mod97",
+      "validator_params": {
+        "strip_chars": " "
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "IBAN"
+        }
+      },
+      "message": "IBAN tokenized (MOD-97 validated)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "EU",
+    "UK"
+  ]
+}

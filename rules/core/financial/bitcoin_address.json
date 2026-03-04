@@ -1,0 +1,56 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.bitcoin_address",
+  "qualified_id": "core.financial.bitcoin_address",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Bitcoin Address",
+  "description": "Detects Bitcoin cryptocurrency addresses with Base58Check format validation. Supports Legacy (P2PKH, P2SH), SegWit (bech32), and Taproot (bech32m) address formats.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Base58Check format validation (simplified - excludes forbidden chars 0,O,I,l)",
+    "formats": [
+      "P2PKH (1...)",
+      "P2SH (3...)",
+      "SegWit (bc1q...)",
+      "Taproot (bc1p...)"
+    ],
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:[13][a-km-zA-HJ-NP-Z1-9]{25,34}|bc1[a-z0-9]{39,87})\\b",
+      "engine": "regex",
+      "validator": "bitcoin_base58check"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 4,
+          "visible_suffix": 4
+        }
+      },
+      "message": "Bitcoin address masked (Base58Check validated), prefix and suffix visible for verification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-29T00:00:00Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

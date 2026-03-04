@@ -1,0 +1,49 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.postal_code_germany",
+  "qualified_id": "core.contact.postal_code_germany",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "German Postal Code",
+  "description": "Detects German postal codes (5 digits).",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "XXXXX",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{5}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 2
+        }
+      },
+      "message": "German postal code masked, region digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "DE"
+  ]
+}

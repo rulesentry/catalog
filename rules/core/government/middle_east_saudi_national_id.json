@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.middle_east_saudi_national_id",
+  "qualified_id": "core.government.middle_east_saudi_national_id",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Saudi National ID (Iqama/National ID)",
+  "description": "Detects Saudi Arabian national ID and residence permit (Iqama) numbers.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Saudi Arabia",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "10 digits (National ID: starts with 1, Iqama: starts with 2)",
+    "official_name": "رقم الهوية الوطنية / رقم الإقامة",
+    "note": "Covers both citizens (National ID) and residents (Iqama)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[12][0-9]{9}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "SA_ID",
+          "reversible": false
+        }
+      },
+      "message": "Saudi national ID tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.972876Z",
+  "regions": [
+    "SA"
+  ]
+}

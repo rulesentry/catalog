@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.twilio_api_key",
+  "qualified_id": "core.digital_identity.twilio_api_key",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Twilio API Key",
+  "description": "Detects Twilio API keys and Auth Tokens. Can send SMS, make calls, access phone numbers and usage data.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "SK[a-f0-9]{32}",
+    "risk": "SMS/call fraud, phone number hijacking",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 90,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bSK[a-f0-9]{32}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[TWILIO_API_KEY]"
+        }
+      },
+      "message": "Twilio API Key redacted - redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

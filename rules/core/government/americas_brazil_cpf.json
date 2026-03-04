@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "government.americas_brazil_cpf",
+  "qualified_id": "core.government.americas_brazil_cpf",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Brazilian CPF (Cadastro de Pessoas Físicas)",
+  "description": "Detects Brazilian individual taxpayer registry numbers with check digit validation.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "lgpd",
+    "production"
+  ],
+  "metadata": {
+    "country": "Brazil",
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "validator_algorithm": "Two check digits calculated via weighted modulo-11",
+    "format": "11 digits (formatted as XXX.XXX.XXX-XX)",
+    "official_name": "Cadastro de Pessoas Físicas",
+    "note": "LGPD (Lei Geral de Proteção de Dados) requires protection",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2}\\b",
+      "engine": "regex",
+      "validator": "cpf_checksum"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "BR_CPF",
+          "reversible": false
+        }
+      },
+      "message": "Brazil CPF tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:56.929760Z",
+  "regions": [
+    "BR"
+  ]
+}

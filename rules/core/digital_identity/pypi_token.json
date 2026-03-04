@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.pypi_token",
+  "qualified_id": "core.digital_identity.pypi_token",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "PyPI Access Token",
+  "description": "Detects PyPI (Python Package Index) tokens. Can publish Python packages, access private repositories.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "pypi-AgEIcHlwaS5vcmc[A-Za-z0-9_-]+",
+    "risk": "Package publishing, supply chain attacks",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bpypi-AgEIcHlwaS5vcmc[A-Za-z0-9_-]+\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[PYPI_TOKEN]"
+        }
+      },
+      "message": "PyPI Token redacted - redacted (supply chain risk)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.353727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

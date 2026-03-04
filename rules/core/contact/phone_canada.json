@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.phone_canada",
+  "qualified_id": "core.contact.phone_canada",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Canadian Phone Number",
+  "description": "Detects Canadian phone numbers which follow the same format as US numbers but with +1 country code.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "pipeda",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "+1 XXX XXX XXXX",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:\\+?1[\\s.-]?)?(?:\\([2-9]\\d{2}\\)[\\s.-]?|[2-9]\\d{2}[\\s.-]?)[0-9]\\d{2}[\\s.-]?\\d{4}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4,
+          "preserve_format": true
+        }
+      },
+      "message": "Canadian phone number masked, last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "CA"
+  ]
+}

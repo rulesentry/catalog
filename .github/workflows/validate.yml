@@ -11,6 +11,8 @@ on:
       - 'regions/**'
       - 'publishers/**'
       - 'examples/**'
+      - 'scripts/**'
+      - 'json-schema/**'
 
 jobs:
   validate:

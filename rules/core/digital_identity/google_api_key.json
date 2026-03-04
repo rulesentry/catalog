@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.google_api_key",
+  "qualified_id": "core.digital_identity.google_api_key",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Google API Key",
+  "description": "Detects Google Cloud and Google Services API keys. Format: AIza followed by 35 characters. Can access Google Cloud services, Maps, YouTube, etc.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "AIza[A-Za-z0-9_-]{35}",
+    "risk": "Unauthorized Google Cloud/API access, potential billing fraud",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bAIza[A-Za-z0-9_-]{35}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[GOOGLE_API_KEY]"
+        }
+      },
+      "message": "Google API Key redacted - must never be exposed (critical security risk)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

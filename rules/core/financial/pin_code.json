@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.pin_code",
+  "qualified_id": "core.financial.pin_code",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "PIN Code",
+  "description": "Detects references to PIN codes (4-6 digits). PCI-DSS prohibits storage of PINs.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "pci-dss",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "pci_dss_note": "PIN storage prohibited per PCI-DSS requirement 3.2",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 93,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:pin|personal\\s+identification\\s+number)[:\\s]+\\d{4,6}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[PIN_CODE]"
+        }
+      },
+      "message": "PIN code redacted - storage prohibited by PCI-DSS 3.2"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

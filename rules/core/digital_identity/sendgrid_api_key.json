@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.sendgrid_api_key",
+  "qualified_id": "core.digital_identity.sendgrid_api_key",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "SendGrid API Key",
+  "description": "Detects SendGrid email API keys. Format: SG. followed by base64. Can send emails, access contact lists.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "SG.[A-Za-z0-9_-]{22,}",
+    "risk": "Email spam, phishing campaigns",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bSG\\.[A-Za-z0-9_-]{22,}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[SENDGRID_API_KEY]"
+        }
+      },
+      "message": "SendGrid API Key redacted - redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

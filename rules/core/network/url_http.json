@@ -1,0 +1,49 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "network.url_http",
+  "qualified_id": "core.network.url_http",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "URL (All Protocols)",
+  "description": "Detects URLs with various protocols (http, https, ftp, ssh, mysql, smtp, etc.). May contain sensitive information including credentials in the URL, paths, or query parameters.",
+  "category_id": "network",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "note": "May contain PII or credentials in query parameters, paths, or authentication strings",
+    "protocols_supported": "http, https, ftp, ftps, ssh, sftp, smtp, mysql, postgresql, mongodb, redis, ldap, telnet, and others",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[a-z][a-z0-9+.-]*://[A-Za-z0-9][-A-Za-z0-9+&@#/%?=~_|!:,.;]*[A-Za-z0-9+&@#/%=~_|]",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "inference",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 15
+        }
+      },
+      "message": "URL masked, protocol and domain visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

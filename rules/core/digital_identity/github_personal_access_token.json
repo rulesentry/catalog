@@ -1,0 +1,52 @@
+{
+  "_note": "Overlaps with credentials.github_pat. The credentials/ version is canonical for secret detection; this version retained for category-based policy inclusion.",
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "digital_identity.github_personal_access_token",
+  "qualified_id": "core.digital_identity.github_personal_access_token",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "GitHub Personal Access Token",
+  "description": "Detects GitHub Personal Access Tokens. Format: ghp_ (classic), github_pat_ (fine-grained). Can access repositories, create commits, modify issues.",
+  "category_id": "digital_identity",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "formats": [
+      "ghp_ (classic PAT)",
+      "github_pat_ (fine-grained PAT)"
+    ],
+    "risk": "Repository access, code modification, data theft",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 100,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:ghp|github_pat)_[A-Za-z0-9_]{36,255}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[GITHUB_PAT]"
+        }
+      },
+      "message": "GitHub Personal Access Token redacted - must never be exposed"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.352728Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

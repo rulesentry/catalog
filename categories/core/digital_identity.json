@@ -1,0 +1,21 @@
+{
+  "$schema": "../../json-schema/category.schema.json",
+  "id": "digital_identity",
+  "type": "category",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Digital Identity",
+  "description": "Rules detecting digital identity tokens, session credentials, and service-specific authentication artifacts including JWT, OAuth, and platform-specific tokens.",
+  "frameworks": ["SOC 2", "ISO 27001"],
+  "examples": ["JWT token", "Stripe API key", "Slack bot token", "Basic Auth"],
+  "display_order": 60,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/digital_identity"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

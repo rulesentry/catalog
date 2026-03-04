@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "financial.bsb_australia",
+  "qualified_id": "core.financial.bsb_australia",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "BSB Number (Australia)",
+  "description": "Detects Australian Bank State Branch (BSB) numbers. Format: XXX-XXX (6 digits).",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "XXX-XXX (6 digits)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:bsb)[:\\s]+\\d{3}[-\\s]?\\d{3}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 3
+        }
+      },
+      "message": "BSB number masked, last 3 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.351727Z",
+  "regions": [
+    "AU"
+  ]
+}

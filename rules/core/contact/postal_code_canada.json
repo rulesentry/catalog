@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.postal_code_canada",
+  "qualified_id": "core.contact.postal_code_canada",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Canadian Postal Code",
+  "description": "Detects Canadian postal codes in A1A 1A1 format (letter-digit-letter space digit-letter-digit).",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "pipeda",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "format": "A1A 1A1",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]\\d[A-Z]\\s?\\d[A-Z]\\d\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_prefix": 3
+        }
+      },
+      "message": "Canadian postal code masked, forward sortation area visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "CA"
+  ]
+}

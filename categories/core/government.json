@@ -1,0 +1,21 @@
+{
+  "$schema": "../../json-schema/category.schema.json",
+  "id": "government",
+  "type": "category",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Government Identifiers",
+  "description": "Rules detecting government-issued identification numbers including SSN, tax IDs, national insurance numbers, and passport numbers.",
+  "frameworks": ["HIPAA", "GDPR", "CCPA"],
+  "examples": ["SSN", "EIN", "NINO", "NHS number", "passport number"],
+  "display_order": 20,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/government"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

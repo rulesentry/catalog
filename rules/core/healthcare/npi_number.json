@@ -1,0 +1,53 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "healthcare.npi_number",
+  "qualified_id": "core.healthcare.npi_number",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "National Provider Identifier (NPI)",
+  "description": "Detects National Provider Identifier (NPI) numbers with Luhn checksum validation. 10-digit unique identifier for healthcare providers in the US. Format: 1234567893.",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "hipaa",
+    "healthcare",
+    "phi-detection",
+    "production"
+  ],
+  "metadata": {
+    "country": "United States",
+    "official_name": "National Provider Identifier",
+    "phi_category": "Provider Identifier",
+    "hipaa_category": "National provider identifier",
+    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[1-9]\\d{9}\\b",
+      "engine": "regex",
+      "validator": "npi_luhn"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "NPI",
+          "reversible": false
+        }
+      },
+      "message": "NPI number tokenized (NPI Luhn validated) for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-28T00:00:00Z",
+  "updated_at": "2026-01-27T19:38:02.354727Z",
+  "regions": [
+    "US"
+  ]
+}

@@ -11,22 +11,45 @@ Community-contributed rules, policies, categories, profiles, and regions for [Ru
 5. **Validate** locally: `npm run ci`
 6. **Open a PR** to `main`
 
-GitHub Actions will automatically validate your contribution on every PR.
+GitHub Actions will automatically validate your contribution on every PR. On merge, changed entities are imported into the RuleSentry catalog.
 
 ## Directory Structure
 
 ```
 contributors/
-├── json-schema/          # Vendored RuleSentry schemas (do not modify)
-├── scripts/              # Validation scripts
-├── publishers/           # Registered publisher identities
-├── rules/                # Community rules (organized by category)
-├── policies/             # Community policies
-├── categories/           # Community category definitions
-├── profiles/             # Community profile definitions
-├── regions/              # Community region definitions
-└── examples/             # Example contributions (validated, but illustrative)
+├── publishers/               # Registered publisher identities
+│   ├── rulesentry.json       # Core publisher
+│   └── mycos.json            # Community publisher
+├── rules/
+│   ├── core/                 # RuleSentry-authored rules (~153)
+│   │   ├── contact/          # Category subdirectory
+│   │   ├── financial/
+│   │   ├── government/
+│   │   └── ...
+│   └── mycos/                # Community publisher
+│       └── contact/
+│           └── th-phone-number.json
+├── policies/
+│   ├── core/                 # Core policies (11)
+│   └── {publisher}/          # Community policies
+├── categories/
+│   ├── core/                 # Core categories (8)
+│   └── {publisher}/
+├── profiles/
+│   ├── core/                 # Core profiles (8)
+│   └── {publisher}/
+├── regions/
+│   └── core/                 # Region registry
+├── examples/                 # Example contributions (not imported)
+├── scripts/                  # Validation and import scripts
+├── json-schema/              # Vendored RuleSentry schemas (do not modify)
+└── .github/workflows/        # CI: validate on PR, import on merge
 ```
+
+**Key conventions:**
+- `core/` is reserved for RuleSentry-authored entities. Uses `qualified_id: "core.{id}"`.
+- Other directories are community publishers. The directory name must match a registered publisher in `publishers/{name}.json`. Uses `qualified_id: "community.{publisher}.{category}.{name}"`.
+- Category subdirectories are optional — uncategorized entities sit directly under the publisher directory.
 
 ## Contributing a Rule
 
@@ -43,11 +66,11 @@ contributors/
    }
    ```
 
-2. **Create your rule** in `rules/{category}/`:
+2. **Create your rule** in `rules/{your-id}/{category}/`:
 
    ```json
    {
-     "$schema": "../../json-schema/rule.schema.json",
+     "$schema": "../../../json-schema/rule.schema.json",
      "id": "{category}.{rule-name}",
      "qualified_id": "community.{your-id}.{category}.{rule-name}",
      "type": "rule",
@@ -94,27 +117,27 @@ Policies assemble rules via direct references, category inclusion, and filters. 
 - **Your own rules** — by their bare `id` (e.g., `contact.mx-phone-number`)
 - **Core rules** — built-in RuleSentry rules (e.g., `government.ssn_format`)
 
-Create your policy in `policies/` and follow the same `community.{your-id}.*` ID convention.
+Create your policy in `policies/{your-id}/` and follow the same `community.{your-id}.*` ID convention.
 
 See `examples/policies/mx-pii-policy.json` for a complete example.
 
 ## ID Conventions
 
-| Prefix | Usage |
-|--------|-------|
-| `core.*` | **Reserved** for built-in RuleSentry rules — rejected in this repo |
-| `community.{publisher-id}.*` | Community contributions — publisher must be registered |
+| Prefix | Usage | Directory |
+|--------|-------|-----------|
+| `core.*` | RuleSentry-authored entities | `{entity-type}/core/` |
+| `community.{publisher}.*` | Community contributions | `{entity-type}/{publisher}/` |
 
-- `qualified_id` must start with `community.`
-- The second segment must match a file in `publishers/`
-- File path should reflect the ID: `rules/{category}/{rule-name}.json`
+- The publisher directory name must match the publisher ID in the `qualified_id`
+- Community publishers must be registered in `publishers/{id}.json`
+- File path should reflect the ID: `rules/{publisher}/{category}/{rule-name}.json`
 
 ## Validation
 
 Two validation scripts run in CI:
 
 - **`npm run validate`** — JSON Schema validation against vendored RuleSentry schemas
-- **`npm run check`** — Convention checks (ID namespacing, publisher registration, dependencies)
+- **`npm run check`** — Convention checks (ID namespacing, publisher registration, directory sync)
 - **`npm run ci`** — Runs both
 
 Run locally before opening a PR:
@@ -122,6 +145,16 @@ Run locally before opening a PR:
 ```bash
 npm install
 npm run ci
+```
+
+## Catalog Import
+
+When a PR is merged to `main`, the **import-catalog** workflow automatically detects changed entity files and imports them into the RuleSentry catalog API. Entities then appear in the desktop app's Store tab.
+
+For initial seeding, use the bulk import script:
+
+```bash
+IMPORT_API_KEY=<key> API_URL=https://api.rulesentry.io ./scripts/import-all.sh
 ```
 
 ## Schema Reference

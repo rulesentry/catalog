@@ -1,0 +1,52 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.street_address",
+  "qualified_id": "core.contact.street_address",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Street Address",
+  "description": "Detects street addresses with number + street name pattern (e.g., 123 Main St, 456 Oak Avenue). Generic pattern may have false positives.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction community patterns",
+    "attribution": "https://github.com/openredact/openredact",
+    "note": "Generic pattern - may need context-specific tuning",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 55,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{1,5}\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*\\s+(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Lane|Ln|Boulevard|Blvd|Way|Court|Ct|Place|Pl)\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "inference",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[ADDRESS]"
+        }
+      },
+      "message": "Street address redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

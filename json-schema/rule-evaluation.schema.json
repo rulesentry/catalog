@@ -1,0 +1,1026 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/rule-evaluation.schema.json",
+  "title": "RuleSentry v3 Rule Evaluation",
+  "description": "Evaluation of a rule condition: pattern matching, list membership, metadata checks, rule references, or composite boolean logic. v3 adds optional 'target' field to specify what part of the input to evaluate (content, metadata, filename, headers). v2 requirement: effect on all atomic evaluations to prevent useless rules that validate but have no runtime behavior.",
+  "$dynamicAnchor": "evaluation",
+  "discriminator": {
+    "propertyName": "evaluation_type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/PatternMatchEvaluation"
+    },
+    {
+      "$ref": "#/$defs/ListMembershipEvaluation"
+    },
+    {
+      "$ref": "#/$defs/MetadataCheckEvaluation"
+    },
+    {
+      "$ref": "#/$defs/CompositeEvaluation"
+    },
+    {
+      "$ref": "#/$defs/RuleRefEvaluation"
+    },
+    {
+      "$ref": "#/$defs/NerMatchEvaluation"
+    }
+  ],
+  "$defs": {
+    "PatternMatchEvaluation": {
+      "type": "object",
+      "description": "Pattern-based evaluation (regex, glob, exact match) applied to input content. When used as a top-level rule evaluation, the effect is required. When nested inside a CompositeEvaluation, the effect is optional (the composite's effect takes precedence).",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation. Useful for identifying nested evaluations within composite rules."
+        },
+        "evaluation_type": {
+          "const": "pattern_match",
+          "description": "Discriminator: this evaluation uses pattern matching."
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Evaluation priority within a composite rule. Higher = checked first. Used to short-circuit evaluation (e.g., check specific patterns before generic ones). Default: 50",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 50
+        },
+        "target": {
+          "type": "string",
+          "description": "What part of the input to evaluate against. v3 addition: allows targeting different aspects of the input beyond just content.",
+          "enum": [
+            "content",
+            "metadata",
+            "filename",
+            "headers"
+          ],
+          "default": "content"
+        },
+        "pattern": {
+          "type": "object",
+          "description": "Pattern configuration: either an inline pattern or a reference to an external pattern.",
+          "oneOf": [
+            {
+              "required": [
+                "pattern"
+              ],
+              "properties": {
+                "pattern": {
+                  "type": "string"
+                },
+                "pattern_id": {
+                  "type": "null"
+                }
+              }
+            },
+            {
+              "required": [
+                "pattern_id"
+              ],
+              "properties": {
+                "pattern_id": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "type": "null"
+                }
+              }
+            }
+          ],
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "description": "Inline pattern (e.g. regex) to apply."
+            },
+            "pattern_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Identifier of a pattern defined in an external pattern store."
+            },
+            "engine": {
+              "type": "string",
+              "description": "Pattern engine (e.g. regex, glob, exact).",
+              "enum": [
+                "regex",
+                "glob",
+                "exact"
+              ],
+              "default": "regex"
+            },
+            "flags": {
+              "type": "object",
+              "description": "Pattern engine flags for fine-grained matching control. Flags are engine-specific and may not apply to all engines (e.g., case_insensitive applies to all engines, but multiline only applies to regex).",
+              "properties": {
+                "case_insensitive": {
+                  "type": "boolean",
+                  "description": "Case-insensitive matching (applies to: regex, glob, exact).",
+                  "default": false
+                },
+                "multiline": {
+                  "type": "boolean",
+                  "description": "Multiline mode: ^ and $ match line boundaries, not just string boundaries (applies to: regex).",
+                  "default": false
+                },
+                "dot_all": {
+                  "type": "boolean",
+                  "description": "Dot matches all characters including newlines (applies to: regex).",
+                  "default": false
+                },
+                "unicode": {
+                  "type": "boolean",
+                  "description": "Enable full Unicode support for character classes and properties (applies to: regex).",
+                  "default": true
+                },
+                "anchored": {
+                  "type": "boolean",
+                  "description": "Pattern must match entire input (implicit ^...$ wrapping for regex, exact match for glob/exact).",
+                  "default": false
+                },
+                "capture_groups": {
+                  "type": "boolean",
+                  "description": "Enable named capture groups in pattern results (applies to: regex). When true, matched groups are returned in evaluation results.",
+                  "default": false
+                }
+              },
+              "additionalProperties": false,
+              "default": {}
+            },
+            "validator": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Optional checksum validator applied after pattern match. Runs on matched value with context. Failing validation rejects the match.",
+              "enum": [
+                "luhn",
+                "iban_mod97",
+                "ssn_format",
+                "nhs_mod11",
+                "routing_checksum",
+                "sort_code_format",
+                "nino_checksum",
+                "cusip_checksum",
+                "sedol_checksum",
+                "ethereum_checksum",
+                "context_filter",
+                "codice_fiscale_checksum",
+                "dni_mod23",
+                "bsn_11test",
+                "my_number_checksum",
+                "rrn_checksum",
+                "taiwan_nid_checksum",
+                "hkid_checksum",
+                "thailand_cid_mod11",
+                "cpf_checksum",
+                "curp_checksum",
+                "rut_mod11",
+                "tc_kimlik_checksum",
+                "canadian_sin_mod10",
+                "australian_tfn_mod11",
+                "french_nir_insee",
+                "singapore_nric_checksum",
+                "indian_aadhaar_verhoeff",
+                "isin_mod10",
+                "china_id_gb11643",
+                "clabe_checksum",
+                "dea_checksum",
+                "npi_luhn",
+                "bitcoin_base58check",
+                "ein_prefix_validation",
+                "tld_reject",
+                null
+              ]
+            },
+            "validator_params": {
+              "description": "Validator-specific parameters. Schema validated per validator type.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/LuhnParams"
+                },
+                {
+                  "$ref": "#/$defs/IbanParams"
+                },
+                {
+                  "$ref": "#/$defs/ContextFilterParams"
+                },
+                {
+                  "$ref": "#/$defs/CusipParams"
+                },
+                {
+                  "$ref": "#/$defs/SedolParams"
+                },
+                {
+                  "$ref": "#/$defs/EthereumParams"
+                },
+                {
+                  "$ref": "#/$defs/TldRejectParams"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "effect": {
+          "$ref": "#/$defs/Effect",
+          "description": "Primary decision when this pattern matches. Required for all pattern match evaluations (v2 change: previously optional, now enforced to prevent useless rules)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when this evaluation triggers (log, audit, callback, etc.).",
+          "items": {
+            "$ref": "#/$defs/SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "pattern",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "ListMembershipEvaluation": {
+      "type": "object",
+      "description": "Checks if input content is present in a list. Evaluation triggers when the value is found, and the effect determines what happens (block, allow, or transform). Useful for keyword filtering, blocklists, allowlists, etc.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation. Useful for identifying nested evaluations within composite rules."
+        },
+        "evaluation_type": {
+          "const": "list_membership",
+          "description": "Discriminator: this evaluation checks list membership."
+        },
+        "target": {
+          "type": "string",
+          "description": "What part of the input to evaluate against. v3 addition: allows targeting different aspects of the input beyond just content.",
+          "enum": [
+            "content",
+            "metadata",
+            "filename",
+            "headers"
+          ],
+          "default": "content"
+        },
+        "list": {
+          "type": "object",
+          "description": "List of values to check membership against. Evaluation triggers when input content matches a value in the list.",
+          "oneOf": [
+            {
+              "required": [
+                "values"
+              ],
+              "properties": {
+                "values": {
+                  "type": "array"
+                },
+                "list_id": {
+                  "type": "null"
+                }
+              }
+            },
+            {
+              "required": [
+                "list_id"
+              ],
+              "properties": {
+                "list_id": {
+                  "type": "string"
+                },
+                "values": {
+                  "type": "null"
+                }
+              }
+            }
+          ],
+          "properties": {
+            "values": {
+              "type": "array",
+              "description": "Inline list values.",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "list_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Identifier of a list defined in an external list store."
+            },
+            "case_sensitive": {
+              "type": "boolean",
+              "description": "Whether comparison is case-sensitive.",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "effect": {
+          "$ref": "#/$defs/Effect",
+          "description": "Action to take when target value is found in the list. Required for all list membership evaluations (v2 change: previously optional, now enforced)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when this evaluation triggers.",
+          "items": {
+            "$ref": "#/$defs/SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "list",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "MetadataCheckEvaluation": {
+      "type": "object",
+      "description": "Compares a metadata field value against an expected value using comparison operators. Useful for content type checks, size limits, source validation, etc.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation. Useful for identifying nested evaluations within composite rules."
+        },
+        "evaluation_type": {
+          "const": "metadata_check",
+          "description": "Discriminator: this evaluation performs metadata comparison."
+        },
+        "target": {
+          "type": "string",
+          "description": "What part of the input to evaluate against. v3 addition: allows targeting different aspects of the input beyond just content.",
+          "enum": [
+            "content",
+            "metadata",
+            "filename",
+            "headers"
+          ],
+          "default": "content"
+        },
+        "field": {
+          "type": "string",
+          "description": "Metadata field to check (e.g. 'content_type', 'size_bytes', 'source.filename'). Available fields depend on the input context."
+        },
+        "condition": {
+          "type": "object",
+          "description": "Comparison condition.",
+          "properties": {
+            "operator": {
+              "type": "string",
+              "description": "Comparison operator.",
+              "enum": [
+                "equals",
+                "not_equals",
+                "contains",
+                "not_contains",
+                "starts_with",
+                "ends_with",
+                "regex",
+                "exists",
+                "not_exists"
+              ]
+            },
+            "value": {
+              "description": "Expected value for comparison (not required for exists/not_exists operators)."
+            },
+            "case_sensitive": {
+              "type": "boolean",
+              "description": "Whether comparison is case-sensitive (for string operators).",
+              "default": true
+            }
+          },
+          "required": [
+            "operator"
+          ],
+          "additionalProperties": false
+        },
+        "effect": {
+          "$ref": "#/$defs/Effect",
+          "description": "Primary decision when condition evaluates to true. Required for all metadata check evaluations (v2 change: previously optional, now enforced)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when this evaluation triggers.",
+          "items": {
+            "$ref": "#/$defs/SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "field",
+        "condition",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "CompositeEvaluation": {
+      "type": "object",
+      "description": "Boolean composition of sub-evaluations (AND/OR/NOT). The effect is applied when the composite condition evaluates to true.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation. Useful for identifying nested composite evaluations."
+        },
+        "evaluation_type": {
+          "const": "composite",
+          "description": "Discriminator: this evaluation is a composite."
+        },
+        "operator": {
+          "type": "string",
+          "description": "Boolean operator for combining evaluations.",
+          "enum": [
+            "all",
+            "any",
+            "not"
+          ]
+        },
+        "evaluations": {
+          "type": "array",
+          "description": "Nested evaluations to combine with the operator. Nested evaluations act as conditions; their individual effects (if any) are ignored in favor of the composite's top-level effect.",
+          "minItems": 1,
+          "items": {
+            "$dynamicRef": "#evaluation"
+          }
+        },
+        "effect": {
+          "$ref": "#/$defs/Effect",
+          "description": "Primary decision applied when the composite condition evaluates to true (e.g., all/any/not conditions are met)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when the composite result is true.",
+          "items": {
+            "$ref": "#/$defs/SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "operator",
+        "evaluations",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "RuleRefEvaluation": {
+      "type": "object",
+      "description": "References an existing rule by ID and version for use as a sub-evaluation in composite rules. The referenced rule's evaluation logic is executed, and its result (true/false) is used in the composite boolean expression. The referenced rule's effect is ignored; the composite's top-level effect takes precedence. Circular references are prohibited and will be rejected at evaluation time.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this reference. Useful for identifying which rule is being referenced in composite results."
+        },
+        "evaluation_type": {
+          "const": "rule_ref",
+          "description": "Discriminator: this evaluation references an existing rule by ID."
+        },
+        "rule_id": {
+          "$ref": "base.schema.json#/$defs/DottedId",
+          "description": "Identifier of the referenced rule. Must match an existing rule in the specified source catalog.",
+          "examples": [
+            "detect-ssn",
+            "block-credit-card",
+            "healthcare-phi.mrn-detect"
+          ]
+        },
+        "pinned_version": {
+          "$ref": "semver.schema.json",
+          "description": "Specific rule version to use. Required for deterministic, reproducible evaluation. No implicit version resolution or 'latest' semantics.",
+          "examples": [
+            "1.0.0",
+            "2.1.3"
+          ]
+        },
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Source catalog where the referenced rule is located. Optional; if omitted, the engine will search available catalogs.",
+          "enum": [
+            "local",
+            "public",
+            "tenant",
+            null
+          ],
+          "examples": [
+            "public",
+            "tenant"
+          ]
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "rule_id",
+        "pinned_version"
+      ],
+      "additionalProperties": false
+    },
+    "NerMatchEvaluation": {
+      "type": "object",
+      "description": "Named Entity Recognition (NER) based evaluation using local AI models. Detects entities like PERSON, LOCATION, DATE, ADDRESS, PHONE_NUMBER in content using ONNX-based machine learning models running entirely on-device. No data is sent to external servers.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation."
+        },
+        "evaluation_type": {
+          "const": "ner_match",
+          "description": "Discriminator: this evaluation uses NER-based entity detection."
+        },
+        "target": {
+          "type": "string",
+          "description": "What part of the input to evaluate against. v3 addition: allows targeting different aspects of the input beyond just content.",
+          "enum": [
+            "content",
+            "metadata",
+            "filename",
+            "headers"
+          ],
+          "default": "content"
+        },
+        "entity_types": {
+          "type": "array",
+          "description": "Entity types to detect. If empty or omitted, all entity types supported by the model are detected.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "PERSON",
+              "ORGANIZATION",
+              "LOCATION",
+              "MISC",
+              "DATE",
+              "ADDRESS",
+              "PHONE_NUMBER",
+              "CASE_NUMBER",
+              "COUNSEL",
+              "LAW_FIRM",
+              "STATUTE",
+              "COURT"
+            ]
+          },
+          "uniqueItems": true,
+          "examples": [
+            [
+              "PERSON",
+              "PHONE_NUMBER"
+            ],
+            [
+              "PERSON",
+              "DATE",
+              "ADDRESS"
+            ]
+          ]
+        },
+        "confidence_threshold": {
+          "type": "number",
+          "description": "Minimum confidence score (0.0-1.0) for entity detection. Entities below this threshold are ignored.",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.85
+        },
+        "model": {
+          "type": "object",
+          "description": "Optional model specification. If omitted, uses the active model configured in Settings.",
+          "properties": {
+            "model_id": {
+              "type": "string",
+              "description": "Identifier of a specific model to use (e.g., 'pii-ner-v1', 'legal-ner-v1').",
+              "examples": [
+                "pii-ner-v1",
+                "legal-ner-v1"
+              ]
+            },
+            "fallback": {
+              "type": "string",
+              "description": "Behavior when specified model is unavailable.",
+              "enum": [
+                "error",
+                "skip",
+                "use_active"
+              ],
+              "default": "use_active"
+            }
+          },
+          "additionalProperties": false
+        },
+        "effect": {
+          "$ref": "#/$defs/Effect",
+          "description": "Action to take when entities are detected. For transforms, each detected entity is transformed according to the transform configuration. Required for all NER evaluations (v2 change: previously optional, now enforced)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when entities are detected.",
+          "items": {
+            "$ref": "#/$defs/SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "Effect": {
+      "type": "object",
+      "description": "Primary decision applied when an evaluation triggers.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Primary effect on the data.",
+          "enum": [
+            "allow",
+            "block",
+            "transform",
+            "info"
+          ]
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Why this effect/transform was chosen. Makes rules defensible and auditable.",
+          "enum": [
+            "compliance",
+            "verification",
+            "inference",
+            "safety",
+            null
+          ],
+          "examples": [
+            "compliance - Required by regulation (PCI-DSS, HIPAA, GDPR)",
+            "verification - Allows user to verify it's their data (last 4 digits)",
+            "inference - Helps identify what was masked (email domain, key prefix)",
+            "safety - Security-critical, no partial exposure allowed"
+          ]
+        },
+        "message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable message explaining why this effect was applied."
+        },
+        "transform": {
+          "$ref": "#/$defs/Transform"
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "type": { "const": "transform" }
+          },
+          "required": ["type", "transform"]
+        },
+        {
+          "properties": {
+            "type": { "enum": ["allow", "block", "info"] }
+          },
+          "required": ["type"],
+          "not": { "required": ["transform"] }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "Transform": {
+      "type": "object",
+      "description": "Transformation applied when effect.type = transform.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Transform kind.",
+          "enum": [
+            "mask",
+            "hash",
+            "replace",
+            "redact",
+            "tokenize"
+          ]
+        },
+        "params": {
+          "description": "Transform-specific parameters.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/MaskParams"
+            },
+            {
+              "$ref": "#/$defs/HashParams"
+            },
+            {
+              "$ref": "#/$defs/ReplaceParams"
+            },
+            {
+              "$ref": "#/$defs/RedactParams"
+            },
+            {
+              "$ref": "#/$defs/TokenizeParams"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "MaskParams": {
+      "type": "object",
+      "description": "Parameters for mask transform. Replaces characters with a mask character while optionally preserving visible portions.",
+      "properties": {
+        "mask_char": {
+          "type": "string",
+          "description": "Character to use for masking.",
+          "default": "*",
+          "maxLength": 1
+        },
+        "visible_prefix": {
+          "type": "integer",
+          "description": "Number of characters to leave visible at the start.",
+          "default": 0,
+          "minimum": 0,
+          "examples": [
+            4,
+            7
+          ]
+        },
+        "visible_suffix": {
+          "type": "integer",
+          "description": "Number of characters to leave visible at the end.",
+          "default": 0,
+          "minimum": 0,
+          "examples": [
+            4
+          ]
+        },
+        "preserve_format": {
+          "type": "boolean",
+          "description": "Preserve formatting characters (dashes, spaces, dots) in their original positions. Useful for SSN (***-**-1234), phone numbers, etc.",
+          "default": false
+        },
+        "min_masked": {
+          "type": "integer",
+          "description": "Minimum number of characters that must be masked. If input is too short, entire value is masked.",
+          "default": 3,
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "HashParams": {
+      "type": "object",
+      "description": "Parameters for hash transform. Replaces content with a cryptographic hash.",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "description": "Hash algorithm to use.",
+          "enum": [
+            "sha256",
+            "sha512",
+            "blake3"
+          ],
+          "default": "sha256"
+        },
+        "truncate": {
+          "type": "integer",
+          "description": "Truncate hash output to this many characters.",
+          "minimum": 8,
+          "maximum": 64
+        }
+      },
+      "additionalProperties": false
+    },
+    "ReplaceParams": {
+      "type": "object",
+      "description": "Parameters for replace transform. Replaces matched content with specified text.",
+      "properties": {
+        "replacement": {
+          "type": "string",
+          "description": "Static replacement text."
+        }
+      },
+      "required": [
+        "replacement"
+      ],
+      "additionalProperties": false
+    },
+    "RedactParams": {
+      "type": "object",
+      "description": "Parameters for redact transform. Replaces matched content with a redaction marker.",
+      "properties": {
+        "marker": {
+          "type": "string",
+          "description": "Marker text to use for redaction.",
+          "default": "[REDACTED]"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TokenizeParams": {
+      "type": "object",
+      "description": "Parameters for tokenize transform. Replaces content with a token for later retrieval.",
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "description": "Prefix for generated tokens.",
+          "default": "TOK"
+        },
+        "reversible": {
+          "type": "boolean",
+          "description": "Whether the tokenization can be reversed.",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "SideEffect": {
+      "type": "object",
+      "description": "Secondary action performed when an evaluation triggers.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Side effect type.",
+          "enum": [
+            "log",
+            "audit",
+            "callback",
+            "pipeline_next",
+            "notify"
+          ]
+        },
+        "level": {
+          "type": "string",
+          "description": "Severity/level for logging or notification (info, warn, error, critical, etc.)."
+        },
+        "target": {
+          "type": "string",
+          "description": "Logical sink or destination (e.g., logger name, webhook ID, topic name)."
+        },
+        "config": {
+          "type": "object",
+          "description": "Connector-specific configuration (headers, timeout, channel, etc.).",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": true
+    },
+    "LuhnParams": {
+      "type": "object",
+      "description": "Parameters for Luhn algorithm validator (credit cards, IMEI, etc.)",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation",
+          "default": " .-"
+        },
+        "reject_keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Context keywords indicating test/example data"
+        }
+      },
+      "additionalProperties": false
+    },
+    "IbanParams": {
+      "type": "object",
+      "description": "Parameters for IBAN MOD-97 validator",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation",
+          "default": " "
+        }
+      },
+      "additionalProperties": false
+    },
+    "ContextFilterParams": {
+      "type": "object",
+      "description": "Parameters for context-based filtering",
+      "properties": {
+        "reject_keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Case-insensitive keywords in surrounding context that invalidate match",
+          "minItems": 1
+        },
+        "context_radius": {
+          "type": "integer",
+          "description": "Characters before/after match to check for keywords",
+          "default": 50,
+          "minimum": 10,
+          "maximum": 200
+        }
+      },
+      "required": [
+        "reject_keywords"
+      ],
+      "additionalProperties": false
+    },
+    "CusipParams": {
+      "type": "object",
+      "description": "Parameters for CUSIP checksum validator",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation",
+          "default": " -"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SedolParams": {
+      "type": "object",
+      "description": "Parameters for SEDOL checksum validator",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation",
+          "default": " "
+        }
+      },
+      "additionalProperties": false
+    },
+    "EthereumParams": {
+      "type": "object",
+      "description": "Parameters for Ethereum address EIP-55 checksum validator",
+      "properties": {
+        "accept_unchecksummed": {
+          "type": "boolean",
+          "description": "Accept addresses without checksum (all lowercase or uppercase)",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "TldRejectParams": {
+      "type": "object",
+      "description": "Parameters for TLD reject validator. Rejects matches whose final dot-segment is in the given list (case-insensitive).",
+      "properties": {
+        "reject_tlds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "TLD strings to reject (without leading dot, case-insensitive). E.g. [\"txt\", \"pdf\", \"json\"]",
+          "minItems": 1
+        }
+      },
+      "required": [
+        "reject_tlds"
+      ],
+      "additionalProperties": false
+    },
+    "GenericValidatorParams": {
+      "type": "object",
+      "description": "Generic parameters applicable to multiple validators",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

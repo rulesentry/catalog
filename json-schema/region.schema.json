@@ -1,0 +1,69 @@
+{
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/region.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Region",
+  "description": "Defines a geographic or regulatory region with hierarchical support.",
+  "$defs": {
+    "RegionCode": {
+      "type": "string",
+      "pattern": "^(GLOBAL|MULTIPLE|[A-Z]{2,8}(-[A-Z]{2,3})?)$",
+      "description": "Geographic region code. Accepts GLOBAL (worldwide), MULTIPLE (multi-jurisdiction), 2-3 character ISO country codes (US, CA, UK, SGP), regional groupings (APAC, LATAM, AFRICA, AMERICAS, MENA, OCEANIA, EU), and sub-regions with hyphen (US-CA for California, DE-BY for Bavaria, CA-QC for Quebec).",
+      "examples": ["GLOBAL", "APAC", "LATAM", "AMERICAS", "EU", "US", "US-CA", "DE", "DE-BY", "CA-QC"]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "pattern": "^(GLOBAL|MULTIPLE|[A-Z]{2,8}(-[A-Z]{2,3})?)$",
+      "description": "Unique region code. GLOBAL, regional groupings (APAC, LATAM, AMERICAS, EU), ISO country codes (US, CA), or sub-regions (US-CA, DE-BY).",
+      "examples": ["GLOBAL", "APAC", "LATAM", "AMERICAS", "EU", "US", "US-CA", "DE", "DE-BY", "CA-QC"]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable region name.",
+      "examples": ["Global", "United States", "California", "Bavaria"]
+    },
+    "parent_code": {
+      "type": ["string", "null"],
+      "pattern": "^(GLOBAL|MULTIPLE|[A-Z]{2,8}(-[A-Z]{2,3})?)$",
+      "description": "Parent region code. null for top-level, or a valid region code (GLOBAL, APAC, AMERICAS, EU, US, etc.).",
+      "examples": [null, "GLOBAL", "APAC", "EU", "US", "DE"]
+    },
+    "level": {
+      "type": "string",
+      "enum": ["global", "region", "country", "subdivision"],
+      "description": "Hierarchy tier classification: global (worldwide), region (continental groupings like APAC, EU), country (nation-states), subdivision (states, provinces, territories)."
+    },
+    "tier": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "description": "Numeric hierarchy tier for efficient comparison. 0=global, 1=region, 2=country, 3=subdivision. Lower tier = broader scope."
+    },
+    "default_inheritance": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether rules at this region level inherit to child regions. When true (default), a rule targeting 'US' also applies to 'US-CA'."
+    },
+    "flag_emoji": {
+      "type": "string",
+      "description": "Optional flag emoji for UI display.",
+      "examples": ["🌐", "🇺🇸", "🇪🇺", "🇩🇪"]
+    },
+    "frameworks": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Associated regulatory frameworks.",
+      "examples": [["GDPR"], ["HIPAA", "CCPA"], ["PIPEDA"]]
+    },
+    "display_order": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Sort order for UI display (lower = earlier)."
+    }
+  },
+  "required": ["code", "name", "level", "tier"],
+  "additionalProperties": false
+}

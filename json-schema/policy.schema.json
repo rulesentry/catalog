@@ -1,0 +1,353 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
+  "title": "RuleSentry v3 Policy",
+  "description": "Versioned policy that groups rule references under an optional jurisdictional lens. Supports both legacy rule-based and new category-based policy definitions. v3.1 renames 'category_includes' to 'rule_categories' for clarity, adds policy inheritance via 'extends', and adds rule override system.",
+  "allOf": [
+    {
+      "$ref": "base.schema.json#/$defs/VersionedBase"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "JSON Schema URI for this document (optional but recommended)."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["policy", "pack"],
+          "description": "Top-level entity type discriminator. Use 'policy' for all new policies. 'pack' is DEPRECATED since v3.1 — use 'policy' with rule_categories for multi-category compliance bundles.",
+          "default": "policy",
+          "$comment": "DEPRECATED: 'pack' will be removed in the next major version."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable policy name.",
+          "minLength": 1
+        },
+        "description": {
+          "type": ["string", "null"],
+          "description": "Detailed description of what this policy does."
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Optional priority for this policy when multiple policies are active. Higher numbers = higher priority = evaluated first in multi-policy scenarios. If two policies produce different decisions, the most restrictive wins (block > transform > allow). Policies with higher priority can short-circuit evaluation by returning 'block'. Default: 50 if omitted.",
+          "minimum": 0,
+          "maximum": 1000,
+          "default": 50,
+          "examples": [100, 50, 0]
+        },
+        "extends": {
+          "$ref": "base.schema.json#/$defs/DottedId",
+          "description": "Optional policy ID to inherit from. Child policy inherits all rule_categories, jurisdiction settings, and configuration from parent. Child can add additional categories and override specific rules. Supports single-level inheritance only (child cannot extend a policy that also extends another). Use overrides array to customize inherited rules.",
+          "examples": ["policy.pii-basic", "policy.finance-standard"]
+        },
+        "overrides": {
+          "type": "array",
+          "description": "Optional rule-level overrides to customize behavior without duplicating rule definitions. Applied after policy expansion. Supports wildcard matching (e.g., 'financial.*' matches all financial category rules). Use this to adjust severity, add allowlists, change effects, or boost priority for specific rules.",
+          "items": {
+            "type": "object",
+            "description": "Override configuration for one or more rules (supports wildcards).",
+            "properties": {
+              "rule_id": {
+                "$ref": "base.schema.json#/$defs/WildcardId",
+                "description": "Rule ID to override. Supports wildcards: 'financial.*' overrides all financial rules, 'government.ssn_*' overrides all SSN variants. Use exact ID for single rule.",
+                "examples": ["government.ssn_format", "financial.*", "healthcare.npi_*"]
+              },
+              "severity": {
+                "type": "string",
+                "description": "Override severity level for conflict resolution and alerting.",
+                "enum": ["critical", "high", "medium", "low", "info"],
+                "examples": ["critical", "high"]
+              },
+              "allowlist": {
+                "type": "array",
+                "description": "Values to allow (bypass detection). Merged with rule's existing allowlist. Use for test data, placeholder values, or known safe patterns.",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true,
+                "examples": [
+                  ["000-00-0000", "123-45-6789"],
+                  ["test@example.com"]
+                ]
+              },
+              "effect": {
+                "$ref": "rule-evaluation.schema.json#/$defs/Effect",
+                "description": "Override the rule's effect (decision and transforms). Completely replaces rule's original effect."
+              },
+              "priority": {
+                "type": "integer",
+                "description": "Override evaluation priority. Higher = evaluated first. Useful for ensuring specific rules run before others within the same policy.",
+                "minimum": 0,
+                "maximum": 1000,
+                "examples": [100, 75, 50]
+              },
+              "enabled": {
+                "type": "boolean",
+                "description": "Override enabled state. Set false to disable rule without removing it from policy. Default: true.",
+                "default": true
+              },
+              "reason": {
+                "type": "string",
+                "description": "Optional explanation for why this override exists. Useful for audit trail and documentation.",
+                "maxLength": 500,
+                "examples": [
+                  "Upgraded to CRITICAL for healthcare compliance",
+                  "Disabled during migration period",
+                  "Allowlist includes test SSNs from QA environment"
+                ]
+              }
+            },
+            "required": ["rule_id"],
+            "additionalProperties": false,
+            "minProperties": 2
+          },
+          "uniqueItems": false,
+          "examples": [
+            [
+              {
+                "rule_id": "government.ssn_format",
+                "severity": "critical",
+                "reason": "Upgraded for HIPAA compliance"
+              },
+              {
+                "rule_id": "financial.*",
+                "priority": 100,
+                "reason": "Process financial rules first"
+              }
+            ]
+          ]
+        },
+        "profiles": {
+          "type": "array",
+          "description": "Cross-cutting profile identifiers that this policy implements or enforces. Profiles enable grouping policies by operational context (e.g., compliance framework, environment, deployment stage). A policy inherits all profiles from its constituent rules, but can also declare additional policy-level profiles. Examples: ['hipaa', 'production'], ['pci-dss', 'staging'], ['gdpr', 'multi_tenant'].",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "uniqueItems": true,
+          "default": [],
+          "examples": [
+            ["hipaa", "production"],
+            ["pci-dss", "staging"],
+            ["sox", "financial", "high_risk"]
+          ]
+        },
+        "regions": {
+          "type": "array",
+          "description": "Geographic regions this policy targets. Declares the intended jurisdictional scope of the policy (e.g., GDPR pack targets EU, US Compliance targets US). Used to: (1) validate compatibility with user's selected region, (2) enable smart UI filtering (show/hide packs based on relevance), (3) auto-filter included rules by region intersection. Defaults to GLOBAL if omitted.",
+          "items": {
+            "$ref": "region.schema.json#/$defs/RegionCode"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "default": ["GLOBAL"],
+          "examples": [
+            ["GLOBAL"],
+            ["EU"],
+            ["US"],
+            ["US", "CA"],
+            ["APAC"]
+          ]
+        },
+        "rule_categories": {
+          "type": "array",
+          "description": "Category-based rule inclusion (v3.1 renamed from 'category_includes' for clarity). Policies reference entire data categories (government, financial, healthcare, etc.) instead of individual rules. Categories are groups of rules that detect the same type of data.",
+          "items": {
+            "type": "object",
+            "description": "A data category to include in this policy with optional filtering.",
+            "properties": {
+              "category_id": {
+                "$ref": "base.schema.json#/$defs/SimpleId",
+                "description": "ID of the data category to include (e.g., 'government', 'healthcare', 'financial'). Refers to rule category_id field.",
+                "examples": ["government", "healthcare", "financial", "contact", "network"]
+              },
+              "mode": {
+                "type": "string",
+                "description": "Include mode: 'all' includes all rules from category, 'selective' only includes specified rules.",
+                "enum": ["all", "selective"],
+                "default": "all"
+              },
+              "include_rules": {
+                "type": "array",
+                "description": "When mode='selective', list of specific rule IDs to include from this category.",
+                "items": {
+                  "$ref": "base.schema.json#/$defs/DottedId"
+                },
+                "uniqueItems": true,
+                "default": []
+              },
+              "exclude_rules": {
+                "type": "array",
+                "description": "Optional list of rule IDs to exclude from this category.",
+                "items": {
+                  "$ref": "base.schema.json#/$defs/DottedId"
+                },
+                "uniqueItems": true,
+                "default": []
+              },
+              "optional_rules": {
+                "type": "array",
+                "description": "Rule IDs that are optional (user can toggle on/off).",
+                "items": {
+                  "$ref": "base.schema.json#/$defs/DottedId"
+                },
+                "uniqueItems": true,
+                "default": []
+              },
+              "default_enabled_rules": {
+                "type": "array",
+                "description": "For optional rules, which ones are enabled by default.",
+                "items": {
+                  "$ref": "base.schema.json#/$defs/DottedId"
+                },
+                "uniqueItems": true,
+                "default": []
+              }
+            },
+            "required": ["category_id", "mode"],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "rules": {
+          "type": "array",
+          "description": "Direct rule references for explicit rule inclusion. Can be used alongside rule_categories and rule_filters.",
+          "items": {
+            "type": "object",
+            "description": "Reference to a specific version of a rule.",
+            "properties": {
+              "rule_id": {
+                "$ref": "base.schema.json#/$defs/DottedId",
+                "description": "Identifier of the referenced rule."
+              },
+              "pinned_version": {
+                "$ref": "semver.schema.json",
+                "description": "Specific rule version to use (pinned; no implicit upgrades)."
+              },
+              "priority": {
+                "type": "integer",
+                "description": "Optional priority for this rule within the policy. Higher numbers = higher priority = evaluated first. Used for evaluation order and conflict resolution within the policy. If omitted, rules are evaluated in array order. Range: 0-1000, default: 50.",
+                "minimum": 0,
+                "maximum": 1000,
+                "default": 50,
+                "examples": [100, 50, 0]
+              },
+              "attached_at": {
+                "type": "string",
+                "format": "date-time",
+                "description": "When this rule was attached to this policy (ISO 8601)."
+              },
+              "attached_by": {
+                "type": "string",
+                "description": "Who attached this rule to this policy."
+              },
+              "notes": {
+                "type": "string",
+                "description": "Optional notes about why this rule is included."
+              }
+            },
+            "required": ["rule_id", "pinned_version"],
+            "additionalProperties": false
+          }
+        },
+        "rule_filters": {
+          "type": "array",
+          "description": "Dynamic rule selection filters. Rules matching any filter are included in the policy. Evaluated at runtime for flexible, attribute-based rule composition.",
+          "items": {
+            "type": "object",
+            "description": "Filter criteria for dynamic rule selection. Multiple properties within a filter are combined with AND logic.",
+            "properties": {
+              "by_region": {
+                "type": "array",
+                "description": "Include rules that apply to any of these regions.",
+                "items": {
+                  "$ref": "region.schema.json#/$defs/RegionCode"
+                },
+                "minItems": 1,
+                "uniqueItems": true,
+                "examples": [["US"], ["EU", "UK"], ["US-CA", "US-NY"]]
+              },
+              "by_profile": {
+                "type": "array",
+                "description": "Include rules tagged with any of these profiles.",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9_-]+$"
+                },
+                "minItems": 1,
+                "uniqueItems": true,
+                "examples": [["hipaa"], ["pci-dss", "production"]]
+              },
+              "by_category": {
+                "type": "array",
+                "description": "Include rules from any of these categories.",
+                "items": {
+                  "$ref": "base.schema.json#/$defs/SimpleId"
+                },
+                "minItems": 1,
+                "uniqueItems": true,
+                "examples": [["government", "healthcare"], ["financial"]]
+              },
+              "by_tags": {
+                "type": "array",
+                "description": "Include rules tagged with any of these tags.",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1,
+                "uniqueItems": true,
+                "examples": [["pii", "sensitive"], ["high-risk"]]
+              },
+              "by_severity": {
+                "type": "array",
+                "description": "Include rules with any of these severity levels.",
+                "items": {
+                  "type": "string",
+                  "enum": ["info", "low", "medium", "high", "critical"]
+                },
+                "minItems": 1,
+                "uniqueItems": true,
+                "examples": [["critical", "high"], ["medium"]]
+              }
+            },
+            "minProperties": 1,
+            "additionalProperties": false
+          },
+          "examples": [
+            [{"by_region": ["US"], "by_severity": ["critical", "high"]}],
+            [{"by_profile": ["hipaa"]}, {"by_category": ["healthcare"]}]
+          ]
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Additional policy metadata (e.g., beta status, frameworks).",
+          "additionalProperties": true
+        }
+      },
+      "required": ["type", "name"],
+      "anyOf": [
+        {
+          "required": ["rule_categories"],
+          "description": "Category-based rule inclusion"
+        },
+        {
+          "required": ["rules"],
+          "description": "Direct rule references"
+        },
+        {
+          "required": ["rule_filters"],
+          "description": "Dynamic rule selection by attributes (region, profile, tags, severity)"
+        },
+        {
+          "required": ["extends"],
+          "description": "Inherit rules from another policy"
+        }
+      ]
+    }
+  ]
+}

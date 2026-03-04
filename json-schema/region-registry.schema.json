@@ -1,0 +1,25 @@
+{
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/region-registry.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Region Registry",
+  "description": "Central registry of all supported regions with hierarchy.",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema URI for this document (optional but recommended)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Registry version (semver)."
+    },
+    "regions": {
+      "type": "array",
+      "items": { "$ref": "region.schema.json" },
+      "description": "List of all regions in the registry."
+    }
+  },
+  "required": ["version", "regions"],
+  "additionalProperties": false
+}

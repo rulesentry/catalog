@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../json-schema/rule.schema.json",
+  "id": "contact.mx-phone-number",
+  "qualified_id": "community.rulesentry.contact.mx-phone-number",
+  "type": "rule",
+  "version": "1.0.0",
+  "name": "Mexico Phone Number",
+  "description": "Detects Mexican phone numbers in international (+52) and local formats. Covers mobile (10-digit with area code) and landline numbers.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "country": "Mexico",
+    "phone_format": "E.164 and local 10-digit"
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 50,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:\\+52\\s?)?(?:\\(?\\d{2,3}\\)?[\\s-]?)?\\d{3,4}[\\s-]?\\d{4}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[MX-PHONE]"
+        }
+      },
+      "message": "Mexico phone number redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-05T00:00:00Z",
+  "updated_at": "2026-03-05T00:00:00Z",
+  "regions": [
+    "MX"
+  ],
+  "origin": {
+    "source_type": "local",
+    "publisher": "rulesentry",
+    "author": "RuleSentry Team"
+  }
+}

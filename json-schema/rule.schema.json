@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "title": "RuleSentry v3 Rule",
+  "description": "Versioned rule entity that wraps a single RuleEvaluation (match or composite). v3 adds optional summary field for compact UI display and enhanced evaluation options with target field support.",
+  "allOf": [
+    {
+      "$ref": "base.schema.json#/$defs/VersionedBase"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "JSON Schema URI for this document (optional but recommended)."
+        },
+        "type": {
+          "const": "rule",
+          "description": "Top-level entity type discriminator. Always 'rule' for rules."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable rule name.",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "summary": {
+          "type": ["string", "null"],
+          "description": "Optional short summary for compact UI views (lists, cards, tooltips). Max 200 chars. If omitted, UI will truncate description field. v2 addition.",
+          "minLength": 1,
+          "maxLength": 200,
+          "examples": [
+            "Detects US Social Security Numbers with format validation",
+            "Blocks credit card PANs using Luhn checksum",
+            "Masks email addresses while preserving domain"
+          ]
+        },
+        "description": {
+          "type": ["string", "null"],
+          "description": "Detailed description of what this rule does, including rationale, examples, and edge cases."
+        },
+        "rule_kind": {
+          "type": "string",
+          "description": "Rule complexity classification: atomic (single evaluation like pattern_match, list_membership, metadata_check) or composite (boolean combination of evaluations). Advisory field for engine optimization (orchestration, depth handling, short-circuit behavior, performance tuning). The evaluation_type field is authoritative for determining actual evaluation behavior.",
+          "enum": ["atomic", "composite"]
+        },
+        "category_id": {
+          "oneOf": [
+            { "$ref": "base.schema.json#/$defs/SimpleId" },
+            { "type": "null" }
+          ],
+          "description": "Optional category identifier for this rule (e.g. government, healthcare, financial). Advisory only; used for classification and reporting."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Rule severity for prioritization, alerting, and compliance reporting. Used by the engine for: (1) conflict resolution (higher severity wins), (2) runtime prioritization (critical rules evaluated first), (3) alerting thresholds (critical triggers immediate notifications), (4) audit filtering (show all critical violations). Severity is advisory; the effect field is authoritative for enforcement decisions.",
+          "enum": ["info", "low", "medium", "high", "critical"],
+          "default": "medium"
+        },
+        "profiles": {
+          "type": "array",
+          "description": "Cross-cutting profile identifiers that this rule implements or belongs to. Profiles enable querying rules by operational context (e.g., compliance framework, environment, security posture) independent of category or severity. Examples: ['hipaa', 'production'], ['pci-dss', 'zero_trust'], ['gdpr', 'high_risk']. Inspired by OCSF profiles pattern for cross-cutting metadata.",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "uniqueItems": true,
+          "default": [],
+          "examples": [
+            ["hipaa", "healthcare"],
+            ["pci-dss", "production"],
+            ["gdpr", "high_risk"],
+            ["zero_trust", "defense_in_depth"]
+          ]
+        },
+        "regions": {
+          "type": "array",
+          "description": "Geographic regions where this rule applies. Defines the jurisdictional scope of the rule (e.g., US SSN applies in US, IBAN applies in EU). Used at runtime to filter rules based on user's selected region. Defaults to GLOBAL if omitted.",
+          "items": {
+            "$ref": "region.schema.json#/$defs/RegionCode"
+          },
+          "minItems": 1,
+          "uniqueItems": true,
+          "default": ["GLOBAL"],
+          "examples": [
+            ["GLOBAL"],
+            ["US"],
+            ["EU", "UK"],
+            ["US-CA"],
+            ["DE", "AT", "CH"]
+          ]
+        },
+        "evaluation": {
+          "$ref": "rule-evaluation.schema.json",
+          "description": "The evaluation logic for this rule (match/composite, effects, side effects)."
+        }
+      },
+      "required": ["type", "name", "rule_kind", "evaluation"]
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/version.schema.json",
+  "title": "RuleSentry v3 Schema Version Manifest",
+  "description": "Version manifest for the RuleSentry v3 schema set, including release metadata, component versions, compatibility requirements, and deprecation notices.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "$ref": "semver.schema.json",
+      "description": "Semantic version of the v3 schema set (e.g., '3.0.0')",
+      "default": "3.0.0"
+    },
+    "schema_release_date": {
+      "type": "string",
+      "description": "ISO 8601 date when this schema version was released (e.g., '2025-11-19')",
+      "format": "date",
+      "examples": [
+        "2025-11-19"
+      ]
+    },
+    "components": {
+      "type": "object",
+      "description": "Component-level versioning for schema modules (core, api, etc.)",
+      "properties": {
+        "core": {
+          "$ref": "semver.schema.json",
+          "description": "Version of all core schemas (base, rule, policy, category, extension, enforcement-response, etc.)"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "semver.schema.json"
+      }
+    },
+    "breaking_changes_since": {
+      "$ref": "semver.schema.json",
+      "description": "Last schema version that was backward-compatible with this version. If this field is set to '2.9.0' and schema_version is '3.0.0', it means breaking changes were introduced in 3.0.0.",
+      "examples": [
+        "2.9.0"
+      ]
+    },
+    "compatibility": {
+      "type": "object",
+      "description": "Compatibility requirements and constraints",
+      "properties": {
+        "min_engine_version": {
+          "$ref": "semver.schema.json",
+          "description": "Minimum RuleSentry engine version required to use this schema version",
+          "examples": [
+            "3.0.0"
+          ]
+        },
+        "deprecations": {
+          "type": "array",
+          "description": "List of deprecated features with sunset timelines",
+          "items": {
+            "type": "object",
+            "properties": {
+              "feature": {
+                "type": "string",
+                "description": "Name or path of the deprecated feature (e.g., 'core/rule.schema.json#/properties/legacy_field')"
+              },
+              "deprecated_in": {
+                "$ref": "semver.schema.json",
+                "description": "Schema version when this feature was deprecated"
+              },
+              "sunset_date": {
+                "type": "string",
+                "description": "ISO 8601 date when this feature will be removed",
+                "format": "date"
+              },
+              "replacement": {
+                "type": "string",
+                "description": "Recommended replacement or migration path"
+              },
+              "reason": {
+                "type": "string",
+                "description": "Explanation of why this feature is being deprecated"
+              }
+            },
+            "required": [
+              "feature",
+              "deprecated_in"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "schema_version": "3.1.0",
+      "schema_release_date": "2026-03-01",
+      "components": {
+        "core": "3.1.0"
+      },
+      "breaking_changes_since": "3.0.0",
+      "compatibility": {
+        "min_engine_version": "3.0.0",
+        "deprecations": [
+          {
+            "feature": "core/extension.schema.json#/properties/namespace",
+            "deprecated_in": "3.0.0",
+            "sunset_date": "2026-11-19",
+            "replacement": "Use 'name' field instead",
+            "reason": "The 'namespace' field was redundant with 'name'. The 'name' field provides cleaner semantics and shorter syntax for extension identifiers."
+          },
+          {
+            "feature": "core/policy.schema.json#/properties/type/pack",
+            "deprecated_in": "3.1.0",
+            "sunset_date": "2027-03-01",
+            "replacement": "Use type='policy' with rule_categories for multi-category compliance bundles",
+            "reason": "Pack was a separate type for multi-category bundles, but policy with rule_categories provides the same functionality without a separate type discriminator."
+          },
+          {
+            "feature": "core/rule-evaluation.schema.json#/$defs/Transform/properties/type/placeholder",
+            "deprecated_in": "3.1.0",
+            "sunset_date": "2027-03-01",
+            "replacement": "Use 'replace' with a descriptive replacement string, or 'redact' with a semantic marker",
+            "reason": "Placeholder, generalize, relativize, and pseudonymize transforms were removed to simplify the transform model. The 5 remaining types (mask, hash, replace, redact, tokenize) cover production use cases."
+          }
+        ]
+      }
+    }
+  ]
+}

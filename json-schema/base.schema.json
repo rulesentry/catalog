@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/base.schema.json",
+  "title": "RuleSentry v3 Base Types",
+  "description": "Shared base types for versioned entities (Rule, Policy, Category, Profile, Extension). v2 standardizes ID patterns and adds qualified ID support for extensions.",
+  "$defs": {
+    "SimpleId": {
+      "type": "string",
+      "description": "Simple identifier with no dots. Used for category IDs and base component names. Pattern: lowercase alphanumeric starting with letter/digit, followed by letters/digits/underscores/hyphens. Examples: 'government', 'healthcare', 'my_category'.",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "DottedId": {
+      "type": "string",
+      "description": "Identifier that may include dots for hierarchical naming. Used for policy IDs and rule IDs. Dots separate namespace components (e.g., 'policy.pii-basic', 'government.ssn_format'). Pattern: lowercase alphanumeric with optional underscores, hyphens, and dots. Examples: 'policy.pii-basic', 'government.ssn_format', 'contact.email_address'.",
+      "pattern": "^[a-z0-9][a-z0-9_.-]*$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "QualifiedId": {
+      "type": "string",
+      "description": "Fully qualified identifier with namespace prefix for extensions. Format: 'namespace.component.name' where each component follows SimpleId rules. Used to avoid ID collisions between core and extension rules. Examples: 'hipaa.mrn_detect', 'pci.pan_detect', 'myorg.custom_rule'.",
+      "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "WildcardId": {
+      "type": "string",
+      "description": "Identifier pattern that supports wildcard matching. Follows DottedId rules but allows optional '*' suffix for prefix matching. Used in policy overrides to match multiple rules. Examples: 'government.ssn_format' (exact), 'financial.*' (all financial rules), 'healthcare.npi_*' (all NPI variants).",
+      "pattern": "^[a-z0-9][a-z0-9_.-]*(\\*)?$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "VersionedBase": {
+      "type": "object",
+      "description": "Common fields for all top-level versioned entities.",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/DottedId",
+          "description": "Stable local identifier for this entity. May include dots for hierarchical naming (e.g., 'policy.pii-basic', 'government.ssn_format'). See DottedId definition for pattern details."
+        },
+        "qualified_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/QualifiedId"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Fully qualified identifier for this entity, including optional namespace prefix. Used for rule resolution in policies and composite evaluations to avoid ID collisions between core and extension rules. See QualifiedId definition for pattern details.",
+          "examples": ["ssn_format", "hipaa.mrn_detect", "pci.pan_detect", "myorg.custom_rule"]
+        },
+        "type": {
+          "type": "string",
+          "description": "Top-level entity type discriminator (e.g. rule, policy, category, profile, extension).",
+          "enum": ["rule", "policy", "category", "profile", "extension"]
+        },
+        "version": {
+          "$ref": "semver.schema.json",
+          "description": "Semantic version of this entity."
+        },
+        "status": {
+          "type": "string",
+          "description": "Lifecycle status for this entity.",
+          "enum": ["draft", "active", "deprecated", "archived"],
+          "default": "draft"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Free-form tags for search and organization.",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Arbitrary metadata for this entity (creator notes, external IDs, compliance annotations, etc.).",
+          "additionalProperties": true
+        },
+        "origin": {
+          "$ref": "#/$defs/Origin",
+          "description": "Lineage and provenance tracking for this entity."
+        },
+        "created_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Creation timestamp (ISO 8601)."
+        },
+        "created_by": {
+          "type": ["string", "null"],
+          "description": "Logical creator (user, service account, etc.)."
+        },
+        "modified_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Last modification timestamp (ISO 8601)."
+        },
+        "modified_by": {
+          "type": ["string", "null"],
+          "description": "Who last modified this entity."
+        },
+        "_runtime": {
+          "$ref": "#/$defs/RuntimeHints",
+          "description": "Pre-computed runtime hints. Populated by the engine at load time, not authored manually. Transient - not persisted."
+        }
+      },
+      "required": ["id", "type", "version"]
+    },
+
+    "RuntimeHints": {
+      "type": "object",
+      "description": "Pre-computed hints for runtime efficiency. Populated at load time by the engine, not authored manually. These fields are optional and transient - they are not persisted and are regenerated on each load.",
+      "properties": {
+        "expanded_rules": {
+          "type": "array",
+          "description": "Flattened list of all rule IDs included in this policy after expanding categories, filters, and inheritance.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "region_path": {
+          "type": "array",
+          "description": "Full hierarchy path from GLOBAL to this entity's most specific region, for O(1) containment checks. Example: ['GLOBAL', 'AMERICAS', 'US', 'US-CA'].",
+          "items": {
+            "type": "string"
+          }
+        },
+        "indexed_by_region": {
+          "type": "object",
+          "description": "Map of region codes to applicable rule IDs for fast region-based filtering.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "indexed_by_profile": {
+          "type": "object",
+          "description": "Map of profile IDs to applicable rule IDs for fast profile-based filtering.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "computed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when these hints were computed. Used for cache invalidation."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Origin": {
+      "type": "object",
+      "description": "Lineage and provenance tracking. Records how an entity was created and its relationship to source entities.",
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": ["local", "catalog", "imported", "forked", "cloned"],
+          "description": "How this entity was created. local=created in app, catalog=downloaded from catalog, imported=loaded from file, forked=modified catalog rule, cloned=copied from existing rule."
+        },
+        "source_id": {
+          "$ref": "#/$defs/DottedId",
+          "description": "Original entity ID for forked or cloned entities. May include dots for hierarchical IDs."
+        },
+        "source_qualified_id": {
+          "$ref": "#/$defs/QualifiedId",
+          "description": "Original qualified ID for forked or cloned entities from extensions. Includes namespace prefix (e.g., 'hipaa.mrn_detect')."
+        },
+        "source_version": {
+          "$ref": "semver.schema.json",
+          "description": "Version of the source entity when it was forked or cloned."
+        },
+        "catalog_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Catalog URL for catalog-sourced entities (catalog, forked)."
+        },
+        "imported_from": {
+          "type": "string",
+          "description": "Original file path or URL for imported entities."
+        },
+        "derived_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when this entity was derived (forked/cloned) from its source."
+        },
+        "author": {
+          "type": "string",
+          "description": "Name of the person who created this entity (e.g., 'James Smith')."
+        },
+        "publisher": {
+          "type": "string",
+          "description": "Organization or publisher name (e.g., 'rulesentry.io', 'Acme Corp')."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Source URL for this entity (e.g., GitHub repository, publisher website)."
+        }
+      },
+      "required": ["source_type"]
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/eval-response.schema.json",
+  "title": "Evaluation Response",
+  "description": "Response from WASM evaluateUserConfig(). Contains matched results and validator rejections. This is the client-side counterpart to enforcement-response.schema.json, optimized for the WASM boundary with flatter DTO structures.",
+
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "Evaluation results — one entry per rule match found in the input. Each result includes the matched text, effect applied, and source policy.",
+      "items": {
+        "$ref": "#/$defs/UserEvalResultDto"
+      },
+      "default": []
+    },
+    "rejections": {
+      "type": "array",
+      "description": "Pattern matches that were rejected by post-match validators. These are NOT violations — they represent patterns that matched the regex but failed validation (e.g., invalid Luhn checksum, invalid SSN area code). Useful for debugging false negatives.",
+      "items": {
+        "$ref": "#/$defs/RejectedMatchDto"
+      },
+      "default": []
+    }
+  },
+  "required": ["results", "rejections"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "UserEvalResultDto": {
+      "type": "object",
+      "description": "A single evaluation result from a matched rule, tagged with its source policy.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "Identifier of the rule that matched."
+        },
+        "matched_text": {
+          "type": "string",
+          "description": "The text that matched the rule's pattern."
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start byte offset of the match in the input text.",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "description": "End byte offset of the match in the input text.",
+          "minimum": 0
+        },
+        "effect": {
+          "type": "string",
+          "description": "Effect applied by this rule. One of: 'info', 'allow', 'block', or 'transform:{type}' (e.g., 'transform:mask', 'transform:redact').",
+          "examples": ["info", "allow", "block", "transform:mask", "transform:redact"]
+        },
+        "transformed": {
+          "type": ["string", "null"],
+          "description": "The transformed text if effect is a transform (e.g., masked or redacted value). Null if effect is allow or block."
+        },
+        "message": {
+          "type": ["string", "null"],
+          "description": "Human-readable message from the rule's effect definition."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Effective severity after any policy/user overrides."
+        },
+        "source_policy_id": {
+          "type": ["string", "null"],
+          "description": "ID of the policy that contributed this rule. Null if the rule came from added_rules (standalone)."
+        }
+      },
+      "required": ["rule_id", "matched_text", "start", "end", "effect", "severity"],
+      "additionalProperties": false
+    },
+
+    "RejectedMatchDto": {
+      "type": "object",
+      "description": "A pattern match that was rejected by a post-match validator.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "Identifier of the rule whose pattern matched."
+        },
+        "rule_name": {
+          "type": "string",
+          "description": "Human-readable name of the rule."
+        },
+        "matched_text": {
+          "type": "string",
+          "description": "The text that matched the pattern but was rejected by the validator."
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start byte offset of the match.",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "description": "End byte offset of the match.",
+          "minimum": 0
+        },
+        "severity": {
+          "type": "string",
+          "description": "Severity of the rule that matched."
+        },
+        "validator": {
+          "type": "string",
+          "description": "Name of the validator that rejected this match (e.g., 'luhn', 'ssn_format')."
+        },
+        "source_policy_id": {
+          "type": ["string", "null"],
+          "description": "ID of the policy that contributed this rule. Null if from added_rules."
+        }
+      },
+      "required": ["rule_id", "rule_name", "matched_text", "start", "end", "severity", "validator"],
+      "additionalProperties": false
+    }
+  },
+
+  "examples": [
+    {
+      "results": [
+        {
+          "rule_id": "government.ssn_format",
+          "matched_text": "123-45-6789",
+          "start": 5,
+          "end": 16,
+          "effect": "block",
+          "transformed": null,
+          "message": "Social Security Number detected",
+          "severity": "CRITICAL",
+          "source_policy_id": "policy.us-pii"
+        }
+      ],
+      "rejections": []
+    },
+    {
+      "results": [],
+      "rejections": [
+        {
+          "rule_id": "financial.credit_card_luhn",
+          "rule_name": "Credit Card (Luhn)",
+          "matched_text": "4539578763621487",
+          "start": 6,
+          "end": 22,
+          "severity": "critical",
+          "validator": "luhn",
+          "source_policy_id": "policy.pci-dss-global"
+        }
+      ]
+    }
+  ]
+}

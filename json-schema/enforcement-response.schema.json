@@ -1,0 +1,290 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/enforcement-response.schema.json",
+  "title": "Enforcement Response",
+  "description": "Response from RuleSentry enforcement API. Contains compliance decision, violations, and transformed content. v2 adds denormalized rule metadata to Violation objects for improved UI performance (category_id, profiles, regions).",
+
+  "type": "object",
+  "properties": {
+    "is_compliant": {
+      "type": "boolean",
+      "description": "Overall compliance decision: true if content passes all rules, false if any violations occurred."
+    },
+    "decision": {
+      "type": "string",
+      "description": "Final enforcement decision based on policy evaluation: allow (content passes), block (content rejected), transform (content modified).",
+      "enum": ["allow", "block", "transform", "info"]
+    },
+    "violations": {
+      "type": "array",
+      "description": "List of rule violations detected during enforcement. Empty array if no violations.",
+      "items": {
+        "$ref": "#/$defs/Violation"
+      },
+      "default": []
+    },
+    "rejected_matches": {
+      "type": "array",
+      "description": "Pattern matches that were rejected by validators. Used for debugging false negatives and tuning patterns. These are NOT violations - they represent patterns that matched but failed validation (e.g., invalid SSN area codes, failed checksums, rejected by context filters). Only populated when validators reject matches.",
+      "items": {
+        "$ref": "#/$defs/RejectedMatch"
+      },
+      "default": []
+    },
+    "transformed_content": {
+      "type": "string",
+      "description": "Content after applying transformations (masking, redaction, etc.). Only present if decision = 'transform'. Null otherwise."
+    },
+    "transform_artifacts": {
+      "$ref": "#/$defs/TransformArtifacts",
+      "description": "Metadata about transformations applied. Present when decision = 'transform'."
+    }
+  },
+  "required": ["is_compliant", "decision", "violations"],
+  "additionalProperties": false,
+
+  "$defs": {
+    "TransformArtifacts": {
+      "type": "object",
+      "description": "Metadata about transformations applied during enforcement. Includes statistics and reversible mappings for pseudonymization.",
+      "properties": {
+        "placeholder_stats": {
+          "type": "object",
+          "description": "Count of placeholders assigned by category (e.g., { 'person': 3, 'organization': 2 }).",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "reference_dates_used": {
+          "type": "array",
+          "description": "List of reference date anchor names used for relativization.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "generalization_count": {
+          "type": "integer",
+          "description": "Number of numeric values that were generalized.",
+          "minimum": 0
+        },
+        "total_transforms": {
+          "type": "integer",
+          "description": "Total number of individual transformations applied.",
+          "minimum": 0
+        },
+        "pseudonym_mappings": {
+          "type": "object",
+          "description": "Map of original values to their pseudonymized replacements (e.g., { 'John': 'Matthew', 'Acme Corp': 'TechVentures' }). Enables consistent pseudonymization across documents.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "token_mappings": {
+          "type": "object",
+          "description": "Map of tokens to original values for reversible tokenization (e.g., { '[TOK_5918]': 'Sarah Johnson' }). Only included when reversible=true.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Violation": {
+      "type": "object",
+      "description": "A single rule violation detected during enforcement.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "Identifier of the rule that triggered this violation."
+        },
+        "rule_name": {
+          "type": "string",
+          "description": "Human-readable name of the rule."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Severity level of this violation.",
+          "enum": ["info", "low", "medium", "high", "critical"]
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable violation message."
+        },
+        "matched_value": {
+          "type": "string",
+          "description": "The actual value that triggered the violation (e.g., matched SSN, email). May be redacted for sensitive data."
+        },
+        "replacement": {
+          "type": "string",
+          "description": "The value that replaced matched_value in transformed_content. For MASK: masked string (e.g., '***-**-6789'). For REPLACE: token (e.g., '[SSN_FORMAT]'). For REDACT: marker (e.g., '[REDACTED]'). For PSEUDONYMIZE: pseudonym used. Matches what appears in transformed_content."
+        },
+        "target": {
+          "type": "string",
+          "description": "Logical target where violation was found (e.g., 'request.body', 'response.headers.authorization')."
+        },
+        "effect": {
+          "type": "string",
+          "description": "Effect applied by this rule (allow, block, transform, info).",
+          "enum": ["allow", "block", "transform", "info"]
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start position of the match in the input text (byte offset). Used for position-based transformation optimization. Optional for backwards compatibility.",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "description": "End position of the match in the input text (byte offset). Used for position-based transformation optimization. Optional for backwards compatibility.",
+          "minimum": 0
+        },
+        "category_id": {
+          "type": "string",
+          "description": "Denormalized category_id from the rule that triggered this violation (e.g., 'pii', 'phi', 'financial'). Enables UI to filter/group violations by category without looking up rule metadata. v2 addition for performance.",
+          "pattern": "^[a-z0-9][a-z0-9_-]*$"
+        },
+        "profiles": {
+          "type": "array",
+          "description": "Denormalized profiles array from the rule that triggered this violation (e.g., ['hipaa', 'production']). Enables UI to filter violations by profile without looking up rule metadata. v2 addition for performance.",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "regions": {
+          "type": "array",
+          "description": "Denormalized regions array from the rule that triggered this violation. Supports hierarchical regions (e.g., ['US', 'US-CA'] or ['EU', 'DE-BY']). Enables UI to display region context without looking up rule metadata. v2 addition for performance, renamed from 'jurisdictions' in v4.",
+          "items": {
+            "$ref": "region.schema.json#/$defs/RegionCode"
+          },
+          "default": ["GLOBAL"]
+        },
+        "validator_name": {
+          "type": "string",
+          "description": "Name of the validator used to verify this match (e.g., 'luhn', 'ssn_format', 'nhs_mod11'). Null if no validator was configured (pattern-only match). Used for debugging and understanding why a rule triggered."
+        },
+        "validator_status": {
+          "type": "string",
+          "description": "Status of validator execution: 'passed' (validator accepted the match), 'failed' (validator rejected the match - should not appear in violations), 'not_applicable' (no validator configured). Used for debugging rule matching behavior.",
+          "enum": ["passed", "failed", "not_applicable"]
+        },
+        "validator_details": {
+          "$ref": "#/$defs/ValidatorDetails",
+          "description": "Detailed information about validator execution. Present when validator_name is set. Enables debugging false positives/negatives by showing intermediate computation steps."
+        }
+      },
+      "required": ["rule_id", "rule_name", "severity", "message", "effect"],
+      "additionalProperties": false
+    },
+
+    "ValidatorDetails": {
+      "type": "object",
+      "description": "Detailed information about validator execution for debugging purposes.",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "description": "Human-readable description of the validation algorithm (e.g., 'Luhn checksum (ISO/IEC 7812-1)', 'SSA Publication No. 05-10633 format validation')."
+        },
+        "cleaned_value": {
+          "type": "string",
+          "description": "The matched value after applying strip_chars normalization (e.g., '4532123456789010' from '4532-1234-5678-9010'). Used by checksum algorithms."
+        },
+        "checksum_computed": {
+          "type": "string",
+          "description": "The computed checksum or validation result (e.g., '0' for Luhn mod 10, area/group/serial for SSN). Helps debug checksum failures."
+        },
+        "reject_reason": {
+          "type": "string",
+          "description": "Reason why validator rejected the match (e.g., 'Test keyword \"example card\" found', 'Invalid area code 666'). Present when validation fails due to reject_keywords or format constraints."
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "RejectedMatch": {
+      "type": "object",
+      "description": "A pattern match that was rejected by a validator. Used for debugging and pattern tuning.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "Identifier of the rule whose pattern matched."
+        },
+        "rule_name": {
+          "type": "string",
+          "description": "Human-readable name of the rule."
+        },
+        "matched_value": {
+          "type": "string",
+          "description": "The value that matched the pattern but was rejected by the validator."
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start position of the match in the input text (byte offset).",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "description": "End position of the match in the input text (byte offset).",
+          "minimum": 0
+        },
+        "validator_name": {
+          "type": "string",
+          "description": "Name of the validator that rejected this match (e.g., 'ssn_format', 'luhn', 'nhs_mod11')."
+        },
+        "validator_status": {
+          "type": "string",
+          "description": "Status of validator execution. Will always be 'failed' for rejected matches.",
+          "enum": ["failed"]
+        },
+        "validator_details": {
+          "$ref": "#/$defs/ValidatorDetails",
+          "description": "Detailed information about why the validator rejected this match. Includes reject_reason explaining the failure."
+        }
+      },
+      "required": ["rule_id", "rule_name", "matched_value", "validator_name", "validator_status"],
+      "additionalProperties": false
+    }
+  },
+
+  "examples": [
+    {
+      "is_compliant": false,
+      "decision": "block",
+      "violations": [
+        {
+          "rule_id": "block-ssn",
+          "rule_name": "Block SSN Detection",
+          "severity": "critical",
+          "message": "Social Security Number detected in request body",
+          "matched_value": "***-**-6789",
+          "target": "request.body",
+          "effect": "block"
+        }
+      ]
+    },
+    {
+      "is_compliant": true,
+      "decision": "allow",
+      "violations": []
+    },
+    {
+      "is_compliant": false,
+      "decision": "transform",
+      "violations": [
+        {
+          "rule_id": "mask-email",
+          "rule_name": "Mask Email Addresses",
+          "severity": "medium",
+          "message": "Email address masked",
+          "matched_value": "j***@example.com",
+          "target": "request.body",
+          "effect": "transform"
+        }
+      ],
+      "transformed_content": "Contact: j***@example.com for more info"
+    }
+  ]
+}

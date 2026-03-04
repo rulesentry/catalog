@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/extension.schema.json",
+  "title": "RuleSentry v3 Extension",
+  "description": "Versioned extension manifest that can introduce additional categories, rules, evaluations, or policies under a namespace. Extensions are distributed artifacts that require authorship metadata for trust, licensing, and support.",
+  "allOf": [
+    {
+      "$ref": "base.schema.json#/$defs/VersionedBase"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "JSON Schema URI for this document (optional but recommended)."
+        },
+        "type": {
+          "const": "extension",
+          "description": "Top-level entity type discriminator. Always 'extension' for extension manifests."
+        },
+        "name": {
+          "type": "string",
+          "description": "Short namespace identifier for this extension (lowercase, no spaces). Used as prefix for extension-specific entities (e.g., 'hipaa', 'pci', 'aws').",
+          "pattern": "^[a-z0-9_-]+$",
+          "minLength": 1,
+          "maxLength": 32,
+          "examples": ["hipaa", "pci", "aws", "acme-internal"]
+        },
+        "caption": {
+          "type": "string",
+          "description": "Human-friendly display name for this extension.",
+          "minLength": 1,
+          "examples": ["HIPAA Healthcare Extension", "PCI-DSS Compliance", "AWS Security"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of what this extension provides and why it exists."
+        },
+        "uid": {
+          "type": "integer",
+          "description": "Globally unique extension identifier. Must be reserved via the RuleSentry extension registry to prevent collisions. Range 1-999 reserved for official extensions, 1000+ for community/private extensions, 9000-9999 for private/internal use.",
+          "minimum": 1,
+          "maximum": 9999,
+          "examples": [1001, 1002, 9000]
+        },
+        "namespace": {
+          "type": "string",
+          "description": "DEPRECATED: Use 'name' instead. Logical namespace for this extension (e.g., customer.acme, rulesentry.core).",
+          "deprecated": true,
+          "$comment": "Will be removed in the next major schema version. Use 'name' field instead.",
+          "minLength": 1
+        },
+        "author": {
+          "type": "string",
+          "description": "Name of the person or organization that created this extension.",
+          "examples": ["Acme Healthcare Inc", "John Doe", "AWS Security Team"]
+        },
+        "author_email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email for the extension author (for support, bug reports, etc.).",
+          "examples": ["security@acme.com", "john@example.com"]
+        },
+        "author_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the author's website or organization page.",
+          "examples": ["https://acme.com", "https://github.com/acme"]
+        },
+        "license": {
+          "type": "string",
+          "description": "SPDX license identifier or custom license name. Critical for legal compliance when distributing extensions.",
+          "examples": ["MIT", "Apache-2.0", "GPL-3.0", "Proprietary", "CC-BY-4.0"]
+        },
+        "repository": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the source code repository (e.g., GitHub, GitLab).",
+          "examples": ["https://github.com/acme/hipaa-extension", "https://gitlab.com/org/extension"]
+        },
+        "homepage": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the extension's homepage or documentation site.",
+          "examples": ["https://docs.acme.com/hipaa-extension"]
+        },
+        "bugs_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to report bugs or issues (e.g., GitHub issues).",
+          "examples": ["https://github.com/acme/hipaa-extension/issues"]
+        },
+        "keywords": {
+          "type": "array",
+          "description": "Searchable keywords for extension discovery (e.g., 'healthcare', 'pci', 'hipaa', 'gdpr').",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "uniqueItems": true,
+          "examples": [["hipaa", "healthcare", "phi"], ["pci", "fintech", "payments"]]
+        },
+        "extends": {
+          "type": "array",
+          "description": "Which core types this extension extends (e.g., category, rule, evaluation, policy).",
+          "items": {
+            "type": "string",
+            "enum": ["category", "rule", "evaluation", "policy"]
+          },
+          "default": []
+        },
+        "profiles": {
+          "type": "array",
+          "description": "Profile identifiers that this extension provides or implements. Extensions can define new profiles (e.g., a HIPAA extension provides the 'hipaa' profile) and/or implement existing profiles. Rules within this extension typically use these profiles for cross-cutting metadata. Examples: ['hipaa', 'healthcare'], ['pci-dss', 'financial'], ['aws', 'cloud'].",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "uniqueItems": true,
+          "default": [],
+          "examples": [
+            ["hipaa", "healthcare"],
+            ["pci-dss", "financial"],
+            ["aws", "cloud", "infrastructure"]
+          ]
+        },
+        "dependencies": {
+          "type": "object",
+          "description": "Extension dependencies. Keys are extension names, values are semver ranges.",
+          "additionalProperties": {
+            "$ref": "semver.schema.json"
+          },
+          "examples": [
+            {
+              "core": ">=1.0.0",
+              "pci": "^2.0.0"
+            }
+          ]
+        },
+        "min_engine_version": {
+          "$ref": "semver.schema.json",
+          "description": "Minimum RuleSentry engine version required to use this extension.",
+          "examples": ["3.0.0", "3.1.0"]
+        },
+        "signature": {
+          "type": "object",
+          "description": "Digital signature for extension verification. Ensures integrity and authenticity.",
+          "properties": {
+            "algorithm": {
+              "type": "string",
+              "enum": ["ed25519", "ecdsa-p256", "rsa-2048"],
+              "description": "Signature algorithm used."
+            },
+            "public_key": {
+              "type": "string",
+              "description": "Base64-encoded public key for signature verification."
+            },
+            "signature": {
+              "type": "string",
+              "description": "Base64-encoded signature of the extension content hash."
+            },
+            "signed_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When this extension was signed."
+            }
+          },
+          "required": ["algorithm", "public_key", "signature"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["type", "name", "caption", "uid"]
+    }
+  ],
+  "unevaluatedProperties": false,
+  "examples": [
+    {
+      "id": "hipaa-healthcare",
+      "type": "extension",
+      "name": "hipaa",
+      "caption": "HIPAA Healthcare Extension",
+      "description": "Healthcare-specific rules and categories for HIPAA compliance, including PHI classification and patient consent tracking.",
+      "uid": 1001,
+      "version": "1.0.0",
+      "status": "active",
+
+      "author": "Acme Healthcare Inc",
+      "author_email": "security@acme.com",
+      "author_url": "https://acme.com",
+      "license": "MIT",
+      "repository": "https://github.com/acme/hipaa-extension",
+      "homepage": "https://docs.acme.com/hipaa-extension",
+      "bugs_url": "https://github.com/acme/hipaa-extension/issues",
+
+      "keywords": ["hipaa", "healthcare", "phi", "compliance"],
+      "extends": ["category", "rule"],
+      "min_engine_version": "3.0.0",
+
+      "created_at": "2025-11-19T00:00:00Z",
+      "created_by": "john@acme.com",
+      "modified_at": "2025-11-19T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "rulesentry-contributors",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Community-contributed rules, policies, categories, profiles, and regions for RuleSentry",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "check": "node scripts/check-conventions.mjs",
+    "ci": "npm run validate && npm run check"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

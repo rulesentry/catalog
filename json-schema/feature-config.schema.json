@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/feature-config.schema.json",
+  "title": "FeatureConfig",
+  "description": "Build-time feature flags for the evaluation engine",
+  "type": "object",
+  "properties": {
+    "features": {
+      "type": "object",
+      "description": "Feature flags compiled into WASM binary",
+      "properties": {
+        "policy_engine_enabled": {
+          "type": "boolean",
+          "description": "Enable policy evaluation engine. Disabling returns Allow for all content.",
+          "default": true
+        },
+        "pseudonymization_enabled": {
+          "type": "boolean",
+          "description": "Enable pseudonymization transforms in matched content.",
+          "default": true
+        },
+        "desktop_integration_enabled": {
+          "type": "boolean",
+          "description": "Enable desktop-specific features (reserved for future use).",
+          "default": false
+        }
+      },
+      "additionalProperties": false,
+      "required": ["policy_engine_enabled", "pseudonymization_enabled", "desktop_integration_enabled"]
+    }
+  },
+  "required": ["features"],
+  "additionalProperties": false
+}

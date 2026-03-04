@@ -1,0 +1,60 @@
+{
+  "$schema": "../../json-schema/policy.schema.json",
+  "id": "policy.mx-pii",
+  "qualified_id": "community.rulesentry.policy.mx-pii",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Mexico PII Protection Policy",
+  "description": "Basic PII protection policy for Mexico. Includes community-contributed Mexico-specific rules and core contact detection rules.",
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "MX"
+  ],
+  "priority": 50,
+  "tags": [
+    "pii",
+    "mexico",
+    "contact"
+  ],
+  "rules": [
+    {
+      "rule_id": "contact.mx-phone-number",
+      "pinned_version": "1.0.0",
+      "priority": 60,
+      "attached_at": "2026-03-05T00:00:00Z",
+      "attached_by": "rulesentry-team",
+      "notes": "Mexico phone number detection"
+    }
+  ],
+  "rule_categories": [
+    {
+      "category_id": "contact",
+      "mode": "selective",
+      "include_rules": [
+        "contact.email_address"
+      ]
+    }
+  ],
+  "rule_filters": [
+    {
+      "by_region": ["MX"],
+      "by_severity": ["medium", "high", "critical"]
+    }
+  ],
+  "overrides": [],
+  "metadata": {
+    "compliance_scope": "Mexico personal data protection"
+  },
+  "origin": {
+    "source_type": "local",
+    "publisher": "rulesentry",
+    "author": "RuleSentry Team"
+  },
+  "created_at": "2026-03-05T00:00:00Z",
+  "created_by": "rulesentry-team",
+  "modified_at": "2026-03-05T00:00:00Z",
+  "modified_by": "rulesentry-team"
+}

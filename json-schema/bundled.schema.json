@@ -1,0 +1,3645 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/bundled.schema.json",
+  "title": "RuleSentry v3 Bundled Schema",
+  "description": "All 15 RuleSentry JSON schemas bundled into a single file. Each original schema is accessible under $defs/{name} (e.g. #/$defs/rule, #/$defs/policy). Nested definitions use double-underscore notation: #/$defs/{file}__{DefName} (e.g. #/$defs/base__VersionedBase, #/$defs/rule-evaluation__Effect).",
+  "$defs": {
+    "base": {
+      "title": "RuleSentry v3 Base Types",
+      "description": "Shared base types for versioned entities (Rule, Policy, Category, Profile, Extension). v2 standardizes ID patterns and adds qualified ID support for extensions."
+    },
+    "base__SimpleId": {
+      "type": "string",
+      "description": "Simple identifier with no dots. Used for category IDs and base component names. Pattern: lowercase alphanumeric starting with letter/digit, followed by letters/digits/underscores/hyphens. Examples: 'government', 'healthcare', 'my_category'.",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "base__DottedId": {
+      "type": "string",
+      "description": "Identifier that may include dots for hierarchical naming. Used for policy IDs and rule IDs. Dots separate namespace components (e.g., 'policy.pii-basic', 'government.ssn_format'). Pattern: lowercase alphanumeric with optional underscores, hyphens, and dots. Examples: 'policy.pii-basic', 'government.ssn_format', 'contact.email_address'.",
+      "pattern": "^[a-z0-9][a-z0-9_.-]*$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "base__QualifiedId": {
+      "type": "string",
+      "description": "Fully qualified identifier with namespace prefix for extensions. Format: 'namespace.component.name' where each component follows SimpleId rules. Used to avoid ID collisions between core and extension rules. Examples: 'hipaa.mrn_detect', 'pci.pan_detect', 'myorg.custom_rule'.",
+      "pattern": "^[a-z0-9][a-z0-9_-]*(\\.[a-z0-9][a-z0-9_-]*)*$",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "base__WildcardId": {
+      "type": "string",
+      "description": "Identifier pattern that supports wildcard matching. Follows DottedId rules but allows optional '*' suffix for prefix matching. Used in policy overrides to match multiple rules. Examples: 'government.ssn_format' (exact), 'financial.*' (all financial rules), 'healthcare.npi_*' (all NPI variants).",
+      "pattern": "^[a-z0-9][a-z0-9_.-]*(\\*)?$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "base__VersionedBase": {
+      "type": "object",
+      "description": "Common fields for all top-level versioned entities.",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/base__DottedId",
+          "description": "Stable local identifier for this entity. May include dots for hierarchical naming (e.g., 'policy.pii-basic', 'government.ssn_format'). See DottedId definition for pattern details."
+        },
+        "qualified_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/base__QualifiedId"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Fully qualified identifier for this entity, including optional namespace prefix. Used for rule resolution in policies and composite evaluations to avoid ID collisions between core and extension rules. See QualifiedId definition for pattern details.",
+          "examples": [
+            "ssn_format",
+            "hipaa.mrn_detect",
+            "pci.pan_detect",
+            "myorg.custom_rule"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "description": "Top-level entity type discriminator (e.g. rule, policy, category, profile, extension).",
+          "enum": [
+            "rule",
+            "policy",
+            "category",
+            "profile",
+            "extension"
+          ]
+        },
+        "version": {
+          "$ref": "#/$defs/semver",
+          "description": "Semantic version of this entity."
+        },
+        "status": {
+          "type": "string",
+          "description": "Lifecycle status for this entity.",
+          "enum": [
+            "draft",
+            "active",
+            "deprecated",
+            "archived"
+          ],
+          "default": "draft"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Free-form tags for search and organization.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Arbitrary metadata for this entity (creator notes, external IDs, compliance annotations, etc.).",
+          "additionalProperties": true
+        },
+        "origin": {
+          "$ref": "#/$defs/base__Origin",
+          "description": "Lineage and provenance tracking for this entity."
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Creation timestamp (ISO 8601)."
+        },
+        "created_by": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Logical creator (user, service account, etc.)."
+        },
+        "modified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Last modification timestamp (ISO 8601)."
+        },
+        "modified_by": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Who last modified this entity."
+        },
+        "_runtime": {
+          "$ref": "#/$defs/base__RuntimeHints",
+          "description": "Pre-computed runtime hints. Populated by the engine at load time, not authored manually. Transient - not persisted."
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "version"
+      ]
+    },
+    "base__RuntimeHints": {
+      "type": "object",
+      "description": "Pre-computed hints for runtime efficiency. Populated at load time by the engine, not authored manually. These fields are optional and transient - they are not persisted and are regenerated on each load.",
+      "properties": {
+        "expanded_rules": {
+          "type": "array",
+          "description": "Flattened list of all rule IDs included in this policy after expanding categories, filters, and inheritance.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "region_path": {
+          "type": "array",
+          "description": "Full hierarchy path from GLOBAL to this entity's most specific region, for O(1) containment checks. Example: ['GLOBAL', 'AMERICAS', 'US', 'US-CA'].",
+          "items": {
+            "type": "string"
+          }
+        },
+        "indexed_by_region": {
+          "type": "object",
+          "description": "Map of region codes to applicable rule IDs for fast region-based filtering.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "indexed_by_profile": {
+          "type": "object",
+          "description": "Map of profile IDs to applicable rule IDs for fast profile-based filtering.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "computed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when these hints were computed. Used for cache invalidation."
+        }
+      },
+      "additionalProperties": false
+    },
+    "base__Origin": {
+      "type": "object",
+      "description": "Lineage and provenance tracking. Records how an entity was created and its relationship to source entities.",
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "local",
+            "catalog",
+            "imported",
+            "forked",
+            "cloned"
+          ],
+          "description": "How this entity was created. local=created in app, catalog=downloaded from catalog, imported=loaded from file, forked=modified catalog rule, cloned=copied from existing rule."
+        },
+        "source_id": {
+          "$ref": "#/$defs/base__DottedId",
+          "description": "Original entity ID for forked or cloned entities. May include dots for hierarchical IDs."
+        },
+        "source_qualified_id": {
+          "$ref": "#/$defs/base__QualifiedId",
+          "description": "Original qualified ID for forked or cloned entities from extensions. Includes namespace prefix (e.g., 'hipaa.mrn_detect')."
+        },
+        "source_version": {
+          "$ref": "#/$defs/semver",
+          "description": "Version of the source entity when it was forked or cloned."
+        },
+        "catalog_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Catalog URL for catalog-sourced entities (catalog, forked)."
+        },
+        "imported_from": {
+          "type": "string",
+          "description": "Original file path or URL for imported entities."
+        },
+        "derived_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when this entity was derived (forked/cloned) from its source."
+        },
+        "author": {
+          "type": "string",
+          "description": "Name of the person who created this entity (e.g., 'James Smith')."
+        },
+        "publisher": {
+          "type": "string",
+          "description": "Organization or publisher name (e.g., 'rulesentry.io', 'Acme Corp')."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Source URL for this entity (e.g., GitHub repository, publisher website)."
+        }
+      },
+      "required": [
+        "source_type"
+      ]
+    },
+    "semver": {
+      "title": "Semantic Version",
+      "description": "Semantic versioning string following the Semver 2.0.0 specification (https://semver.org/). Format: MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]. Examples: '1.0.0', '2.1.3-beta.1', '1.0.0+build.123'",
+      "type": "string",
+      "minLength": 5,
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "examples": [
+        "1.0.0",
+        "2.3.1",
+        "1.0.0-alpha",
+        "1.0.0-alpha.1",
+        "1.0.0-beta.2",
+        "1.0.0-rc.1",
+        "2.0.0-rc.2+build.1848",
+        "1.0.0+20130313144700",
+        "3.1.0-beta.1+git.abc123"
+      ]
+    },
+    "region": {
+      "title": "Region",
+      "description": "Defines a geographic or regulatory region with hierarchical support.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^(GLOBAL|MULTIPLE|[A-Z]{2,8}(-[A-Z]{2,3})?)$",
+          "description": "Unique region code. GLOBAL, regional groupings (APAC, LATAM, AMERICAS, EU), ISO country codes (US, CA), or sub-regions (US-CA, DE-BY).",
+          "examples": [
+            "GLOBAL",
+            "APAC",
+            "LATAM",
+            "AMERICAS",
+            "EU",
+            "US",
+            "US-CA",
+            "DE",
+            "DE-BY",
+            "CA-QC"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable region name.",
+          "examples": [
+            "Global",
+            "United States",
+            "California",
+            "Bavaria"
+          ]
+        },
+        "parent_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(GLOBAL|MULTIPLE|[A-Z]{2,8}(-[A-Z]{2,3})?)$",
+          "description": "Parent region code. null for top-level, or a valid region code (GLOBAL, APAC, AMERICAS, EU, US, etc.).",
+          "examples": [
+            null,
+            "GLOBAL",
+            "APAC",
+            "EU",
+            "US",
+            "DE"
+          ]
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "global",
+            "region",
+            "country",
+            "subdivision"
+          ],
+          "description": "Hierarchy tier classification: global (worldwide), region (continental groupings like APAC, EU), country (nation-states), subdivision (states, provinces, territories)."
+        },
+        "tier": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3,
+          "description": "Numeric hierarchy tier for efficient comparison. 0=global, 1=region, 2=country, 3=subdivision. Lower tier = broader scope."
+        },
+        "default_inheritance": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether rules at this region level inherit to child regions. When true (default), a rule targeting 'US' also applies to 'US-CA'."
+        },
+        "flag_emoji": {
+          "type": "string",
+          "description": "Optional flag emoji for UI display.",
+          "examples": [
+            "🌐",
+            "🇺🇸",
+            "🇪🇺",
+            "🇩🇪"
+          ]
+        },
+        "frameworks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Associated regulatory frameworks.",
+          "examples": [
+            [
+              "GDPR"
+            ],
+            [
+              "HIPAA",
+              "CCPA"
+            ],
+            [
+              "PIPEDA"
+            ]
+          ]
+        },
+        "display_order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sort order for UI display (lower = earlier)."
+        }
+      },
+      "required": [
+        "code",
+        "name",
+        "level",
+        "tier"
+      ],
+      "additionalProperties": false
+    },
+    "region__RegionCode": {
+      "type": "string",
+      "pattern": "^(GLOBAL|MULTIPLE|[A-Z]{2,8}(-[A-Z]{2,3})?)$",
+      "description": "Geographic region code. Accepts GLOBAL (worldwide), MULTIPLE (multi-jurisdiction), 2-3 character ISO country codes (US, CA, UK, SGP), regional groupings (APAC, LATAM, AFRICA, AMERICAS, MENA, OCEANIA, EU), and sub-regions with hyphen (US-CA for California, DE-BY for Bavaria, CA-QC for Quebec).",
+      "examples": [
+        "GLOBAL",
+        "APAC",
+        "LATAM",
+        "AMERICAS",
+        "EU",
+        "US",
+        "US-CA",
+        "DE",
+        "DE-BY",
+        "CA-QC"
+      ]
+    },
+    "category": {
+      "title": "RuleSentry v3 Category",
+      "description": "Versioned data category definition (e.g., PII, PHI, PCI). Advisory metadata for rules and policies. v3 supports hierarchical categories with parent_category_id and display hints for UI organization (display_order, is_system).",
+      "allOf": [
+        {
+          "$ref": "#/$defs/base__VersionedBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$schema": {
+              "type": "string",
+              "description": "JSON Schema URI for this document (optional but recommended)."
+            },
+            "type": {
+              "const": "category",
+              "description": "Top-level entity type discriminator. Always 'category' for categories."
+            },
+            "name": {
+              "type": "string",
+              "description": "Short human-readable label for this category.",
+              "minLength": 1
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Detailed description of what data this category represents."
+            },
+            "frameworks": {
+              "type": "array",
+              "description": "Optional list of regulatory or compliance frameworks this category is relevant to (e.g., GDPR, HIPAA, PCI-DSS).",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "examples": {
+              "type": "array",
+              "description": "Optional examples of data items in this category (e.g., email, SSN).",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "icon": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Optional UI icon name for this category."
+            },
+            "color": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Optional UI color (e.g., hex RGB) for this category.",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "examples": [
+                "#0066CC",
+                "#FF6B35",
+                "#4CAF50"
+              ]
+            },
+            "display_order": {
+              "type": "integer",
+              "description": "Optional display order for consistent sorting in UI. Lower numbers appear first. Categories without display_order sort alphabetically after ordered categories. Default: 100.",
+              "minimum": 0,
+              "maximum": 1000,
+              "default": 100,
+              "examples": [
+                10,
+                50,
+                100
+              ]
+            },
+            "parent_category_id": {
+              "$ref": "#/$defs/base__SimpleId",
+              "description": "Optional parent category ID for hierarchical organization. Enables category specialization (e.g., 'phi' parent is 'healthcare', 'pan' parent is 'financial'). Child categories inherit properties from parent unless explicitly overridden.",
+              "examples": [
+                "pii",
+                "healthcare",
+                "financial"
+              ]
+            },
+            "is_system": {
+              "type": "boolean",
+              "description": "Whether this is a system-provided category (read-only, cannot be deleted). System categories are shipped with RuleSentry and cannot be modified by users. Default: false.",
+              "default": false
+            }
+          },
+          "required": [
+            "type",
+            "name"
+          ]
+        }
+      ]
+    },
+    "profile": {
+      "title": "RuleSentry v3 Profile",
+      "description": "Versioned profile definition. Profiles are first-class entities that define cross-cutting operational contexts for rules and policies (e.g., compliance frameworks like HIPAA/PCI-DSS, environments like production/staging, security postures like zero-trust, industry verticals like healthcare/finance). Enables discovery, metadata, and hierarchical organization of profiles.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/base__VersionedBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$schema": {
+              "type": "string",
+              "description": "JSON Schema URI for this document (optional but recommended)."
+            },
+            "type": {
+              "const": "profile",
+              "description": "Top-level entity type discriminator. Always 'profile' for profiles."
+            },
+            "name": {
+              "type": "string",
+              "description": "Human-readable profile name.",
+              "minLength": 1,
+              "maxLength": 128,
+              "examples": [
+                "HIPAA",
+                "PCI-DSS",
+                "Production Environment",
+                "Zero Trust"
+              ]
+            },
+            "caption": {
+              "type": "string",
+              "description": "Short display label for this profile (used in compact UI views, badges, chips).",
+              "minLength": 1,
+              "maxLength": 64,
+              "examples": [
+                "HIPAA",
+                "PCI",
+                "Prod",
+                "ZT"
+              ]
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Detailed description of what this profile represents, including scope and applicability.",
+              "examples": [
+                "Health Insurance Portability and Accountability Act (HIPAA) compliance framework for protecting Protected Health Information (PHI)",
+                "Payment Card Industry Data Security Standard (PCI-DSS) requirements for organizations handling cardholder data"
+              ]
+            },
+            "profile_type": {
+              "type": "string",
+              "description": "Classification of profile purpose: compliance_framework (HIPAA, GDPR), environment (production, staging), security_posture (zero_trust, defense_in_depth), industry (healthcare, finance), custom (user-defined).",
+              "enum": [
+                "compliance_framework",
+                "environment",
+                "security_posture",
+                "industry",
+                "custom"
+              ],
+              "examples": [
+                "compliance_framework",
+                "environment",
+                "security_posture"
+              ]
+            },
+            "frameworks": {
+              "type": "array",
+              "description": "Associated regulatory or compliance framework identifiers and citations. For compliance_framework profiles, this defines the specific regulations (e.g., ['HIPAA 45 CFR 164', 'HITECH Act']). For other profile types, lists relevant frameworks that apply (e.g., production environment might list ['PCI-DSS', 'SOC 2']).",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "default": [],
+              "examples": [
+                [
+                  "HIPAA 45 CFR 164",
+                  "HITECH Act"
+                ],
+                [
+                  "PCI-DSS 4.0",
+                  "PCI-DSS 3.2.1"
+                ],
+                [
+                  "GDPR",
+                  "ePrivacy Directive"
+                ],
+                [
+                  "SOX",
+                  "GLBA"
+                ]
+              ]
+            },
+            "parent_profile": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Optional parent profile ID for hierarchical organization. Enables profile specialization (e.g., 'hipaa-phi' parent is 'hipaa', 'pci-level-1' parent is 'pci-dss'). Child profiles inherit rules and settings from parent unless explicitly overridden.",
+              "pattern": "^[a-z0-9][a-z0-9_-]*$",
+              "examples": [
+                "hipaa",
+                "pci-dss",
+                "gdpr",
+                "production"
+              ]
+            },
+            "icon": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Optional icon identifier for UI display. Can be emoji, icon library name, or custom icon ID.",
+              "examples": [
+                "🏥",
+                "shield",
+                "lock",
+                "globe"
+              ]
+            },
+            "color": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Optional color for UI display (hex RGB format).",
+              "pattern": "^#[0-9A-Fa-f]{6}$",
+              "examples": [
+                "#0066CC",
+                "#FF6B35",
+                "#4CAF50"
+              ]
+            },
+            "requires_profiles": {
+              "type": "array",
+              "description": "Optional list of profile IDs that must also be active when this profile is enabled. For example, 'hipaa-phi' might require base 'hipaa' profile.",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]*$"
+              },
+              "uniqueItems": true,
+              "default": [],
+              "examples": [
+                [
+                  "hipaa"
+                ],
+                [
+                  "production",
+                  "logging-enabled"
+                ]
+              ]
+            },
+            "conflicts_with_profiles": {
+              "type": "array",
+              "description": "Optional list of profile IDs that cannot be active simultaneously with this profile. For example, 'development' might conflict with 'production'.",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9_-]*$"
+              },
+              "uniqueItems": true,
+              "default": [],
+              "examples": [
+                [
+                  "development",
+                  "staging"
+                ]
+              ]
+            },
+            "display_order": {
+              "type": "integer",
+              "description": "Optional display order for consistent sorting in UI. Lower numbers appear first. Default: 100.",
+              "minimum": 0,
+              "maximum": 1000,
+              "default": 100,
+              "examples": [
+                10,
+                50,
+                100
+              ]
+            },
+            "is_system": {
+              "type": "boolean",
+              "description": "Whether this is a system-provided profile (read-only, cannot be deleted). System profiles are shipped with RuleSentry and cannot be modified by users.",
+              "default": false
+            }
+          },
+          "required": [
+            "type",
+            "name",
+            "caption",
+            "profile_type"
+          ]
+        }
+      ]
+    },
+    "region-registry": {
+      "title": "Region Registry",
+      "description": "Central registry of all supported regions with hierarchy.",
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "JSON Schema URI for this document (optional but recommended)."
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Registry version (semver)."
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/region"
+          },
+          "description": "List of all regions in the registry."
+        }
+      },
+      "required": [
+        "version",
+        "regions"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation": {
+      "title": "RuleSentry v3 Rule Evaluation",
+      "description": "Evaluation of a rule condition: pattern matching, list membership, metadata checks, rule references, or composite boolean logic. v3 adds optional 'target' field to specify what part of the input to evaluate (content, metadata, filename, headers). v2 requirement: effect on all atomic evaluations to prevent useless rules that validate but have no runtime behavior.",
+      "$dynamicAnchor": "evaluation",
+      "discriminator": {
+        "propertyName": "evaluation_type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/rule-evaluation__PatternMatchEvaluation"
+        },
+        {
+          "$ref": "#/$defs/rule-evaluation__ListMembershipEvaluation"
+        },
+        {
+          "$ref": "#/$defs/rule-evaluation__MetadataCheckEvaluation"
+        },
+        {
+          "$ref": "#/$defs/rule-evaluation__CompositeEvaluation"
+        },
+        {
+          "$ref": "#/$defs/rule-evaluation__RuleRefEvaluation"
+        },
+        {
+          "$ref": "#/$defs/rule-evaluation__NerMatchEvaluation"
+        }
+      ]
+    },
+    "rule-evaluation__PatternMatchEvaluation": {
+      "type": "object",
+      "description": "Pattern-based evaluation (regex, glob, exact match) applied to input content. When used as a top-level rule evaluation, the effect is required. When nested inside a CompositeEvaluation, the effect is optional (the composite's effect takes precedence).",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation. Useful for identifying nested evaluations within composite rules."
+        },
+        "evaluation_type": {
+          "const": "pattern_match",
+          "description": "Discriminator: this evaluation uses pattern matching."
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Evaluation priority within a composite rule. Higher = checked first. Used to short-circuit evaluation (e.g., check specific patterns before generic ones). Default: 50",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 50
+        },
+        "target": {
+          "type": "string",
+          "description": "What part of the input to evaluate against. v3 addition: allows targeting different aspects of the input beyond just content.",
+          "enum": [
+            "content",
+            "metadata",
+            "filename",
+            "headers"
+          ],
+          "default": "content"
+        },
+        "pattern": {
+          "type": "object",
+          "description": "Pattern configuration: either an inline pattern or a reference to an external pattern.",
+          "oneOf": [
+            {
+              "required": [
+                "pattern"
+              ],
+              "properties": {
+                "pattern": {
+                  "type": "string"
+                },
+                "pattern_id": {
+                  "type": "null"
+                }
+              }
+            },
+            {
+              "required": [
+                "pattern_id"
+              ],
+              "properties": {
+                "pattern_id": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "type": "null"
+                }
+              }
+            }
+          ],
+          "properties": {
+            "pattern": {
+              "type": "string",
+              "description": "Inline pattern (e.g. regex) to apply."
+            },
+            "pattern_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Identifier of a pattern defined in an external pattern store."
+            },
+            "engine": {
+              "type": "string",
+              "description": "Pattern engine (e.g. regex, glob, exact).",
+              "enum": [
+                "regex",
+                "glob",
+                "exact"
+              ],
+              "default": "regex"
+            },
+            "flags": {
+              "type": "object",
+              "description": "Pattern engine flags for fine-grained matching control. Flags are engine-specific and may not apply to all engines (e.g., case_insensitive applies to all engines, but multiline only applies to regex).",
+              "properties": {
+                "case_insensitive": {
+                  "type": "boolean",
+                  "description": "Case-insensitive matching (applies to: regex, glob, exact).",
+                  "default": false
+                },
+                "multiline": {
+                  "type": "boolean",
+                  "description": "Multiline mode: ^ and $ match line boundaries, not just string boundaries (applies to: regex).",
+                  "default": false
+                },
+                "dot_all": {
+                  "type": "boolean",
+                  "description": "Dot matches all characters including newlines (applies to: regex).",
+                  "default": false
+                },
+                "unicode": {
+                  "type": "boolean",
+                  "description": "Enable full Unicode support for character classes and properties (applies to: regex).",
+                  "default": true
+                },
+                "anchored": {
+                  "type": "boolean",
+                  "description": "Pattern must match entire input (implicit ^...$ wrapping for regex, exact match for glob/exact).",
+                  "default": false
+                },
+                "capture_groups": {
+                  "type": "boolean",
+                  "description": "Enable named capture groups in pattern results (applies to: regex). When true, matched groups are returned in evaluation results.",
+                  "default": false
+                }
+              },
+              "additionalProperties": false,
+              "default": {}
+            },
+            "validator": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Optional checksum validator applied after pattern match. Runs on matched value with context. Failing validation rejects the match.",
+              "enum": [
+                "luhn",
+                "iban_mod97",
+                "ssn_format",
+                "nhs_mod11",
+                "routing_checksum",
+                "sort_code_format",
+                "nino_checksum",
+                "cusip_checksum",
+                "sedol_checksum",
+                "ethereum_checksum",
+                "context_filter",
+                "codice_fiscale_checksum",
+                "dni_mod23",
+                "bsn_11test",
+                "my_number_checksum",
+                "rrn_checksum",
+                "taiwan_nid_checksum",
+                "hkid_checksum",
+                "thailand_cid_mod11",
+                "cpf_checksum",
+                "curp_checksum",
+                "rut_mod11",
+                "tc_kimlik_checksum",
+                "canadian_sin_mod10",
+                "australian_tfn_mod11",
+                "french_nir_insee",
+                "singapore_nric_checksum",
+                "indian_aadhaar_verhoeff",
+                "isin_mod10",
+                "china_id_gb11643",
+                "clabe_checksum",
+                "dea_checksum",
+                "npi_luhn",
+                "bitcoin_base58check",
+                "ein_prefix_validation",
+                "tld_reject",
+                null
+              ]
+            },
+            "validator_params": {
+              "description": "Validator-specific parameters. Schema validated per validator type.",
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/rule-evaluation__LuhnParams"
+                },
+                {
+                  "$ref": "#/$defs/rule-evaluation__IbanParams"
+                },
+                {
+                  "$ref": "#/$defs/rule-evaluation__ContextFilterParams"
+                },
+                {
+                  "$ref": "#/$defs/rule-evaluation__CusipParams"
+                },
+                {
+                  "$ref": "#/$defs/rule-evaluation__SedolParams"
+                },
+                {
+                  "$ref": "#/$defs/rule-evaluation__EthereumParams"
+                },
+                {
+                  "$ref": "#/$defs/rule-evaluation__TldRejectParams"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "effect": {
+          "$ref": "#/$defs/rule-evaluation__Effect",
+          "description": "Primary decision when this pattern matches. Required for all pattern match evaluations (v2 change: previously optional, now enforced to prevent useless rules)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when this evaluation triggers (log, audit, callback, etc.).",
+          "items": {
+            "$ref": "#/$defs/rule-evaluation__SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "pattern",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__ListMembershipEvaluation": {
+      "type": "object",
+      "description": "Checks if input content is present in a list. Evaluation triggers when the value is found, and the effect determines what happens (block, allow, or transform). Useful for keyword filtering, blocklists, allowlists, etc.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation. Useful for identifying nested evaluations within composite rules."
+        },
+        "evaluation_type": {
+          "const": "list_membership",
+          "description": "Discriminator: this evaluation checks list membership."
+        },
+        "target": {
+          "type": "string",
+          "description": "What part of the input to evaluate against. v3 addition: allows targeting different aspects of the input beyond just content.",
+          "enum": [
+            "content",
+            "metadata",
+            "filename",
+            "headers"
+          ],
+          "default": "content"
+        },
+        "list": {
+          "type": "object",
+          "description": "List of values to check membership against. Evaluation triggers when input content matches a value in the list.",
+          "oneOf": [
+            {
+              "required": [
+                "values"
+              ],
+              "properties": {
+                "values": {
+                  "type": "array"
+                },
+                "list_id": {
+                  "type": "null"
+                }
+              }
+            },
+            {
+              "required": [
+                "list_id"
+              ],
+              "properties": {
+                "list_id": {
+                  "type": "string"
+                },
+                "values": {
+                  "type": "null"
+                }
+              }
+            }
+          ],
+          "properties": {
+            "values": {
+              "type": "array",
+              "description": "Inline list values.",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "list_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Identifier of a list defined in an external list store."
+            },
+            "case_sensitive": {
+              "type": "boolean",
+              "description": "Whether comparison is case-sensitive.",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "effect": {
+          "$ref": "#/$defs/rule-evaluation__Effect",
+          "description": "Action to take when target value is found in the list. Required for all list membership evaluations (v2 change: previously optional, now enforced)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when this evaluation triggers.",
+          "items": {
+            "$ref": "#/$defs/rule-evaluation__SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "list",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__MetadataCheckEvaluation": {
+      "type": "object",
+      "description": "Compares a metadata field value against an expected value using comparison operators. Useful for content type checks, size limits, source validation, etc.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation. Useful for identifying nested evaluations within composite rules."
+        },
+        "evaluation_type": {
+          "const": "metadata_check",
+          "description": "Discriminator: this evaluation performs metadata comparison."
+        },
+        "target": {
+          "type": "string",
+          "description": "What part of the input to evaluate against. v3 addition: allows targeting different aspects of the input beyond just content.",
+          "enum": [
+            "content",
+            "metadata",
+            "filename",
+            "headers"
+          ],
+          "default": "content"
+        },
+        "field": {
+          "type": "string",
+          "description": "Metadata field to check (e.g. 'content_type', 'size_bytes', 'source.filename'). Available fields depend on the input context."
+        },
+        "condition": {
+          "type": "object",
+          "description": "Comparison condition.",
+          "properties": {
+            "operator": {
+              "type": "string",
+              "description": "Comparison operator.",
+              "enum": [
+                "equals",
+                "not_equals",
+                "contains",
+                "not_contains",
+                "starts_with",
+                "ends_with",
+                "regex",
+                "exists",
+                "not_exists"
+              ]
+            },
+            "value": {
+              "description": "Expected value for comparison (not required for exists/not_exists operators)."
+            },
+            "case_sensitive": {
+              "type": "boolean",
+              "description": "Whether comparison is case-sensitive (for string operators).",
+              "default": true
+            }
+          },
+          "required": [
+            "operator"
+          ],
+          "additionalProperties": false
+        },
+        "effect": {
+          "$ref": "#/$defs/rule-evaluation__Effect",
+          "description": "Primary decision when condition evaluates to true. Required for all metadata check evaluations (v2 change: previously optional, now enforced)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when this evaluation triggers.",
+          "items": {
+            "$ref": "#/$defs/rule-evaluation__SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "field",
+        "condition",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__CompositeEvaluation": {
+      "type": "object",
+      "description": "Boolean composition of sub-evaluations (AND/OR/NOT). The effect is applied when the composite condition evaluates to true.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation. Useful for identifying nested composite evaluations."
+        },
+        "evaluation_type": {
+          "const": "composite",
+          "description": "Discriminator: this evaluation is a composite."
+        },
+        "operator": {
+          "type": "string",
+          "description": "Boolean operator for combining evaluations.",
+          "enum": [
+            "all",
+            "any",
+            "not"
+          ]
+        },
+        "evaluations": {
+          "type": "array",
+          "description": "Nested evaluations to combine with the operator. Nested evaluations act as conditions; their individual effects (if any) are ignored in favor of the composite's top-level effect.",
+          "minItems": 1,
+          "items": {
+            "$dynamicRef": "#evaluation"
+          }
+        },
+        "effect": {
+          "$ref": "#/$defs/rule-evaluation__Effect",
+          "description": "Primary decision applied when the composite condition evaluates to true (e.g., all/any/not conditions are met)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when the composite result is true.",
+          "items": {
+            "$ref": "#/$defs/rule-evaluation__SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "operator",
+        "evaluations",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__RuleRefEvaluation": {
+      "type": "object",
+      "description": "References an existing rule by ID and version for use as a sub-evaluation in composite rules. The referenced rule's evaluation logic is executed, and its result (true/false) is used in the composite boolean expression. The referenced rule's effect is ignored; the composite's top-level effect takes precedence. Circular references are prohibited and will be rejected at evaluation time.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this reference. Useful for identifying which rule is being referenced in composite results."
+        },
+        "evaluation_type": {
+          "const": "rule_ref",
+          "description": "Discriminator: this evaluation references an existing rule by ID."
+        },
+        "rule_id": {
+          "$ref": "#/$defs/base__DottedId",
+          "description": "Identifier of the referenced rule. Must match an existing rule in the specified source catalog.",
+          "examples": [
+            "detect-ssn",
+            "block-credit-card",
+            "healthcare-phi.mrn-detect"
+          ]
+        },
+        "pinned_version": {
+          "$ref": "#/$defs/semver",
+          "description": "Specific rule version to use. Required for deterministic, reproducible evaluation. No implicit version resolution or 'latest' semantics.",
+          "examples": [
+            "1.0.0",
+            "2.1.3"
+          ]
+        },
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Source catalog where the referenced rule is located. Optional; if omitted, the engine will search available catalogs.",
+          "enum": [
+            "local",
+            "public",
+            "tenant",
+            null
+          ],
+          "examples": [
+            "public",
+            "tenant"
+          ]
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "rule_id",
+        "pinned_version"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__NerMatchEvaluation": {
+      "type": "object",
+      "description": "Named Entity Recognition (NER) based evaluation using local AI models. Detects entities like PERSON, LOCATION, DATE, ADDRESS, PHONE_NUMBER in content using ONNX-based machine learning models running entirely on-device. No data is sent to external servers.",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable name for this evaluation."
+        },
+        "evaluation_type": {
+          "const": "ner_match",
+          "description": "Discriminator: this evaluation uses NER-based entity detection."
+        },
+        "target": {
+          "type": "string",
+          "description": "What part of the input to evaluate against. v3 addition: allows targeting different aspects of the input beyond just content.",
+          "enum": [
+            "content",
+            "metadata",
+            "filename",
+            "headers"
+          ],
+          "default": "content"
+        },
+        "entity_types": {
+          "type": "array",
+          "description": "Entity types to detect. If empty or omitted, all entity types supported by the model are detected.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "PERSON",
+              "ORGANIZATION",
+              "LOCATION",
+              "MISC",
+              "DATE",
+              "ADDRESS",
+              "PHONE_NUMBER",
+              "CASE_NUMBER",
+              "COUNSEL",
+              "LAW_FIRM",
+              "STATUTE",
+              "COURT"
+            ]
+          },
+          "uniqueItems": true,
+          "examples": [
+            [
+              "PERSON",
+              "PHONE_NUMBER"
+            ],
+            [
+              "PERSON",
+              "DATE",
+              "ADDRESS"
+            ]
+          ]
+        },
+        "confidence_threshold": {
+          "type": "number",
+          "description": "Minimum confidence score (0.0-1.0) for entity detection. Entities below this threshold are ignored.",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.85
+        },
+        "model": {
+          "type": "object",
+          "description": "Optional model specification. If omitted, uses the active model configured in Settings.",
+          "properties": {
+            "model_id": {
+              "type": "string",
+              "description": "Identifier of a specific model to use (e.g., 'pii-ner-v1', 'legal-ner-v1').",
+              "examples": [
+                "pii-ner-v1",
+                "legal-ner-v1"
+              ]
+            },
+            "fallback": {
+              "type": "string",
+              "description": "Behavior when specified model is unavailable.",
+              "enum": [
+                "error",
+                "skip",
+                "use_active"
+              ],
+              "default": "use_active"
+            }
+          },
+          "additionalProperties": false
+        },
+        "effect": {
+          "$ref": "#/$defs/rule-evaluation__Effect",
+          "description": "Action to take when entities are detected. For transforms, each detected entity is transformed according to the transform configuration. Required for all NER evaluations (v2 change: previously optional, now enforced)."
+        },
+        "side_effects": {
+          "type": "array",
+          "description": "Optional side effects to perform when entities are detected.",
+          "items": {
+            "$ref": "#/$defs/rule-evaluation__SideEffect"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "evaluation_type",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__Effect": {
+      "type": "object",
+      "description": "Primary decision applied when an evaluation triggers.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Primary effect on the data.",
+          "enum": [
+            "allow",
+            "block",
+            "transform",
+            "info"
+          ]
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Why this effect/transform was chosen. Makes rules defensible and auditable.",
+          "enum": [
+            "compliance",
+            "verification",
+            "inference",
+            "safety",
+            null
+          ],
+          "examples": [
+            "compliance - Required by regulation (PCI-DSS, HIPAA, GDPR)",
+            "verification - Allows user to verify it's their data (last 4 digits)",
+            "inference - Helps identify what was masked (email domain, key prefix)",
+            "safety - Security-critical, no partial exposure allowed"
+          ]
+        },
+        "message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Optional human-readable message explaining why this effect was applied."
+        },
+        "transform": {
+          "$ref": "#/$defs/rule-evaluation__Transform"
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "const": "transform"
+            }
+          },
+          "required": [
+            "type",
+            "transform"
+          ]
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "allow",
+                "block",
+                "info"
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "not": {
+            "required": [
+              "transform"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__Transform": {
+      "type": "object",
+      "description": "Transformation applied when effect.type = transform.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Transform kind.",
+          "enum": [
+            "mask",
+            "hash",
+            "replace",
+            "redact",
+            "tokenize"
+          ]
+        },
+        "params": {
+          "description": "Transform-specific parameters.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/rule-evaluation__MaskParams"
+            },
+            {
+              "$ref": "#/$defs/rule-evaluation__HashParams"
+            },
+            {
+              "$ref": "#/$defs/rule-evaluation__ReplaceParams"
+            },
+            {
+              "$ref": "#/$defs/rule-evaluation__RedactParams"
+            },
+            {
+              "$ref": "#/$defs/rule-evaluation__TokenizeParams"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__MaskParams": {
+      "type": "object",
+      "description": "Parameters for mask transform. Replaces characters with a mask character while optionally preserving visible portions.",
+      "properties": {
+        "mask_char": {
+          "type": "string",
+          "description": "Character to use for masking.",
+          "default": "*",
+          "maxLength": 1
+        },
+        "visible_prefix": {
+          "type": "integer",
+          "description": "Number of characters to leave visible at the start.",
+          "default": 0,
+          "minimum": 0,
+          "examples": [
+            4,
+            7
+          ]
+        },
+        "visible_suffix": {
+          "type": "integer",
+          "description": "Number of characters to leave visible at the end.",
+          "default": 0,
+          "minimum": 0,
+          "examples": [
+            4
+          ]
+        },
+        "preserve_format": {
+          "type": "boolean",
+          "description": "Preserve formatting characters (dashes, spaces, dots) in their original positions. Useful for SSN (***-**-1234), phone numbers, etc.",
+          "default": false
+        },
+        "min_masked": {
+          "type": "integer",
+          "description": "Minimum number of characters that must be masked. If input is too short, entire value is masked.",
+          "default": 3,
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__HashParams": {
+      "type": "object",
+      "description": "Parameters for hash transform. Replaces content with a cryptographic hash.",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "description": "Hash algorithm to use.",
+          "enum": [
+            "sha256",
+            "sha512",
+            "blake3"
+          ],
+          "default": "sha256"
+        },
+        "truncate": {
+          "type": "integer",
+          "description": "Truncate hash output to this many characters.",
+          "minimum": 8,
+          "maximum": 64
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__ReplaceParams": {
+      "type": "object",
+      "description": "Parameters for replace transform. Replaces matched content with specified text.",
+      "properties": {
+        "replacement": {
+          "type": "string",
+          "description": "Static replacement text."
+        }
+      },
+      "required": [
+        "replacement"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__RedactParams": {
+      "type": "object",
+      "description": "Parameters for redact transform. Replaces matched content with a redaction marker.",
+      "properties": {
+        "marker": {
+          "type": "string",
+          "description": "Marker text to use for redaction.",
+          "default": "[REDACTED]"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__TokenizeParams": {
+      "type": "object",
+      "description": "Parameters for tokenize transform. Replaces content with a token for later retrieval.",
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "description": "Prefix for generated tokens.",
+          "default": "TOK"
+        },
+        "reversible": {
+          "type": "boolean",
+          "description": "Whether the tokenization can be reversed.",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__SideEffect": {
+      "type": "object",
+      "description": "Secondary action performed when an evaluation triggers.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Side effect type.",
+          "enum": [
+            "log",
+            "audit",
+            "callback",
+            "pipeline_next",
+            "notify"
+          ]
+        },
+        "level": {
+          "type": "string",
+          "description": "Severity/level for logging or notification (info, warn, error, critical, etc.)."
+        },
+        "target": {
+          "type": "string",
+          "description": "Logical sink or destination (e.g., logger name, webhook ID, topic name)."
+        },
+        "config": {
+          "type": "object",
+          "description": "Connector-specific configuration (headers, timeout, channel, etc.).",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": true
+    },
+    "rule-evaluation__LuhnParams": {
+      "type": "object",
+      "description": "Parameters for Luhn algorithm validator (credit cards, IMEI, etc.)",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation",
+          "default": " .-"
+        },
+        "reject_keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Context keywords indicating test/example data"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__IbanParams": {
+      "type": "object",
+      "description": "Parameters for IBAN MOD-97 validator",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation",
+          "default": " "
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__ContextFilterParams": {
+      "type": "object",
+      "description": "Parameters for context-based filtering",
+      "properties": {
+        "reject_keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Case-insensitive keywords in surrounding context that invalidate match",
+          "minItems": 1
+        },
+        "context_radius": {
+          "type": "integer",
+          "description": "Characters before/after match to check for keywords",
+          "default": 50,
+          "minimum": 10,
+          "maximum": 200
+        }
+      },
+      "required": [
+        "reject_keywords"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__CusipParams": {
+      "type": "object",
+      "description": "Parameters for CUSIP checksum validator",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation",
+          "default": " -"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__SedolParams": {
+      "type": "object",
+      "description": "Parameters for SEDOL checksum validator",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation",
+          "default": " "
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__EthereumParams": {
+      "type": "object",
+      "description": "Parameters for Ethereum address EIP-55 checksum validator",
+      "properties": {
+        "accept_unchecksummed": {
+          "type": "boolean",
+          "description": "Accept addresses without checksum (all lowercase or uppercase)",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule-evaluation__TldRejectParams": {
+      "type": "object",
+      "description": "Parameters for TLD reject validator. Rejects matches whose final dot-segment is in the given list (case-insensitive).",
+      "properties": {
+        "reject_tlds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "TLD strings to reject (without leading dot, case-insensitive). E.g. [\"txt\", \"pdf\", \"json\"]",
+          "minItems": 1
+        }
+      },
+      "required": [
+        "reject_tlds"
+      ],
+      "additionalProperties": false
+    },
+    "rule-evaluation__GenericValidatorParams": {
+      "type": "object",
+      "description": "Generic parameters applicable to multiple validators",
+      "properties": {
+        "strip_chars": {
+          "type": "string",
+          "description": "Characters to strip before validation"
+        }
+      },
+      "additionalProperties": true
+    },
+    "rule": {
+      "title": "RuleSentry v3 Rule",
+      "description": "Versioned rule entity that wraps a single RuleEvaluation (match or composite). v3 adds optional summary field for compact UI display and enhanced evaluation options with target field support.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/base__VersionedBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$schema": {
+              "type": "string",
+              "description": "JSON Schema URI for this document (optional but recommended)."
+            },
+            "type": {
+              "const": "rule",
+              "description": "Top-level entity type discriminator. Always 'rule' for rules."
+            },
+            "name": {
+              "type": "string",
+              "description": "Human-readable rule name.",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "summary": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Optional short summary for compact UI views (lists, cards, tooltips). Max 200 chars. If omitted, UI will truncate description field. v2 addition.",
+              "minLength": 1,
+              "maxLength": 200,
+              "examples": [
+                "Detects US Social Security Numbers with format validation",
+                "Blocks credit card PANs using Luhn checksum",
+                "Masks email addresses while preserving domain"
+              ]
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Detailed description of what this rule does, including rationale, examples, and edge cases."
+            },
+            "rule_kind": {
+              "type": "string",
+              "description": "Rule complexity classification: atomic (single evaluation like pattern_match, list_membership, metadata_check) or composite (boolean combination of evaluations). Advisory field for engine optimization (orchestration, depth handling, short-circuit behavior, performance tuning). The evaluation_type field is authoritative for determining actual evaluation behavior.",
+              "enum": [
+                "atomic",
+                "composite"
+              ]
+            },
+            "category_id": {
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/base__SimpleId"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Optional category identifier for this rule (e.g. government, healthcare, financial). Advisory only; used for classification and reporting."
+            },
+            "severity": {
+              "type": "string",
+              "description": "Rule severity for prioritization, alerting, and compliance reporting. Used by the engine for: (1) conflict resolution (higher severity wins), (2) runtime prioritization (critical rules evaluated first), (3) alerting thresholds (critical triggers immediate notifications), (4) audit filtering (show all critical violations). Severity is advisory; the effect field is authoritative for enforcement decisions.",
+              "enum": [
+                "info",
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ],
+              "default": "medium"
+            },
+            "profiles": {
+              "type": "array",
+              "description": "Cross-cutting profile identifiers that this rule implements or belongs to. Profiles enable querying rules by operational context (e.g., compliance framework, environment, security posture) independent of category or severity. Examples: ['hipaa', 'production'], ['pci-dss', 'zero_trust'], ['gdpr', 'high_risk']. Inspired by OCSF profiles pattern for cross-cutting metadata.",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9_-]+$",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "uniqueItems": true,
+              "default": [],
+              "examples": [
+                [
+                  "hipaa",
+                  "healthcare"
+                ],
+                [
+                  "pci-dss",
+                  "production"
+                ],
+                [
+                  "gdpr",
+                  "high_risk"
+                ],
+                [
+                  "zero_trust",
+                  "defense_in_depth"
+                ]
+              ]
+            },
+            "regions": {
+              "type": "array",
+              "description": "Geographic regions where this rule applies. Defines the jurisdictional scope of the rule (e.g., US SSN applies in US, IBAN applies in EU). Used at runtime to filter rules based on user's selected region. Defaults to GLOBAL if omitted.",
+              "items": {
+                "$ref": "#/$defs/region__RegionCode"
+              },
+              "minItems": 1,
+              "uniqueItems": true,
+              "default": [
+                "GLOBAL"
+              ],
+              "examples": [
+                [
+                  "GLOBAL"
+                ],
+                [
+                  "US"
+                ],
+                [
+                  "EU",
+                  "UK"
+                ],
+                [
+                  "US-CA"
+                ],
+                [
+                  "DE",
+                  "AT",
+                  "CH"
+                ]
+              ]
+            },
+            "evaluation": {
+              "$ref": "#/$defs/rule-evaluation",
+              "description": "The evaluation logic for this rule (match/composite, effects, side effects)."
+            }
+          },
+          "required": [
+            "type",
+            "name",
+            "rule_kind",
+            "evaluation"
+          ]
+        }
+      ]
+    },
+    "policy": {
+      "title": "RuleSentry v3 Policy",
+      "description": "Versioned policy that groups rule references under an optional jurisdictional lens. Supports both legacy rule-based and new category-based policy definitions. v3.1 renames 'category_includes' to 'rule_categories' for clarity, adds policy inheritance via 'extends', and adds rule override system.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/base__VersionedBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$schema": {
+              "type": "string",
+              "description": "JSON Schema URI for this document (optional but recommended)."
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "policy",
+                "pack"
+              ],
+              "description": "Top-level entity type discriminator. Use 'policy' for all new policies. 'pack' is DEPRECATED since v3.1 — use 'policy' with rule_categories for multi-category compliance bundles.",
+              "default": "policy",
+              "$comment": "DEPRECATED: 'pack' will be removed in the next major version."
+            },
+            "name": {
+              "type": "string",
+              "description": "Human-readable policy name.",
+              "minLength": 1
+            },
+            "description": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Detailed description of what this policy does."
+            },
+            "priority": {
+              "type": "integer",
+              "description": "Optional priority for this policy when multiple policies are active. Higher numbers = higher priority = evaluated first in multi-policy scenarios. If two policies produce different decisions, the most restrictive wins (block > transform > allow). Policies with higher priority can short-circuit evaluation by returning 'block'. Default: 50 if omitted.",
+              "minimum": 0,
+              "maximum": 1000,
+              "default": 50,
+              "examples": [
+                100,
+                50,
+                0
+              ]
+            },
+            "extends": {
+              "$ref": "#/$defs/base__DottedId",
+              "description": "Optional policy ID to inherit from. Child policy inherits all rule_categories, jurisdiction settings, and configuration from parent. Child can add additional categories and override specific rules. Supports single-level inheritance only (child cannot extend a policy that also extends another). Use overrides array to customize inherited rules.",
+              "examples": [
+                "policy.pii-basic",
+                "policy.finance-standard"
+              ]
+            },
+            "overrides": {
+              "type": "array",
+              "description": "Optional rule-level overrides to customize behavior without duplicating rule definitions. Applied after policy expansion. Supports wildcard matching (e.g., 'financial.*' matches all financial category rules). Use this to adjust severity, add allowlists, change effects, or boost priority for specific rules.",
+              "items": {
+                "type": "object",
+                "description": "Override configuration for one or more rules (supports wildcards).",
+                "properties": {
+                  "rule_id": {
+                    "$ref": "#/$defs/base__WildcardId",
+                    "description": "Rule ID to override. Supports wildcards: 'financial.*' overrides all financial rules, 'government.ssn_*' overrides all SSN variants. Use exact ID for single rule.",
+                    "examples": [
+                      "government.ssn_format",
+                      "financial.*",
+                      "healthcare.npi_*"
+                    ]
+                  },
+                  "severity": {
+                    "type": "string",
+                    "description": "Override severity level for conflict resolution and alerting.",
+                    "enum": [
+                      "critical",
+                      "high",
+                      "medium",
+                      "low",
+                      "info"
+                    ],
+                    "examples": [
+                      "critical",
+                      "high"
+                    ]
+                  },
+                  "allowlist": {
+                    "type": "array",
+                    "description": "Values to allow (bypass detection). Merged with rule's existing allowlist. Use for test data, placeholder values, or known safe patterns.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "uniqueItems": true,
+                    "examples": [
+                      [
+                        "000-00-0000",
+                        "123-45-6789"
+                      ],
+                      [
+                        "test@example.com"
+                      ]
+                    ]
+                  },
+                  "effect": {
+                    "$ref": "#/$defs/rule-evaluation__Effect",
+                    "description": "Override the rule's effect (decision and transforms). Completely replaces rule's original effect."
+                  },
+                  "priority": {
+                    "type": "integer",
+                    "description": "Override evaluation priority. Higher = evaluated first. Useful for ensuring specific rules run before others within the same policy.",
+                    "minimum": 0,
+                    "maximum": 1000,
+                    "examples": [
+                      100,
+                      75,
+                      50
+                    ]
+                  },
+                  "enabled": {
+                    "type": "boolean",
+                    "description": "Override enabled state. Set false to disable rule without removing it from policy. Default: true.",
+                    "default": true
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Optional explanation for why this override exists. Useful for audit trail and documentation.",
+                    "maxLength": 500,
+                    "examples": [
+                      "Upgraded to CRITICAL for healthcare compliance",
+                      "Disabled during migration period",
+                      "Allowlist includes test SSNs from QA environment"
+                    ]
+                  }
+                },
+                "required": [
+                  "rule_id"
+                ],
+                "additionalProperties": false,
+                "minProperties": 2
+              },
+              "uniqueItems": false,
+              "examples": [
+                [
+                  {
+                    "rule_id": "government.ssn_format",
+                    "severity": "critical",
+                    "reason": "Upgraded for HIPAA compliance"
+                  },
+                  {
+                    "rule_id": "financial.*",
+                    "priority": 100,
+                    "reason": "Process financial rules first"
+                  }
+                ]
+              ]
+            },
+            "profiles": {
+              "type": "array",
+              "description": "Cross-cutting profile identifiers that this policy implements or enforces. Profiles enable grouping policies by operational context (e.g., compliance framework, environment, deployment stage). A policy inherits all profiles from its constituent rules, but can also declare additional policy-level profiles. Examples: ['hipaa', 'production'], ['pci-dss', 'staging'], ['gdpr', 'multi_tenant'].",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9_-]+$",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "uniqueItems": true,
+              "default": [],
+              "examples": [
+                [
+                  "hipaa",
+                  "production"
+                ],
+                [
+                  "pci-dss",
+                  "staging"
+                ],
+                [
+                  "sox",
+                  "financial",
+                  "high_risk"
+                ]
+              ]
+            },
+            "regions": {
+              "type": "array",
+              "description": "Geographic regions this policy targets. Declares the intended jurisdictional scope of the policy (e.g., GDPR pack targets EU, US Compliance targets US). Used to: (1) validate compatibility with user's selected region, (2) enable smart UI filtering (show/hide packs based on relevance), (3) auto-filter included rules by region intersection. Defaults to GLOBAL if omitted.",
+              "items": {
+                "$ref": "#/$defs/region__RegionCode"
+              },
+              "minItems": 1,
+              "uniqueItems": true,
+              "default": [
+                "GLOBAL"
+              ],
+              "examples": [
+                [
+                  "GLOBAL"
+                ],
+                [
+                  "EU"
+                ],
+                [
+                  "US"
+                ],
+                [
+                  "US",
+                  "CA"
+                ],
+                [
+                  "APAC"
+                ]
+              ]
+            },
+            "rule_categories": {
+              "type": "array",
+              "description": "Category-based rule inclusion (v3.1 renamed from 'category_includes' for clarity). Policies reference entire data categories (government, financial, healthcare, etc.) instead of individual rules. Categories are groups of rules that detect the same type of data.",
+              "items": {
+                "type": "object",
+                "description": "A data category to include in this policy with optional filtering.",
+                "properties": {
+                  "category_id": {
+                    "$ref": "#/$defs/base__SimpleId",
+                    "description": "ID of the data category to include (e.g., 'government', 'healthcare', 'financial'). Refers to rule category_id field.",
+                    "examples": [
+                      "government",
+                      "healthcare",
+                      "financial",
+                      "contact",
+                      "network"
+                    ]
+                  },
+                  "mode": {
+                    "type": "string",
+                    "description": "Include mode: 'all' includes all rules from category, 'selective' only includes specified rules.",
+                    "enum": [
+                      "all",
+                      "selective"
+                    ],
+                    "default": "all"
+                  },
+                  "include_rules": {
+                    "type": "array",
+                    "description": "When mode='selective', list of specific rule IDs to include from this category.",
+                    "items": {
+                      "$ref": "#/$defs/base__DottedId"
+                    },
+                    "uniqueItems": true,
+                    "default": []
+                  },
+                  "exclude_rules": {
+                    "type": "array",
+                    "description": "Optional list of rule IDs to exclude from this category.",
+                    "items": {
+                      "$ref": "#/$defs/base__DottedId"
+                    },
+                    "uniqueItems": true,
+                    "default": []
+                  },
+                  "optional_rules": {
+                    "type": "array",
+                    "description": "Rule IDs that are optional (user can toggle on/off).",
+                    "items": {
+                      "$ref": "#/$defs/base__DottedId"
+                    },
+                    "uniqueItems": true,
+                    "default": []
+                  },
+                  "default_enabled_rules": {
+                    "type": "array",
+                    "description": "For optional rules, which ones are enabled by default.",
+                    "items": {
+                      "$ref": "#/$defs/base__DottedId"
+                    },
+                    "uniqueItems": true,
+                    "default": []
+                  }
+                },
+                "required": [
+                  "category_id",
+                  "mode"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            },
+            "rules": {
+              "type": "array",
+              "description": "Direct rule references for explicit rule inclusion. Can be used alongside rule_categories and rule_filters.",
+              "items": {
+                "type": "object",
+                "description": "Reference to a specific version of a rule.",
+                "properties": {
+                  "rule_id": {
+                    "$ref": "#/$defs/base__DottedId",
+                    "description": "Identifier of the referenced rule."
+                  },
+                  "pinned_version": {
+                    "$ref": "#/$defs/semver",
+                    "description": "Specific rule version to use (pinned; no implicit upgrades)."
+                  },
+                  "priority": {
+                    "type": "integer",
+                    "description": "Optional priority for this rule within the policy. Higher numbers = higher priority = evaluated first. Used for evaluation order and conflict resolution within the policy. If omitted, rules are evaluated in array order. Range: 0-1000, default: 50.",
+                    "minimum": 0,
+                    "maximum": 1000,
+                    "default": 50,
+                    "examples": [
+                      100,
+                      50,
+                      0
+                    ]
+                  },
+                  "attached_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "When this rule was attached to this policy (ISO 8601)."
+                  },
+                  "attached_by": {
+                    "type": "string",
+                    "description": "Who attached this rule to this policy."
+                  },
+                  "notes": {
+                    "type": "string",
+                    "description": "Optional notes about why this rule is included."
+                  }
+                },
+                "required": [
+                  "rule_id",
+                  "pinned_version"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "rule_filters": {
+              "type": "array",
+              "description": "Dynamic rule selection filters. Rules matching any filter are included in the policy. Evaluated at runtime for flexible, attribute-based rule composition.",
+              "items": {
+                "type": "object",
+                "description": "Filter criteria for dynamic rule selection. Multiple properties within a filter are combined with AND logic.",
+                "properties": {
+                  "by_region": {
+                    "type": "array",
+                    "description": "Include rules that apply to any of these regions.",
+                    "items": {
+                      "$ref": "#/$defs/region__RegionCode"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "examples": [
+                      [
+                        "US"
+                      ],
+                      [
+                        "EU",
+                        "UK"
+                      ],
+                      [
+                        "US-CA",
+                        "US-NY"
+                      ]
+                    ]
+                  },
+                  "by_profile": {
+                    "type": "array",
+                    "description": "Include rules tagged with any of these profiles.",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9_-]+$"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "examples": [
+                      [
+                        "hipaa"
+                      ],
+                      [
+                        "pci-dss",
+                        "production"
+                      ]
+                    ]
+                  },
+                  "by_category": {
+                    "type": "array",
+                    "description": "Include rules from any of these categories.",
+                    "items": {
+                      "$ref": "#/$defs/base__SimpleId"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "examples": [
+                      [
+                        "government",
+                        "healthcare"
+                      ],
+                      [
+                        "financial"
+                      ]
+                    ]
+                  },
+                  "by_tags": {
+                    "type": "array",
+                    "description": "Include rules tagged with any of these tags.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "examples": [
+                      [
+                        "pii",
+                        "sensitive"
+                      ],
+                      [
+                        "high-risk"
+                      ]
+                    ]
+                  },
+                  "by_severity": {
+                    "type": "array",
+                    "description": "Include rules with any of these severity levels.",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "info",
+                        "low",
+                        "medium",
+                        "high",
+                        "critical"
+                      ]
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "examples": [
+                      [
+                        "critical",
+                        "high"
+                      ],
+                      [
+                        "medium"
+                      ]
+                    ]
+                  }
+                },
+                "minProperties": 1,
+                "additionalProperties": false
+              },
+              "examples": [
+                [
+                  {
+                    "by_region": [
+                      "US"
+                    ],
+                    "by_severity": [
+                      "critical",
+                      "high"
+                    ]
+                  }
+                ],
+                [
+                  {
+                    "by_profile": [
+                      "hipaa"
+                    ]
+                  },
+                  {
+                    "by_category": [
+                      "healthcare"
+                    ]
+                  }
+                ]
+              ]
+            },
+            "metadata": {
+              "type": "object",
+              "description": "Additional policy metadata (e.g., beta status, frameworks).",
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "type",
+            "name"
+          ],
+          "anyOf": [
+            {
+              "required": [
+                "rule_categories"
+              ],
+              "description": "Category-based rule inclusion"
+            },
+            {
+              "required": [
+                "rules"
+              ],
+              "description": "Direct rule references"
+            },
+            {
+              "required": [
+                "rule_filters"
+              ],
+              "description": "Dynamic rule selection by attributes (region, profile, tags, severity)"
+            },
+            {
+              "required": [
+                "extends"
+              ],
+              "description": "Inherit rules from another policy"
+            }
+          ]
+        }
+      ]
+    },
+    "user-policy-config": {
+      "title": "User Policy Configuration",
+      "description": "User-customized evaluation configuration for the WASM/client boundary. Composes multiple policies with priority-based deduplication, standalone rules, and user-level overrides. This is the primary input type for client-side evaluation via evaluateUserConfig().",
+      "type": "object",
+      "properties": {
+        "policy_ids": {
+          "type": "array",
+          "description": "Policy IDs to evaluate. Each is resolved independently. Higher policy.priority wins when the same rule appears in multiple policies.",
+          "items": {
+            "$ref": "#/$defs/base__DottedId"
+          },
+          "default": [],
+          "examples": [
+            [
+              "policy.us-pii",
+              "policy.pci-dss-global"
+            ]
+          ]
+        },
+        "added_rules": {
+          "type": "array",
+          "description": "Extra rule IDs not in any selected policy. Evaluated with user overrides only (no policy-level overrides).",
+          "items": {
+            "$ref": "#/$defs/base__DottedId"
+          },
+          "default": [],
+          "examples": [
+            [
+              "financial.credit_card_luhn",
+              "government.ssn_format"
+            ]
+          ]
+        },
+        "overrides": {
+          "type": "array",
+          "description": "User-level overrides. Applied AFTER the owning policy's overrides. Last-match-wins: user always takes precedence.",
+          "items": {
+            "$ref": "#/$defs/user-policy-config__RuleOverride"
+          },
+          "default": []
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable name for saved configurations.",
+          "maxLength": 200
+        },
+        "exclude_global": {
+          "type": "boolean",
+          "description": "When true, rules whose regions are exclusively [\"GLOBAL\"] are excluded from policy resolution. Rules with at least one non-GLOBAL region are kept.",
+          "default": false
+        },
+        "filter": {
+          "$ref": "#/$defs/user-policy-config__FilterParams",
+          "description": "Optional filter to narrow resolved rules by region, category, profile, or severity. Applied after policy resolution and override application."
+        }
+      },
+      "additionalProperties": false,
+      "examples": [
+        {
+          "policy_ids": [
+            "policy.us-pii"
+          ],
+          "added_rules": [],
+          "overrides": [],
+          "name": "US PII Quick Check"
+        },
+        {
+          "policy_ids": [
+            "policy.us-pii",
+            "policy.pci-dss-global"
+          ],
+          "added_rules": [
+            "contact.email_address"
+          ],
+          "overrides": [
+            {
+              "rule_id": "government.ssn_format",
+              "severity": "critical",
+              "reason": "HIPAA compliance requirement"
+            }
+          ],
+          "name": "Healthcare + PCI Composite",
+          "exclude_global": false
+        }
+      ]
+    },
+    "user-policy-config__RuleOverride": {
+      "type": "object",
+      "description": "Override configuration for a single rule. Applied after policy-level overrides when used in UserPolicyConfig.",
+      "properties": {
+        "rule_id": {
+          "$ref": "#/$defs/base__WildcardId",
+          "description": "Rule ID to override. Supports wildcards: 'financial.*' overrides all financial rules."
+        },
+        "severity": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Override severity level.",
+          "enum": [
+            "critical",
+            "high",
+            "medium",
+            "low",
+            "info",
+            null
+          ]
+        },
+        "allowlist": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "Values to allow (bypass detection).",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "effect": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/rule-evaluation__Effect"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Override the rule's effect."
+        },
+        "priority": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Override evaluation priority. Higher = evaluated first.",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "enabled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Set false to disable rule without removing it.",
+          "default": true
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Explanation for why this override exists.",
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "rule_id"
+      ],
+      "additionalProperties": false,
+      "minProperties": 2
+    },
+    "user-policy-config__FilterParams": {
+      "type": "object",
+      "description": "Parameters for filtering rules and policies in the WASM API. All filter arrays are optional; omitting a filter means 'no constraint' on that dimension.",
+      "properties": {
+        "regions": {
+          "type": "array",
+          "description": "Filter by region codes. Only rules/policies with at least one matching region are returned.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "description": "Filter by category IDs.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "profiles": {
+          "type": "array",
+          "description": "Filter by profile IDs.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "severity": {
+          "type": "array",
+          "description": "Filter by severity levels.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "info",
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          }
+        },
+        "include_ancestors": {
+          "type": "boolean",
+          "description": "When true, selected regions expand to include ancestor regions (e.g., selecting US also includes AMERICAS and GLOBAL).",
+          "default": true
+        },
+        "excludeGlobal": {
+          "type": "boolean",
+          "description": "When true, remove GLOBAL from the effective region set after ancestor expansion.",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "user-policy-config__ResolvedRuleInfo": {
+      "type": "object",
+      "description": "Preview of a resolved rule in a UserPolicyConfig. Returned by resolveUserConfig() to show the execution plan without evaluating.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "The rule ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable rule name."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Effective severity after overrides."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the rule is enabled after overrides."
+        },
+        "source_policy_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Which policy owns this rule. Null if from added_rules."
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Effective evaluation priority after overrides.",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "rule_id",
+        "name",
+        "severity",
+        "enabled",
+        "priority"
+      ],
+      "additionalProperties": false
+    },
+    "eval-response": {
+      "title": "Evaluation Response",
+      "description": "Response from WASM evaluateUserConfig(). Contains matched results and validator rejections. This is the client-side counterpart to enforcement-response.schema.json, optimized for the WASM boundary with flatter DTO structures.",
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "description": "Evaluation results — one entry per rule match found in the input. Each result includes the matched text, effect applied, and source policy.",
+          "items": {
+            "$ref": "#/$defs/eval-response__UserEvalResultDto"
+          },
+          "default": []
+        },
+        "rejections": {
+          "type": "array",
+          "description": "Pattern matches that were rejected by post-match validators. These are NOT violations — they represent patterns that matched the regex but failed validation (e.g., invalid Luhn checksum, invalid SSN area code). Useful for debugging false negatives.",
+          "items": {
+            "$ref": "#/$defs/eval-response__RejectedMatchDto"
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "results",
+        "rejections"
+      ],
+      "additionalProperties": false,
+      "examples": [
+        {
+          "results": [
+            {
+              "rule_id": "government.ssn_format",
+              "matched_text": "123-45-6789",
+              "start": 5,
+              "end": 16,
+              "effect": "block",
+              "transformed": null,
+              "message": "Social Security Number detected",
+              "severity": "CRITICAL",
+              "source_policy_id": "policy.us-pii"
+            }
+          ],
+          "rejections": []
+        },
+        {
+          "results": [],
+          "rejections": [
+            {
+              "rule_id": "financial.credit_card_luhn",
+              "rule_name": "Credit Card (Luhn)",
+              "matched_text": "4539578763621487",
+              "start": 6,
+              "end": 22,
+              "severity": "critical",
+              "validator": "luhn",
+              "source_policy_id": "policy.pci-dss-global"
+            }
+          ]
+        }
+      ]
+    },
+    "eval-response__UserEvalResultDto": {
+      "type": "object",
+      "description": "A single evaluation result from a matched rule, tagged with its source policy.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "Identifier of the rule that matched."
+        },
+        "matched_text": {
+          "type": "string",
+          "description": "The text that matched the rule's pattern."
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start byte offset of the match in the input text.",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "description": "End byte offset of the match in the input text.",
+          "minimum": 0
+        },
+        "effect": {
+          "type": "string",
+          "description": "Effect applied by this rule. One of: 'info', 'allow', 'block', or 'transform:{type}' (e.g., 'transform:mask', 'transform:redact').",
+          "examples": [
+            "info",
+            "allow",
+            "block",
+            "transform:mask",
+            "transform:redact"
+          ]
+        },
+        "transformed": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The transformed text if effect is a transform (e.g., masked or redacted value). Null if effect is allow or block."
+        },
+        "message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Human-readable message from the rule's effect definition."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Effective severity after any policy/user overrides."
+        },
+        "source_policy_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ID of the policy that contributed this rule. Null if the rule came from added_rules (standalone)."
+        }
+      },
+      "required": [
+        "rule_id",
+        "matched_text",
+        "start",
+        "end",
+        "effect",
+        "severity"
+      ],
+      "additionalProperties": false
+    },
+    "eval-response__RejectedMatchDto": {
+      "type": "object",
+      "description": "A pattern match that was rejected by a post-match validator.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "Identifier of the rule whose pattern matched."
+        },
+        "rule_name": {
+          "type": "string",
+          "description": "Human-readable name of the rule."
+        },
+        "matched_text": {
+          "type": "string",
+          "description": "The text that matched the pattern but was rejected by the validator."
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start byte offset of the match.",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "description": "End byte offset of the match.",
+          "minimum": 0
+        },
+        "severity": {
+          "type": "string",
+          "description": "Severity of the rule that matched."
+        },
+        "validator": {
+          "type": "string",
+          "description": "Name of the validator that rejected this match (e.g., 'luhn', 'ssn_format')."
+        },
+        "source_policy_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ID of the policy that contributed this rule. Null if from added_rules."
+        }
+      },
+      "required": [
+        "rule_id",
+        "rule_name",
+        "matched_text",
+        "start",
+        "end",
+        "severity",
+        "validator"
+      ],
+      "additionalProperties": false
+    },
+    "enforcement-response": {
+      "title": "Enforcement Response",
+      "description": "Response from RuleSentry enforcement API. Contains compliance decision, violations, and transformed content. v2 adds denormalized rule metadata to Violation objects for improved UI performance (category_id, profiles, regions).",
+      "type": "object",
+      "properties": {
+        "is_compliant": {
+          "type": "boolean",
+          "description": "Overall compliance decision: true if content passes all rules, false if any violations occurred."
+        },
+        "decision": {
+          "type": "string",
+          "description": "Final enforcement decision based on policy evaluation: allow (content passes), block (content rejected), transform (content modified).",
+          "enum": [
+            "allow",
+            "block",
+            "transform",
+            "info"
+          ]
+        },
+        "violations": {
+          "type": "array",
+          "description": "List of rule violations detected during enforcement. Empty array if no violations.",
+          "items": {
+            "$ref": "#/$defs/enforcement-response__Violation"
+          },
+          "default": []
+        },
+        "rejected_matches": {
+          "type": "array",
+          "description": "Pattern matches that were rejected by validators. Used for debugging false negatives and tuning patterns. These are NOT violations - they represent patterns that matched but failed validation (e.g., invalid SSN area codes, failed checksums, rejected by context filters). Only populated when validators reject matches.",
+          "items": {
+            "$ref": "#/$defs/enforcement-response__RejectedMatch"
+          },
+          "default": []
+        },
+        "transformed_content": {
+          "type": "string",
+          "description": "Content after applying transformations (masking, redaction, etc.). Only present if decision = 'transform'. Null otherwise."
+        },
+        "transform_artifacts": {
+          "$ref": "#/$defs/enforcement-response__TransformArtifacts",
+          "description": "Metadata about transformations applied. Present when decision = 'transform'."
+        }
+      },
+      "required": [
+        "is_compliant",
+        "decision",
+        "violations"
+      ],
+      "additionalProperties": false,
+      "examples": [
+        {
+          "is_compliant": false,
+          "decision": "block",
+          "violations": [
+            {
+              "rule_id": "block-ssn",
+              "rule_name": "Block SSN Detection",
+              "severity": "critical",
+              "message": "Social Security Number detected in request body",
+              "matched_value": "***-**-6789",
+              "target": "request.body",
+              "effect": "block"
+            }
+          ]
+        },
+        {
+          "is_compliant": true,
+          "decision": "allow",
+          "violations": []
+        },
+        {
+          "is_compliant": false,
+          "decision": "transform",
+          "violations": [
+            {
+              "rule_id": "mask-email",
+              "rule_name": "Mask Email Addresses",
+              "severity": "medium",
+              "message": "Email address masked",
+              "matched_value": "j***@example.com",
+              "target": "request.body",
+              "effect": "transform"
+            }
+          ],
+          "transformed_content": "Contact: j***@example.com for more info"
+        }
+      ]
+    },
+    "enforcement-response__TransformArtifacts": {
+      "type": "object",
+      "description": "Metadata about transformations applied during enforcement. Includes statistics and reversible mappings for pseudonymization.",
+      "properties": {
+        "placeholder_stats": {
+          "type": "object",
+          "description": "Count of placeholders assigned by category (e.g., { 'person': 3, 'organization': 2 }).",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "reference_dates_used": {
+          "type": "array",
+          "description": "List of reference date anchor names used for relativization.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "generalization_count": {
+          "type": "integer",
+          "description": "Number of numeric values that were generalized.",
+          "minimum": 0
+        },
+        "total_transforms": {
+          "type": "integer",
+          "description": "Total number of individual transformations applied.",
+          "minimum": 0
+        },
+        "pseudonym_mappings": {
+          "type": "object",
+          "description": "Map of original values to their pseudonymized replacements (e.g., { 'John': 'Matthew', 'Acme Corp': 'TechVentures' }). Enables consistent pseudonymization across documents.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "token_mappings": {
+          "type": "object",
+          "description": "Map of tokens to original values for reversible tokenization (e.g., { '[TOK_5918]': 'Sarah Johnson' }). Only included when reversible=true.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "enforcement-response__Violation": {
+      "type": "object",
+      "description": "A single rule violation detected during enforcement.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "Identifier of the rule that triggered this violation."
+        },
+        "rule_name": {
+          "type": "string",
+          "description": "Human-readable name of the rule."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Severity level of this violation.",
+          "enum": [
+            "info",
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable violation message."
+        },
+        "matched_value": {
+          "type": "string",
+          "description": "The actual value that triggered the violation (e.g., matched SSN, email). May be redacted for sensitive data."
+        },
+        "replacement": {
+          "type": "string",
+          "description": "The value that replaced matched_value in transformed_content. For MASK: masked string (e.g., '***-**-6789'). For REPLACE: token (e.g., '[SSN_FORMAT]'). For REDACT: marker (e.g., '[REDACTED]'). For PSEUDONYMIZE: pseudonym used. Matches what appears in transformed_content."
+        },
+        "target": {
+          "type": "string",
+          "description": "Logical target where violation was found (e.g., 'request.body', 'response.headers.authorization')."
+        },
+        "effect": {
+          "type": "string",
+          "description": "Effect applied by this rule (allow, block, transform, info).",
+          "enum": [
+            "allow",
+            "block",
+            "transform",
+            "info"
+          ]
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start position of the match in the input text (byte offset). Used for position-based transformation optimization. Optional for backwards compatibility.",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "description": "End position of the match in the input text (byte offset). Used for position-based transformation optimization. Optional for backwards compatibility.",
+          "minimum": 0
+        },
+        "category_id": {
+          "type": "string",
+          "description": "Denormalized category_id from the rule that triggered this violation (e.g., 'pii', 'phi', 'financial'). Enables UI to filter/group violations by category without looking up rule metadata. v2 addition for performance.",
+          "pattern": "^[a-z0-9][a-z0-9_-]*$"
+        },
+        "profiles": {
+          "type": "array",
+          "description": "Denormalized profiles array from the rule that triggered this violation (e.g., ['hipaa', 'production']). Enables UI to filter violations by profile without looking up rule metadata. v2 addition for performance.",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "uniqueItems": true,
+          "default": []
+        },
+        "regions": {
+          "type": "array",
+          "description": "Denormalized regions array from the rule that triggered this violation. Supports hierarchical regions (e.g., ['US', 'US-CA'] or ['EU', 'DE-BY']). Enables UI to display region context without looking up rule metadata. v2 addition for performance, renamed from 'jurisdictions' in v4.",
+          "items": {
+            "$ref": "#/$defs/region__RegionCode"
+          },
+          "default": [
+            "GLOBAL"
+          ]
+        },
+        "validator_name": {
+          "type": "string",
+          "description": "Name of the validator used to verify this match (e.g., 'luhn', 'ssn_format', 'nhs_mod11'). Null if no validator was configured (pattern-only match). Used for debugging and understanding why a rule triggered."
+        },
+        "validator_status": {
+          "type": "string",
+          "description": "Status of validator execution: 'passed' (validator accepted the match), 'failed' (validator rejected the match - should not appear in violations), 'not_applicable' (no validator configured). Used for debugging rule matching behavior.",
+          "enum": [
+            "passed",
+            "failed",
+            "not_applicable"
+          ]
+        },
+        "validator_details": {
+          "$ref": "#/$defs/enforcement-response__ValidatorDetails",
+          "description": "Detailed information about validator execution. Present when validator_name is set. Enables debugging false positives/negatives by showing intermediate computation steps."
+        }
+      },
+      "required": [
+        "rule_id",
+        "rule_name",
+        "severity",
+        "message",
+        "effect"
+      ],
+      "additionalProperties": false
+    },
+    "enforcement-response__ValidatorDetails": {
+      "type": "object",
+      "description": "Detailed information about validator execution for debugging purposes.",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "description": "Human-readable description of the validation algorithm (e.g., 'Luhn checksum (ISO/IEC 7812-1)', 'SSA Publication No. 05-10633 format validation')."
+        },
+        "cleaned_value": {
+          "type": "string",
+          "description": "The matched value after applying strip_chars normalization (e.g., '4532123456789010' from '4532-1234-5678-9010'). Used by checksum algorithms."
+        },
+        "checksum_computed": {
+          "type": "string",
+          "description": "The computed checksum or validation result (e.g., '0' for Luhn mod 10, area/group/serial for SSN). Helps debug checksum failures."
+        },
+        "reject_reason": {
+          "type": "string",
+          "description": "Reason why validator rejected the match (e.g., 'Test keyword \"example card\" found', 'Invalid area code 666'). Present when validation fails due to reject_keywords or format constraints."
+        }
+      },
+      "additionalProperties": false
+    },
+    "enforcement-response__RejectedMatch": {
+      "type": "object",
+      "description": "A pattern match that was rejected by a validator. Used for debugging and pattern tuning.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "Identifier of the rule whose pattern matched."
+        },
+        "rule_name": {
+          "type": "string",
+          "description": "Human-readable name of the rule."
+        },
+        "matched_value": {
+          "type": "string",
+          "description": "The value that matched the pattern but was rejected by the validator."
+        },
+        "start": {
+          "type": "integer",
+          "description": "Start position of the match in the input text (byte offset).",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "description": "End position of the match in the input text (byte offset).",
+          "minimum": 0
+        },
+        "validator_name": {
+          "type": "string",
+          "description": "Name of the validator that rejected this match (e.g., 'ssn_format', 'luhn', 'nhs_mod11')."
+        },
+        "validator_status": {
+          "type": "string",
+          "description": "Status of validator execution. Will always be 'failed' for rejected matches.",
+          "enum": [
+            "failed"
+          ]
+        },
+        "validator_details": {
+          "$ref": "#/$defs/enforcement-response__ValidatorDetails",
+          "description": "Detailed information about why the validator rejected this match. Includes reject_reason explaining the failure."
+        }
+      },
+      "required": [
+        "rule_id",
+        "rule_name",
+        "matched_value",
+        "validator_name",
+        "validator_status"
+      ],
+      "additionalProperties": false
+    },
+    "extension": {
+      "title": "RuleSentry v3 Extension",
+      "description": "Versioned extension manifest that can introduce additional categories, rules, evaluations, or policies under a namespace. Extensions are distributed artifacts that require authorship metadata for trust, licensing, and support.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/base__VersionedBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "$schema": {
+              "type": "string",
+              "description": "JSON Schema URI for this document (optional but recommended)."
+            },
+            "type": {
+              "const": "extension",
+              "description": "Top-level entity type discriminator. Always 'extension' for extension manifests."
+            },
+            "name": {
+              "type": "string",
+              "description": "Short namespace identifier for this extension (lowercase, no spaces). Used as prefix for extension-specific entities (e.g., 'hipaa', 'pci', 'aws').",
+              "pattern": "^[a-z0-9_-]+$",
+              "minLength": 1,
+              "maxLength": 32,
+              "examples": [
+                "hipaa",
+                "pci",
+                "aws",
+                "acme-internal"
+              ]
+            },
+            "caption": {
+              "type": "string",
+              "description": "Human-friendly display name for this extension.",
+              "minLength": 1,
+              "examples": [
+                "HIPAA Healthcare Extension",
+                "PCI-DSS Compliance",
+                "AWS Security"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "description": "Detailed description of what this extension provides and why it exists."
+            },
+            "uid": {
+              "type": "integer",
+              "description": "Globally unique extension identifier. Must be reserved via the RuleSentry extension registry to prevent collisions. Range 1-999 reserved for official extensions, 1000+ for community/private extensions, 9000-9999 for private/internal use.",
+              "minimum": 1,
+              "maximum": 9999,
+              "examples": [
+                1001,
+                1002,
+                9000
+              ]
+            },
+            "namespace": {
+              "type": "string",
+              "description": "DEPRECATED: Use 'name' instead. Logical namespace for this extension (e.g., customer.acme, rulesentry.core).",
+              "deprecated": true,
+              "$comment": "Will be removed in the next major schema version. Use 'name' field instead.",
+              "minLength": 1
+            },
+            "author": {
+              "type": "string",
+              "description": "Name of the person or organization that created this extension.",
+              "examples": [
+                "Acme Healthcare Inc",
+                "John Doe",
+                "AWS Security Team"
+              ]
+            },
+            "author_email": {
+              "type": "string",
+              "format": "email",
+              "description": "Contact email for the extension author (for support, bug reports, etc.).",
+              "examples": [
+                "security@acme.com",
+                "john@example.com"
+              ]
+            },
+            "author_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL to the author's website or organization page.",
+              "examples": [
+                "https://acme.com",
+                "https://github.com/acme"
+              ]
+            },
+            "license": {
+              "type": "string",
+              "description": "SPDX license identifier or custom license name. Critical for legal compliance when distributing extensions.",
+              "examples": [
+                "MIT",
+                "Apache-2.0",
+                "GPL-3.0",
+                "Proprietary",
+                "CC-BY-4.0"
+              ]
+            },
+            "repository": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL to the source code repository (e.g., GitHub, GitLab).",
+              "examples": [
+                "https://github.com/acme/hipaa-extension",
+                "https://gitlab.com/org/extension"
+              ]
+            },
+            "homepage": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL to the extension's homepage or documentation site.",
+              "examples": [
+                "https://docs.acme.com/hipaa-extension"
+              ]
+            },
+            "bugs_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL to report bugs or issues (e.g., GitHub issues).",
+              "examples": [
+                "https://github.com/acme/hipaa-extension/issues"
+              ]
+            },
+            "keywords": {
+              "type": "array",
+              "description": "Searchable keywords for extension discovery (e.g., 'healthcare', 'pci', 'hipaa', 'gdpr').",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9_-]+$"
+              },
+              "uniqueItems": true,
+              "examples": [
+                [
+                  "hipaa",
+                  "healthcare",
+                  "phi"
+                ],
+                [
+                  "pci",
+                  "fintech",
+                  "payments"
+                ]
+              ]
+            },
+            "extends": {
+              "type": "array",
+              "description": "Which core types this extension extends (e.g., category, rule, evaluation, policy).",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "category",
+                  "rule",
+                  "evaluation",
+                  "policy"
+                ]
+              },
+              "default": []
+            },
+            "profiles": {
+              "type": "array",
+              "description": "Profile identifiers that this extension provides or implements. Extensions can define new profiles (e.g., a HIPAA extension provides the 'hipaa' profile) and/or implement existing profiles. Rules within this extension typically use these profiles for cross-cutting metadata. Examples: ['hipaa', 'healthcare'], ['pci-dss', 'financial'], ['aws', 'cloud'].",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9_-]+$",
+                "minLength": 1,
+                "maxLength": 64
+              },
+              "uniqueItems": true,
+              "default": [],
+              "examples": [
+                [
+                  "hipaa",
+                  "healthcare"
+                ],
+                [
+                  "pci-dss",
+                  "financial"
+                ],
+                [
+                  "aws",
+                  "cloud",
+                  "infrastructure"
+                ]
+              ]
+            },
+            "dependencies": {
+              "type": "object",
+              "description": "Extension dependencies. Keys are extension names, values are semver ranges.",
+              "additionalProperties": {
+                "$ref": "#/$defs/semver"
+              },
+              "examples": [
+                {
+                  "core": ">=1.0.0",
+                  "pci": "^2.0.0"
+                }
+              ]
+            },
+            "min_engine_version": {
+              "$ref": "#/$defs/semver",
+              "description": "Minimum RuleSentry engine version required to use this extension.",
+              "examples": [
+                "3.0.0",
+                "3.1.0"
+              ]
+            },
+            "signature": {
+              "type": "object",
+              "description": "Digital signature for extension verification. Ensures integrity and authenticity.",
+              "properties": {
+                "algorithm": {
+                  "type": "string",
+                  "enum": [
+                    "ed25519",
+                    "ecdsa-p256",
+                    "rsa-2048"
+                  ],
+                  "description": "Signature algorithm used."
+                },
+                "public_key": {
+                  "type": "string",
+                  "description": "Base64-encoded public key for signature verification."
+                },
+                "signature": {
+                  "type": "string",
+                  "description": "Base64-encoded signature of the extension content hash."
+                },
+                "signed_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "When this extension was signed."
+                }
+              },
+              "required": [
+                "algorithm",
+                "public_key",
+                "signature"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "type",
+            "name",
+            "caption",
+            "uid"
+          ]
+        }
+      ],
+      "unevaluatedProperties": false,
+      "examples": [
+        {
+          "id": "hipaa-healthcare",
+          "type": "extension",
+          "name": "hipaa",
+          "caption": "HIPAA Healthcare Extension",
+          "description": "Healthcare-specific rules and categories for HIPAA compliance, including PHI classification and patient consent tracking.",
+          "uid": 1001,
+          "version": "1.0.0",
+          "status": "active",
+          "author": "Acme Healthcare Inc",
+          "author_email": "security@acme.com",
+          "author_url": "https://acme.com",
+          "license": "MIT",
+          "repository": "https://github.com/acme/hipaa-extension",
+          "homepage": "https://docs.acme.com/hipaa-extension",
+          "bugs_url": "https://github.com/acme/hipaa-extension/issues",
+          "keywords": [
+            "hipaa",
+            "healthcare",
+            "phi",
+            "compliance"
+          ],
+          "extends": [
+            "category",
+            "rule"
+          ],
+          "min_engine_version": "3.0.0",
+          "created_at": "2025-11-19T00:00:00Z",
+          "created_by": "john@acme.com",
+          "modified_at": "2025-11-19T00:00:00Z"
+        }
+      ]
+    },
+    "feature-config": {
+      "title": "FeatureConfig",
+      "description": "Build-time feature flags for the evaluation engine",
+      "type": "object",
+      "properties": {
+        "features": {
+          "type": "object",
+          "description": "Feature flags compiled into WASM binary",
+          "properties": {
+            "policy_engine_enabled": {
+              "type": "boolean",
+              "description": "Enable policy evaluation engine. Disabling returns Allow for all content.",
+              "default": true
+            },
+            "pseudonymization_enabled": {
+              "type": "boolean",
+              "description": "Enable pseudonymization transforms in matched content.",
+              "default": true
+            },
+            "desktop_integration_enabled": {
+              "type": "boolean",
+              "description": "Enable desktop-specific features (reserved for future use).",
+              "default": false
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "policy_engine_enabled",
+            "pseudonymization_enabled",
+            "desktop_integration_enabled"
+          ]
+        }
+      },
+      "required": [
+        "features"
+      ],
+      "additionalProperties": false
+    },
+    "version": {
+      "title": "RuleSentry v3 Schema Version Manifest",
+      "description": "Version manifest for the RuleSentry v3 schema set, including release metadata, component versions, compatibility requirements, and deprecation notices.",
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "$ref": "#/$defs/semver",
+          "description": "Semantic version of the v3 schema set (e.g., '3.0.0')",
+          "default": "3.0.0"
+        },
+        "schema_release_date": {
+          "type": "string",
+          "description": "ISO 8601 date when this schema version was released (e.g., '2025-11-19')",
+          "format": "date",
+          "examples": [
+            "2025-11-19"
+          ]
+        },
+        "components": {
+          "type": "object",
+          "description": "Component-level versioning for schema modules (core, api, etc.)",
+          "properties": {
+            "core": {
+              "$ref": "#/$defs/semver",
+              "description": "Version of all core schemas (base, rule, policy, category, extension, enforcement-response, etc.)"
+            }
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/semver"
+          }
+        },
+        "breaking_changes_since": {
+          "$ref": "#/$defs/semver",
+          "description": "Last schema version that was backward-compatible with this version. If this field is set to '2.9.0' and schema_version is '3.0.0', it means breaking changes were introduced in 3.0.0.",
+          "examples": [
+            "2.9.0"
+          ]
+        },
+        "compatibility": {
+          "type": "object",
+          "description": "Compatibility requirements and constraints",
+          "properties": {
+            "min_engine_version": {
+              "$ref": "#/$defs/semver",
+              "description": "Minimum RuleSentry engine version required to use this schema version",
+              "examples": [
+                "3.0.0"
+              ]
+            },
+            "deprecations": {
+              "type": "array",
+              "description": "List of deprecated features with sunset timelines",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "feature": {
+                    "type": "string",
+                    "description": "Name or path of the deprecated feature (e.g., 'core/rule.schema.json#/properties/legacy_field')"
+                  },
+                  "deprecated_in": {
+                    "$ref": "#/$defs/semver",
+                    "description": "Schema version when this feature was deprecated"
+                  },
+                  "sunset_date": {
+                    "type": "string",
+                    "description": "ISO 8601 date when this feature will be removed",
+                    "format": "date"
+                  },
+                  "replacement": {
+                    "type": "string",
+                    "description": "Recommended replacement or migration path"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Explanation of why this feature is being deprecated"
+                  }
+                },
+                "required": [
+                  "feature",
+                  "deprecated_in"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version"
+      ],
+      "additionalProperties": false,
+      "examples": [
+        {
+          "schema_version": "3.1.0",
+          "schema_release_date": "2026-03-01",
+          "components": {
+            "core": "3.1.0"
+          },
+          "breaking_changes_since": "3.0.0",
+          "compatibility": {
+            "min_engine_version": "3.0.0",
+            "deprecations": [
+              {
+                "feature": "core/extension.schema.json#/properties/namespace",
+                "deprecated_in": "3.0.0",
+                "sunset_date": "2026-11-19",
+                "replacement": "Use 'name' field instead",
+                "reason": "The 'namespace' field was redundant with 'name'. The 'name' field provides cleaner semantics and shorter syntax for extension identifiers."
+              },
+              {
+                "feature": "core/policy.schema.json#/properties/type/pack",
+                "deprecated_in": "3.1.0",
+                "sunset_date": "2027-03-01",
+                "replacement": "Use type='policy' with rule_categories for multi-category compliance bundles",
+                "reason": "Pack was a separate type for multi-category bundles, but policy with rule_categories provides the same functionality without a separate type discriminator."
+              },
+              {
+                "feature": "core/rule-evaluation.schema.json#/$defs/Transform/properties/type/placeholder",
+                "deprecated_in": "3.1.0",
+                "sunset_date": "2027-03-01",
+                "replacement": "Use 'replace' with a descriptive replacement string, or 'redact' with a semantic marker",
+                "reason": "Placeholder, generalize, relativize, and pseudonymize transforms were removed to simplify the transform model. The 5 remaining types (mask, hash, replace, redact, tokenize) cover production use cases."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

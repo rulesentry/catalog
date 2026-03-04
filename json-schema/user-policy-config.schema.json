@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/user-policy-config.schema.json",
+  "title": "User Policy Configuration",
+  "description": "User-customized evaluation configuration for the WASM/client boundary. Composes multiple policies with priority-based deduplication, standalone rules, and user-level overrides. This is the primary input type for client-side evaluation via evaluateUserConfig().",
+
+  "type": "object",
+  "properties": {
+    "policy_ids": {
+      "type": "array",
+      "description": "Policy IDs to evaluate. Each is resolved independently. Higher policy.priority wins when the same rule appears in multiple policies.",
+      "items": {
+        "$ref": "base.schema.json#/$defs/DottedId"
+      },
+      "default": [],
+      "examples": [["policy.us-pii", "policy.pci-dss-global"]]
+    },
+    "added_rules": {
+      "type": "array",
+      "description": "Extra rule IDs not in any selected policy. Evaluated with user overrides only (no policy-level overrides).",
+      "items": {
+        "$ref": "base.schema.json#/$defs/DottedId"
+      },
+      "default": [],
+      "examples": [["financial.credit_card_luhn", "government.ssn_format"]]
+    },
+    "overrides": {
+      "type": "array",
+      "description": "User-level overrides. Applied AFTER the owning policy's overrides. Last-match-wins: user always takes precedence.",
+      "items": {
+        "$ref": "#/$defs/RuleOverride"
+      },
+      "default": []
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for saved configurations.",
+      "maxLength": 200
+    },
+    "exclude_global": {
+      "type": "boolean",
+      "description": "When true, rules whose regions are exclusively [\"GLOBAL\"] are excluded from policy resolution. Rules with at least one non-GLOBAL region are kept.",
+      "default": false
+    },
+    "filter": {
+      "$ref": "#/$defs/FilterParams",
+      "description": "Optional filter to narrow resolved rules by region, category, profile, or severity. Applied after policy resolution and override application."
+    }
+  },
+  "additionalProperties": false,
+
+  "$defs": {
+    "RuleOverride": {
+      "type": "object",
+      "description": "Override configuration for a single rule. Applied after policy-level overrides when used in UserPolicyConfig.",
+      "properties": {
+        "rule_id": {
+          "$ref": "base.schema.json#/$defs/WildcardId",
+          "description": "Rule ID to override. Supports wildcards: 'financial.*' overrides all financial rules."
+        },
+        "severity": {
+          "type": ["string", "null"],
+          "description": "Override severity level.",
+          "enum": ["critical", "high", "medium", "low", "info", null]
+        },
+        "allowlist": {
+          "type": ["array", "null"],
+          "description": "Values to allow (bypass detection).",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "effect": {
+          "oneOf": [
+            { "$ref": "rule-evaluation.schema.json#/$defs/Effect" },
+            { "type": "null" }
+          ],
+          "description": "Override the rule's effect."
+        },
+        "priority": {
+          "type": ["integer", "null"],
+          "description": "Override evaluation priority. Higher = evaluated first.",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "enabled": {
+          "type": ["boolean", "null"],
+          "description": "Set false to disable rule without removing it.",
+          "default": true
+        },
+        "reason": {
+          "type": ["string", "null"],
+          "description": "Explanation for why this override exists.",
+          "maxLength": 500
+        }
+      },
+      "required": ["rule_id"],
+      "additionalProperties": false,
+      "minProperties": 2
+    },
+
+    "FilterParams": {
+      "type": "object",
+      "description": "Parameters for filtering rules and policies in the WASM API. All filter arrays are optional; omitting a filter means 'no constraint' on that dimension.",
+      "properties": {
+        "regions": {
+          "type": "array",
+          "description": "Filter by region codes. Only rules/policies with at least one matching region are returned.",
+          "items": { "type": "string" }
+        },
+        "categories": {
+          "type": "array",
+          "description": "Filter by category IDs.",
+          "items": { "type": "string" }
+        },
+        "profiles": {
+          "type": "array",
+          "description": "Filter by profile IDs.",
+          "items": { "type": "string" }
+        },
+        "severity": {
+          "type": "array",
+          "description": "Filter by severity levels.",
+          "items": {
+            "type": "string",
+            "enum": ["info", "low", "medium", "high", "critical"]
+          }
+        },
+        "include_ancestors": {
+          "type": "boolean",
+          "description": "When true, selected regions expand to include ancestor regions (e.g., selecting US also includes AMERICAS and GLOBAL).",
+          "default": true
+        },
+        "excludeGlobal": {
+          "type": "boolean",
+          "description": "When true, remove GLOBAL from the effective region set after ancestor expansion.",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "ResolvedRuleInfo": {
+      "type": "object",
+      "description": "Preview of a resolved rule in a UserPolicyConfig. Returned by resolveUserConfig() to show the execution plan without evaluating.",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "The rule ID."
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable rule name."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Effective severity after overrides."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the rule is enabled after overrides."
+        },
+        "source_policy_id": {
+          "type": ["string", "null"],
+          "description": "Which policy owns this rule. Null if from added_rules."
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Effective evaluation priority after overrides.",
+          "minimum": 0
+        }
+      },
+      "required": ["rule_id", "name", "severity", "enabled", "priority"],
+      "additionalProperties": false
+    }
+  },
+
+  "examples": [
+    {
+      "policy_ids": ["policy.us-pii"],
+      "added_rules": [],
+      "overrides": [],
+      "name": "US PII Quick Check"
+    },
+    {
+      "policy_ids": ["policy.us-pii", "policy.pci-dss-global"],
+      "added_rules": ["contact.email_address"],
+      "overrides": [
+        {
+          "rule_id": "government.ssn_format",
+          "severity": "critical",
+          "reason": "HIPAA compliance requirement"
+        }
+      ],
+      "name": "Healthcare + PCI Composite",
+      "exclude_global": false
+    }
+  ]
+}

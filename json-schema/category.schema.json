@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.rulesentry.io/schema/v3/core/category.schema.json",
+  "title": "RuleSentry v3 Category",
+  "description": "Versioned data category definition (e.g., PII, PHI, PCI). Advisory metadata for rules and policies. v3 supports hierarchical categories with parent_category_id and display hints for UI organization (display_order, is_system).",
+  "allOf": [
+    {
+      "$ref": "base.schema.json#/$defs/VersionedBase"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "description": "JSON Schema URI for this document (optional but recommended)."
+        },
+        "type": {
+          "const": "category",
+          "description": "Top-level entity type discriminator. Always 'category' for categories."
+        },
+        "name": {
+          "type": "string",
+          "description": "Short human-readable label for this category.",
+          "minLength": 1
+        },
+        "description": {
+          "type": ["string", "null"],
+          "description": "Detailed description of what data this category represents."
+        },
+        "frameworks": {
+          "type": "array",
+          "description": "Optional list of regulatory or compliance frameworks this category is relevant to (e.g., GDPR, HIPAA, PCI-DSS).",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "examples": {
+          "type": "array",
+          "description": "Optional examples of data items in this category (e.g., email, SSN).",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "icon": {
+          "type": ["string", "null"],
+          "description": "Optional UI icon name for this category."
+        },
+        "color": {
+          "type": ["string", "null"],
+          "description": "Optional UI color (e.g., hex RGB) for this category.",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "examples": ["#0066CC", "#FF6B35", "#4CAF50"]
+        },
+        "display_order": {
+          "type": "integer",
+          "description": "Optional display order for consistent sorting in UI. Lower numbers appear first. Categories without display_order sort alphabetically after ordered categories. Default: 100.",
+          "minimum": 0,
+          "maximum": 1000,
+          "default": 100,
+          "examples": [10, 50, 100]
+        },
+        "parent_category_id": {
+          "$ref": "base.schema.json#/$defs/SimpleId",
+          "description": "Optional parent category ID for hierarchical organization. Enables category specialization (e.g., 'phi' parent is 'healthcare', 'pan' parent is 'financial'). Child categories inherit properties from parent unless explicitly overridden.",
+          "examples": ["pii", "healthcare", "financial"]
+        },
+        "is_system": {
+          "type": "boolean",
+          "description": "Whether this is a system-provided category (read-only, cannot be deleted). System categories are shipped with RuleSentry and cannot be modified by users. Default: false.",
+          "default": false
+        }
+      },
+      "required": ["type", "name"]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "id": "policy.uk-data-protection",
   "qualified_id": "core.policy.uk-data-protection",
   "type": "policy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "name": "UK Data Protection Policy",
   "description": "Data protection policy for United Kingdom jurisdictions under the DPA 2018 and UK-GDPR. Covers national insurance numbers, NHS numbers, driving licences, passports, sort codes, and IBANs. UK is under EMEA but not under EU, reflecting post-Brexit regulatory independence.",

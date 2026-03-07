@@ -1,11 +1,11 @@
 {
   "$schema": "../../../json-schema/rule.schema.json",
   "id": "contact.mx-phone-number",
-  "qualified_id": "community.rulesentry.contact.mx-phone-number",
+  "qualified_id": "community.rulesentry.th.phone",
   "type": "rule",
-  "version": "1.0.0",
-  "name": "Mexico Phone Number",
-  "description": "Detects Mexican phone numbers in international (+52) and local formats. Covers mobile (10-digit with area code) and landline numbers.",
+  "version": "1.1.0",
+  "name": "Thailand Phone Number",
+  "description": "Detects Thailand phone numbers in international (+66) and local formats. Covers mobile (10-digit with area code) and landline numbers.",
   "category_id": "contact",
   "rule_kind": "atomic",
   "severity": "medium",
@@ -13,7 +13,7 @@
     "production"
   ],
   "metadata": {
-    "country": "Mexico",
+    "country": "Thailand",
     "phone_format": "E.164 and local 10-digit"
   },
   "evaluation": {
@@ -30,10 +30,10 @@
       "transform": {
         "type": "redact",
         "params": {
-          "marker": "[MX-PHONE]"
+          "marker": "[TH-PHONE]"
         }
       },
-      "message": "Mexico phone number redacted"
+      "message": "Thailand phone number redacted"
     }
   },
   "status": "active",

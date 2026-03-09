@@ -33,6 +33,7 @@
         "pinned_version": "1.0.0"
       }
     ],
+    "propagate_matches": true,
     "effect": {
       "type": "transform",
       "rationale": "compliance",

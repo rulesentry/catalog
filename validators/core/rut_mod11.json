@@ -1,0 +1,18 @@
+{
+  "id": "rut_mod11",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "name": "Chile RUT MOD-11",
+  "description": "Validates Chilean RUT (Rol Único Tributario). 8 body digits with weights [3,2,7,6,5,4,3,2]. Remainder = sum mod 11. Lookup table maps remainder to expected check character (0→'0', 1→'K', 2→'9', etc.).",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 8,
+    "strip_chars": ".-",
+    "weights": [3, 2, 7, 6, 5, 4, 3, 2],
+    "modulus": 11,
+    "check_rule": "lookup_table",
+    "check_position": "none",
+    "lookup_table": ["0", "K", "9", "8", "7", "6", "5", "4", "3", "2", "1"]
+  }
+}

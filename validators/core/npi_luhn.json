@@ -1,0 +1,15 @@
+{
+  "id": "npi_luhn",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "name": "NPI Luhn Checksum",
+  "description": "Validates National Provider Identifier (NPI) numbers using the Luhn algorithm.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 10,
+    "luhn_doubling": true,
+    "modulus": 10,
+    "check_rule": "sum_mod_zero"
+  }
+}

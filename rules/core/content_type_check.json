@@ -3,7 +3,7 @@
   "id": "content_type_check",
   "qualified_id": "core.content_type_check",
   "type": "rule",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Content Type Check",
   "summary": "Blocks content when metadata indicates HTML content type",
@@ -27,11 +27,6 @@
       "message": "HTML content detected via metadata — requires additional review"
     }
   },
-  "origin": {
-    "source_type": "local"
-  },
   "created_at": "2026-02-10T00:00:00Z",
-  "created_by": "claude-code",
-  "modified_at": "2026-02-10T00:00:00Z",
-  "modified_by": "claude-code"
+  "updated_at": "2026-03-10T00:00:00Z"
 }

@@ -3,7 +3,7 @@
   "id": "healthcare.mrn_detect",
   "qualified_id": "core.healthcare.mrn_detect",
   "type": "rule",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Medical Record Number (MRN)",
   "summary": "Detects medical record numbers with explicit MRN context markers",
@@ -52,12 +52,6 @@
       }
     ]
   },
-  "origin": {
-    "source_type": "catalog",
-    "catalog_url": "https://catalog.rulesentry.io/core/healthcare"
-  },
   "created_at": "2026-02-10T00:00:00Z",
-  "created_by": "rulesentry-catalog",
-  "modified_at": "2026-02-10T00:00:00Z",
-  "modified_by": "claude-code"
+  "updated_at": "2026-03-10T00:00:00Z"
 }

@@ -3,7 +3,7 @@
   "id": "government.eu_de_tax_id",
   "qualified_id": "core.government.eu_de_tax_id",
   "type": "rule",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "German Tax ID (Steueridentifikationsnummer)",
   "summary": "Detects German tax identification numbers (11 digits) with context markers",
@@ -53,12 +53,6 @@
       }
     }
   },
-  "origin": {
-    "source_type": "catalog",
-    "catalog_url": "https://catalog.rulesentry.io/core/government"
-  },
   "created_at": "2026-02-10T00:00:00Z",
-  "created_by": "rulesentry-catalog",
-  "modified_at": "2026-02-10T00:00:00Z",
-  "modified_by": "claude-code"
+  "updated_at": "2026-03-10T00:00:00Z"
 }

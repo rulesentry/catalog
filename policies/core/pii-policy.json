@@ -3,7 +3,7 @@
   "id": "policy.pii",
   "qualified_id": "core.policy.pii",
   "type": "policy",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "status": "active",
   "name": "PII Protection Policy",
   "description": "Global baseline policy for personally identifiable information. Covers personal attributes and contact information across all regions. Government ID detection is delegated to regional policies (US-PII, EU-GDPR, UK-DPA, APAC, Americas, EMEA).",
@@ -225,7 +225,7 @@
     },
     {
       "rule_id": "contact.street_address",
-      "pinned_version": "3.0.0",
+      "pinned_version": "3.1.0",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"

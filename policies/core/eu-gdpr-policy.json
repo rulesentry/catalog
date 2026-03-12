@@ -3,7 +3,7 @@
   "id": "policy.eu-gdpr",
   "qualified_id": "core.policy.eu-gdpr",
   "type": "policy",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "status": "active",
   "name": "EU GDPR Data Protection Policy",
   "description": "GDPR compliance policy for European Union jurisdictions. Protects personal data of EU residents including dates of birth, tax identifiers, and financial account numbers. Rules scoped to EU automatically apply to DE, FR, NL, ES, IT via region hierarchy.",
@@ -160,7 +160,7 @@
     },
     {
       "rule_id": "contact.street_address",
-      "pinned_version": "3.0.0",
+      "pinned_version": "3.1.0",
       "priority": 60,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code",

@@ -3,7 +3,7 @@
   "id": "policy.us-pii",
   "qualified_id": "core.policy.us-pii",
   "type": "policy",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "status": "active",
   "name": "US PII Protection Policy",
   "description": "Comprehensive PII protection policy for United States jurisdictions. Combines HIPAA PHI requirements with CCPA personal information protections. Includes direct rule references, category-based selective inclusion for healthcare rules, and dynamic filters for US-scoped high-severity HIPAA rules.",
@@ -249,7 +249,7 @@
     },
     {
       "rule_id": "contact.street_address",
-      "pinned_version": "3.0.0",
+      "pinned_version": "3.1.0",
       "priority": 60,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code",

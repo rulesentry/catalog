@@ -3,7 +3,7 @@
   "id": "contact.street_address",
   "qualified_id": "core.contact.street_address",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "name": "Street Address",
   "description": "Detects street addresses with number + street name pattern (e.g., 123 Main St, 456 Oak Avenue). Generic pattern may have false positives.",
   "category_id": "contact",
@@ -25,7 +25,7 @@
     "priority": 55,
     "target": "content",
     "pattern": {
-      "pattern": "\\b\\d{1,5}\\s+[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*\\s+(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Lane|Ln|Boulevard|Blvd|Way|Court|Ct|Place|Pl)\\b",
+      "pattern": "\\b\\d{1,5}\\s+(?:[A-Z][a-z]*|\\d+(?:st|nd|rd|th))(?:\\s+(?:[A-Z][a-z]*|\\d+(?:st|nd|rd|th)))*\\s+(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Lane|Ln|Boulevard|Blvd|Way|Court|Ct|Place|Pl|Circle|Cir|Terrace|Ter|Highway|Hwy|Parkway|Pkwy|Trail|Trl|Pike|Square|Sq)(?:\\s+(?:NW|NE|SW|SE|N|S|E|W))?\\b",
       "engine": "regex",
       "flags": {
         "case_insensitive": true
@@ -45,7 +45,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.946580Z",
+  "updated_at": "2026-03-13T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

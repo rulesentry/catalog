@@ -3,7 +3,7 @@
   "id": "policy.pci-dss-global",
   "qualified_id": "core.policy.pci-dss-global",
   "type": "policy",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "PCI-DSS Global Payment Card Policy",
   "description": "Global PCI-DSS compliance policy for payment card data protection. Selectively includes critical financial rules (credit cards, CVV, PIN) and applies PCI-DSS profile filtering. Overrides all financial rules to priority 100 to ensure they evaluate first.",

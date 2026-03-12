@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/category.schema.json",
   "id": "government",
   "type": "category",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Government Identifiers",
   "description": "Rules detecting government-issued identification numbers including SSN, tax IDs, national insurance numbers, and passport numbers.",

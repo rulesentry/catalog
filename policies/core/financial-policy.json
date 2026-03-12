@@ -3,7 +3,7 @@
   "id": "policy.financial",
   "qualified_id": "core.policy.financial",
   "type": "policy",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Financial Data Policy",
   "description": "Global baseline policy for financial data protection. Covers all financial rules including credit cards, bank accounts, routing numbers, IBAN, cryptocurrency addresses, and securities identifiers across all regions.",

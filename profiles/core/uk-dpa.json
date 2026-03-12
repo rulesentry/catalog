@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/profile.schema.json",
   "id": "uk-dpa",
   "type": "profile",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "UK Data Protection Compliance Framework",
   "caption": "UK-DPA",

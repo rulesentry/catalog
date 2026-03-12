@@ -3,7 +3,7 @@
   "id": "policy.americas-data-protection",
   "qualified_id": "core.policy.americas-data-protection",
   "type": "policy",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Americas Data Protection Policy",
   "description": "Data protection policy for non-US Americas jurisdictions. Covers Canadian PIPEDA, Brazilian LGPD, and other regional data protection requirements for government ID detection across CA, MX, BR, AR, CL, and CO.",
@@ -24,7 +24,7 @@
   "rules": [
     {
       "rule_id": "government.canadian_sin",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 95,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -32,7 +32,7 @@
     },
     {
       "rule_id": "government.americas_mexico_curp",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -40,7 +40,7 @@
     },
     {
       "rule_id": "government.americas_brazil_cpf",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 90,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -48,7 +48,7 @@
     },
     {
       "rule_id": "government.americas_argentina_dni",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -56,7 +56,7 @@
     },
     {
       "rule_id": "government.americas_chile_rut",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -64,7 +64,7 @@
     },
     {
       "rule_id": "government.americas_colombia_cc",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",

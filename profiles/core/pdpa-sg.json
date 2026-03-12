@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/profile.schema.json",
   "id": "pdpa-sg",
   "type": "profile",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Singapore PDPA Compliance Framework",
   "caption": "PDPA-SG",

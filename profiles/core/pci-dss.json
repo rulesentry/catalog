@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/profile.schema.json",
   "id": "pci-dss",
   "type": "profile",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "PCI-DSS Compliance Framework",
   "caption": "PCI-DSS",

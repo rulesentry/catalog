@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/profile.schema.json",
   "id": "ccpa",
   "type": "profile",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "CCPA/CPRA Compliance Framework",
   "caption": "CCPA",

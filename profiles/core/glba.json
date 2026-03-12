@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/profile.schema.json",
   "id": "glba",
   "type": "profile",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "GLBA Compliance Framework",
   "caption": "GLBA",

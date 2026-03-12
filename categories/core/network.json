@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/category.schema.json",
   "id": "network",
   "type": "category",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Network & Infrastructure",
   "description": "Rules detecting network identifiers and infrastructure data including IP addresses, MAC addresses, URLs, DNS records, SSH fingerprints, and VPN configurations.",

@@ -25,12 +25,12 @@
       {
         "evaluation_type": "rule_ref",
         "rule_id": "healthcare.mrn_detect",
-        "pinned_version": "1.0.0"
+        "pinned_version": "3.0.0"
       },
       {
         "evaluation_type": "rule_ref",
         "rule_id": "personal.date_of_birth",
-        "pinned_version": "1.0.0"
+        "pinned_version": "3.0.0"
       }
     ],
     "propagate_matches": true,

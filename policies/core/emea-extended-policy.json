@@ -3,7 +3,7 @@
   "id": "policy.emea-extended",
   "qualified_id": "core.policy.emea-extended",
   "type": "policy",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "EMEA Extended Data Protection Policy",
   "description": "Data protection policy for Middle East and Africa jurisdictions under EMEA. Covers Turkey KVKK, Saudi PDPL, UAE DPL, South Africa POPIA, and other regional data protection requirements for government ID detection.",
@@ -24,7 +24,7 @@
   "rules": [
     {
       "rule_id": "government.middle_east_turkey_tc_kimlik",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 90,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -32,7 +32,7 @@
     },
     {
       "rule_id": "government.middle_east_israel_id",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -40,7 +40,7 @@
     },
     {
       "rule_id": "government.middle_east_saudi_national_id",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -48,7 +48,7 @@
     },
     {
       "rule_id": "government.middle_east_uae_emirates_id",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -56,7 +56,7 @@
     },
     {
       "rule_id": "government.middle_east_qatar_qid",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -64,7 +64,7 @@
     },
     {
       "rule_id": "government.africa_egypt_national_id",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -72,7 +72,7 @@
     },
     {
       "rule_id": "government.africa_south_africa_id",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 90,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -80,7 +80,7 @@
     },
     {
       "rule_id": "government.africa_nigeria_nin",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -88,7 +88,7 @@
     },
     {
       "rule_id": "government.africa_kenya_id",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 85,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
@@ -96,7 +96,7 @@
     },
     {
       "rule_id": "government.africa_ghana_gps",
-      "pinned_version": "1.0.0",
+      "pinned_version": "3.0.0",
       "priority": 80,
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",

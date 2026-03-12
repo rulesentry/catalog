@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/category.schema.json",
   "id": "contact",
   "type": "category",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Contact Information",
   "description": "Rules detecting contact and location data including email addresses, phone numbers, physical addresses, and postal codes across multiple countries.",

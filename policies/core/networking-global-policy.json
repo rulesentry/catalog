@@ -3,7 +3,7 @@
   "id": "policy.networking-global",
   "qualified_id": "core.policy.networking-global",
   "type": "policy",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Global Network Infrastructure Policy",
   "description": "Global policy for detecting network identifiers and infrastructure data. Covers IP addresses, MAC addresses, URLs, DNS records, SSH fingerprints, VPN configurations, and other network-related sensitive data.",

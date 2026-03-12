@@ -2,7 +2,7 @@
   "$schema": "../../json-schema/category.schema.json",
   "id": "digital_identity",
   "type": "category",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "status": "active",
   "name": "Digital Identity",
   "description": "Rules detecting digital identity tokens, session credentials, and service-specific authentication artifacts including JWT, OAuth, and platform-specific tokens.",

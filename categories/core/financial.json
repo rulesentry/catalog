@@ -1,5 +1,5 @@
 {
-  "$schema": "../../json-schema/category.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/category.schema.json",
   "id": "financial",
   "type": "category",
   "version": "3.0.0",

@@ -1,5 +1,5 @@
 {
-  "$schema": "../../json-schema/region-registry.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/region-registry.schema.json",
   "version": "3.0.0",
   "regions": [
     {

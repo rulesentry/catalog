@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.url_http",
   "qualified_id": "core.network.url_http",
   "type": "rule",

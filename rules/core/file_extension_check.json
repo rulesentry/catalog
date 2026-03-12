@@ -1,5 +1,5 @@
 {
-  "$schema": "../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "file_extension_check",
   "qualified_id": "core.file_extension_check",
   "type": "rule",

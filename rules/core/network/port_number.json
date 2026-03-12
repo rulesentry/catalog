@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.port_number",
   "qualified_id": "core.network.port_number",
   "type": "rule",

@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.singapore_nric",
   "qualified_id": "core.government.singapore_nric",
   "type": "rule",

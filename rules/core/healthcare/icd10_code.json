@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "healthcare.icd10_code",
   "qualified_id": "core.healthcare.icd10_code",
   "type": "rule",

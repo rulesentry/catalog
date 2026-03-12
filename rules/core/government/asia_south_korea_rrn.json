@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_south_korea_rrn",
   "qualified_id": "core.government.asia_south_korea_rrn",
   "type": "rule",

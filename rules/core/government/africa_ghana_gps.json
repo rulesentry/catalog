@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.africa_ghana_gps",
   "qualified_id": "core.government.africa_ghana_gps",
   "type": "rule",

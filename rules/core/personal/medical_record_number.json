@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "personal.medical_record_number",
   "qualified_id": "core.personal.medical_record_number",
   "type": "rule",

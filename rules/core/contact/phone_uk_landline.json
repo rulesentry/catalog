@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../json-schema/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.phone_uk_landline",
   "qualified_id": "core.contact.phone_uk_landline",
   "type": "rule",

@@ -1,5 +1,5 @@
 {
-  "$schema": "../../json-schema/profile.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/profile.schema.json",
   "id": "ccpa",
   "type": "profile",
   "version": "3.0.0",

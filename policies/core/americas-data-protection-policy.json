@@ -1,5 +1,5 @@
 {
-  "$schema": "../../json-schema/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.americas-data-protection",
   "qualified_id": "core.policy.americas-data-protection",
   "type": "policy",

@@ -1,5 +1,5 @@
 {
-  "$schema": "../../json-schema/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.pci-dss-global",
   "qualified_id": "core.policy.pci-dss-global",
   "type": "policy",

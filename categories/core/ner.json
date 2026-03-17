@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/category.schema.json",
+  "id": "ner",
+  "type": "category",
+  "version": "3.0.0",
+  "status": "active",
+  "name": "Named Entity Recognition",
+  "description": "Rules using on-device ONNX neural models to detect named entities: people, locations, organisations, and miscellaneous entities. Requires an NER model download (see Settings). Rules silently no-op when no model is active (fallback: skip) — they never cause errors or false positives on unarmed installations.",
+  "frameworks": ["GDPR", "CCPA", "HIPAA"],
+  "examples": ["John Smith", "London", "Acme Corp", "Nobel Prize"],
+  "display_order": 12,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/ner"
+  },
+  "created_at": "2026-03-18T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-03-18T00:00:00Z",
+  "modified_by": "claude-code"
+}

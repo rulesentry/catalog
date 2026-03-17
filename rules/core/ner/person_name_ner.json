@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "ner.person_name",
+  "qualified_id": "core.ner.person_name",
+  "type": "rule",
+  "version": "3.0.0",
+  "status": "active",
+  "name": "Person Name (NER)",
+  "description": "Detects full person names using an on-device NER model. Requires an active ONNX model (bert-base-ner or distilbert-ner). Rules silently no-ops when no model is active.",
+  "category_id": "ner",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "regions": ["GLOBAL"],
+  "profiles": ["gdpr", "ccpa", "production"],
+  "tags": ["pii", "name", "ner"],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": ["PERSON"],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[PERSON]"
+        }
+      }
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/ner/person_name_ner"
+  },
+  "created_at": "2026-03-18T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-03-18T00:00:00Z",
+  "modified_by": "claude-code"
+}

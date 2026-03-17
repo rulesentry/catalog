@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "ner.misc_entity",
+  "qualified_id": "core.ner.misc_entity",
+  "type": "rule",
+  "version": "3.0.0",
+  "status": "active",
+  "name": "Miscellaneous Named Entity (NER)",
+  "description": "Detects miscellaneous named entities (nationalities, events, awards, works of art) using an on-device NER model. The CoNLL-2003 MISC class partially covers nationality/religion/political entities. Requires an active ONNX model (bert-base-ner or distilbert-ner). Rule silently no-ops when no model is active.",
+  "category_id": "ner",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "regions": ["GLOBAL"],
+  "profiles": ["gdpr", "ccpa", "production"],
+  "tags": ["pii", "misc", "ner", "nationality"],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": ["MISC"],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[ENTITY]"
+        }
+      }
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/ner/misc_entity_ner"
+  },
+  "created_at": "2026-03-18T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-03-18T00:00:00Z",
+  "modified_by": "claude-code"
+}

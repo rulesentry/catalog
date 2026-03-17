@@ -576,49 +576,49 @@
       "code": "TR",
       "name": "Turkey",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "ME",
       "default_inheritance": true,
       "flag_emoji": "🇹🇷",
       "frameworks": [
         "KVKK"
       ],
-      "display_order": 360
+      "display_order": 361
     },
     {
       "code": "IL",
       "name": "Israel",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "ME",
       "default_inheritance": true,
       "flag_emoji": "🇮🇱",
-      "display_order": 370
+      "display_order": 362
     },
     {
       "code": "SA",
       "name": "Saudi Arabia",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "ME",
       "default_inheritance": true,
       "flag_emoji": "🇸🇦",
-      "display_order": 380
+      "display_order": 363
     },
     {
       "code": "AE",
       "name": "United Arab Emirates",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "ME",
       "default_inheritance": true,
       "flag_emoji": "🇦🇪",
-      "display_order": 385
+      "display_order": 364
     },
     {
       "code": "QA",
       "name": "Qatar",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "ME",
       "default_inheritance": true,
       "flag_emoji": "🇶🇦",
-      "display_order": 390
+      "display_order": 365
     },
     {
       "code": "NO",
@@ -633,6 +633,15 @@
       "display_order": 395
     },
     {
+      "code": "AF",
+      "name": "Africa",
+      "level": "region",
+      "parent_code": "EMEA",
+      "default_inheritance": true,
+      "flag_emoji": "🌍",
+      "display_order": 499
+    },
+    {
       "code": "CH",
       "name": "Switzerland",
       "level": "country",
@@ -645,10 +654,19 @@
       "display_order": 396
     },
     {
+      "code": "ME",
+      "name": "Middle East",
+      "level": "region",
+      "parent_code": "EMEA",
+      "default_inheritance": true,
+      "flag_emoji": "🕌",
+      "display_order": 360
+    },
+    {
       "code": "EG",
       "name": "Egypt",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "AF",
       "default_inheritance": true,
       "flag_emoji": "🇪🇬",
       "display_order": 500
@@ -657,7 +675,7 @@
       "code": "GH",
       "name": "Ghana",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "AF",
       "default_inheritance": true,
       "flag_emoji": "🇬🇭",
       "display_order": 501
@@ -666,7 +684,7 @@
       "code": "KE",
       "name": "Kenya",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "AF",
       "default_inheritance": true,
       "flag_emoji": "🇰🇪",
       "display_order": 502
@@ -675,7 +693,7 @@
       "code": "NG",
       "name": "Nigeria",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "AF",
       "default_inheritance": true,
       "flag_emoji": "🇳🇬",
       "frameworks": [
@@ -687,7 +705,7 @@
       "code": "ZA",
       "name": "South Africa",
       "level": "country",
-      "parent_code": "EMEA",
+      "parent_code": "AF",
       "default_inheritance": true,
       "flag_emoji": "🇿🇦",
       "frameworks": [

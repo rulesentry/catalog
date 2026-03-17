@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "ner.organization",
+  "qualified_id": "core.ner.organization",
+  "type": "rule",
+  "version": "3.0.0",
+  "status": "active",
+  "name": "Organisation Name (NER)",
+  "description": "Detects organisation names (companies, institutions, government bodies) using an on-device NER model. Requires an active ONNX model (bert-base-ner or distilbert-ner). Rule silently no-ops when no model is active.",
+  "category_id": "ner",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "regions": ["GLOBAL"],
+  "profiles": ["gdpr", "ccpa", "production"],
+  "tags": ["pii", "organization", "ner"],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": ["ORGANIZATION"],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[ORGANIZATION]"
+        }
+      }
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/ner/organization_ner"
+  },
+  "created_at": "2026-03-18T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-03-18T00:00:00Z",
+  "modified_by": "claude-code"
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "contact.phone_international",
+  "qualified_id": "core.contact.phone_international",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "International Phone Number (E.164)",
+  "description": "Detects international phone numbers in E.164 format: plus sign followed by country code and subscriber number (7-15 digits total). Complements country-specific phone rules with a global catch-all pattern.",
+  "category_id": "contact",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on OpenRedaction PHONE_INTERNATIONAL pattern",
+    "attribution": "ITU-T E.164 numbering plan",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 50,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\+[1-9]\\d{6,14}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "visible_prefix": 3,
+          "visible_suffix": 2
+        }
+      },
+      "message": "International phone number masked for privacy"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

@@ -40,12 +40,28 @@
       "notes": "SSN detection with format validation - highest priority for HIPAA Safe Harbor"
     },
     {
+      "rule_id": "government.us_itin",
+      "pinned_version": "3.0.0",
+      "priority": 95,
+      "attached_at": "2026-03-17T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "US ITIN detection with format validation - critical for tax ID coverage alongside SSN"
+    },
+    {
       "rule_id": "government.us_passport",
       "pinned_version": "3.0.0",
       "priority": 90,
       "attached_at": "2026-02-10T00:00:00Z",
       "attached_by": "claude-code",
       "notes": "US passport number detection for CCPA compliance"
+    },
+    {
+      "rule_id": "government.us_driver_license",
+      "pinned_version": "3.0.0",
+      "priority": 85,
+      "attached_at": "2026-03-17T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "US driver license detection - context-anchored broad pattern for HIPAA/CCPA"
     },
     {
       "rule_id": "government.ein",

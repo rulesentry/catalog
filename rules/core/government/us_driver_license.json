@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "government.us_driver_license",
+  "qualified_id": "core.government.us_driver_license",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "US Driver License Number",
+  "description": "Detects US driver license numbers using context-anchored matching. Requires a keyword prefix (DL, driver license, license number, etc.) followed by an alphanumeric identifier. Trades recall for precision — per-state format rules are a future enhancement.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "hipaa",
+    "ccpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on Presidio UsLicenseRecognizer and OpenRedaction DRIVING_LICENSE_US",
+    "attribution": "Context-anchored broad pattern approach used by both competitors",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 85,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:DL|driver(?:'s)?\\s+licen[sc]e|licen[sc]e\\s+(?:no|number|num|#))[\\s:# -]*([A-Z0-9][A-Z0-9 .\\-]{4,17}[A-Z0-9])",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      },
+      "validator": "context_filter",
+      "validator_params": {
+        "reject_keywords": ["example", "sample", "test", "demo", "fake", "invalid"]
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DL",
+          "reversible": false
+        }
+      },
+      "message": "Driver license number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "US"
+  ]
+}

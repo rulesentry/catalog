@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "government.us_itin",
+  "qualified_id": "core.government.us_itin",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "US Individual Taxpayer Identification Number (ITIN)",
+  "description": "Detects US ITINs issued by the IRS to individuals who are required to have a taxpayer identification number but are not eligible for an SSN. Format: 9XX-[50-65,70-88,90-92,94-99]-XXXX.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "critical",
+  "profiles": [
+    "hipaa",
+    "ccpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on Presidio UsItinRecognizer and OpenRedaction ITIN patterns",
+    "attribution": "IRS Publication 1915 — ITIN format rules",
+    "validator_algorithm": "IRS area/group position validation",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 95,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b9\\d{2}[-\\s]?(5\\d|6[0-5]|7\\d|8[0-8]|9[0-2]|9[4-9])[-\\s]?\\d{4}\\b",
+      "engine": "regex",
+      "validator": "itin_format"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "ITIN",
+          "reversible": false
+        }
+      },
+      "message": "ITIN tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "US"
+  ]
+}

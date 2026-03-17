@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "government.indian_pan",
+  "qualified_id": "core.government.indian_pan",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "Indian Permanent Account Number (PAN)",
+  "description": "Detects Indian PAN cards issued by the Income Tax Department. Format: 5 uppercase letters (4th letter is entity type code) + 4 digits + 1 uppercase letter.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "Based on Presidio InPanRecognizer",
+    "attribution": "Income Tax Department PAN format specification",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{3}[ABCFGHLJPT][A-Z]\\d{4}[A-Z]\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "PAN",
+          "reversible": false
+        }
+      },
+      "message": "Indian PAN tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "IN"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "personal.date",
+  "qualified_id": "core.personal.date",
+  "type": "rule",
+  "version": "1.0.0",
+  "name": "Date",
+  "description": "Detects standalone dates in MM/DD/YYYY or DD/MM/YYYY format with a 4-digit year in the range 1900–2099. Matches dates without requiring an explicit 'Date of Birth:' context label. Low severity — bare dates are ambiguous and may not represent personal information without surrounding context.",
+  "category_id": "personal",
+  "rule_kind": "atomic",
+  "severity": "low",
+  "profiles": [
+    "hipaa",
+    "gdpr"
+  ],
+  "metadata": {
+    "formats": [
+      "MM/DD/YYYY",
+      "DD/MM/YYYY",
+      "MM-DD-YYYY",
+      "DD-MM-YYYY"
+    ],
+    "note": "Companion to personal.date_of_birth. Use that rule for higher-confidence context-anchored matches (with 'DOB:' or 'Date of Birth:' prefix). This rule catches bare dates without a label.",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:0?[1-9]|1[0-2])[/-](?:0?[1-9]|[12]\\d|3[01])[/-](?:19|20)\\d{2}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": false
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[DATE]"
+        }
+      },
+      "message": "Date redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

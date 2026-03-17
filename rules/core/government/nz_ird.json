@@ -1,11 +1,11 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
-  "id": "government.australian_medicare",
-  "qualified_id": "core.government.australian_medicare",
+  "id": "government.nz_ird",
+  "qualified_id": "core.government.nz_ird",
   "type": "rule",
   "version": "3.0.0",
-  "name": "Australian Medicare Number",
-  "description": "Detects Australian Medicare card numbers with MOD-10 checksum validation. Format: first digit 2-6, followed by 9 digits, with optional /N issue number suffix.",
+  "name": "New Zealand IRD Number",
+  "description": "Detects New Zealand Inland Revenue Department (IRD) numbers. Format: 8 or 9 digits preceded by context keywords. MOD-11 checksum validator may be added in follow-up.",
   "category_id": "government",
   "rule_kind": "atomic",
   "severity": "high",
@@ -13,8 +13,9 @@
     "production"
   ],
   "metadata": {
-    "pattern_source": "Based on Presidio AuMedicareRecognizer",
-    "attribution": "Services Australia Medicare card number format",
+    "pattern_source": "NZ Inland Revenue IRD number format",
+    "attribution": "Inland Revenue Department (Te Tari Taake)",
+    "format": "8-9 digits with context keywords",
     "needs_review": false
   },
   "evaluation": {
@@ -22,9 +23,11 @@
     "priority": 75,
     "target": "content",
     "pattern": {
-      "pattern": "\\b[2-6]\\d{3}\\s?\\d{5}\\s?\\d(?:\\/\\d)?\\b",
+      "pattern": "\\b(?:IRD|IRD\\s+number|tax\\s+number)[:\\s]+\\d{8,9}\\b",
       "engine": "regex",
-      "validator": "australian_medicare_mod10"
+      "flags": {
+        "case_insensitive": true
+      }
     },
     "effect": {
       "type": "transform",
@@ -32,17 +35,17 @@
       "transform": {
         "type": "tokenize",
         "params": {
-          "prefix": "MEDICARE_AU",
+          "prefix": "IRD_NZ",
           "reversible": false
         }
       },
-      "message": "Australian Medicare number tokenized for de-identification"
+      "message": "New Zealand IRD number tokenized for de-identification"
     }
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
   "updated_at": "2026-03-17T00:00:00Z",
   "regions": [
-    "AU"
+    "NZ"
   ]
 }

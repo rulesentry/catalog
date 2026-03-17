@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "government.uk_vehicle_registration",
+  "qualified_id": "core.government.uk_vehicle_registration",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UK Vehicle Registration Number",
+  "description": "Detects UK vehicle registration plates. Covers current format (AB12 CDE), prefix format (A123 BCD), and suffix format (ABC 123D).",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "UK DVLA vehicle registration formats",
+    "attribution": "Driver and Vehicle Licensing Agency (DVLA)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:[A-Z]{2}\\d{2}\\s?[A-Z]{3}|[A-Z]\\d{1,3}\\s?[A-Z]{3}|[A-Z]{3}\\s?\\d{1,3}[A-Z])\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[UK_VEHICLE_REG]"
+        }
+      },
+      "message": "UK vehicle registration number redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "UK"
+  ]
+}

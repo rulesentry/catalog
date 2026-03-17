@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "government.nz_driver_license",
+  "qualified_id": "core.government.nz_driver_license",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "New Zealand Driver Licence Number",
+  "description": "Detects New Zealand driver licence numbers. Format: 2 letters followed by 6 digits, preceded by context keywords.",
+  "category_id": "government",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "NZ Transport Agency driver licence format",
+    "attribution": "Waka Kotahi NZ Transport Agency",
+    "format": "2 letters + 6 digits (e.g., AB123456)",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:driver'?s?\\s+licen[cs]e|DL|licence\\s+number)[:\\s]+[A-Z]{2}\\d{6}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DL_NZ",
+          "reversible": false
+        }
+      },
+      "message": "New Zealand driver licence number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "NZ"
+  ]
+}

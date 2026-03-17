@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "financial.uk_bank_account",
+  "qualified_id": "core.financial.uk_bank_account",
+  "type": "rule",
+  "version": "3.0.0",
+  "name": "UK Bank Account Number",
+  "description": "Detects UK bank account numbers. Format: 8 digits preceded by banking context keywords (account number, a/c). UK bank accounts do not have a universal check digit algorithm.",
+  "category_id": "financial",
+  "rule_kind": "atomic",
+  "severity": "high",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "pci",
+    "production"
+  ],
+  "metadata": {
+    "pattern_source": "UK banking account number format",
+    "attribution": "UK Payments Administration",
+    "format": "8 digits with banking context",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:account\\s+(?:number|no|#)|a\\/c)[:\\s]+\\d{8}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "mask",
+        "params": {
+          "mask_char": "*",
+          "visible_suffix": 4
+        }
+      },
+      "message": "UK bank account number masked, last 4 digits visible"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "UK"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "id": "healthcare.cpt_code",
+  "qualified_id": "core.healthcare.cpt_code",
+  "type": "rule",
+  "version": "3.0.0",
+  "status": "active",
+  "name": "CPT Procedure Code",
+  "summary": "Detects CPT (Current Procedural Terminology) codes with context markers",
+  "description": "Detects CPT procedure codes in healthcare documents. Matches 5-digit CPT codes (00100-99499) and Category II/III codes (e.g., 0042F, 0019T). Requires context keywords to reduce false positives from arbitrary 5-digit numbers.",
+  "category_id": "healthcare",
+  "rule_kind": "atomic",
+  "severity": "medium",
+  "profiles": ["hipaa", "production"],
+  "regions": ["US"],
+  "tags": ["phi", "healthcare", "procedure", "billing", "clinical"],
+  "metadata": {
+    "compliance_notes": "CPT codes linked to a patient constitute PHI under HIPAA. CPT is maintained by the AMA.",
+    "format": "5 digits (00100-99499) or 4 digits + F/T suffix (Category II/III)",
+    "false_positive_notes": "Context keywords required to avoid matching arbitrary 5-digit numbers"
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:CPT|procedure\\s+code|proc\\.?\\s+code|billing\\s+code|service\\s+code)[:\\s]+\\d{5}[FT]?\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "message": "CPT procedure code redacted per HIPAA when linked to patient identity",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[CPT_CODE]"
+        }
+      }
+    }
+  },
+  "created_at": "2026-03-17T00:00:00Z",
+  "updated_at": "2026-03-17T00:00:00Z"
+}

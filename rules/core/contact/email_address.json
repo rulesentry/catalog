@@ -32,7 +32,18 @@
     "target": "content",
     "pattern": {
       "pattern": "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
-      "engine": "regex"
+      "engine": "regex",
+      "validator": "tld_reject",
+      "validator_params": {
+        "reject_tlds": [
+          "txt", "pdf", "doc", "docx", "xls", "xlsx", "csv",
+          "jpg", "jpeg", "png", "gif", "bmp", "svg", "webp",
+          "zip", "tar", "gz", "rar", "7z",
+          "exe", "dll", "bat", "sh", "bin",
+          "html", "htm", "xml", "json", "yaml", "yml",
+          "mp3", "mp4", "avi", "mov", "wav"
+        ]
+      }
     },
     "effect": {
       "type": "transform",

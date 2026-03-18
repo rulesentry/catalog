@@ -6,7 +6,7 @@
   "version": "3.0.0",
   "status": "active",
   "name": "Organisation Name (NER)",
-  "description": "Detects organisation names (companies, institutions, government bodies) using an on-device NER model. Requires an active ONNX model (bert-base-ner or distilbert-ner). Rule silently no-ops when no model is active.",
+  "description": "Detects organisation names (companies, institutions, government bodies) using an on-device NER model. Requires an active ONNX model (distilbert-ner). Rule silently no-ops when no model is active.",
   "category_id": "ner",
   "rule_kind": "atomic",
   "severity": "low",

@@ -6,7 +6,7 @@
   "version": "3.0.0",
   "status": "active",
   "name": "Person Name (NER)",
-  "description": "Detects full person names using an on-device NER model. Requires an active ONNX model (bert-base-ner or distilbert-ner). Rules silently no-ops when no model is active.",
+  "description": "Detects full person names using an on-device NER model. Requires an active ONNX model (distilbert-ner). Rules silently no-ops when no model is active.",
   "category_id": "ner",
   "rule_kind": "atomic",
   "severity": "high",

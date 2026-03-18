@@ -6,7 +6,7 @@
   "version": "3.2.0",
   "status": "active",
   "name": "PII Named Entity Recognition Policy",
-  "description": "On-device NER-based PII detection for people, locations, organisations, and miscellaneous entities. All rules require an active ONNX model (bert-base-ner or distilbert-ner — download in Settings). Rules silently no-op without a model, so this policy is safe to activate at any time.",
+  "description": "On-device NER-based PII detection for people, locations, organisations, and miscellaneous entities. All rules require an active ONNX model (distilbert-ner — download in Settings). Rules silently no-op without a model, so this policy is safe to activate at any time.",
   "profiles": ["gdpr", "ccpa", "production"],
   "regions": ["GLOBAL"],
   "priority": 50,

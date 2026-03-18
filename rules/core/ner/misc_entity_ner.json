@@ -6,7 +6,7 @@
   "version": "3.0.0",
   "status": "active",
   "name": "Miscellaneous Named Entity (NER)",
-  "description": "Detects miscellaneous named entities (nationalities, events, awards, works of art) using an on-device NER model. The CoNLL-2003 MISC class partially covers nationality/religion/political entities. Requires an active ONNX model (bert-base-ner or distilbert-ner). Rule silently no-ops when no model is active.",
+  "description": "Detects miscellaneous named entities (nationalities, events, awards, works of art) using an on-device NER model. The CoNLL-2003 MISC class partially covers nationality/religion/political entities. Requires an active ONNX model (distilbert-ner). Rule silently no-ops when no model is active.",
   "category_id": "ner",
   "rule_kind": "atomic",
   "severity": "medium",

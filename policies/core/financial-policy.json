@@ -3,11 +3,12 @@
   "id": "policy.financial",
   "qualified_id": "core.policy.financial",
   "type": "policy",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "status": "active",
   "name": "Financial Data Policy",
   "description": "Global baseline policy for financial data protection. Covers all financial rules including credit cards, bank accounts, routing numbers, IBAN, cryptocurrency addresses, and securities identifiers across all regions.",
   "profiles": [
+    "pci-dss",
     "production"
   ],
   "regions": [
@@ -17,6 +18,8 @@
   "tags": [
     "financial",
     "banking",
+    "pci-dss",
+    "cardholder-data",
     "global"
   ],
   "rules": [
@@ -145,6 +148,14 @@
       "priority": 45,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"
+    },
+    {
+      "rule_id": "financial.card_expiration",
+      "pinned_version": "1.0.0",
+      "priority": 45,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Card expiration date detection (PCI-DSS cardholder data)"
     }
   ],
   "metadata": {
@@ -158,6 +169,6 @@
   },
   "created_at": "2026-02-13T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-02-13T00:00:00Z",
+  "modified_at": "2026-03-19T00:00:00Z",
   "modified_by": "claude-code"
 }

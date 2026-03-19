@@ -3,7 +3,7 @@
   "id": "policy.apac-data-privacy",
   "qualified_id": "core.policy.apac-data-privacy",
   "type": "policy",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "status": "active",
   "name": "APAC Data Privacy Policy",
   "description": "Data privacy policy for Asia-Pacific jurisdictions. Covers Singapore PDPA, Japan APPI, Australia Privacy Act, India DPDP Act, and government ID detection across AU, JP, IN, CN, HK, KR, TW, and TH.",
@@ -157,6 +157,78 @@
       "attached_at": "2026-03-17T00:00:00Z",
       "attached_by": "claude-code",
       "notes": "New Zealand passport number (Privacy Act 2020)"
+    },
+    {
+      "rule_id": "government.asia_south_korea_brn",
+      "pinned_version": "3.0.0",
+      "priority": 75,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "South Korea Business Registration Number (PIPA compliance)"
+    },
+    {
+      "rule_id": "government.asia_south_korea_driver_license",
+      "pinned_version": "3.0.0",
+      "priority": 80,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "South Korea driver's licence (PIPA compliance)"
+    },
+    {
+      "rule_id": "government.asia_south_korea_frn",
+      "pinned_version": "3.0.0",
+      "priority": 90,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "South Korea Foreign Registration Number (PIPA compliance)"
+    },
+    {
+      "rule_id": "government.asia_south_korea_passport",
+      "pinned_version": "3.0.0",
+      "priority": 85,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "South Korea passport number (PIPA compliance)"
+    },
+    {
+      "rule_id": "government.indian_gstin",
+      "pinned_version": "3.0.0",
+      "priority": 70,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Indian GSTIN (Goods & Services Tax ID) — DPDP Act 2023"
+    },
+    {
+      "rule_id": "government.indian_passport",
+      "pinned_version": "3.0.0",
+      "priority": 85,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Indian passport number — DPDP Act 2023"
+    },
+    {
+      "rule_id": "government.indian_vehicle_registration",
+      "pinned_version": "3.0.0",
+      "priority": 60,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Indian vehicle registration number — DPDP Act 2023"
+    },
+    {
+      "rule_id": "government.indian_voter_id",
+      "pinned_version": "3.0.0",
+      "priority": 80,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Indian Voter ID (EPIC) — DPDP Act 2023"
+    },
+    {
+      "rule_id": "government.asia_singapore_uen",
+      "pinned_version": "3.0.0",
+      "priority": 70,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Singapore Unique Entity Number (PDPA compliance)"
     }
   ],
   "metadata": {
@@ -170,6 +242,6 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_at": "2026-03-19T00:00:00Z",
   "modified_by": "claude-code"
 }

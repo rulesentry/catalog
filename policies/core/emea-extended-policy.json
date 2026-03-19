@@ -3,7 +3,7 @@
   "id": "policy.emea-extended",
   "qualified_id": "core.policy.emea-extended",
   "type": "policy",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "status": "active",
   "name": "EMEA Extended Data Protection Policy",
   "description": "Data protection policy for Middle East and Africa jurisdictions under EMEA. Covers Turkey KVKK, Saudi PDPL, UAE DPL, South Africa POPIA, and other regional data protection requirements for government ID detection.",
@@ -101,6 +101,14 @@
       "attached_at": "2026-02-26T00:00:00Z",
       "attached_by": "claude-code",
       "notes": "Ghana GPS (Ghana Post GPS) address detection for DPA 2012 compliance"
+    },
+    {
+      "rule_id": "government.africa_nigeria_vehicle_registration",
+      "pinned_version": "3.0.0",
+      "priority": 70,
+      "attached_at": "2026-03-19T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Nigerian vehicle registration plate detection (NDPR compliance)"
     }
   ],
   "metadata": {
@@ -114,6 +122,6 @@
   },
   "created_at": "2026-02-26T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-02-26T00:00:00Z",
+  "modified_at": "2026-03-19T00:00:00Z",
   "modified_by": "claude-code"
 }

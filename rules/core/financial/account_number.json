@@ -34,13 +34,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 4
+          "prefix": "ACCT",
+          "reversible": false
         }
       },
-      "message": "Bank account number masked, last 4 digits visible"
+      "message": "Bank account number tokenized for de-identification"
     }
   },
   "status": "active",

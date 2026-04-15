@@ -36,14 +36,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 2,
-          "visible_suffix": 3
+          "prefix": "ISIN",
+          "reversible": false
         }
       },
-      "message": "ISIN masked (ISO 6166 MOD-10 validated), country code and check digit visible"
+      "message": "ISIN tokenized (ISO 6166 MOD-10 validated), country code and check digit visible for de-identification"
     }
   },
   "status": "active",

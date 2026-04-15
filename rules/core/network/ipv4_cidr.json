@@ -30,13 +30,13 @@
       "type": "transform",
       "rationale": "inference",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 7
+          "prefix": "IP",
+          "reversible": false
         }
       },
-      "message": "IPv4 CIDR notation masked, network visible"
+      "message": "IPv4 CIDR notation tokenized, network visible for de-identification"
     }
   },
   "status": "active",

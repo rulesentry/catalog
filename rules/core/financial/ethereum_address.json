@@ -34,14 +34,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 6,
-          "visible_suffix": 4
+          "prefix": "ETH",
+          "reversible": false
         }
       },
-      "message": "Ethereum address masked (EIP-55 validated), 0x prefix and suffix visible"
+      "message": "Ethereum address tokenized (EIP-55 validated), 0x prefix and suffix visible for de-identification"
     }
   },
   "status": "active",

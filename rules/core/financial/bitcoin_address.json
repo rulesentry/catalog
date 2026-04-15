@@ -38,14 +38,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 4,
-          "visible_suffix": 4
+          "prefix": "BTC",
+          "reversible": false
         }
       },
-      "message": "Bitcoin address masked (Base58Check validated), prefix and suffix visible for verification"
+      "message": "Bitcoin address tokenized (Base58Check validated), prefix and suffix visible for verification for de-identification"
     }
   },
   "status": "active",

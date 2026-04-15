@@ -32,14 +32,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 4,
-          "preserve_format": true
+          "prefix": "TEL",
+          "reversible": false
         }
       },
-      "message": "UK mobile number masked, last 4 digits visible"
+      "message": "UK mobile number tokenized for de-identification"
     }
   },
   "status": "active",

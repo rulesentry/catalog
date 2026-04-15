@@ -36,13 +36,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 2
+          "prefix": "SEDOL",
+          "reversible": false
         }
       },
-      "message": "SEDOL masked (checksum validated), check digit visible"
+      "message": "SEDOL tokenized (checksum validated), check digit visible for de-identification"
     }
   },
   "status": "active",

@@ -29,13 +29,13 @@
       "type": "transform",
       "rationale": "compliance",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "visible_prefix": 3,
-          "visible_suffix": 2
+          "prefix": "TEL",
+          "reversible": false
         }
       },
-      "message": "International phone number masked for privacy"
+      "message": "International phone number tokenized for privacy for de-identification"
     }
   },
   "status": "active",

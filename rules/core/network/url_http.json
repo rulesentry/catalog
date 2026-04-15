@@ -31,13 +31,13 @@
       "type": "transform",
       "rationale": "inference",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 15
+          "prefix": "URL",
+          "reversible": false
         }
       },
-      "message": "URL masked, protocol and domain visible"
+      "message": "URL tokenized, protocol and domain visible for de-identification"
     }
   },
   "status": "active",

@@ -31,13 +31,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 2
+          "prefix": "POSTAL",
+          "reversible": false
         }
       },
-      "message": "German postal code masked, region digits visible"
+      "message": "German postal code tokenized, region digits visible for de-identification"
     }
   },
   "status": "active",

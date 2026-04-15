@@ -35,14 +35,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 8,
-          "preserve_format": true
+          "prefix": "MAC",
+          "reversible": false
         }
       },
-      "message": "MAC address masked, OUI (vendor) prefix visible"
+      "message": "MAC address tokenized, OUI (vendor) prefix visible for de-identification"
     }
   },
   "status": "active",

@@ -34,13 +34,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 3
+          "prefix": "BSB",
+          "reversible": false
         }
       },
-      "message": "BSB number masked, last 3 digits visible"
+      "message": "BSB number tokenized for de-identification"
     }
   },
   "status": "active",

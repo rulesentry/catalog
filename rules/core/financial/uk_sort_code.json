@@ -33,13 +33,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 2
+          "prefix": "SORT",
+          "reversible": false
         }
       },
-      "message": "UK sort code masked (format validated), last 2 digits visible"
+      "message": "UK sort code tokenized (format validated) for de-identification"
     }
   },
   "status": "active",

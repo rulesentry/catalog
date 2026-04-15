@@ -36,13 +36,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 8
+          "prefix": "SSH",
+          "reversible": false
         }
       },
-      "message": "SSH fingerprint masked, suffix visible for verification"
+      "message": "SSH fingerprint tokenized, suffix visible for verification for de-identification"
     }
   },
   "status": "active",

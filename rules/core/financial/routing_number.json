@@ -33,13 +33,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 4
+          "prefix": "RTN",
+          "reversible": false
         }
       },
-      "message": "Bank routing number masked (checksum validated), last 4 digits visible"
+      "message": "Bank routing number tokenized (checksum validated) for de-identification"
     }
   },
   "status": "active",

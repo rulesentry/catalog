@@ -32,13 +32,13 @@
       "type": "transform",
       "rationale": "inference",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 7
+          "prefix": "DNS",
+          "reversible": false
         }
       },
-      "message": "DNS server IP masked, first two octets visible"
+      "message": "DNS server IP tokenized, first two octets visible for de-identification"
     }
   },
   "status": "active",

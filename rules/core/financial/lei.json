@@ -36,14 +36,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 4,
-          "visible_suffix": 2
+          "prefix": "LEI",
+          "reversible": false
         }
       },
-      "message": "LEI masked (MOD-97 validated), prefix and check digits visible"
+      "message": "LEI tokenized (MOD-97 validated), prefix and check digits visible for de-identification"
     }
   },
   "status": "active",

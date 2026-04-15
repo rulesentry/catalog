@@ -39,14 +39,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 4,
-          "preserve_format": true
+          "prefix": "TEL",
+          "reversible": false
         }
       },
-      "message": "US phone number masked, last 4 digits visible"
+      "message": "US phone number tokenized for de-identification"
     }
   },
   "status": "active",

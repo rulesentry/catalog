@@ -29,20 +29,26 @@
       "engine": "regex",
       "validator": "ipv4_scope",
       "validator_params": {
-        "reject_scopes": ["private", "loopback", "link_local", "broadcast", "documentation"]
+        "reject_scopes": [
+          "private",
+          "loopback",
+          "link_local",
+          "broadcast",
+          "documentation"
+        ]
       }
     },
     "effect": {
       "type": "transform",
       "rationale": "compliance",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 7
+          "prefix": "IP",
+          "reversible": false
         }
       },
-      "message": "IPv4 address masked (GDPR), first two octets visible"
+      "message": "IPv4 address tokenized (GDPR) for de-identification"
     }
   },
   "status": "active",

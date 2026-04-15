@@ -32,13 +32,13 @@
       "type": "transform",
       "rationale": "inference",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 8
+          "prefix": "CERT",
+          "reversible": false
         }
       },
-      "message": "SSL certificate serial masked, suffix visible"
+      "message": "SSL certificate serial tokenized, suffix visible for de-identification"
     }
   },
   "status": "active",

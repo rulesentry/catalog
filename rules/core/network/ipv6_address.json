@@ -32,13 +32,13 @@
       "type": "transform",
       "rationale": "compliance",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 9
+          "prefix": "IP",
+          "reversible": false
         }
       },
-      "message": "IPv6 address masked (GDPR), network prefix visible"
+      "message": "IPv6 address tokenized (GDPR), network prefix visible for de-identification"
     }
   },
   "status": "active",

@@ -44,14 +44,13 @@
       "type": "transform",
       "rationale": "compliance",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_suffix": 4,
-          "preserve_format": true
+          "prefix": "CC",
+          "reversible": false
         }
       },
-      "message": "Debit card masked (Luhn validated), last 4 digits visible per PCI-DSS"
+      "message": "Debit card tokenized (Luhn validated) per PCI-DSS for de-identification"
     }
   },
   "status": "active",

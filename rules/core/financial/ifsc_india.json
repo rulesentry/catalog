@@ -31,14 +31,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 4,
-          "visible_suffix": 3
+          "prefix": "IFSC",
+          "reversible": false
         }
       },
-      "message": "IFSC code masked, bank code and branch suffix visible"
+      "message": "IFSC code tokenized, bank code and branch suffix visible for de-identification"
     }
   },
   "status": "active",

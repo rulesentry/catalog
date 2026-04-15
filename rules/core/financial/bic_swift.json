@@ -48,14 +48,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 4,
-          "visible_suffix": 2
+          "prefix": "BIC",
+          "reversible": false
         }
       },
-      "message": "BIC/SWIFT code masked, bank code and country visible"
+      "message": "BIC/SWIFT code tokenized, bank code and country visible for de-identification"
     }
   },
   "status": "active",

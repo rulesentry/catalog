@@ -34,13 +34,13 @@
       "type": "transform",
       "rationale": "verification",
       "transform": {
-        "type": "mask",
+        "type": "tokenize",
         "params": {
-          "mask_char": "*",
-          "visible_prefix": 3
+          "prefix": "POSTAL",
+          "reversible": false
         }
       },
-      "message": "Canadian postal code masked, forward sortation area visible"
+      "message": "Canadian postal code tokenized, forward sortation area visible for de-identification"
     }
   },
   "status": "active",

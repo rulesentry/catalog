@@ -3,7 +3,7 @@
   "id": "healthcare.npi_luhn",
   "qualified_id": "core.healthcare.npi_luhn",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "status": "active",
   "name": "National Provider Identifier (NPI)",
   "summary": "Detects US NPI numbers with Luhn checksum validation",
@@ -39,7 +39,7 @@
       "flags": {
         "case_insensitive": true
       },
-      "validator": "luhn"
+      "validator": "npi_luhn"
     },
     "effect": {
       "type": "transform",

@@ -3,9 +3,9 @@
   "id": "network.mac_address",
   "qualified_id": "core.network.mac_address",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "name": "MAC Address",
-  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Hardware addresses can be used for device tracking.",
+  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Colon-separated form requires a label keyword (mac, ether, hw-addr) because SSH MD5 fingerprints share the same 6×2-hex-colon syntax.",
   "category_id": "network",
   "rule_kind": "atomic",
   "severity": "medium",
@@ -21,6 +21,7 @@
       "XX-XX-XX-XX-XX-XX",
       "XXXX.XXXX.XXXX"
     ],
+    "pattern_rationale": "Colon-separated form changed to require label (mac/ether/hw-addr/link/ether) because SSH MD5 fingerprints (aa:bb:cc:dd:ee:ff:...) have the same 6-group colon-hex syntax. Hyphen-separated and Cisco dot-separated forms have no equivalent collision so they remain label-free.",
     "needs_review": false
   },
   "evaluation": {
@@ -28,8 +29,11 @@
     "priority": 70,
     "target": "content",
     "pattern": {
-      "pattern": "\\b(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}\\b|\\b(?:[0-9A-Fa-f]{4}\\.){2}[0-9A-Fa-f]{4}\\b",
-      "engine": "regex"
+      "pattern": "(?:(?:mac(?:[-_\\s]?(?:address|addr))?|ether(?:net)?|hw(?:[-_\\s]?addr)?|link[\\/\\\\]ether)[:\\s]+(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}|\\b(?:[0-9A-Fa-f]{2}-){5}[0-9A-Fa-f]{2}\\b|\\b(?:[0-9A-Fa-f]{4}\\.){2}[0-9A-Fa-f]{4}\\b)",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
     },
     "effect": {
       "type": "transform",
@@ -46,7 +50,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "updated_at": "2026-04-15T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

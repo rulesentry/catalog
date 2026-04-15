@@ -3,9 +3,9 @@
   "id": "network.ipv6_address",
   "qualified_id": "core.network.ipv6_address",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "name": "IPv6 Address",
-  "description": "Detects IPv6 addresses in standard and compressed notation (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334, ::1). GDPR personal data.",
+  "description": "Detects IPv6 addresses in standard and compressed notation (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334, ::1). GDPR personal data. SSH MD5 fingerprints (aa:bb:cc:dd:...) have the same syntactic form but are excluded via first-group length requirement.",
   "category_id": "network",
   "rule_kind": "atomic",
   "severity": "medium",
@@ -17,7 +17,8 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "Hexadecimal groups separated by colons",
-    "note": "GDPR considers IP addresses as personal data",
+    "note": "GDPR considers IP addresses as personal data. Documentation prefix 2001:db8::/32 is not rejected (no ipv6_scope validator yet — unlike ipv4_scope which rejects private/loopback/documentation).",
+    "pattern_rationale": "Full 8-group arm changed to require first group {3,4} chars instead of {1,4}. SSH MD5 fingerprints use all-2-char groups (aa:bb:cc:dd:ee:ff:00:11) which matched the original {1,4} pattern. Real IPv6 global-unicast and link-local addresses start with 4-char groups (2001, fe80, fc00, etc.). Compressed arms (::X, X::Y) are unaffected.",
     "needs_review": false
   },
   "evaluation": {
@@ -25,7 +26,7 @@
     "priority": 70,
     "target": "content",
     "pattern": {
-      "pattern": "\\b(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\\b|\\b::(?:[0-9a-fA-F]{1,4}:){0,6}[0-9a-fA-F]{1,4}\\b|\\b[0-9a-fA-F]{1,4}::(?:[0-9a-fA-F]{1,4}:){0,5}[0-9a-fA-F]{1,4}\\b",
+      "pattern": "\\b[0-9a-fA-F]{3,4}(?::[0-9a-fA-F]{1,4}){7}\\b|\\b::(?:[0-9a-fA-F]{1,4}:){0,6}[0-9a-fA-F]{1,4}\\b|\\b[0-9a-fA-F]{1,4}::(?:[0-9a-fA-F]{1,4}:){0,5}[0-9a-fA-F]{1,4}\\b",
       "engine": "regex"
     },
     "effect": {
@@ -43,7 +44,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "updated_at": "2026-04-15T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

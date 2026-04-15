@@ -3,9 +3,9 @@
   "id": "network.hostname",
   "qualified_id": "core.network.hostname",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "name": "Hostname",
-  "description": "Detects hostnames with explicit context (e.g., 'hostname:', 'server:'). May reveal internal network structure.",
+  "description": "Detects hostnames with explicit context (e.g., 'hostname:', 'server:'). Requires a colon separator to prevent matching prose phrases like '# Server Configuration'.",
   "category_id": "network",
   "rule_kind": "atomic",
   "severity": "low",
@@ -15,6 +15,7 @@
   "metadata": {
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
+    "pattern_rationale": "Changed separator from [:\\s]+ to \\s*:\\s* — requiring a colon prevents 'server'/'host' keyword in prose (e.g. '# Server Configuration', '# Server Identity') from being treated as a hostname label.",
     "needs_review": false
   },
   "evaluation": {
@@ -22,7 +23,7 @@
     "priority": 60,
     "target": "content",
     "pattern": {
-      "pattern": "\\b(?:hostname|server|host)[:\\s]+[A-Za-z0-9][-A-Za-z0-9]{0,62}(?:\\.[A-Za-z0-9][-A-Za-z0-9]{0,62})*\\b",
+      "pattern": "\\b(?:hostname|server|host)\\s*:\\s*[A-Za-z0-9][-A-Za-z0-9]{0,62}(?:\\.[A-Za-z0-9][-A-Za-z0-9]{0,62})*\\b",
       "engine": "regex",
       "flags": {
         "case_insensitive": true
@@ -42,7 +43,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "updated_at": "2026-04-15T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

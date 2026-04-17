@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.indian_gstin",
-  "qualified_id": "core.government.indian_gstin",
+  "qualified_id": "rulesentry.government.indian_gstin",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Indian GSTIN (GST Identification Number)",

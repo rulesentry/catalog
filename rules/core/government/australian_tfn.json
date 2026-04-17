@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.australian_tfn",
-  "qualified_id": "core.government.australian_tfn",
+  "qualified_id": "rulesentry.government.australian_tfn",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Australian Tax File Number (TFN)",

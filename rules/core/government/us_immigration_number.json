@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.us_immigration_number",
-  "qualified_id": "core.government.us_immigration_number",
+  "qualified_id": "rulesentry.government.us_immigration_number",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "US Immigration Number (A-Number)",

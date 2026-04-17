@@ -1,11 +1,12 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.eu_es_nie",
-  "qualified_id": "core.government.eu_es_nie",
+  "qualified_id": "rulesentry.government.eu_es_nie",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Spanish NIE (Foreigner Identity Number)",
-  "description": "Detects Spanish N\u00famero de Identidad de Extranjero. Format: X/Y/Z prefix + 7 digits + check letter. Uses MOD-23 lookup table (same as DNI) after letter-to-digit substitution.",
+  "description": "Detects Spanish Número de Identidad de Extranjero. Format: X/Y/Z prefix + 7 digits + check letter. Uses MOD-23 lookup table (same as DNI) after letter-to-digit substitution.",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -17,9 +18,9 @@
     "country": "Spain",
     "pattern_source": "Based on Presidio EsNieRecognizer",
     "attribution": "https://github.com/microsoft/presidio",
-    "validator_algorithm": "MOD-23 with X\u21920, Y\u21921, Z\u21922 prefix substitution and letter lookup table TRWAGMYFPDXBNJZSQVHLCKE",
+    "validator_algorithm": "MOD-23 with X→0, Y→1, Z→2 prefix substitution and letter lookup table TRWAGMYFPDXBNJZSQVHLCKE",
     "format": "X1234567A (X/Y/Z + 7 digits + check letter)",
-    "official_name": "N\u00famero de Identidad de Extranjero (NIE)",
+    "official_name": "Número de Identidad de Extranjero (NIE)",
     "note": "Checksum validation deferred to future hardcoded validator; pattern structure provides moderate precision",
     "needs_review": false
   },

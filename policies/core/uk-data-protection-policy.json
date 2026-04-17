@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.uk-data-protection",
-  "qualified_id": "core.policy.uk-data-protection",
+  "qualified_id": "rulesentry.policy.uk-data-protection",
+  "publisher_id": "rulesentry",
   "type": "policy",
   "version": "3.1.0",
   "status": "active",
@@ -95,7 +96,10 @@
     }
   ],
   "metadata": {
-    "frameworks": ["DPA 2018", "UK-GDPR"],
+    "frameworks": [
+      "DPA 2018",
+      "UK-GDPR"
+    ],
     "compliance_scope": "UK personal data and special category data protection",
     "review_cycle": "quarterly",
     "owner": "uk-compliance-team"

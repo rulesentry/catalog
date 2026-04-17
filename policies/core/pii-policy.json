@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.pii",
-  "qualified_id": "core.policy.pii",
+  "qualified_id": "rulesentry.policy.pii",
+  "publisher_id": "rulesentry",
   "type": "policy",
   "version": "3.3.0",
   "status": "active",
@@ -252,7 +253,10 @@
     }
   ],
   "metadata": {
-    "frameworks": ["ISO 27701", "NIST Privacy Framework"],
+    "frameworks": [
+      "ISO 27701",
+      "NIST Privacy Framework"
+    ],
     "compliance_scope": "Global PII protection baseline",
     "review_cycle": "quarterly",
     "owner": "compliance-team"

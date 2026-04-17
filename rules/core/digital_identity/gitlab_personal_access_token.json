@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "digital_identity.gitlab_personal_access_token",
-  "qualified_id": "core.digital_identity.gitlab_personal_access_token",
+  "qualified_id": "rulesentry.digital_identity.gitlab_personal_access_token",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "GitLab Personal Access Token",

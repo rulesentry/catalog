@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.debit_card",
-  "qualified_id": "core.financial.debit_card",
+  "qualified_id": "rulesentry.financial.debit_card",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Debit Card (Luhn Validated)",

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.fax_number",
-  "qualified_id": "core.contact.fax_number",
+  "qualified_id": "rulesentry.contact.fax_number",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "Fax Number",

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.middle_east_israel_id",
-  "qualified_id": "core.government.middle_east_israel_id",
+  "qualified_id": "rulesentry.government.middle_east_israel_id",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Israeli ID Number (Teudat Zehut)",
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Luhn checksum (last digit)",
     "format": "9 digits (padded with leading zeros if needed)",
-    "official_name": "\u05ea\u05e2\u05d5\u05d3\u05ea \u05d6\u05d4\u05d5\u05ea (Teudat Zehut)",
+    "official_name": "תעודת זהות (Teudat Zehut)",
     "note": "Privacy Protection Law, 1981",
     "needs_review": false
   },

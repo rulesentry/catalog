@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.bic_swift",
-  "qualified_id": "core.financial.bic_swift",
+  "qualified_id": "rulesentry.financial.bic_swift",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.3.1",
   "name": "BIC/SWIFT Code",

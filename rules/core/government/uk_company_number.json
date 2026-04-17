@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.uk_company_number",
-  "qualified_id": "core.government.uk_company_number",
+  "qualified_id": "rulesentry.government.uk_company_number",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "UK Companies House Number",

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.us-pii",
-  "qualified_id": "core.policy.us-pii",
+  "qualified_id": "rulesentry.policy.us-pii",
+  "publisher_id": "rulesentry",
   "type": "policy",
   "version": "3.2.0",
   "status": "active",
@@ -309,7 +310,11 @@
     }
   ],
   "metadata": {
-    "frameworks": ["HIPAA", "CCPA", "CPRA"],
+    "frameworks": [
+      "HIPAA",
+      "CCPA",
+      "CPRA"
+    ],
     "compliance_scope": "Healthcare and consumer data protection",
     "review_cycle": "quarterly",
     "owner": "compliance-team"

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.phone_india",
-  "qualified_id": "core.contact.phone_india",
+  "qualified_id": "rulesentry.contact.phone_india",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "Indian Phone Number",

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.phone_france",
-  "qualified_id": "core.contact.phone_france",
+  "qualified_id": "rulesentry.contact.phone_france",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "French Phone Number",

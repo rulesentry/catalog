@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.africa_egypt_national_id",
-  "qualified_id": "core.government.africa_egypt_national_id",
+  "qualified_id": "rulesentry.government.africa_egypt_national_id",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Egyptian National ID Number",
@@ -17,7 +18,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "14 digits (C YY MM DD GG SSSS S where C=century, YY=year, MM=month, DD=day, GG=governorate, SSSS=sequence, S=gender)",
-    "official_name": "\u0627\u0644\u0631\u0642\u0645 \u0627\u0644\u0642\u0648\u0645\u064a (National ID)",
+    "official_name": "الرقم القومي (National ID)",
     "note": "Data Protection Law No. 151 of 2020",
     "needs_review": false
   },

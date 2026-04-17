@@ -1,11 +1,12 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.fi_hetu",
-  "qualified_id": "core.government.fi_hetu",
+  "qualified_id": "rulesentry.government.fi_hetu",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Finnish Personal Identity Code (HETU)",
-  "description": "Detects Finnish personal identity codes (henkil\u00f6tunnus, HETU). Format: DDMMYY[+/-/A]NNNx where the century marker distinguishes 1800s (+), 1900s (-), and 2000s (A), followed by a 3-digit ordinal and a checksum character.",
+  "description": "Detects Finnish personal identity codes (henkilötunnus, HETU). Format: DDMMYY[+/-/A]NNNx where the century marker distinguishes 1800s (+), 1900s (-), and 2000s (A), followed by a 3-digit ordinal and a checksum character.",
   "category_id": "government",
   "severity": "critical",
   "profiles": [
@@ -14,7 +15,7 @@
     "production"
   ],
   "metadata": {
-    "format": "DDMMYY[+/-/A]NNNx \u2014 century marker + 3-digit ordinal + checksum char from 0-9A-FHJKLMNPRSTUVWXY",
+    "format": "DDMMYY[+/-/A]NNNx — century marker + 3-digit ordinal + checksum char from 0-9A-FHJKLMNPRSTUVWXY",
     "note": "GDPR - personal data, Finnish Traficom regulation",
     "needs_review": false
   },

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.card_expiration",
-  "qualified_id": "core.financial.card_expiration",
+  "qualified_id": "rulesentry.financial.card_expiration",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.1",
   "status": "active",

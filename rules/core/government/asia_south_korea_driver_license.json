@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_south_korea_driver_license",
-  "qualified_id": "core.government.asia_south_korea_driver_license",
+  "qualified_id": "rulesentry.government.asia_south_korea_driver_license",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "South Korean Driver License Number",
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/microsoft/presidio",
     "validator_algorithm": "Region code prefix check (valid codes: 11-26, 28)",
     "format": "12-34-567890-12 (region + year + serial + check)",
-    "official_name": "\uc6b4\uc804\uba74\ud5c8\ubc88\ud638 (Driver License Number)",
+    "official_name": "운전면허번호 (Driver License Number)",
     "needs_review": false
   },
   "evaluation": {

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.ssn_format",
-  "qualified_id": "core.government.ssn_format",
+  "qualified_id": "rulesentry.government.ssn_format",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.2.2",
   "name": "US Social Security Number (Format Validated)",

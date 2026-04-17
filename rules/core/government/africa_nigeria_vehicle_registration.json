@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.africa_nigeria_vehicle_registration",
-  "qualified_id": "core.government.africa_nigeria_vehicle_registration",
+  "qualified_id": "rulesentry.government.africa_nigeria_vehicle_registration",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Nigerian Vehicle Registration Plate",

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_south_korea_rrn",
-  "qualified_id": "core.government.asia_south_korea_rrn",
+  "qualified_id": "rulesentry.government.asia_south_korea_rrn",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "South Korean Resident Registration Number (RRN)",
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Weighted sum modulo checksum",
     "format": "6 digits (YYMMDD) + 7 digits (gender/serial/checksum)",
-    "official_name": "\uc8fc\ubbfc\ub4f1\ub85d\ubc88\ud638 (Jumin Deungnok Beonho)",
+    "official_name": "주민등록번호 (Jumin Deungnok Beonho)",
     "note": "PIPA (Personal Information Protection Act) requires strict handling",
     "needs_review": false
   },

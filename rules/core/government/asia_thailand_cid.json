@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_thailand_cid",
-  "qualified_id": "core.government.asia_thailand_cid",
+  "qualified_id": "rulesentry.government.asia_thailand_cid",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Thailand Citizen ID Number",
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "MOD-11 checksum (last digit)",
     "format": "13 digits (often written with spaces: 1 2345 67890 12 3)",
-    "official_name": "\u0e40\u0e25\u0e02\u0e1b\u0e23\u0e30\u0e08\u0e33\u0e15\u0e31\u0e27\u0e1b\u0e23\u0e30\u0e0a\u0e32\u0e0a\u0e19 (Citizen ID)",
+    "official_name": "เลขประจำตัวประชาชน (Citizen ID)",
     "needs_review": false
   },
   "evaluation": {

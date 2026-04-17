@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "healthcare.health_insurance_number",
-  "qualified_id": "core.healthcare.health_insurance_number",
+  "qualified_id": "rulesentry.healthcare.health_insurance_number",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Health Insurance Number",

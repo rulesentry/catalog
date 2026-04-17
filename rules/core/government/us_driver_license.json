@@ -1,11 +1,12 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.us_driver_license",
-  "qualified_id": "core.government.us_driver_license",
+  "qualified_id": "rulesentry.government.us_driver_license",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.1",
   "name": "US Driver License Number",
-  "description": "Detects US driver license numbers using context-anchored matching. Requires a keyword prefix (DL, driver license, license number, etc.) followed by an alphanumeric identifier. Trades recall for precision \u2014 per-state format rules are a future enhancement.",
+  "description": "Detects US driver license numbers using context-anchored matching. Requires a keyword prefix (DL, driver license, license number, etc.) followed by an alphanumeric identifier. Trades recall for precision — per-state format rules are a future enhancement.",
   "category_id": "government",
   "severity": "high",
   "profiles": [

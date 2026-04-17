@@ -1,16 +1,28 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.pii-ner",
-  "qualified_id": "core.policy.pii-ner",
+  "qualified_id": "rulesentry.policy.pii-ner",
+  "publisher_id": "rulesentry",
   "type": "policy",
   "version": "3.3.0",
   "status": "active",
   "name": "PII Named Entity Recognition Policy",
   "description": "On-device NER-based PII detection for people, locations, organisations, and miscellaneous entities. All rules require an active ONNX model (distilbert-ner — download in Settings). Rules silently no-op without a model, so this policy is safe to activate at any time.",
-  "profiles": ["gdpr", "ccpa", "production"],
-  "regions": ["GLOBAL"],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
   "priority": 50,
-  "tags": ["pii", "ner", "ai", "on-device"],
+  "tags": [
+    "pii",
+    "ner",
+    "ai",
+    "on-device"
+  ],
   "rules": [
     {
       "rule_id": "ner.person_name",
@@ -65,14 +77,28 @@
     {
       "rule_id": "ner.person_name",
       "allowlist": [
-        "Email", "Phone", "Name", "Date", "Address",
-        "Subject", "Status", "Agent", "Customer",
-        "Channel", "Category", "Resolution", "Title"
+        "Email",
+        "Phone",
+        "Name",
+        "Date",
+        "Address",
+        "Subject",
+        "Status",
+        "Agent",
+        "Customer",
+        "Channel",
+        "Category",
+        "Resolution",
+        "Title"
       ]
     }
   ],
   "metadata": {
-    "frameworks": ["GDPR", "CCPA", "HIPAA"],
+    "frameworks": [
+      "GDPR",
+      "CCPA",
+      "HIPAA"
+    ],
     "compliance_scope": "Named entity PII detection via on-device AI models",
     "review_cycle": "quarterly",
     "owner": "compliance-team"

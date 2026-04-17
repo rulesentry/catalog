@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.th-phone-number",
-  "qualified_id": "community.mycos.contact.th-phone-number",
+  "qualified_id": "mycos.contact.th-phone-number",
+  "publisher_id": "mycos",
   "type": "rule",
   "version": "1.1.0",
   "name": "Thailand Phone Number",

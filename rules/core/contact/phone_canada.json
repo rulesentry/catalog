@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.phone_canada",
-  "qualified_id": "core.contact.phone_canada",
+  "qualified_id": "rulesentry.contact.phone_canada",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.0",
   "name": "Canadian Phone Number",
@@ -16,7 +17,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "+1 XXX XXX XXXX",
-    "pattern_rationale": "Four arms: (1) phone keyword label \u2014 any NANP format; (2) +1 prefix (with +); (3) 1-NXX-NXX-XXXX dash/dot (without +); (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 (e.g. NHS numbers) is NOT matched without context.",
+    "pattern_rationale": "Four arms: (1) phone keyword label — any NANP format; (2) +1 prefix (with +); (3) 1-NXX-NXX-XXXX dash/dot (without +); (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 (e.g. NHS numbers) is NOT matched without context.",
     "needs_review": false
   },
   "evaluation": {

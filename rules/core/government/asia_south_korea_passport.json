@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_south_korea_passport",
-  "qualified_id": "core.government.asia_south_korea_passport",
+  "qualified_id": "rulesentry.government.asia_south_korea_passport",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "South Korean Passport Number",
@@ -17,7 +18,7 @@
     "pattern_source": "Based on Presidio KrPassportRecognizer",
     "attribution": "https://github.com/microsoft/presidio",
     "format": "M123A4567 (prefix letter + 3 digits + letter + 4 digits)",
-    "official_name": "\uc5ec\uad8c (Korean Passport)",
+    "official_name": "여권 (Korean Passport)",
     "note": "Current format only; older 9-digit format (prefix + 8 digits) omitted as less reliable",
     "needs_review": false
   },

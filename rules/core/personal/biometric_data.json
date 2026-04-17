@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "personal.biometric_data",
-  "qualified_id": "core.personal.biometric_data",
+  "qualified_id": "rulesentry.personal.biometric_data",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "Biometric Data (Height/Weight)",

@@ -1,11 +1,12 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.mac_address",
-  "qualified_id": "core.network.mac_address",
+  "qualified_id": "rulesentry.network.mac_address",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.0",
   "name": "MAC Address",
-  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Colon-separated form requires a label keyword (mac, ether, hw-addr) because SSH MD5 fingerprints share the same 6\u00d72-hex-colon syntax.",
+  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Colon-separated form requires a label keyword (mac, ether, hw-addr) because SSH MD5 fingerprints share the same 6×2-hex-colon syntax.",
   "category_id": "network",
   "severity": "medium",
   "profiles": [

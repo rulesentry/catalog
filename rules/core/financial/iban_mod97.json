@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.iban_mod97",
-  "qualified_id": "core.financial.iban_mod97",
+  "qualified_id": "rulesentry.financial.iban_mod97",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "IBAN (MOD-97 Validated)",

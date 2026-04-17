@@ -1,10 +1,11 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.eu_french_carte_nationale",
-  "qualified_id": "core.government.eu_french_carte_nationale",
+  "qualified_id": "rulesentry.government.eu_french_carte_nationale",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
-  "name": "French National ID (Carte Nationale d'Identit\u00e9)",
+  "name": "French National ID (Carte Nationale d'Identité)",
   "description": "Detects French national identity card numbers. Format: 12 alphanumeric characters.",
   "category_id": "government",
   "severity": "high",
@@ -18,7 +19,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "12 alphanumeric characters",
-    "official_name": "Carte Nationale d'Identit\u00e9",
+    "official_name": "Carte Nationale d'Identité",
     "needs_review": false
   },
   "evaluation": {

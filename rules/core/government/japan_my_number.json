@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.japan_my_number",
-  "qualified_id": "core.government.japan_my_number",
+  "qualified_id": "rulesentry.government.japan_my_number",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Japan My Number",
@@ -24,7 +25,7 @@
     "priority": 100,
     "target": "content",
     "pattern": {
-      "pattern": "\\b(?:my\\s+number|\u30de\u30a4\u30ca\u30f3\u30d0\u30fc)[:\\s]+\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}\\b",
+      "pattern": "\\b(?:my\\s+number|マイナンバー)[:\\s]+\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}\\b",
       "engine": "regex",
       "flags": {
         "case_insensitive": true

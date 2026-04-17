@@ -1,11 +1,12 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_south_korea_frn",
-  "qualified_id": "core.government.asia_south_korea_frn",
+  "qualified_id": "rulesentry.government.asia_south_korea_frn",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "South Korean Foreigner Registration Number (FRN)",
-  "description": "Detects Korean Foreigner Registration Numbers (\uc678\uad6d\uc778\ub4f1\ub85d\ubc88\ud638) with checksum validation. Same structure as RRN but gender digit is 5-8 (indicating foreign national).",
+  "description": "Detects Korean Foreigner Registration Numbers (외국인등록번호) with checksum validation. Same structure as RRN but gender digit is 5-8 (indicating foreign national).",
   "category_id": "government",
   "severity": "critical",
   "profiles": [
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/microsoft/presidio",
     "validator_algorithm": "Weighted sum modulo checksum (same as RRN)",
     "format": "6 digits (YYMMDD) + dash + gender digit (5-8) + 6 digits",
-    "official_name": "\uc678\uad6d\uc778\ub4f1\ub85d\ubc88\ud638 (Foreigner Registration Number)",
+    "official_name": "외국인등록번호 (Foreigner Registration Number)",
     "note": "PIPA (Personal Information Protection Act) requires strict handling",
     "needs_review": false
   },

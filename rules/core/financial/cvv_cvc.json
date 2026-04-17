@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.cvv_cvc",
-  "qualified_id": "core.financial.cvv_cvc",
+  "qualified_id": "rulesentry.financial.cvv_cvc",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "CVV/CVC Security Code",

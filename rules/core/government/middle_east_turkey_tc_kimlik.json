@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.middle_east_turkey_tc_kimlik",
-  "qualified_id": "core.government.middle_east_turkey_tc_kimlik",
+  "qualified_id": "rulesentry.government.middle_east_turkey_tc_kimlik",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Turkish TC Kimlik No (Turkish ID)",
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Custom Turkish ID checksum (10th and 11th digits)",
     "format": "11 digits (cannot start with 0)",
-    "official_name": "TC Kimlik Numaras\u0131",
+    "official_name": "TC Kimlik Numarası",
     "note": "KVKK (Personal Data Protection Law No. 6698)",
     "needs_review": false
   },

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.americas-data-protection",
-  "qualified_id": "core.policy.americas-data-protection",
+  "qualified_id": "rulesentry.policy.americas-data-protection",
+  "publisher_id": "rulesentry",
   "type": "policy",
   "version": "3.0.0",
   "status": "active",
@@ -11,7 +12,12 @@
     "production"
   ],
   "regions": [
-    "CA", "MX", "BR", "AR", "CL", "CO"
+    "CA",
+    "MX",
+    "BR",
+    "AR",
+    "CL",
+    "CO"
   ],
   "priority": 55,
   "tags": [
@@ -72,7 +78,11 @@
     }
   ],
   "metadata": {
-    "frameworks": ["PIPEDA", "LGPD", "Ley de Proteccion de Datos Personales"],
+    "frameworks": [
+      "PIPEDA",
+      "LGPD",
+      "Ley de Proteccion de Datos Personales"
+    ],
     "compliance_scope": "Americas (non-US) government ID protection",
     "review_cycle": "semi-annual",
     "owner": "compliance-team"

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.africa_nigeria_nin",
-  "qualified_id": "core.government.africa_nigeria_nin",
+  "qualified_id": "rulesentry.government.africa_nigeria_nin",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Nigerian NIN (National Identification Number)",

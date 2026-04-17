@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.us_itin",
-  "qualified_id": "core.government.us_itin",
+  "qualified_id": "rulesentry.government.us_itin",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "US Individual Taxpayer Identification Number (ITIN)",
@@ -16,7 +17,7 @@
   ],
   "metadata": {
     "pattern_source": "Based on Presidio UsItinRecognizer and OpenRedaction ITIN patterns",
-    "attribution": "IRS Publication 1915 \u2014 ITIN format rules",
+    "attribution": "IRS Publication 1915 — ITIN format rules",
     "validator_algorithm": "IRS area/group position validation",
     "needs_review": false
   },

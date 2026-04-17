@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.ssh_fingerprint",
-  "qualified_id": "core.network.ssh_fingerprint",
+  "qualified_id": "rulesentry.network.ssh_fingerprint",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "SSH Key Fingerprint",

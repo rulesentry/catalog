@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.bsb_australia",
-  "qualified_id": "core.financial.bsb_australia",
+  "qualified_id": "rulesentry.financial.bsb_australia",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "BSB Number (Australia)",

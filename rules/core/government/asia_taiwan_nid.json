@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_taiwan_nid",
-  "qualified_id": "core.government.asia_taiwan_nid",
+  "qualified_id": "rulesentry.government.asia_taiwan_nid",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Taiwan National ID (ROC ID)",
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Weighted checksum calculation",
     "format": "1 letter + 9 digits (e.g., A123456789)",
-    "official_name": "\u8eab\u5206\u8b49\u5b57\u865f (National ID)",
+    "official_name": "身分證字號 (National ID)",
     "needs_review": false
   },
   "evaluation": {

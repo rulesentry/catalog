@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.australian_acn",
-  "qualified_id": "core.government.australian_acn",
+  "qualified_id": "rulesentry.government.australian_acn",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Australian Company Number (ACN)",

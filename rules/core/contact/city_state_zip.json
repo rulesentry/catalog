@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.city_state_zip",
-  "qualified_id": "core.contact.city_state_zip",
+  "qualified_id": "rulesentry.contact.city_state_zip",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "City, State, ZIP (US Format)",

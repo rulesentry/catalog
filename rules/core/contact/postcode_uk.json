@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.postcode_uk",
-  "qualified_id": "core.contact.postcode_uk",
+  "qualified_id": "rulesentry.contact.postcode_uk",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "UK Postcode",

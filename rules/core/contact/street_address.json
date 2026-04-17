@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.street_address",
-  "qualified_id": "core.contact.street_address",
+  "qualified_id": "rulesentry.contact.street_address",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.0",
   "name": "Street Address",

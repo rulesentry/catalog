@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.ipv4_address",
-  "qualified_id": "core.network.ipv4_address",
+  "qualified_id": "rulesentry.network.ipv4_address",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "IPv4 Address",

@@ -2,6 +2,12 @@
 
 Community-contributed rules, policies, categories, profiles, and regions for [RuleSentry](https://rulesentry.io) — the rule evaluation engine for detecting sensitive data patterns, enforcing compliance policies, and applying transforms.
 
+## Identity Principle
+
+> **File path is storage layout, not canonical identity. Canonical identity is defined by the explicit metadata fields `id`, `qualified_id`, `publisher_id`, and `version` inside the JSON file.**
+
+You can reorganize the directory tree without changing the meaning of any entity, as long as the identity fields inside the JSON remain unchanged.
+
 ## Getting Started
 
 1. **Fork** this repository
@@ -14,19 +20,18 @@ Community-contributed rules, policies, categories, profiles, and regions for [Ru
 ```
 contributors/
 ├── publishers/               # Registered publisher identities
-│   ├── rulesentry.json       # Core publisher
-│   └── mycos.json            # Community publisher
+│   ├── rulesentry.json       # RuleSentry publisher
+│   └── mycos.json            # Example community publisher
 ├── rules/
 │   ├── core/                 # RuleSentry-authored rules (~153)
 │   │   ├── contact/          # Category subdirectory
 │   │   ├── financial/
 │   │   ├── government/
 │   │   └── ...
-│   └── mycos/                # Community publisher
-│       └── contact/
-│           └── th-phone-number.json
+│   └── {publisher}/          # Community publisher rules
+│       └── {category}/
 ├── policies/
-│   ├── core/                 # Core policies (11)
+│   ├── core/                 # RuleSentry policies (11)
 │   └── {publisher}/          # Community policies
 ├── categories/
 │   ├── core/                 # Core categories (8)
@@ -39,10 +44,29 @@ contributors/
 └── LICENSE
 ```
 
-**Key conventions:**
-- `core/` is reserved for RuleSentry-authored entities. Uses `qualified_id: "core.{id}"`.
-- Other directories are community publishers. The directory name must match a registered publisher in `publishers/{name}.json`. Uses `qualified_id: "community.{publisher}.{category}.{name}"`.
+**Directory conventions:**
+- `core/` holds RuleSentry-authored entities (`publisher_id: "rulesentry"`).
+- Other directories hold community publisher entities. The directory name should match the publisher's registered `id`.
 - Category subdirectories are optional — uncategorized entities sit directly under the publisher directory.
+- The directory layout is storage organization only. Identity comes from the JSON fields.
+
+## ID Conventions
+
+**`qualified_id` format: `{publisher_id}.{category_id}.{name}`**
+
+| Publisher | Example `qualified_id` | Example `publisher_id` |
+|-----------|------------------------|------------------------|
+| RuleSentry | `rulesentry.government.ssn_format` | `rulesentry` |
+| Community | `mycos.contact.th_phone_number` | `mycos` |
+
+Rules:
+- `publisher_id` must match a registered entry in `publishers/{id}.json`.
+- `qualified_id` must start with the publisher's `id` prefix.
+- `id` is a local dotted identifier (e.g., `government.ssn_format`) — stable across reorganizations.
+- `version` is a semver string (`MAJOR.MINOR.PATCH`).
+- All four fields together define canonical identity. **File path is not part of identity.**
+
+> **Note:** `publisher_id` is currently defined on `rule` entities. Policy, profile, and category entities are expected to follow the same convention in a future schema version.
 
 ## Contributing a Rule
 
@@ -63,15 +87,15 @@ contributors/
 
    ```json
    {
-     "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+     "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
      "id": "{category}.{rule-name}",
-     "qualified_id": "community.{your-id}.{category}.{rule-name}",
+     "qualified_id": "{your-id}.{category}.{rule-name}",
+     "publisher_id": "{your-id}",
      "type": "rule",
      "version": "1.0.0",
      "name": "Human-Readable Name",
      "description": "What this rule detects and why.",
      "category_id": "{category}",
-     "rule_kind": "atomic",
      "severity": "medium",
      "evaluation": {
        "evaluation_type": "pattern_match",
@@ -89,12 +113,12 @@ contributors/
      "status": "active",
      "regions": ["GLOBAL"],
      "origin": {
-       "source_type": "local",
+       "source_type": "catalog",
        "publisher": "{your-id}",
        "author": "Your Name"
      },
      "created_at": "2026-01-01T00:00:00Z",
-     "updated_at": "2026-01-01T00:00:00Z"
+     "modified_at": "2026-01-01T00:00:00Z"
    }
    ```
 
@@ -104,25 +128,14 @@ contributors/
 
 Policies assemble rules via direct references, category inclusion, and filters. Your policy can reference:
 
-- **Your own rules** — by their bare `id` (e.g., `contact.mx-phone-number`)
+- **Your own rules** — by their bare `id` (e.g., `contact.th-phone-number`)
 - **Core rules** — built-in RuleSentry rules (e.g., `government.ssn_format`)
 
-Create your policy in `policies/{your-id}/` and follow the same `community.{your-id}.*` ID convention.
-
-## ID Conventions
-
-| Prefix | Usage | Directory |
-|--------|-------|-----------|
-| `core.*` | RuleSentry-authored entities | `{entity-type}/core/` |
-| `community.{publisher}.*` | Community contributions | `{entity-type}/{publisher}/` |
-
-- The publisher directory name must match the publisher ID in the `qualified_id`
-- Community publishers must be registered in `publishers/{id}.json`
-- File path should reflect the ID: `rules/{publisher}/{category}/{rule-name}.json`
+Create your policy in `policies/{your-id}/` with `publisher_id: "{your-id}"` and `qualified_id: "{your-id}.policy.{name}"`.
 
 ## Schema Reference
 
-For the canonical JSON schemas that define rule, policy, category, profile, and region formats, see the `json-schema/` directory in the [main RuleSentry repository](https://github.com/rulesentry/rulesentry).
+For the canonical JSON schemas that define rule, policy, category, profile, and region formats, see the `schemas/` directory in the [main RuleSentry repository](https://github.com/rulesentry/rulesentry).
 
 Full schema documentation: [rulesentry.io/docs/schemas](https://rulesentry.io/docs/schemas)
 

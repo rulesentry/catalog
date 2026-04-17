@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.networking-global",
-  "qualified_id": "core.policy.networking-global",
+  "qualified_id": "rulesentry.policy.networking-global",
+  "publisher_id": "rulesentry",
   "type": "policy",
   "version": "3.0.0",
   "status": "active",
@@ -142,7 +143,11 @@
     }
   ],
   "metadata": {
-    "frameworks": ["NIST 800-53", "ISO 27001", "CIS Controls"],
+    "frameworks": [
+      "NIST 800-53",
+      "ISO 27001",
+      "CIS Controls"
+    ],
     "compliance_scope": "Global network infrastructure data protection",
     "review_cycle": "quarterly",
     "owner": "security-team"

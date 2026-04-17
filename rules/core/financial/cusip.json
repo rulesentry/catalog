@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.cusip",
-  "qualified_id": "core.financial.cusip",
+  "qualified_id": "rulesentry.financial.cusip",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "CUSIP (North American Securities Identifier)",

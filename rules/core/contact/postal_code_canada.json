@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.postal_code_canada",
-  "qualified_id": "core.contact.postal_code_canada",
+  "qualified_id": "rulesentry.contact.postal_code_canada",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "Canadian Postal Code",

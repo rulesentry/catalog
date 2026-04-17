@@ -1,11 +1,12 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_south_korea_brn",
-  "qualified_id": "core.government.asia_south_korea_brn",
+  "qualified_id": "rulesentry.government.asia_south_korea_brn",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "South Korean Business Registration Number (BRN)",
-  "description": "Detects Korean Business Registration Numbers (\uc0ac\uc5c5\uc790\ub4f1\ub85d\ubc88\ud638). Format: 3 digits + dash + 2 digits + dash + 5 digits.",
+  "description": "Detects Korean Business Registration Numbers (사업자등록번호). Format: 3 digits + dash + 2 digits + dash + 5 digits.",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/microsoft/presidio",
     "validator_algorithm": "Custom MOD-10 with magic keys [1,3,7,1,3,7,1,3,5] and special 9th-digit handling. Deferred to future hardcoded validator.",
     "format": "123-45-67890 (3+2+5 digits with dashes)",
-    "official_name": "\uc0ac\uc5c5\uc790\ub4f1\ub85d\ubc88\ud638 (Business Registration Number)",
+    "official_name": "사업자등록번호 (Business Registration Number)",
     "needs_review": false
   },
   "evaluation": {

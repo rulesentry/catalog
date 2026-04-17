@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.bitcoin_address",
-  "qualified_id": "core.financial.bitcoin_address",
+  "qualified_id": "rulesentry.financial.bitcoin_address",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Bitcoin Address",

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.pin_code",
-  "qualified_id": "core.financial.pin_code",
+  "qualified_id": "rulesentry.financial.pin_code",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "PIN Code",

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.routing_number",
-  "qualified_id": "core.financial.routing_number",
+  "qualified_id": "rulesentry.financial.routing_number",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "US Routing Number (Checksum Validated)",

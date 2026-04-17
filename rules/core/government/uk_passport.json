@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.uk_passport",
-  "qualified_id": "core.government.uk_passport",
+  "qualified_id": "rulesentry.government.uk_passport",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "UK Passport Number",

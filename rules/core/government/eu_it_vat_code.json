@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.eu_it_vat_code",
-  "qualified_id": "core.government.eu_it_vat_code",
+  "qualified_id": "rulesentry.government.eu_it_vat_code",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Italian VAT Code (Partita IVA)",

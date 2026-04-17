@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.nz_ird",
-  "qualified_id": "core.government.nz_ird",
+  "qualified_id": "rulesentry.government.nz_ird",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "New Zealand IRD Number",

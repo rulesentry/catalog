@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.ifsc_india",
-  "qualified_id": "core.financial.ifsc_india",
+  "qualified_id": "rulesentry.financial.ifsc_india",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "IFSC Code (India)",

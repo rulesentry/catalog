@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.phone_us",
-  "qualified_id": "core.contact.phone_us",
+  "qualified_id": "rulesentry.contact.phone_us",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.2.0",
   "name": "US Phone Number",
@@ -23,7 +24,7 @@
       "+1 XXX XXX XXXX",
       "1-XXX-XXX-XXXX"
     ],
-    "pattern_rationale": "Same four-arm strategy as phone_canada: (1) phone keyword label \u2014 any NANP format; (2) +1 prefix; (3) 1-NXX-NXX-XXXX dash/dot; (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 is NOT matched without context.",
+    "pattern_rationale": "Same four-arm strategy as phone_canada: (1) phone keyword label — any NANP format; (2) +1 prefix; (3) 1-NXX-NXX-XXXX dash/dot; (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 is NOT matched without context.",
     "needs_review": false
   },
   "evaluation": {

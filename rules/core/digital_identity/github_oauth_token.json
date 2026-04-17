@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "digital_identity.github_oauth_token",
-  "qualified_id": "core.digital_identity.github_oauth_token",
+  "qualified_id": "rulesentry.digital_identity.github_oauth_token",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "GitHub OAuth Access Token",

@@ -1,11 +1,12 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.americas_colombia_cc",
-  "qualified_id": "core.government.americas_colombia_cc",
+  "qualified_id": "rulesentry.government.americas_colombia_cc",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.0",
-  "name": "Colombian Citizenship Card (C\u00e9dula de Ciudadan\u00eda)",
-  "description": "Detects Colombian national ID card numbers. Dot-separated form requires a keyword label (cc, c\u00e9dula, etc.) because 3-octet IPv4 prefixes (e.g. 192.168.100) match the same pattern.",
+  "name": "Colombian Citizenship Card (Cédula de Ciudadanía)",
+  "description": "Detects Colombian national ID card numbers. Dot-separated form requires a keyword label (cc, cédula, etc.) because 3-octet IPv4 prefixes (e.g. 192.168.100) match the same pattern.",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -17,9 +18,9 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "8-10 digits (formatted with dots or spaces)",
-    "official_name": "C\u00e9dula de Ciudadan\u00eda",
+    "official_name": "Cédula de Ciudadanía",
     "note": "Law 1581 Personal Data Protection",
-    "pattern_rationale": "Two arms: (1) with cc/c\u00e9dula/documento label \u2014 any separator including dots; (2) without label \u2014 comma or space separator only (dots excluded to prevent IPv4 collision e.g. 192.168.100).",
+    "pattern_rationale": "Two arms: (1) with cc/cédula/documento label — any separator including dots; (2) without label — comma or space separator only (dots excluded to prevent IPv4 collision e.g. 192.168.100).",
     "needs_review": false
   },
   "evaluation": {
@@ -27,7 +28,7 @@
     "priority": 80,
     "target": "content",
     "pattern": {
-      "pattern": "(?:(?:cc|c\\.c\\.|c\\.c|c\\.i\\.|c\\.i|c[e\u00e9]dula(?:\\s*de\\s*ciudadan[\u00edi]a)?|documento)[:\\s#-]*[0-9]{1,3}[.,\\s]?[0-9]{3}[.,\\s]?[0-9]{3}|\\b[0-9]{1,3}[,\\s][0-9]{3}[,\\s][0-9]{3}\\b)",
+      "pattern": "(?:(?:cc|c\\.c\\.|c\\.c|c\\.i\\.|c\\.i|c[eé]dula(?:\\s*de\\s*ciudadan[íi]a)?|documento)[:\\s#-]*[0-9]{1,3}[.,\\s]?[0-9]{3}[.,\\s]?[0-9]{3}|\\b[0-9]{1,3}[,\\s][0-9]{3}[,\\s][0-9]{3}\\b)",
       "engine": "regex"
     },
     "effect": {

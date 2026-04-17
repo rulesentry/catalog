@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.eu_fr_passport",
-  "qualified_id": "core.government.eu_fr_passport",
+  "qualified_id": "rulesentry.government.eu_fr_passport",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "French Passport Number",
@@ -27,7 +28,7 @@
     "priority": 85,
     "target": "content",
     "pattern": {
-      "pattern": "(?:passport|passeport|passport\\s+no|passport\\s+number|num\u00e9ro\\s+de\\s+passeport|n\u00b0\\s+de\\s+passeport)[\\s:# -]*([A-Z]{2}\\d{7,8})\\b",
+      "pattern": "(?:passport|passeport|passport\\s+no|passport\\s+number|numéro\\s+de\\s+passeport|n°\\s+de\\s+passeport)[\\s:# -]*([A-Z]{2}\\d{7,8})\\b",
       "engine": "regex",
       "flags": {
         "case_insensitive": true

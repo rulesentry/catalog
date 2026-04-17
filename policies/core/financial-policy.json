@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.financial",
-  "qualified_id": "core.policy.financial",
+  "qualified_id": "rulesentry.policy.financial",
+  "publisher_id": "rulesentry",
   "type": "policy",
   "version": "3.3.0",
   "status": "active",
@@ -159,7 +160,11 @@
     }
   ],
   "metadata": {
-    "frameworks": ["PCI-DSS 4.0", "GLBA", "SOX"],
+    "frameworks": [
+      "PCI-DSS 4.0",
+      "GLBA",
+      "SOX"
+    ],
     "compliance_scope": "Global financial data protection",
     "review_cycle": "quarterly",
     "owner": "finance-compliance-team"

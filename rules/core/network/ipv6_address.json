@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.ipv6_address",
-  "qualified_id": "core.network.ipv6_address",
+  "qualified_id": "rulesentry.network.ipv6_address",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.0",
   "name": "IPv6 Address",
@@ -16,7 +17,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "Hexadecimal groups separated by colons",
-    "note": "GDPR considers IP addresses as personal data. Documentation prefix 2001:db8::/32 is not rejected (no ipv6_scope validator yet \u2014 unlike ipv4_scope which rejects private/loopback/documentation).",
+    "note": "GDPR considers IP addresses as personal data. Documentation prefix 2001:db8::/32 is not rejected (no ipv6_scope validator yet — unlike ipv4_scope which rejects private/loopback/documentation).",
     "pattern_rationale": "Full 8-group arm changed to require first group {3,4} chars instead of {1,4}. SSH MD5 fingerprints use all-2-char groups (aa:bb:cc:dd:ee:ff:00:11) which matched the original {1,4} pattern. Real IPv6 global-unicast and link-local addresses start with 4-char groups (2001, fe80, fc00, etc.). Compressed arms (::X, X::Y) are unaffected.",
     "needs_review": false
   },

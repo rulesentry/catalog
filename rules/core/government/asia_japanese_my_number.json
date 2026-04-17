@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_japanese_my_number",
-  "qualified_id": "core.government.asia_japanese_my_number",
+  "qualified_id": "rulesentry.government.asia_japanese_my_number",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Japanese My Number (Individual Number)",
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Check digit calculated using Luhn-like MOD-11",
     "format": "12 digits (e.g., 123456789012)",
-    "official_name": "\u30de\u30a4\u30ca\u30f3\u30d0\u30fc (My Number)",
+    "official_name": "マイナンバー (My Number)",
     "note": "Act on the Use of Numbers requires strict protection",
     "needs_review": false
   },

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.sedol",
-  "qualified_id": "core.financial.sedol",
+  "qualified_id": "rulesentry.financial.sedol",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "SEDOL (UK/Irish Securities Identifier)",

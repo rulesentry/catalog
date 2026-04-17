@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.uk_bank_account",
-  "qualified_id": "core.financial.uk_bank_account",
+  "qualified_id": "rulesentry.financial.uk_bank_account",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "UK Bank Account Number",

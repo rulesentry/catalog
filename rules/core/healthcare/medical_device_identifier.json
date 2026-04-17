@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "healthcare.medical_device_identifier",
-  "qualified_id": "core.healthcare.medical_device_identifier",
+  "qualified_id": "rulesentry.healthcare.medical_device_identifier",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Medical Device UDI",

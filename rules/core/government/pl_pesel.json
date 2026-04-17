@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.pl_pesel",
-  "qualified_id": "core.government.pl_pesel",
+  "qualified_id": "rulesentry.government.pl_pesel",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Polish PESEL Number",

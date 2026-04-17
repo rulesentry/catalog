@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "healthcare.us_dea_number",
-  "qualified_id": "core.healthcare.us_dea_number",
+  "qualified_id": "rulesentry.healthcare.us_dea_number",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "US DEA Number",

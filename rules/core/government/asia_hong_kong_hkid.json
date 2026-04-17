@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.asia_hong_kong_hkid",
-  "qualified_id": "core.government.asia_hong_kong_hkid",
+  "qualified_id": "rulesentry.government.asia_hong_kong_hkid",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Hong Kong ID Card Number (HKID)",
@@ -18,7 +19,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Weighted modulo-11 check digit",
     "format": "1-2 letters + 6 digits + check digit (parentheses) (e.g., A123456(7))",
-    "official_name": "\u9999\u6e2f\u8eab\u4efd\u8b49 (HKID Card)",
+    "official_name": "香港身份證 (HKID Card)",
     "needs_review": false
   },
   "evaluation": {

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "financial.credit_card_luhn",
-  "qualified_id": "core.financial.credit_card_luhn",
+  "qualified_id": "rulesentry.financial.credit_card_luhn",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Credit Card (Luhn Validated)",

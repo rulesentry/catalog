@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "ner.person_name",
-  "qualified_id": "core.ner.person_name",
+  "qualified_id": "rulesentry.ner.person_name",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "status": "active",

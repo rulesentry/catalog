@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.eu_netherlands_bsn",
-  "qualified_id": "core.government.eu_netherlands_bsn",
+  "qualified_id": "rulesentry.government.eu_netherlands_bsn",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.1",
   "name": "Dutch Citizen Service Number (BSN)",

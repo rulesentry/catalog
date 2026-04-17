@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
   "id": "policy.apac-data-privacy",
-  "qualified_id": "core.policy.apac-data-privacy",
+  "qualified_id": "rulesentry.policy.apac-data-privacy",
+  "publisher_id": "rulesentry",
   "type": "policy",
   "version": "3.2.0",
   "status": "active",
@@ -232,7 +233,15 @@
     }
   ],
   "metadata": {
-    "frameworks": ["PDPA 2012", "APPI", "Privacy Act 1988", "DPDP Act 2023", "PIPL", "PDPO", "PIPA"],
+    "frameworks": [
+      "PDPA 2012",
+      "APPI",
+      "Privacy Act 1988",
+      "DPDP Act 2023",
+      "PIPL",
+      "PDPO",
+      "PIPA"
+    ],
     "compliance_scope": "APAC personal data protection",
     "review_cycle": "semi-annual",
     "owner": "apac-compliance-team"

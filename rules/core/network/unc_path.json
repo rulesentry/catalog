@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.unc_path",
-  "qualified_id": "core.network.unc_path",
+  "qualified_id": "rulesentry.network.unc_path",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "UNC Network Path",

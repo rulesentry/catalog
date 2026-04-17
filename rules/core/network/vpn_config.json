@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.vpn_config",
-  "qualified_id": "core.network.vpn_config",
+  "qualified_id": "rulesentry.network.vpn_config",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.0",
   "name": "VPN Configuration",

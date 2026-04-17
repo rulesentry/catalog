@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "contact.zip_code_us",
-  "qualified_id": "core.contact.zip_code_us",
+  "qualified_id": "rulesentry.contact.zip_code_us",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.2",
   "name": "US ZIP Code",
@@ -19,7 +20,7 @@
       "XXXXX",
       "XXXXX-XXXX"
     ],
-    "note": "Lookbehind (?<!#) removed \u2014 unsupported by Rust regex crate. \\b word boundary still handles most numeric-context false positives.",
+    "note": "Lookbehind (?<!#) removed — unsupported by Rust regex crate. \\b word boundary still handles most numeric-context false positives.",
     "needs_review": false
   },
   "evaluation": {

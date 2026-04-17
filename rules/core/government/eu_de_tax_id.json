@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.eu_de_tax_id",
-  "qualified_id": "core.government.eu_de_tax_id",
+  "qualified_id": "rulesentry.government.eu_de_tax_id",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "status": "active",

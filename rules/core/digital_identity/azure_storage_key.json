@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "digital_identity.azure_storage_key",
-  "qualified_id": "core.digital_identity.azure_storage_key",
+  "qualified_id": "rulesentry.digital_identity.azure_storage_key",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Azure Storage Account Key",

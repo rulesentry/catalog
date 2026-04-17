@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "network.hostname",
-  "qualified_id": "core.network.hostname",
+  "qualified_id": "rulesentry.network.hostname",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.0",
   "name": "Hostname",
@@ -14,7 +15,7 @@
   "metadata": {
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
-    "pattern_rationale": "Changed separator from [:\\s]+ to \\s*:\\s* \u2014 requiring a colon prevents 'server'/'host' keyword in prose (e.g. '# Server Configuration', '# Server Identity') from being treated as a hostname label.",
+    "pattern_rationale": "Changed separator from [:\\s]+ to \\s*:\\s* — requiring a colon prevents 'server'/'host' keyword in prose (e.g. '# Server Configuration', '# Server Identity') from being treated as a hostname label.",
     "needs_review": false
   },
   "evaluation": {

@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "government.canadian_sin",
-  "qualified_id": "core.government.canadian_sin",
+  "qualified_id": "rulesentry.government.canadian_sin",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.1.2",
   "name": "Canadian Social Insurance Number (SIN)",
@@ -17,7 +18,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "XXX-XXX-XXX (9 digits)",
-    "pattern_rationale": "Two alternatives: (1) with SIN keyword label \u2014 separator optional; (2) without label \u2014 separator required ([-\\s] not [-\\s]?). Bare 9-digit strings like ABA routing numbers (e.g. 021000021) pass Luhn by coincidence; requiring a dash/space separator when unlabeled eliminates that collision.",
+    "pattern_rationale": "Two alternatives: (1) with SIN keyword label — separator optional; (2) without label — separator required ([-\\s] not [-\\s]?). Bare 9-digit strings like ABA routing numbers (e.g. 021000021) pass Luhn by coincidence; requiring a dash/space separator when unlabeled eliminates that collision.",
     "needs_review": false
   },
   "evaluation": {

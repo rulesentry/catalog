@@ -1,7 +1,8 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
   "id": "healthcare.blood_type",
-  "qualified_id": "core.healthcare.blood_type",
+  "qualified_id": "rulesentry.healthcare.blood_type",
+  "publisher_id": "rulesentry",
   "type": "rule",
   "version": "3.0.1",
   "name": "Blood Type",

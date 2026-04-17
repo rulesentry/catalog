@@ -8,11 +8,21 @@
   "summary": "Detects SSN + credit card co-occurrence in HR onboarding documents",
   "description": "Composite rule demonstrating multi-signal detection for HR onboarding workflows. Fires when BOTH an SSN and a credit card number appear in the same document, indicating a direct deposit or benefits enrollment form that requires elevated handling. Each referenced rule validates independently (SSA format check, Luhn checksum), and the composite triggers only when both signals are present.",
   "category_id": "government",
-  "rule_kind": "composite",
   "severity": "critical",
-  "profiles": ["production"],
-  "regions": ["US"],
-  "tags": ["sample", "composite", "hr", "onboarding", "pii", "pci"],
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "tags": [
+    "sample",
+    "composite",
+    "hr",
+    "onboarding",
+    "pii",
+    "pci"
+  ],
   "origin": {
     "source_type": "sample",
     "publisher": "rulesentry"
@@ -39,22 +49,14 @@
     ],
     "propagate_matches": true,
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "Document contains SSN + credit card: route to secure HR processing"
-    },
-    "side_effects": [
-      {
-        "type": "audit",
-        "level": "warn",
-        "target": "hr-compliance-log",
-        "config": {
-          "include_rule_id": true,
-          "include_match_count": true,
-          "alert": true
-        }
+      "message": "Document contains SSN + credit card: route to secure HR processing",
+      "transform": {
+        "type": "redact",
+        "params": { "marker": "[BLOCKED]" }
       }
-    ]
+    }
   },
   "status": "active",
   "created_at": "2026-03-12T00:00:00Z",

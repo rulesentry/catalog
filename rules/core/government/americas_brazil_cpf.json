@@ -4,10 +4,9 @@
   "qualified_id": "core.government.americas_brazil_cpf",
   "type": "rule",
   "version": "3.0.1",
-  "name": "Brazilian CPF (Cadastro de Pessoas Físicas)",
+  "name": "Brazilian CPF (Cadastro de Pessoas F\u00edsicas)",
   "description": "Detects Brazilian individual taxpayer registry numbers with check digit validation.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -20,8 +19,8 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Two check digits calculated via weighted modulo-11",
     "format": "11 digits (formatted as XXX.XXX.XXX-XX)",
-    "official_name": "Cadastro de Pessoas Físicas",
-    "note": "LGPD (Lei Geral de Proteção de Dados) requires protection",
+    "official_name": "Cadastro de Pessoas F\u00edsicas",
+    "note": "LGPD (Lei Geral de Prote\u00e7\u00e3o de Dados) requires protection",
     "needs_review": false
   },
   "evaluation": {

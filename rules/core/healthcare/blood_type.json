@@ -7,7 +7,6 @@
   "name": "Blood Type",
   "description": "Detects blood type mentions (e.g., 'Blood Type: O+', 'A-', 'AB+'). Considered sensitive health data under GDPR Article 9 and HIPAA PHI.",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "healthcare-industry",

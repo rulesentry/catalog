@@ -7,7 +7,6 @@
   "name": "UNC Network Path",
   "description": "Detects Windows UNC (Universal Naming Convention) network paths (e.g., \\\\\\\\server\\\\share\\\\file). May reveal internal network structure.",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "production"

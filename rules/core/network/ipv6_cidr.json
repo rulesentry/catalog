@@ -7,7 +7,6 @@
   "name": "IPv6 CIDR Notation",
   "description": "Detects IPv6 addresses with CIDR prefix length notation (e.g., 2001:db8::/32).",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "production"

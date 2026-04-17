@@ -7,7 +7,6 @@
   "name": "Australian Medicare Number",
   "description": "Detects Australian Medicare card numbers with MOD-10 checksum validation. Format: first digit 2-6, followed by 9 digits, with optional /N issue number suffix.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",

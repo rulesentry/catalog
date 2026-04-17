@@ -8,14 +8,25 @@
   "name": "Person Name (NER)",
   "description": "Detects full person names using an on-device NER model. Requires an active ONNX model (distilbert-ner). Rules silently no-ops when no model is active.",
   "category_id": "ner",
-  "rule_kind": "atomic",
   "severity": "high",
-  "regions": ["GLOBAL"],
-  "profiles": ["gdpr", "ccpa", "production"],
-  "tags": ["pii", "name", "ner"],
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "name",
+    "ner"
+  ],
   "evaluation": {
     "evaluation_type": "ner_match",
-    "entity_types": ["PERSON"],
+    "entity_types": [
+      "PERSON"
+    ],
     "confidence_threshold": 0.85,
     "model": {
       "fallback": "skip"

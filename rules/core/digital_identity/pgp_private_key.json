@@ -7,7 +7,6 @@
   "name": "PGP Private Key",
   "description": "Detects PGP/GPG private keys. Exposure allows decryption of encrypted messages and digital signature forgery.",
   "category_id": "digital_identity",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "technology-sector",

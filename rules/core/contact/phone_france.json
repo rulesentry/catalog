@@ -7,7 +7,6 @@
   "name": "French Phone Number",
   "description": "Detects French phone numbers with +33 country code or 0 prefix. French numbers are 10 digits starting with 0 (domestic) or 9 digits after +33.",
   "category_id": "contact",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "gdpr",

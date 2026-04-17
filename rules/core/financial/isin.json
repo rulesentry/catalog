@@ -7,7 +7,6 @@
   "name": "ISIN (International Securities Identifier)",
   "description": "Detects International Securities Identification Numbers with Luhn checksum validation. ISIN is a 12-character code that uniquely identifies securities (stocks, bonds, derivatives) globally.",
   "category_id": "financial",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "financial-industry",

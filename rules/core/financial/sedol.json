@@ -7,7 +7,6 @@
   "name": "SEDOL (UK/Irish Securities Identifier)",
   "description": "Detects SEDOL numbers with checksum validation. SEDOL uniquely identifies securities traded on the London Stock Exchange and Irish Stock Exchange.",
   "category_id": "financial",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "financial-industry",

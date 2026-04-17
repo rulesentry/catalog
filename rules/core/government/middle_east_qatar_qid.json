@@ -7,7 +7,6 @@
   "name": "Qatar ID (QID)",
   "description": "Detects Qatar national ID card numbers.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -18,7 +17,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "11 digits",
-    "official_name": "Qatar ID / البطاقة الشخصية",
+    "official_name": "Qatar ID / \u0627\u0644\u0628\u0637\u0627\u0642\u0629 \u0627\u0644\u0634\u062e\u0635\u064a\u0629",
     "note": "Law No. 13 of 2016 on Personal Data Privacy",
     "needs_review": false
   },

@@ -7,7 +7,6 @@
   "name": "Debit Card (Luhn Validated)",
   "description": "Detects debit card numbers with Luhn checksum validation. Uses same pattern as credit cards but with debit-specific context detection.",
   "category_id": "financial",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "financial-industry",

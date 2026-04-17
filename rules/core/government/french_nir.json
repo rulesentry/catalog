@@ -5,9 +5,8 @@
   "type": "rule",
   "version": "3.0.1",
   "name": "French NIR (Social Security Number)",
-  "description": "Detects French Numéro d'Inscription au Répertoire (NIR/INSEE number) with MOD-97 checksum validation. Format: 15 digits.",
+  "description": "Detects French Num\u00e9ro d'Inscription au R\u00e9pertoire (NIR/INSEE number) with MOD-97 checksum validation. Format: 15 digits.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",

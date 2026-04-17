@@ -7,7 +7,6 @@
   "name": "Taiwan National ID (ROC ID)",
   "description": "Detects Taiwan National Identification Card numbers with checksum validation.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -19,7 +18,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Weighted checksum calculation",
     "format": "1 letter + 9 digits (e.g., A123456789)",
-    "official_name": "身分證字號 (National ID)",
+    "official_name": "\u8eab\u5206\u8b49\u5b57\u865f (National ID)",
     "needs_review": false
   },
   "evaluation": {

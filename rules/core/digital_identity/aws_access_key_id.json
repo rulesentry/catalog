@@ -8,7 +8,6 @@
   "name": "AWS Access Key ID",
   "description": "Detects Amazon Web Services (AWS) Access Key IDs. Format: AKIA followed by 16 alphanumeric characters. Exposure can lead to unauthorized access to AWS resources.",
   "category_id": "digital_identity",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "technology-sector",

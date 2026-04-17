@@ -4,10 +4,9 @@
   "qualified_id": "core.government.americas_mexico_curp",
   "type": "rule",
   "version": "3.0.1",
-  "name": "Mexican CURP (Clave Única de Registro de Población)",
+  "name": "Mexican CURP (Clave \u00danica de Registro de Poblaci\u00f3n)",
   "description": "Detects Mexican unique population registry codes with check digit validation. Encodes name, birth date, gender, and birthplace.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -19,7 +18,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Check digit calculated from alphanumeric encoding",
     "format": "18 characters (4 letters + 6 digits + 1 letter + 5 alphanumeric + 1 digit)",
-    "official_name": "Clave Única de Registro de Población",
+    "official_name": "Clave \u00danica de Registro de Poblaci\u00f3n",
     "note": "Encodes surname, name, birth date, gender, state",
     "needs_review": false
   },

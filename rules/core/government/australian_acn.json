@@ -7,7 +7,6 @@
   "name": "Australian Company Number (ACN)",
   "description": "Detects Australian Company Numbers with MOD-10 complement checksum validation. Format: 9 digits (XXX XXX XXX) preceded by context keywords.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "government-sector",

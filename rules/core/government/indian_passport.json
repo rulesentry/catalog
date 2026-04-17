@@ -7,7 +7,6 @@
   "name": "Indian Passport Number",
   "description": "Detects Indian passport numbers. Format: 1 letter + 2 digits (first non-zero) + optional space + 4 digits + 1 digit (non-zero). Context-anchored to reduce false positives.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "government-sector",

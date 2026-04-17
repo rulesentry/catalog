@@ -7,7 +7,6 @@
   "name": "Indian Vehicle Registration Number",
   "description": "Detects Indian vehicle registration plate numbers in standard format. Format: 2-letter state code + 2-digit district code + 1-2 letter series + 4-digit number.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "government-sector",

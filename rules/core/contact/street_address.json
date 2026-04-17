@@ -7,7 +7,6 @@
   "name": "Street Address",
   "description": "Detects street addresses with number + street name pattern (e.g., 123 Main St, 456 Oak Avenue). Generic pattern may have false positives.",
   "category_id": "contact",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "gdpr",

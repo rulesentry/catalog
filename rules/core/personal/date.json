@@ -5,9 +5,8 @@
   "type": "rule",
   "version": "1.0.0",
   "name": "Date",
-  "description": "Detects standalone dates in MM/DD/YYYY or DD/MM/YYYY format with a 4-digit year in the range 1900–2099. Matches dates without requiring an explicit 'Date of Birth:' context label. Low severity — bare dates are ambiguous and may not represent personal information without surrounding context.",
+  "description": "Detects standalone dates in MM/DD/YYYY or DD/MM/YYYY format with a 4-digit year in the range 1900\u20132099. Matches dates without requiring an explicit 'Date of Birth:' context label. Low severity \u2014 bare dates are ambiguous and may not represent personal information without surrounding context.",
   "category_id": "personal",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "hipaa",

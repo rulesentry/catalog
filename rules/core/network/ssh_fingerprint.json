@@ -7,7 +7,6 @@
   "name": "SSH Key Fingerprint",
   "description": "Detects SSH key fingerprints in MD5 and SHA256 formats (e.g., 'SSH-RSA key fingerprint is ...').",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "production"

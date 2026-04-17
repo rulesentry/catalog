@@ -8,14 +8,25 @@
   "name": "Location (NER)",
   "description": "Detects location names (cities, countries, addresses, landmarks) using an on-device NER model. Requires an active ONNX model (distilbert-ner). Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "rule_kind": "atomic",
   "severity": "medium",
-  "regions": ["GLOBAL"],
-  "profiles": ["gdpr", "ccpa", "production"],
-  "tags": ["pii", "location", "ner"],
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "location",
+    "ner"
+  ],
   "evaluation": {
     "evaluation_type": "ner_match",
-    "entity_types": ["LOCATION"],
+    "entity_types": [
+      "LOCATION"
+    ],
     "confidence_threshold": 0.85,
     "model": {
       "fallback": "skip"

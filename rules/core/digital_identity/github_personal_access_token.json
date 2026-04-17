@@ -8,7 +8,6 @@
   "name": "GitHub Personal Access Token",
   "description": "Detects GitHub Personal Access Tokens. Format: ghp_ (classic), github_pat_ (fine-grained). Can access repositories, create commits, modify issues.",
   "category_id": "digital_identity",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "technology-sector",

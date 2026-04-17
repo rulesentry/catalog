@@ -7,7 +7,6 @@
   "name": "US Phone Number",
   "description": "Detects US phone numbers in various formats. Bare unlabeled numbers require +1 prefix, parenthesized area code, or dash/dot separators to reduce false positives against healthcare IDs (NHS, NPI) and other 10-digit sequences.",
   "category_id": "contact",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "ccpa",
@@ -24,7 +23,7 @@
       "+1 XXX XXX XXXX",
       "1-XXX-XXX-XXXX"
     ],
-    "pattern_rationale": "Same four-arm strategy as phone_canada: (1) phone keyword label — any NANP format; (2) +1 prefix; (3) 1-NXX-NXX-XXXX dash/dot; (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 is NOT matched without context.",
+    "pattern_rationale": "Same four-arm strategy as phone_canada: (1) phone keyword label \u2014 any NANP format; (2) +1 prefix; (3) 1-NXX-NXX-XXXX dash/dot; (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 is NOT matched without context.",
     "needs_review": false
   },
   "evaluation": {

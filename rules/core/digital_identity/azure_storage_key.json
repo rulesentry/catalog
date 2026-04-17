@@ -7,7 +7,6 @@
   "name": "Azure Storage Account Key",
   "description": "Detects Microsoft Azure Storage Account keys. 88-character base64 strings with context (DefaultEndpointsProtocol or AccountKey) that grant full access to Azure Storage accounts.",
   "category_id": "digital_identity",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "technology-sector",

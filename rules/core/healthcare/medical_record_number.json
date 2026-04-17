@@ -7,7 +7,6 @@
   "name": "Medical Record Number (MRN)",
   "description": "Detects medical record numbers with explicit 'MRN:', 'Medical Record:', or 'Chart Number:' context. Format varies by healthcare provider.",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "healthcare-industry",

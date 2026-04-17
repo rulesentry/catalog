@@ -7,7 +7,6 @@
   "name": "Thailand Citizen ID Number",
   "description": "Detects Thai national identification card numbers with MOD-11 checksum validation.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -19,7 +18,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "MOD-11 checksum (last digit)",
     "format": "13 digits (often written with spaces: 1 2345 67890 12 3)",
-    "official_name": "เลขประจำตัวประชาชน (Citizen ID)",
+    "official_name": "\u0e40\u0e25\u0e02\u0e1b\u0e23\u0e30\u0e08\u0e33\u0e15\u0e31\u0e27\u0e1b\u0e23\u0e30\u0e0a\u0e32\u0e0a\u0e19 (Citizen ID)",
     "needs_review": false
   },
   "evaluation": {

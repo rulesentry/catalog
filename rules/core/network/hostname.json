@@ -7,7 +7,6 @@
   "name": "Hostname",
   "description": "Detects hostnames with explicit context (e.g., 'hostname:', 'server:'). Requires a colon separator to prevent matching prose phrases like '# Server Configuration'.",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "production"
@@ -15,7 +14,7 @@
   "metadata": {
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
-    "pattern_rationale": "Changed separator from [:\\s]+ to \\s*:\\s* — requiring a colon prevents 'server'/'host' keyword in prose (e.g. '# Server Configuration', '# Server Identity') from being treated as a hostname label.",
+    "pattern_rationale": "Changed separator from [:\\s]+ to \\s*:\\s* \u2014 requiring a colon prevents 'server'/'host' keyword in prose (e.g. '# Server Configuration', '# Server Identity') from being treated as a hostname label.",
     "needs_review": false
   },
   "evaluation": {

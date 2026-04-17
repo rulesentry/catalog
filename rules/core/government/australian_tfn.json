@@ -7,7 +7,6 @@
   "name": "Australian Tax File Number (TFN)",
   "description": "Detects Australian Tax File Numbers with MOD-11 checksum validation. Format: XXX-XXX-XXX (9 digits).",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",

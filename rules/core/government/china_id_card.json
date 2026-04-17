@@ -7,7 +7,6 @@
   "name": "China Resident Identity Card",
   "description": "Detects Chinese national ID card numbers with GB 11643-1999 checksum validation. Format: 18 digits (6 region + 8 DOB + 3 sequential + 1 checksum).",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",

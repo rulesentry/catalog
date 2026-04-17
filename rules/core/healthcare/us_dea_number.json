@@ -7,7 +7,6 @@
   "name": "US DEA Number",
   "description": "Detects Drug Enforcement Administration (DEA) registration numbers for healthcare providers authorized to prescribe controlled substances. Format: 2 letters + 7 digits (e.g., AB1234563).",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "healthcare-industry",

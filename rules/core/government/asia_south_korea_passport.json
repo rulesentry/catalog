@@ -7,7 +7,6 @@
   "name": "South Korean Passport Number",
   "description": "Detects South Korean passport numbers in current format. Format: prefix letter (M/S/R/O/D) + 3 digits + 1 letter + 4 digits.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "government-sector",
@@ -18,7 +17,7 @@
     "pattern_source": "Based on Presidio KrPassportRecognizer",
     "attribution": "https://github.com/microsoft/presidio",
     "format": "M123A4567 (prefix letter + 3 digits + letter + 4 digits)",
-    "official_name": "여권 (Korean Passport)",
+    "official_name": "\uc5ec\uad8c (Korean Passport)",
     "note": "Current format only; older 9-digit format (prefix + 8 digits) omitted as less reliable",
     "needs_review": false
   },

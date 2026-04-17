@@ -4,10 +4,9 @@
   "qualified_id": "core.government.eu_french_carte_nationale",
   "type": "rule",
   "version": "3.0.1",
-  "name": "French National ID (Carte Nationale d'Identité)",
+  "name": "French National ID (Carte Nationale d'Identit\u00e9)",
   "description": "Detects French national identity card numbers. Format: 12 alphanumeric characters.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -19,7 +18,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "12 alphanumeric characters",
-    "official_name": "Carte Nationale d'Identité",
+    "official_name": "Carte Nationale d'Identit\u00e9",
     "needs_review": false
   },
   "evaluation": {

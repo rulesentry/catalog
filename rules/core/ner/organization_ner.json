@@ -8,14 +8,25 @@
   "name": "Organisation Name (NER)",
   "description": "Detects organisation names (companies, institutions, government bodies) using an on-device NER model. Requires an active ONNX model (distilbert-ner). Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "rule_kind": "atomic",
   "severity": "low",
-  "regions": ["GLOBAL"],
-  "profiles": ["gdpr", "ccpa", "production"],
-  "tags": ["pii", "organization", "ner"],
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "organization",
+    "ner"
+  ],
   "evaluation": {
     "evaluation_type": "ner_match",
-    "entity_types": ["ORGANIZATION"],
+    "entity_types": [
+      "ORGANIZATION"
+    ],
     "confidence_threshold": 0.85,
     "model": {
       "fallback": "skip"

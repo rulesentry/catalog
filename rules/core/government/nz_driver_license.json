@@ -7,7 +7,6 @@
   "name": "New Zealand Driver Licence Number",
   "description": "Detects New Zealand driver licence numbers. Format: 2 letters followed by 6 digits, preceded by context keywords.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "government-sector",

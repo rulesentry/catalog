@@ -8,7 +8,6 @@
   "name": "SSH Private Key",
   "description": "Detects SSH private keys (RSA, DSA, EC, OPENSSH formats). Exposure allows unauthorized SSH access to servers.",
   "category_id": "digital_identity",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "technology-sector",

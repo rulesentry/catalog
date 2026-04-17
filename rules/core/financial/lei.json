@@ -7,7 +7,6 @@
   "name": "LEI (Legal Entity Identifier)",
   "description": "Detects Legal Entity Identifiers with MOD-97 checksum validation. LEI is a 20-character code that uniquely identifies legal entities participating in financial transactions globally.",
   "category_id": "financial",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "financial-industry",

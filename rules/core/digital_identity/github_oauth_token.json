@@ -7,7 +7,6 @@
   "name": "GitHub OAuth Access Token",
   "description": "Detects GitHub OAuth access tokens. Format: gho_ prefix. Used by GitHub Apps and OAuth Apps.",
   "category_id": "digital_identity",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "technology-sector",

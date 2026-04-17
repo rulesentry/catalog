@@ -9,7 +9,6 @@
   "summary": "Detects German tax identification numbers (11 digits) with context markers",
   "description": "Detects German tax identification numbers. Format: 11 digits.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",

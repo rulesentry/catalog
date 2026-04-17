@@ -7,7 +7,6 @@
   "name": "US Social Security Number (Format Validated)",
   "description": "Detects US Social Security Numbers with format validation. Excludes invalid area/group/serial combinations per SSA rules.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",

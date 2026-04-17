@@ -7,7 +7,6 @@
   "name": "Canadian Phone Number",
   "description": "Detects Canadian phone numbers (NANP +1 country code). Bare unlabeled numbers require +1 prefix, parenthesized area code, or dash/dot separators to reduce false positives against healthcare IDs and other 10-digit sequences.",
   "category_id": "contact",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "pipeda",
@@ -17,7 +16,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "+1 XXX XXX XXXX",
-    "pattern_rationale": "Four arms: (1) phone keyword label — any NANP format; (2) +1 prefix (with +); (3) 1-NXX-NXX-XXXX dash/dot (without +); (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 (e.g. NHS numbers) is NOT matched without context.",
+    "pattern_rationale": "Four arms: (1) phone keyword label \u2014 any NANP format; (2) +1 prefix (with +); (3) 1-NXX-NXX-XXXX dash/dot (without +); (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 (e.g. NHS numbers) is NOT matched without context.",
     "needs_review": false
   },
   "evaluation": {

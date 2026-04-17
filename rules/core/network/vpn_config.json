@@ -7,7 +7,6 @@
   "name": "VPN Configuration",
   "description": "Detects VPN configuration identifiers with context (e.g., 'VPN Server:', 'VPN Gateway:'). May contain sensitive network information.",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "production"

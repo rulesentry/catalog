@@ -7,7 +7,6 @@
   "name": "BSB Number (Australia)",
   "description": "Detects Australian Bank State Branch (BSB) numbers. Format: XXX-XXX (6 digits).",
   "category_id": "financial",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "financial-industry",

@@ -7,7 +7,6 @@
   "name": "Saudi National ID (Iqama/National ID)",
   "description": "Detects Saudi Arabian national ID and residence permit (Iqama) numbers. Requires a keyword label (national id, iqama, or Arabic equivalents) because the bare 10-digit format collides with NPIs, phone numbers, and other global IDs.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -18,9 +17,9 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "10 digits (National ID: starts with 1, Iqama: starts with 2)",
-    "official_name": "رقم الهوية الوطنية / رقم الإقامة",
+    "official_name": "\u0631\u0642\u0645 \u0627\u0644\u0647\u0648\u064a\u0629 \u0627\u0644\u0648\u0637\u0646\u064a\u0629 / \u0631\u0642\u0645 \u0627\u0644\u0625\u0642\u0627\u0645\u0629",
     "note": "Covers both citizens (National ID) and residents (Iqama)",
-    "pattern_rationale": "Bare \\b[12][0-9]{9}\\b collides with US NPIs (10 digits, starts with 1/2), NANP phone numbers, and many other IDs. Keyword label required to anchor the match. Accepts English (national id, iqama) and Arabic (هوية, إقامة, رقم الهوية).",
+    "pattern_rationale": "Bare \\b[12][0-9]{9}\\b collides with US NPIs (10 digits, starts with 1/2), NANP phone numbers, and many other IDs. Keyword label required to anchor the match. Accepts English (national id, iqama) and Arabic (\u0647\u0648\u064a\u0629, \u0625\u0642\u0627\u0645\u0629, \u0631\u0642\u0645 \u0627\u0644\u0647\u0648\u064a\u0629).",
     "needs_review": false
   },
   "evaluation": {
@@ -28,7 +27,7 @@
     "priority": 85,
     "target": "content",
     "pattern": {
-      "pattern": "(?:national[\\s-]?id(?:entity)?|iqama|residence[\\s-]?(?:card|permit)|هوية|إقامة|رقم\\s+(?:الهوية|الإقامة))[:\\s#-]*\\b[12][0-9]{9}\\b",
+      "pattern": "(?:national[\\s-]?id(?:entity)?|iqama|residence[\\s-]?(?:card|permit)|\u0647\u0648\u064a\u0629|\u0625\u0642\u0627\u0645\u0629|\u0631\u0642\u0645\\s+(?:\u0627\u0644\u0647\u0648\u064a\u0629|\u0627\u0644\u0625\u0642\u0627\u0645\u0629))[:\\s#-]*\\b[12][0-9]{9}\\b",
       "engine": "regex"
     },
     "effect": {

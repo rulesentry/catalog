@@ -7,7 +7,6 @@
   "name": "International Phone Number (E.164)",
   "description": "Detects international phone numbers in E.164 format: plus sign followed by country code and subscriber number (7-15 digits total). Complements country-specific phone rules with a global catch-all pattern.",
   "category_id": "contact",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "production"

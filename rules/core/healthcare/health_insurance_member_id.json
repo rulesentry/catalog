@@ -7,7 +7,6 @@
   "name": "Health Insurance Member ID",
   "description": "Detects health insurance member/subscriber/policy identification numbers. Format: 6-20 alphanumeric characters with contextual keywords (member, subscriber, policy).",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "healthcare-industry",

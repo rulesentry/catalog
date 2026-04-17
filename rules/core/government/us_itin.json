@@ -7,7 +7,6 @@
   "name": "US Individual Taxpayer Identification Number (ITIN)",
   "description": "Detects US ITINs issued by the IRS to individuals who are required to have a taxpayer identification number but are not eligible for an SSN. Format: 9XX-[50-65,70-88,90-92,94-99]-XXXX.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",
@@ -17,7 +16,7 @@
   ],
   "metadata": {
     "pattern_source": "Based on Presidio UsItinRecognizer and OpenRedaction ITIN patterns",
-    "attribution": "IRS Publication 1915 — ITIN format rules",
+    "attribution": "IRS Publication 1915 \u2014 ITIN format rules",
     "validator_algorithm": "IRS area/group position validation",
     "needs_review": false
   },

@@ -7,7 +7,6 @@
   "name": "Japan My Number",
   "description": "Detects Japanese Social Security and Tax Numbers (My Number). Format: XXXX-XXXX-XXXX (12 digits). Note: MOD-11 checksum validator to be implemented.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",
@@ -25,7 +24,7 @@
     "priority": 100,
     "target": "content",
     "pattern": {
-      "pattern": "\\b(?:my\\s+number|マイナンバー)[:\\s]+\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}\\b",
+      "pattern": "\\b(?:my\\s+number|\u30de\u30a4\u30ca\u30f3\u30d0\u30fc)[:\\s]+\\d{4}[-\\s]?\\d{4}[-\\s]?\\d{4}\\b",
       "engine": "regex",
       "flags": {
         "case_insensitive": true

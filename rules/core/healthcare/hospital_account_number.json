@@ -7,7 +7,6 @@
   "name": "Hospital Account Number",
   "description": "Detects hospital and facility patient account numbers and encounter identifiers. Format: 6-12 alphanumeric characters with contextual keywords (hospital account, facility account, patient account, hospital, facility).",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "healthcare-industry",

@@ -4,10 +4,9 @@
   "qualified_id": "core.government.americas_chile_rut",
   "type": "rule",
   "version": "3.0.1",
-  "name": "Chilean RUT (Rol Único Tributario)",
+  "name": "Chilean RUT (Rol \u00danico Tributario)",
   "description": "Detects Chilean unique tax role numbers with check digit (Modulo 11) validation.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -19,7 +18,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Modulo 11 check digit (can be 0-9 or K)",
     "format": "7-8 digits + check digit (formatted: XX.XXX.XXX-X)",
-    "official_name": "Rol Único Tributario",
+    "official_name": "Rol \u00danico Tributario",
     "note": "Law 19,628 Protection of Privacy",
     "needs_review": false
   },

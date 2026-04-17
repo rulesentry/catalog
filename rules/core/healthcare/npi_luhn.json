@@ -9,7 +9,6 @@
   "summary": "Detects US NPI numbers with Luhn checksum validation",
   "description": "Detects US National Provider Identifier (NPI) numbers with Luhn checksum validation. NPI is a 10-digit number assigned to healthcare providers by CMS.",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "healthcare-industry",

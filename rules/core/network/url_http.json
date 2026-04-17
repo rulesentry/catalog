@@ -7,7 +7,6 @@
   "name": "URL (All Protocols)",
   "description": "Detects URLs with various protocols (http, https, ftp, ssh, mysql, smtp, etc.). May contain sensitive information including credentials in the URL, paths, or query parameters.",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "production"

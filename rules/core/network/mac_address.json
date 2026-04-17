@@ -5,9 +5,8 @@
   "type": "rule",
   "version": "3.1.0",
   "name": "MAC Address",
-  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Colon-separated form requires a label keyword (mac, ether, hw-addr) because SSH MD5 fingerprints share the same 6×2-hex-colon syntax.",
+  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Colon-separated form requires a label keyword (mac, ether, hw-addr) because SSH MD5 fingerprints share the same 6\u00d72-hex-colon syntax.",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "gdpr",

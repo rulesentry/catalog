@@ -9,7 +9,6 @@
   "summary": "Detects ICD-10 diagnosis codes with context markers indicating patient data",
   "description": "Detects ICD-10 diagnosis and procedure codes in healthcare documents. Matches standard ICD-10-CM format (letter + 2 digits + optional decimal + up to 4 alphanumeric). Requires context markers to reduce false positives.",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "healthcare-industry",

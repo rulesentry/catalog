@@ -7,7 +7,6 @@
   "name": "Turkish TC Kimlik No (Turkish ID)",
   "description": "Detects Turkish Republic citizenship ID numbers with custom checksum validation.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",
@@ -19,7 +18,7 @@
     "attribution": "https://github.com/openredact/openredact",
     "validator_algorithm": "Custom Turkish ID checksum (10th and 11th digits)",
     "format": "11 digits (cannot start with 0)",
-    "official_name": "TC Kimlik Numarası",
+    "official_name": "TC Kimlik Numaras\u0131",
     "note": "KVKK (Personal Data Protection Law No. 6698)",
     "needs_review": false
   },

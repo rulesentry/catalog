@@ -7,7 +7,6 @@
   "name": "PIN Code",
   "description": "Detects references to PIN codes (4-6 digits). PCI-DSS prohibits storage of PINs.",
   "category_id": "financial",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "financial-industry",

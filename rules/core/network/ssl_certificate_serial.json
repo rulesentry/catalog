@@ -7,7 +7,6 @@
   "name": "SSL/TLS Certificate Serial Number",
   "description": "Detects SSL/TLS certificate serial numbers with explicit context. Hexadecimal format.",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "production"

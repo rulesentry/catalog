@@ -7,7 +7,6 @@
   "name": "Age (Explicit Mention)",
   "description": "Detects explicit age mentions with 'age:', 'years old', or similar context. Helps identify age-related PII.",
   "category_id": "personal",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "hipaa",

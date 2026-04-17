@@ -7,7 +7,6 @@
   "name": "Dutch Citizen Service Number (BSN)",
   "description": "Detects Dutch BSN (Burgerservicenummer) with 11-test checksum validation.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",

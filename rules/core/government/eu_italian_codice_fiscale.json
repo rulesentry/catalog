@@ -7,7 +7,6 @@
   "name": "Italian Tax Code (Codice Fiscale)",
   "description": "Detects Italian tax identification codes with checksum validation. Format: 16 alphanumeric characters (surname, name, birth date, birthplace).",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "government-sector",

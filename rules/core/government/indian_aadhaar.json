@@ -7,7 +7,6 @@
   "name": "Indian Aadhaar Number",
   "description": "Detects Indian Aadhaar unique identification numbers with Verhoeff checksum validation. Format: XXXX-XXXX-XXXX (12 digits).",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",

@@ -7,7 +7,6 @@
   "name": "Italian Identity Card Number",
   "description": "Detects Italian identity card numbers in three formats: paper (AA 1234567), CIE 2.0 (1234567AA), and CIE 3.0 (AA12345AA). Context-anchored to reduce false positives.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "government-sector",
@@ -19,7 +18,7 @@
     "pattern_source": "Based on Presidio ItIdentityCardRecognizer",
     "attribution": "https://github.com/microsoft/presidio",
     "format": "Paper: AA 1234567 | CIE 2.0: 1234567AA | CIE 3.0: AA12345AA",
-    "official_name": "Carta d'Identità",
+    "official_name": "Carta d'Identit\u00e0",
     "note": "Weak patterns; context prefix required to reduce false positives",
     "needs_review": false
   },
@@ -28,7 +27,7 @@
     "priority": 60,
     "target": "content",
     "pattern": {
-      "pattern": "(?:carta\\s+d[i']?\\s*identit[àa]|identity\\s+card|documento\\s+(?:di\\s+)?riconoscimento|\\bCIE\\b)[\\s:# -]*([A-Z]{2}\\s?\\d{7}|\\d{7}[A-Z]{2}|[A-Z]{2}\\d{5}[A-Z]{2})\\b",
+      "pattern": "(?:carta\\s+d[i']?\\s*identit[\u00e0a]|identity\\s+card|documento\\s+(?:di\\s+)?riconoscimento|\\bCIE\\b)[\\s:# -]*([A-Z]{2}\\s?\\d{7}|\\d{7}[A-Z]{2}|[A-Z]{2}\\d{5}[A-Z]{2})\\b",
       "engine": "regex",
       "flags": {
         "case_insensitive": true

@@ -9,15 +9,28 @@
   "summary": "Detects EU-formatted dates of birth with explicit DOB context markers",
   "description": "Detects dates of birth in EU-common formats including DD/MM/YYYY, DD.MM.YYYY, and YYYY-MM-DD. Requires explicit context markers like 'DOB:', 'Date of Birth:', 'Geburtsdatum:', or 'Date de naissance:'. Designed for GDPR compliance in EU jurisdictions.",
   "category_id": "personal",
-  "rule_kind": "atomic",
   "severity": "high",
-  "profiles": ["gdpr", "production"],
-  "regions": ["EU"],
-  "tags": ["pii", "date", "personal-identifier", "gdpr"],
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "regions": [
+    "EU"
+  ],
+  "tags": [
+    "pii",
+    "date",
+    "personal-identifier",
+    "gdpr"
+  ],
   "metadata": {
     "pattern_source": "Adapted from OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
-    "formats": ["DD/MM/YYYY", "DD.MM.YYYY", "YYYY-MM-DD"],
+    "formats": [
+      "DD/MM/YYYY",
+      "DD.MM.YYYY",
+      "YYYY-MM-DD"
+    ],
     "compliance_notes": "DOB is personal data under GDPR Article 4(1)",
     "false_positive_notes": "Requires explicit DOB context to avoid matching generic dates"
   },
@@ -43,18 +56,7 @@
           "marker": "[DATE_OF_BIRTH]"
         }
       }
-    },
-    "side_effects": [
-      {
-        "type": "audit",
-        "level": "info",
-        "target": "compliance-log",
-        "config": {
-          "include_rule_id": true,
-          "include_match_count": true
-        }
-      }
-    ]
+    }
   },
   "created_at": "2026-02-10T00:00:00Z",
   "updated_at": "2026-03-10T00:00:00Z"

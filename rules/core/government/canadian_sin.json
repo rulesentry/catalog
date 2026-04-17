@@ -7,7 +7,6 @@
   "name": "Canadian Social Insurance Number (SIN)",
   "description": "Detects Canadian Social Insurance Numbers with MOD-10 checksum validation. Format: XXX-XXX-XXX (9 digits).",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",
@@ -18,7 +17,7 @@
     "pattern_source": "Based on OpenRedaction community patterns",
     "attribution": "https://github.com/openredact/openredact",
     "format": "XXX-XXX-XXX (9 digits)",
-    "pattern_rationale": "Two alternatives: (1) with SIN keyword label — separator optional; (2) without label — separator required ([-\\s] not [-\\s]?). Bare 9-digit strings like ABA routing numbers (e.g. 021000021) pass Luhn by coincidence; requiring a dash/space separator when unlabeled eliminates that collision.",
+    "pattern_rationale": "Two alternatives: (1) with SIN keyword label \u2014 separator optional; (2) without label \u2014 separator required ([-\\s] not [-\\s]?). Bare 9-digit strings like ABA routing numbers (e.g. 021000021) pass Luhn by coincidence; requiring a dash/space separator when unlabeled eliminates that collision.",
     "needs_review": false
   },
   "evaluation": {

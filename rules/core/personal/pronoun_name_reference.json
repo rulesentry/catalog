@@ -7,11 +7,21 @@
   "name": "Person Name (Pronoun/Role Reference)",
   "description": "Detects person names introduced via pronoun or role reference (e.g. 'His name was Sam Jones', 'The customer's name is John Smith'). Complements NER for terse or low-context inputs where NER confidence falls below threshold.",
   "category_id": "personal",
-  "rule_kind": "atomic",
   "severity": "high",
-  "regions": ["GLOBAL"],
-  "profiles": ["gdpr", "ccpa", "hipaa", "production"],
-  "tags": ["pii", "name", "pronoun"],
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "hipaa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "name",
+    "pronoun"
+  ],
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 65,

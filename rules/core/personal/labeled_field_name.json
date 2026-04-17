@@ -7,11 +7,21 @@
   "name": "Person Name (Labeled Field)",
   "description": "Detects person names in labeled form fields (Name:, Employee Name:, Full Name:, Contact Name:, Agent:). Matches title-case First Last patterns following a name label. Serves as a deterministic fallback where NER model confidence is insufficient for structured form data.",
   "category_id": "personal",
-  "rule_kind": "atomic",
   "severity": "high",
-  "regions": ["GLOBAL"],
-  "profiles": ["gdpr", "ccpa", "hipaa", "production"],
-  "tags": ["pii", "name", "labeled-field"],
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "hipaa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "name",
+    "labeled-field"
+  ],
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -36,7 +46,7 @@
   "created_at": "2026-03-18T00:00:00Z",
   "updated_at": "2026-04-15T00:00:00Z",
   "metadata": {
-    "pattern_rationale": "Anchored to line start ((?m)^) to avoid matching mid-sentence. Requires 2-4 TitleCase words after a specific label keyword — prevents false positives on generic fields like 'Filing Status: Married Filing Jointly'. Lookbehind removed (unsupported by Rust regex crate) — match now includes label+value; replacement is [PERSON_FIELD] to cover both.",
+    "pattern_rationale": "Anchored to line start ((?m)^) to avoid matching mid-sentence. Requires 2-4 TitleCase words after a specific label keyword \u2014 prevents false positives on generic fields like 'Filing Status: Married Filing Jointly'. Lookbehind removed (unsupported by Rust regex crate) \u2014 match now includes label+value; replacement is [PERSON_FIELD] to cover both.",
     "ner_relationship": "Deterministic fallback. If NER fires on the same span, the pattern rule wins (priority 70 > ner.person_name at 60) and replaces the entire 'Name: FirstLast' line with '[PERSON_FIELD]'. Covers cardholder_name, employee_name, full_name, contact_name, agent, and name labels.",
     "needs_review": false
   }

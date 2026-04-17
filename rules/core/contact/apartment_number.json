@@ -7,7 +7,6 @@
   "name": "Apartment/Unit Number",
   "description": "Detects apartment, unit, or suite numbers (e.g., Apt 123, Unit 4B, Suite 500).",
   "category_id": "contact",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "gdpr",

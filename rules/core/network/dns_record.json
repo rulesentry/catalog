@@ -7,7 +7,6 @@
   "name": "DNS Record",
   "description": "Detects DNS record entries with context (e.g., 'DNS:', 'Nameserver:'). May reveal internal infrastructure.",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "low",
   "profiles": [
     "production"

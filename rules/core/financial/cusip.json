@@ -7,7 +7,6 @@
   "name": "CUSIP (North American Securities Identifier)",
   "description": "Detects CUSIP numbers with checksum validation. CUSIP uniquely identifies North American securities including US and Canadian stocks and bonds.",
   "category_id": "financial",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "financial-industry",

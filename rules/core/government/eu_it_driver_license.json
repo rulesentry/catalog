@@ -7,7 +7,6 @@
   "name": "Italian Driver License Number",
   "description": "Detects Italian driver license numbers. Two formats: standard (AA1234567A) and newer U1-prefix format.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "government-sector",

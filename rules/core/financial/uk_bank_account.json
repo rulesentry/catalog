@@ -7,7 +7,6 @@
   "name": "UK Bank Account Number",
   "description": "Detects UK bank account numbers. Format: 8 digits preceded by banking context keywords (account number, a/c). UK bank accounts do not have a universal check digit algorithm.",
   "category_id": "financial",
-  "rule_kind": "atomic",
   "severity": "high",
   "profiles": [
     "financial-industry",

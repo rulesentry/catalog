@@ -9,7 +9,6 @@
   "summary": "Detects CPT (Current Procedural Terminology) codes with context markers",
   "description": "Detects CPT procedure codes in healthcare documents. Matches 5-digit CPT codes (00100-99499) and Category II/III codes (e.g., 0042F, 0019T). Requires context keywords to reduce false positives from arbitrary 5-digit numbers.",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "healthcare-industry",

@@ -7,7 +7,6 @@
   "name": "Singapore NRIC/FIN",
   "description": "Detects Singapore National Registration Identity Card (NRIC) and Foreign Identification Number (FIN) with checksum validation. Format: X1234567X (letter + 7 digits + checksum letter).",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "government-sector",

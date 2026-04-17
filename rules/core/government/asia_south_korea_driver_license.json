@@ -7,7 +7,6 @@
   "name": "South Korean Driver License Number",
   "description": "Detects South Korean driver license numbers with region code validation. Format: 2-digit region code + 2-digit year + 6-digit serial + 2-digit check.",
   "category_id": "government",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "government-sector",
@@ -19,7 +18,7 @@
     "attribution": "https://github.com/microsoft/presidio",
     "validator_algorithm": "Region code prefix check (valid codes: 11-26, 28)",
     "format": "12-34-567890-12 (region + year + serial + check)",
-    "official_name": "운전면허번호 (Driver License Number)",
+    "official_name": "\uc6b4\uc804\uba74\ud5c8\ubc88\ud638 (Driver License Number)",
     "needs_review": false
   },
   "evaluation": {

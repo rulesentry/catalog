@@ -7,7 +7,6 @@
   "name": "Port Number (with context)",
   "description": "Detects TCP/UDP port numbers with explicit context (e.g., 'port 8080', 'hostname:3306'). Bare :PORT form requires a hostname-like prefix to avoid matching hex octet fragments (SSH fingerprints, IPv6 segments).",
   "category_id": "network",
-  "rule_kind": "atomic",
   "severity": "info",
   "profiles": [
     "production"

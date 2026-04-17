@@ -7,7 +7,6 @@
   "name": "Medicaid ID Number",
   "description": "Detects state Medicaid identification numbers with contextual keywords. Format varies by state, typically 8-13 alphanumeric characters. Pattern looks for 'medicaid' keyword followed by identifier.",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "healthcare-industry",

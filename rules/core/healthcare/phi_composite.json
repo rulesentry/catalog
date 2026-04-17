@@ -9,7 +9,6 @@
   "summary": "Triggers when both a medical record number and date of birth appear together",
   "description": "Composite rule that triggers only when both a medical identifier (MRN) and a personal identifier (DOB) appear together in the same content. This combination constitutes Protected Health Information (PHI) under HIPAA and warrants elevated protection.",
   "category_id": "healthcare",
-  "rule_kind": "composite",
   "severity": "critical",
   "profiles": [
     "healthcare-industry",
@@ -55,19 +54,7 @@
           "prefix": "PHI"
         }
       }
-    },
-    "side_effects": [
-      {
-        "type": "audit",
-        "level": "warn",
-        "target": "compliance-log",
-        "config": {
-          "include_rule_id": true,
-          "include_match_count": true,
-          "alert": true
-        }
-      }
-    ]
+    }
   },
   "created_at": "2026-02-10T00:00:00Z",
   "updated_at": "2026-03-21T00:00:00Z"

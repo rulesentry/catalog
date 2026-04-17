@@ -7,7 +7,6 @@
   "name": "Medicare Beneficiary Identifier (MBI)",
   "description": "Detects Medicare Beneficiary Identifiers (MBI) used since April 2018. Format: 1 character + AC-HJKMNP-RT-Y + AC-HJKMNP-RT-Y0-9 + digit + AC-HJKMNP-RT-Y + AC-HJKMNP-RT-Y0-9 + digit + 2 letters + 2 digits (e.g., 1AB2C3D4EF56). Excludes easily confused characters (S, L, O, I, B, Z).",
   "category_id": "healthcare",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "healthcare-industry",

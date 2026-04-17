@@ -7,7 +7,6 @@
   "name": "Google API Key",
   "description": "Detects Google Cloud and Google Services API keys. Format: AIza followed by 35 characters. Can access Google Cloud services, Maps, YouTube, etc.",
   "category_id": "digital_identity",
-  "rule_kind": "atomic",
   "severity": "critical",
   "profiles": [
     "technology-sector",

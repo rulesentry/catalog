@@ -7,7 +7,6 @@
   "name": "Indian Phone Number",
   "description": "Detects Indian phone numbers with +91 country code. Includes mobile (10 digits starting with 6-9) and landline formats.",
   "category_id": "contact",
-  "rule_kind": "atomic",
   "severity": "medium",
   "profiles": [
     "production"

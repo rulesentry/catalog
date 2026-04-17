@@ -1,0 +1,17 @@
+{
+  "id": "npi_luhn",
+  "type": "validator-definition",
+  "version": "1.1.0",
+  "publisher_id": "rulesentry",
+  "name": "NPI Luhn Checksum",
+  "description": "Validates National Provider Identifier (NPI) numbers using the CMS Luhn algorithm: prepend '80840' to the 10-digit NPI, then verify the 15-digit string passes standard Luhn (sum % 10 == 0).",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 10,
+    "checksum_prefix": "80840",
+    "luhn_doubling": true,
+    "modulus": 10,
+    "check_rule": "sum_mod_zero"
+  }
+}

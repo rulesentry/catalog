@@ -1,0 +1,51 @@
+{
+  "id": "dni_mod23",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Spanish DNI MOD-23",
+  "description": "Validates Spanish DNI (Documento Nacional de Identidad). 8 digits form a number; number mod 23 indexes a lookup table to determine the expected trailing check letter.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 8,
+    "weights": [
+      10000000,
+      1000000,
+      100000,
+      10000,
+      1000,
+      100,
+      10,
+      1
+    ],
+    "modulus": 23,
+    "check_rule": "lookup_table",
+    "check_position": "none",
+    "lookup_table": [
+      "T",
+      "R",
+      "W",
+      "A",
+      "G",
+      "M",
+      "Y",
+      "F",
+      "P",
+      "D",
+      "X",
+      "B",
+      "N",
+      "J",
+      "Z",
+      "S",
+      "Q",
+      "V",
+      "H",
+      "L",
+      "C",
+      "K",
+      "E"
+    ]
+  }
+}

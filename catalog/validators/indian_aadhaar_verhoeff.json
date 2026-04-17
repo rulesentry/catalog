@@ -1,0 +1,16 @@
+{
+  "id": "indian_aadhaar_verhoeff",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Indian Aadhaar Verhoeff Checksum",
+  "description": "Validates 12-digit Indian Aadhaar numbers using the standard Verhoeff algorithm. Rejects numbers starting with 0 or 1 per UIDAI specification.",
+  "algorithm": "verhoeff",
+  "params": {
+    "expected_length": 12,
+    "reject_starts_with": [
+      "0",
+      "1"
+    ]
+  }
+}

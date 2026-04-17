@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/profile.schema.json",
+  "id": "financial-industry",
+  "type": "profile",
+  "version": "3.0.0",
+  "publisher_id": "rulesentry",
+  "status": "active",
+  "name": "Financial Services",
+  "caption": "Financial",
+  "description": "Industry context profile for financial services organizations: banks, credit unions, investment firms, insurance companies, payment processors, and fintech providers. Use to identify rules relevant to financial account data, payment instruments, and trading records in financial deployments. Orthogonal to compliance profiles — a bank may also need PCI-DSS, GLBA, and SOX (regulatory).",
+  "profile_type": "industry",
+  "frameworks": [],
+  "display_order": 120,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/profiles"
+  },
+  "created_at": "2026-03-13T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-03-13T00:00:00Z",
+  "modified_by": "claude-code"
+}

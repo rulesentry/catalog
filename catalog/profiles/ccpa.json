@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/profile.schema.json",
+  "id": "ccpa",
+  "type": "profile",
+  "version": "3.0.0",
+  "publisher_id": "rulesentry",
+  "status": "active",
+  "name": "CCPA/CPRA Compliance Framework",
+  "caption": "CCPA",
+  "description": "California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) compliance framework for protecting consumer personal information in California.",
+  "profile_type": "compliance_framework",
+  "frameworks": [
+    "CCPA",
+    "CPRA"
+  ],
+  "display_order": 30,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/profiles"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_by": "claude-code"
+}

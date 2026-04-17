@@ -1,0 +1,55 @@
+{
+  "id": "cpf_checksum",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Brazil CPF Checksum",
+  "description": "Validates Brazilian Cadastro de Pessoas Físicas (CPF). 11 digits with two check digits computed in sequence.",
+  "algorithm": "multi_stage",
+  "params": {
+    "extract": "digits",
+    "expected_length": 11,
+    "strip_chars": ".-",
+    "stages": [
+      {
+        "weights": [
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2
+        ],
+        "payload_start": 0,
+        "payload_length": 9,
+        "check_index": 9,
+        "modulus": 11,
+        "check_rule": "remainder_complement",
+        "check_digit_overflow": 0
+      },
+      {
+        "weights": [
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2
+        ],
+        "payload_start": 0,
+        "payload_length": 10,
+        "check_index": 10,
+        "modulus": 11,
+        "check_rule": "remainder_complement",
+        "check_digit_overflow": 0
+      }
+    ]
+  }
+}

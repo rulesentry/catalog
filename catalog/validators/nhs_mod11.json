@@ -1,0 +1,30 @@
+{
+  "id": "nhs_mod11",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "name": "NHS Number MOD-11 Checksum",
+  "description": "Validates UK NHS numbers: multiply first 9 digits by weights 10 down to 2, compute remainder_complement mod 11. A complement of 10 is invalid.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 10,
+    "weights": [
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2
+    ],
+    "modulus": 11,
+    "check_rule": "remainder_complement",
+    "check_position": "last",
+    "invalid_remainders": [
+      10
+    ]
+  }
+}

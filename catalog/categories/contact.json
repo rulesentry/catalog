@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v3/core/category.schema.json",
+  "id": "contact",
+  "type": "category",
+  "version": "3.0.0",
+  "publisher_id": "rulesentry",
+  "status": "active",
+  "name": "Contact Information",
+  "description": "Rules detecting contact and location data including email addresses, phone numbers, physical addresses, and postal codes across multiple countries.",
+  "frameworks": [
+    "GDPR",
+    "CCPA",
+    "PIPEDA"
+  ],
+  "examples": [
+    "email address",
+    "phone number",
+    "mailing address",
+    "postal code"
+  ],
+  "display_order": 15,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/core/contact"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "rulesentry-catalog",
+  "modified_at": "2026-02-13T00:00:00Z",
+  "modified_by": "claude-code"
+}

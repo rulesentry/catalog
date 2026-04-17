@@ -3,7 +3,7 @@
   "id": "government.ssn_format",
   "qualified_id": "core.government.ssn_format",
   "type": "rule",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "name": "US Social Security Number (Format Validated)",
   "description": "Detects US Social Security Numbers with format validation. Excludes invalid area/group/serial combinations per SSA rules.",
   "category_id": "government",
@@ -26,7 +26,7 @@
     "priority": 100,
     "target": "content",
     "pattern": {
-      "pattern": "(?:^|[^\\w-])\\d{3}[-\\s]+\\d{2}[-\\s]+\\d{4}\\b",
+      "pattern": "\\b\\d{3}[-\\s]+\\d{2}[-\\s]+\\d{4}\\b",
       "engine": "regex",
       "validator": "ssn_format"
     },
@@ -45,7 +45,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
+  "updated_at": "2026-04-18T00:00:00Z",
   "regions": [
     "US"
   ]

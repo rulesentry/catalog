@@ -3,7 +3,7 @@
   "id": "digital_identity.pgp_private_key",
   "qualified_id": "core.digital_identity.pgp_private_key",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "name": "PGP Private Key",
   "description": "Detects PGP/GPG private keys. Exposure allows decryption of encrypted messages and digital signature forgery.",
   "category_id": "digital_identity",
@@ -25,7 +25,7 @@
     "priority": 100,
     "target": "content",
     "pattern": {
-      "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----",
+      "pattern": "-----BEGIN PGP PRIVATE KEY BLOCK-----[\\s\\S]*?-----END PGP PRIVATE KEY BLOCK-----",
       "engine": "regex"
     },
     "effect": {
@@ -42,7 +42,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
+  "updated_at": "2026-04-18T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

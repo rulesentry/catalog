@@ -4,7 +4,7 @@
   "id": "digital_identity.ssh_private_key",
   "qualified_id": "core.digital_identity.ssh_private_key",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "name": "SSH Private Key",
   "description": "Detects SSH private keys (RSA, DSA, EC, OPENSSH formats). Exposure allows unauthorized SSH access to servers.",
   "category_id": "digital_identity",
@@ -31,7 +31,7 @@
     "priority": 100,
     "target": "content",
     "pattern": {
-      "pattern": "-----BEGIN (?:RSA |DSA |EC |OPENSSH )?PRIVATE KEY-----",
+      "pattern": "-----BEGIN (?:RSA |DSA |EC |OPENSSH )?PRIVATE KEY-----[\\s\\S]*?-----END (?:RSA |DSA |EC |OPENSSH )?PRIVATE KEY-----",
       "engine": "regex"
     },
     "effect": {
@@ -48,7 +48,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
+  "updated_at": "2026-04-18T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

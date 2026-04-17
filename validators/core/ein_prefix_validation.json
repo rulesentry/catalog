@@ -1,0 +1,14 @@
+{
+  "id": "ein_prefix_validation",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "name": "EIN Prefix Validation",
+  "description": "Validates US Employer Identification Numbers by rejecting IRS-designated invalid 2-digit prefix codes: 00, 07-09, 17, 19, 28, 49, 69-70, 78-79, 89, 96-97.",
+  "algorithm": "prefix_check",
+  "params": {
+    "extract": "digits",
+    "expected_length": 9,
+    "prefix_length": 2,
+    "invalid_prefixes": ["00", "07", "08", "09", "17", "19", "28", "49", "69", "70", "78", "79", "89", "96", "97"]
+  }
+}

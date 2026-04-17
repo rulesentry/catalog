@@ -1,0 +1,19 @@
+{
+  "id": "cusip_checksum",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "name": "CUSIP Checksum",
+  "description": "Validates 9-character CUSIP securities identifiers. Values: digits 0-9, letters A-Z map to 10-35, *=36, @=37, #=38. Even positions (1-indexed) are doubled; digit products of each value*weight are summed and verified via remainder complement mod 10.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "alphanumeric",
+    "special_char_values": {"*": 36, "@": 37, "#": 38},
+    "strip_chars": " -",
+    "expected_length": 9,
+    "weights": [1, 2, 1, 2, 1, 2, 1, 2],
+    "sum_digit_products": true,
+    "modulus": 10,
+    "check_rule": "remainder_complement",
+    "check_position": "last"
+  }
+}

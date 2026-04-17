@@ -1,0 +1,13 @@
+{
+  "id": "iban_mod97",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "name": "IBAN MOD-97 Checksum",
+  "description": "Validates IBAN numbers using ISO 13616 MOD-97: move first 4 characters to end, convert letters A=10..Z=35, verify remainder mod 97 equals 1. Minimum 15 alphanumeric characters.",
+  "algorithm": "mod97_alpha",
+  "params": {
+    "rearrange_prefix_length": 4,
+    "expected_remainder": 1,
+    "min_length": 15
+  }
+}

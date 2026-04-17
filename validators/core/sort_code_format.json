@@ -1,0 +1,14 @@
+{
+  "id": "sort_code_format",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "name": "UK Sort Code Format Validation",
+  "description": "Validates UK bank sort codes: must be exactly 6 digits with a non-zero first 2-digit prefix (i.e., '00' prefix is rejected).",
+  "algorithm": "prefix_check",
+  "params": {
+    "extract": "digits",
+    "expected_length": 6,
+    "reject_zero_prefix": true,
+    "prefix_length": 2
+  }
+}

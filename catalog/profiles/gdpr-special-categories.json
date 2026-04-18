@@ -9,6 +9,7 @@
   "caption": "GDPR Art.9",
   "description": "GDPR Article 9 designates nine categories of personal data requiring heightened protection and explicit legal basis for processing: health data, biometric data, genetic data, racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, sex life or sexual orientation, and criminal convictions. RuleSentry rules currently cover health data and biometric data via regex detection. Political opinions, religious beliefs, racial/ethnic origin, and sexual orientation are not reliably detectable via regex and require NER or LLM-based analysis (not yet available).",
   "profile_type": "compliance_framework",
+  "requires_profiles": ["gdpr"],
   "frameworks": [
     "GDPR Article 9",
     "GDPR Recital 51-56"

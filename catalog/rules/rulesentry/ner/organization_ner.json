@@ -44,7 +44,7 @@
   },
   "origin": {
     "source_type": "catalog",
-    "catalog_url": "https://catalog.rulesentry.io/core/ner/organization_ner"
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/organization_ner"
   },
   "created_at": "2026-03-18T00:00:00Z",
   "created_by": "claude-code",

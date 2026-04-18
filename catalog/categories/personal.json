@@ -23,7 +23,7 @@
   "is_system": true,
   "origin": {
     "source_type": "catalog",
-    "catalog_url": "https://catalog.rulesentry.io/core/personal"
+    "catalog_url": "https://catalog.rulesentry.io/categories/personal"
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "rulesentry-catalog",

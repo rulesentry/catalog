@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.asia_japanese_my_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Japanese My Number (Individual Number)",
   "description": "Detects Japanese My Number identification with check digit validation. Used for social security, taxation, and disaster response.",
   "category_id": "government",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.us_immigration_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "US Immigration Number (A-Number)",
   "description": "Detects US Alien Registration Numbers (A-Numbers) used by USCIS. Format: 'A' prefix followed by 7-9 digits. Context-anchored to require keyword prefix (A#, alien registration, etc.) to reduce false positives.",
   "category_id": "government",

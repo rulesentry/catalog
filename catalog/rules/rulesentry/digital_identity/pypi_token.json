@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.pypi_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "PyPI Access Token",
   "description": "Detects PyPI (Python Package Index) tokens. Can publish Python packages, access private repositories.",
   "category_id": "digital_identity",

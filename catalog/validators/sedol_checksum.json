@@ -1,7 +1,7 @@
 {
   "id": "sedol_checksum",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "SEDOL Checksum",
   "description": "Validates Stock Exchange Daily Official List (SEDOL) identifiers. 7 alphanumeric characters where digits 0-9 map to face value, letters A-Z map to 10-35. Weighted sum mod 10 with check digit complement.",

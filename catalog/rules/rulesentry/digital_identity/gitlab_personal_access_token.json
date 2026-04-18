@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.gitlab_personal_access_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "GitLab Personal Access Token",
   "description": "Detects GitLab Personal Access Tokens. Format: glpat- prefix. Can access repositories, CI/CD, and API.",
   "category_id": "digital_identity",

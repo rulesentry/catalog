@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.phone_india",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Indian Phone Number",
   "description": "Detects Indian phone numbers with +91 country code. Includes mobile (10 digits starting with 6-9) and landline formats.",
   "category_id": "contact",

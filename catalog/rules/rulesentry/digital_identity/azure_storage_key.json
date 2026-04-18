@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.azure_storage_key",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Azure Storage Account Key",
   "description": "Detects Microsoft Azure Storage Account keys. 88-character base64 strings with context (DefaultEndpointsProtocol or AccountKey) that grant full access to Azure Storage accounts.",
   "category_id": "digital_identity",

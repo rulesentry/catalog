@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.health_insurance_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Health Insurance Number",
   "description": "Detects health insurance/plan numbers with explicit context. Includes member ID, policy number, subscriber ID. HIPAA PHI.",
   "category_id": "healthcare",

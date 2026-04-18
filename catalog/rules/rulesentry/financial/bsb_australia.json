@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.bsb_australia",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "BSB Number (Australia)",
   "description": "Detects Australian Bank State Branch (BSB) numbers. Format: XXX-XXX (6 digits).",
   "category_id": "financial",

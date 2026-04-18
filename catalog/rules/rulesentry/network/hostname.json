@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.hostname",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "name": "Hostname",
   "description": "Detects hostnames with explicit context (e.g., 'hostname:', 'server:'). Requires a colon separator to prevent matching prose phrases like '# Server Configuration'.",
   "category_id": "network",

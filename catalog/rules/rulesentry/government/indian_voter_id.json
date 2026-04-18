@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.indian_voter_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Indian Voter ID (EPIC)",
   "description": "Detects Indian Elector's Photo Identity Card (EPIC) numbers. Format: 3 letters followed by 7 digits. Context-anchored to reduce false positives.",
   "category_id": "government",

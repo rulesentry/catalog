@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_it_driver_license",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Italian Driver License Number",
   "description": "Detects Italian driver license numbers. Two formats: standard (AA1234567A) and newer U1-prefix format.",
   "category_id": "government",

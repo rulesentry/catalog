@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.americas_brazil_cpf",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Brazilian CPF (Cadastro de Pessoas Físicas)",
   "description": "Detects Brazilian individual taxpayer registry numbers with check digit validation.",
   "category_id": "government",

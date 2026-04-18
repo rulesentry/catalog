@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.personal.date_of_birth_eu",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "Date of Birth (EU)",
   "summary": "Detects EU-formatted dates of birth with explicit DOB context markers",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.apac-data-privacy",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "APAC Data Privacy Policy",
   "description": "Data privacy policy for Asia-Pacific jurisdictions. Covers Singapore PDPA, Japan APPI, Australia Privacy Act, India DPDP Act, and government ID detection across AU, JP, IN, CN, HK, KR, TW, and TH.",

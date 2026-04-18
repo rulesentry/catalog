@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.ipv4_address",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "IPv4 Address",
   "description": "Detects IPv4 addresses in dotted decimal notation (e.g., 192.168.1.1). Can be considered personal data under GDPR when linked to individuals.",
   "category_id": "network",

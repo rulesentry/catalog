@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.postal_code_germany",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "German Postal Code",
   "description": "Detects German postal codes (5 digits).",
   "category_id": "contact",

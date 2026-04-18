@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.personal.pronoun_name_reference",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "name": "Person Name (Pronoun/Role Reference)",
   "description": "Detects person names introduced via pronoun or role reference (e.g. 'His name was Sam Jones', 'The customer's name is John Smith'). Complements NER for terse or low-context inputs where NER confidence falls below threshold.",
   "category_id": "personal",

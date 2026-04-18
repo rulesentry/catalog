@@ -1,7 +1,7 @@
 {
   "id": "rrn_checksum",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "South Korea RRN Checksum",
   "description": "Validates South Korean Resident Registration Number (주민등록번호). 13 digits with weights [2,3,4,5,6,7,8,9,2,3,4,5] on first 12 digits. Check = (11 - sum%11) % 10.",

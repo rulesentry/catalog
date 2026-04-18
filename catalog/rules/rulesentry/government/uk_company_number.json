@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.uk_company_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "UK Companies House Number",
   "description": "Detects UK company registration numbers issued by Companies House. Format: 8 digits or 2-letter prefix (e.g., SC, NI, OC) followed by 6 digits, preceded by context keywords.",
   "category_id": "government",

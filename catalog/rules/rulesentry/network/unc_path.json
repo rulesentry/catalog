@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.unc_path",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "UNC Network Path",
   "description": "Detects Windows UNC (Universal Naming Convention) network paths (e.g., \\\\\\\\server\\\\share\\\\file). May reveal internal network structure.",
   "category_id": "network",

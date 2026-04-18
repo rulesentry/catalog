@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.asia_thailand_cid",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Thailand Citizen ID Number",
   "description": "Detects Thai national identification card numbers with MOD-11 checksum validation.",
   "category_id": "government",

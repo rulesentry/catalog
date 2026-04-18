@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.pin_code",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "PIN Code",
   "description": "Detects references to PIN codes (4-6 digits). PCI-DSS prohibits storage of PINs.",
   "category_id": "financial",

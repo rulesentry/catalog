@@ -5,7 +5,7 @@
   "qualified_id": "rulesentry.digital_identity.ssh_private_key",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "name": "SSH Private Key",
   "description": "Detects SSH private keys (RSA, DSA, EC, OPENSSH formats). Exposure allows unauthorized SSH access to servers.",
   "category_id": "digital_identity",

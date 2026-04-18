@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.icd10_code",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "status": "active",
   "name": "ICD-10 Diagnosis Code",
   "summary": "Detects ICD-10 diagnosis codes with context markers indicating patient data",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.uk_sort_code",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "name": "UK Sort Code (Format Validated)",
   "description": "Detects UK bank sort codes with format validation. Sort codes identify UK bank branches.",
   "category_id": "financial",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.phone_uk_mobile",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "UK Mobile Phone Number",
   "description": "Detects UK mobile phone numbers starting with 07. Supports various formatting styles including spaces, dashes, and parentheses.",
   "category_id": "contact",

@@ -1,7 +1,7 @@
 {
   "id": "australian_tfn_mod11",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "Australian Tax File Number MOD-11",
   "description": "Validates Australian TFN using weighted sum MOD-11. A valid TFN has 8 or 9 digits where the weighted sum is divisible by 11.",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_it_identity_card",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Italian Identity Card Number",
   "description": "Detects Italian identity card numbers in three formats: paper (AA 1234567), CIE 2.0 (1234567AA), and CIE 3.0 (AA12345AA). Context-anchored to reduce false positives.",
   "category_id": "government",

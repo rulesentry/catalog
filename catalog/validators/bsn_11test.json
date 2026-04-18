@@ -1,7 +1,7 @@
 {
   "id": "bsn_11test",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "Dutch BSN 11-test",
   "description": "Validates Dutch Burgerservicenummer (BSN). 9 digits with weights [9,8,7,6,5,4,3,2,-1]. The weighted sum must be divisible by 11 and not zero.",

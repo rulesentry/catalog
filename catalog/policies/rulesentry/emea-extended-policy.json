@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.emea-extended",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "EMEA Extended Data Protection Policy",
   "description": "Data protection policy for Middle East and Africa jurisdictions under EMEA. Covers Turkey KVKK, Saudi PDPL, UAE DPL, South Africa POPIA, and other regional data protection requirements for government ID detection.",

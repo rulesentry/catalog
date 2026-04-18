@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.phone_china",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Chinese Phone Number",
   "description": "Detects Chinese phone numbers with +86 country code. Includes mobile (11 digits starting with 1) and landline formats.",
   "category_id": "contact",

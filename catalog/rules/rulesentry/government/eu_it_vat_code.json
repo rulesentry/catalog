@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_it_vat_code",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Italian VAT Code (Partita IVA)",
   "description": "Detects Italian VAT identification numbers (Partita IVA) with Luhn checksum validation. Format: 11 digits.",
   "category_id": "government",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.google_api_key",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Google API Key",
   "description": "Detects Google Cloud and Google Services API keys. Format: AIza followed by 35 characters. Can access Google Cloud services, Maps, YouTube, etc.",
   "category_id": "digital_identity",

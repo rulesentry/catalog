@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.french_nir",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "French NIR (Social Security Number)",
   "description": "Detects French Numéro d'Inscription au Répertoire (NIR/INSEE number) with MOD-97 checksum validation. Format: 15 digits.",
   "category_id": "government",

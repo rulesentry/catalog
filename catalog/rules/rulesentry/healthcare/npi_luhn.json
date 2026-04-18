@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.npi_luhn",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "National Provider Identifier (NPI)",
   "summary": "Detects US NPI numbers with Luhn checksum validation",

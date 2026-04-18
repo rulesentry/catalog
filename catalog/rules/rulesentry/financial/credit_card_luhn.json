@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.credit_card_luhn",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Credit Card (Luhn Validated)",
   "description": "Detects credit card numbers with Luhn checksum validation to reduce false positives. Supports Visa, Mastercard, Discover, Amex, Diners Club, and JCB.",
   "category_id": "financial",

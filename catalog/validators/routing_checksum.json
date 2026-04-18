@@ -1,7 +1,7 @@
 {
   "id": "routing_checksum",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "ABA Routing Number Checksum",
   "description": "Validates US ABA routing numbers: (3*d1 + 7*d2 + d3 + 3*d4 + 7*d5 + d6 + 3*d7 + 7*d8 + d9) mod 10 == 0.",

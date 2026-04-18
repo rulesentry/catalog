@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.isin",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "ISIN (International Securities Identifier)",
   "description": "Detects International Securities Identification Numbers with Luhn checksum validation. ISIN is a 12-character code that uniquely identifies securities (stocks, bonds, derivatives) globally.",
   "category_id": "financial",

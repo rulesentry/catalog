@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.dns_record",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "DNS Record",
   "description": "Detects DNS record entries with context (e.g., 'DNS:', 'Nameserver:'). May reveal internal infrastructure.",
   "category_id": "network",

@@ -1,7 +1,7 @@
 {
   "id": "abn_mod89",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "Australian Business Number MOD-89",
   "description": "Validates Australian Business Numbers using weighted sum MOD-89. The ABN algorithm subtracts 1 from the first digit before applying weights; this is equivalent to checking that the unmodified weighted sum has remainder 10 (the first weight).",

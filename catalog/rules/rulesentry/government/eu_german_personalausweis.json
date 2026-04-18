@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_german_personalausweis",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "German National ID (Personalausweis)",
   "description": "Detects German national identity card numbers. Format: Letter + 9 digits + check digit.",
   "category_id": "government",

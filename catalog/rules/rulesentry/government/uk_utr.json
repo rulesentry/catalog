@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.uk_utr",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "UK Unique Taxpayer Reference (UTR)",
   "description": "Detects UK Unique Taxpayer References issued by HMRC. Format: 10 digits preceded by context keywords (UTR, unique taxpayer reference, tax reference).",
   "category_id": "government",

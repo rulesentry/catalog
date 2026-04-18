@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_spanish_dni",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Spanish National ID (DNI)",
   "description": "Detects Spanish DNI (Documento Nacional de Identidad) with MOD-23 checksum validation.",
   "category_id": "government",

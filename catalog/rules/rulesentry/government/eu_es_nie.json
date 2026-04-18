@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_es_nie",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Spanish NIE (Foreigner Identity Number)",
   "description": "Detects Spanish Número de Identidad de Extranjero. Format: X/Y/Z prefix + 7 digits + check letter. Uses MOD-23 lookup table (same as DNI) after letter-to-digit substitution.",
   "category_id": "government",

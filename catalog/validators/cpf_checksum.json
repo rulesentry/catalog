@@ -1,7 +1,7 @@
 {
   "id": "cpf_checksum",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "Brazil CPF Checksum",
   "description": "Validates Brazilian Cadastro de Pessoas Físicas (CPF). 11 digits with two check digits computed in sequence.",

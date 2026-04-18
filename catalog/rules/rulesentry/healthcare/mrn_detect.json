@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.mrn_detect",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "status": "active",
   "name": "Medical Record Number (MRN)",
   "summary": "Detects medical record numbers with explicit MRN context markers",

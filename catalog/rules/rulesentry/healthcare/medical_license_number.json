@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.medical_license_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Medical License Number",
   "description": "Detects state medical board license numbers for physicians and healthcare providers. Format: 1-3 letters + 4-9 digits (varies by state).",
   "category_id": "healthcare",

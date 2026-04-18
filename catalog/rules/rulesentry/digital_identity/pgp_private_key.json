@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.pgp_private_key",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "name": "PGP Private Key",
   "description": "Detects PGP/GPG private keys. Exposure allows decryption of encrypted messages and digital signature forgery.",
   "category_id": "digital_identity",

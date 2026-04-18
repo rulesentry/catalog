@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.vpn_config",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "VPN Configuration",
   "description": "Detects VPN configuration identifiers with context (e.g., 'VPN Server:', 'VPN Gateway:'). May contain sensitive network information.",
   "category_id": "network",

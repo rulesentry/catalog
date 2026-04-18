@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.uk_bank_account",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "UK Bank Account Number",
   "description": "Detects UK bank account numbers. Format: 8 digits preceded by banking context keywords (account number, a/c). UK bank accounts do not have a universal check digit algorithm.",
   "category_id": "financial",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.medicaid_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Medicaid ID Number",
   "description": "Detects state Medicaid identification numbers with contextual keywords. Format varies by state, typically 8-13 alphanumeric characters. Pattern looks for 'medicaid' keyword followed by identifier.",
   "category_id": "healthcare",

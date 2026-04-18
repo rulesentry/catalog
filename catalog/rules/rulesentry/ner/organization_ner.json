@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.ner.organization",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "Organisation Name (NER)",
   "description": "Detects organisation names (companies, institutions, government bodies) using an on-device NER model. Requires an active ONNX model (distilbert-ner). Rule silently no-ops when no model is active.",

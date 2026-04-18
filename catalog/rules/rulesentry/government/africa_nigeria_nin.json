@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.africa_nigeria_nin",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Nigerian NIN (National Identification Number)",
   "description": "Detects Nigerian national identification numbers.",
   "category_id": "government",

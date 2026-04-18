@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.ipv4_cidr",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "IPv4 CIDR Notation",
   "description": "Detects IPv4 addresses with CIDR subnet mask notation (e.g., 192.168.1.0/24).",
   "category_id": "network",

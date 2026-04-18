@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.asia_south_korea_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "South Korean Passport Number",
   "description": "Detects South Korean passport numbers in current format. Format: prefix letter (M/S/R/O/D) + 3 digits + 1 letter + 4 digits.",
   "category_id": "government",

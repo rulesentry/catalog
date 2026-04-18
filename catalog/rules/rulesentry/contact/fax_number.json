@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.fax_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Fax Number",
   "description": "Detects fax numbers with explicit 'Fax:' or 'F:' prefix. Uses international phone number patterns.",
   "category_id": "contact",

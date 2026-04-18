@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.apartment_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Apartment/Unit Number",
   "description": "Detects apartment, unit, or suite numbers (e.g., Apt 123, Unit 4B, Suite 500).",
   "category_id": "contact",

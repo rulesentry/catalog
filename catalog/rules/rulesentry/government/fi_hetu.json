@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.fi_hetu",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Finnish Personal Identity Code (HETU)",
   "description": "Detects Finnish personal identity codes (henkilötunnus, HETU). Format: DDMMYY[+/-/A]NNNx where the century marker distinguishes 1800s (+), 1900s (-), and 2000s (A), followed by a 3-digit ordinal and a checksum character.",
   "category_id": "government",

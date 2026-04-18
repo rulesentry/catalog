@@ -1,7 +1,7 @@
 {
   "id": "china_id_gb11643",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "China Resident ID Card (GB 11643)",
   "description": "Validates 18-digit Chinese Resident Identity Card number per GB 11643-1999. Weights on first 17 digits, remainder indexes lookup table for check character (may be 'X' for remainder=2).",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.medical_device_identifier",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Medical Device UDI",
   "description": "Detects FDA Unique Device Identifiers (UDI) for medical devices. Format: 8-30 alphanumeric characters with contextual keywords (udi, device id).",
   "category_id": "healthcare",

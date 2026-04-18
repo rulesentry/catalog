@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.ssn_format",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.2.2",
+  "version": "4.0.0",
   "name": "US Social Security Number (Format Validated)",
   "description": "Detects US Social Security Numbers with format validation. Excludes invalid area/group/serial combinations per SSA rules.",
   "category_id": "government",

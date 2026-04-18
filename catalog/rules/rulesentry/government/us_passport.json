@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.us_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "US Passport Number",
   "description": "Detects US passport numbers. Format: 9 digits (old) or 1 letter + 8 digits (new).",
   "category_id": "government",

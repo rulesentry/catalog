@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.uk_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "UK Passport Number",
   "description": "Detects UK passport numbers. Format: 9 digits optionally preceded by two letters.",
   "category_id": "government",

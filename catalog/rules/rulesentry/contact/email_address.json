@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.email_address",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Email Address",
   "description": "Detects email addresses using RFC 5322 compliant pattern. Includes support for international domains (IDN), subdomains, and plus addressing (user+tag@domain.com).",
   "category_id": "contact",

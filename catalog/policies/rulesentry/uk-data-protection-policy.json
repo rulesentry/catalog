@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.uk-data-protection",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "UK Data Protection Policy",
   "description": "Data protection policy for United Kingdom jurisdictions under the DPA 2018 and UK-GDPR. Covers national insurance numbers, NHS numbers, driving licences, passports, sort codes, and IBANs. UK is under EMEA but not under EU, reflecting post-Brexit regulatory independence.",

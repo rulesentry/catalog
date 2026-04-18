@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.us_itin",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "US Individual Taxpayer Identification Number (ITIN)",
   "description": "Detects US ITINs issued by the IRS to individuals who are required to have a taxpayer identification number but are not eligible for an SSN. Format: 9XX-[50-65,70-88,90-92,94-99]-XXXX.",
   "category_id": "government",

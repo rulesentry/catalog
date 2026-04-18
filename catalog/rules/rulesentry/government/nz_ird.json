@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.nz_ird",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "New Zealand IRD Number",
   "description": "Detects New Zealand Inland Revenue Department (IRD) numbers. Format: 8 or 9 digits preceded by context keywords. MOD-11 checksum validator may be added in follow-up.",
   "category_id": "government",

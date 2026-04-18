@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.docker_hub_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Docker Hub Access Token",
   "description": "Detects Docker Hub personal access tokens. Can push/pull images, modify repositories.",
   "category_id": "digital_identity",

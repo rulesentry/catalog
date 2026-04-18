@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.cvv_cvc",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "CVV/CVC Security Code",
   "description": "Detects credit card CVV/CVC security codes (3-4 digits). PCI-DSS prohibits storage of CVV codes after authorization.",
   "category_id": "financial",

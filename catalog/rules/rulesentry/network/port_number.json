@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.port_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "name": "Port Number (with context)",
   "description": "Detects TCP/UDP port numbers with explicit context (e.g., 'port 8080', 'hostname:3306'). Bare :PORT form requires a hostname-like prefix to avoid matching hex octet fragments (SSH fingerprints, IPv6 segments).",
   "category_id": "network",

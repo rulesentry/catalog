@@ -1,7 +1,7 @@
 {
   "id": "kr_driver_license_region",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "South Korea Driver License Region Code",
   "description": "Validates that the first 2 digits of a South Korean driver license number represent a valid region code (11-26, 28).",

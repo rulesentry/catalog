@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.phone_uk_landline",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "UK Landline Phone Number",
   "description": "Detects UK landline phone numbers including London (020), Birmingham (0121), Manchester (0161), and other geographic area codes.",
   "category_id": "contact",

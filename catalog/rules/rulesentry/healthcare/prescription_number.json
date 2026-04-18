@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.prescription_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Prescription Number (Rx)",
   "description": "Detects prescription numbers with 'Rx:', 'Rx#', or 'Prescription Number:' context. HIPAA PHI.",
   "category_id": "healthcare",

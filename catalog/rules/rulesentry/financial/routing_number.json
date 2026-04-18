@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.routing_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "US Routing Number (Checksum Validated)",
   "description": "Detects US bank routing numbers (ABA routing transit numbers) with checksum validation to reduce false positives.",
   "category_id": "financial",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.middle_east_saudi_national_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "name": "Saudi National ID (Iqama/National ID)",
   "description": "Detects Saudi Arabian national ID and residence permit (Iqama) numbers. Requires a keyword label (national id, iqama, or Arabic equivalents) because the bare 10-digit format collides with NPIs, phone numbers, and other global IDs.",
   "category_id": "government",

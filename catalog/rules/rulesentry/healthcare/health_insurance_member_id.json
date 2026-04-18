@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.health_insurance_member_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Health Insurance Member ID",
   "description": "Detects health insurance member/subscriber/policy identification numbers. Format: 6-20 alphanumeric characters with contextual keywords (member, subscriber, policy).",
   "category_id": "healthcare",

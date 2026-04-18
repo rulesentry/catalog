@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.asia_singapore_uen",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Singapore Unique Entity Number (UEN)",
   "description": "Detects Singapore Unique Entity Numbers in three formats: Format A (8 digits + letter), Format B (9 digits + letter), Format C (T/S prefix + 2 digits + 2 entity letters + 4 digits + letter).",
   "category_id": "government",

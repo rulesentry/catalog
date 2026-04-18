@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.ethereum_address",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Ethereum Address",
   "description": "Detects Ethereum cryptocurrency addresses with EIP-55 checksum validation. Ethereum addresses are 40-character hexadecimal strings (42 with 0x prefix) used for wallets and smart contracts.",
   "category_id": "financial",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.uk_vehicle_registration",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "UK Vehicle Registration Number",
   "description": "Detects UK vehicle registration plates. Covers current format (AB12 CDE), prefix format (A123 BCD), and suffix format (ABC 123D).",
   "category_id": "government",

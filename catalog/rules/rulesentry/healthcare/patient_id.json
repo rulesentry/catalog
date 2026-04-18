@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.patient_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Patient ID",
   "description": "Detects patient identification numbers with explicit 'Patient ID:', 'Patient Number:', or similar context. HIPAA PHI.",
   "category_id": "healthcare",

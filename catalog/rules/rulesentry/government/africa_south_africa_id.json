@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.africa_south_africa_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "South African ID Number",
   "description": "Detects South African identity numbers with Luhn checksum validation. Encodes birth date, gender, and citizenship.",
   "category_id": "government",

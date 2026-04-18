@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.nz_driver_license",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "New Zealand Driver Licence Number",
   "description": "Detects New Zealand driver licence numbers. Format: 2 letters followed by 6 digits, preceded by context keywords.",
   "category_id": "government",

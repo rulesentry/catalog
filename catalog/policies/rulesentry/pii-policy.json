@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.pii",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "3.3.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "PII Protection Policy",
   "description": "Global baseline policy for personally identifiable information. Covers personal attributes and contact information across all regions. Government ID detection is delegated to regional policies (US-PII, EU-GDPR, UK-DPA, APAC, Americas, EMEA).",

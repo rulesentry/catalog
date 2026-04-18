@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.slack_webhook_url",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Slack Webhook URL",
   "description": "Detects Slack Incoming Webhook URLs. Can post messages to specific Slack channels.",
   "category_id": "digital_identity",

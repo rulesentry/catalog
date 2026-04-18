@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.pharmacy_prescription_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Pharmacy Prescription Number",
   "description": "Detects pharmacy prescription (Rx) tracking numbers. Format: 6-10 digits with contextual keywords (prescription, rx).",
   "category_id": "healthcare",

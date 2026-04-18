@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.indian_vehicle_registration",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Indian Vehicle Registration Number",
   "description": "Detects Indian vehicle registration plate numbers in standard format. Format: 2-letter state code + 2-digit district code + 1-2 letter series + 4-digit number.",
   "category_id": "government",

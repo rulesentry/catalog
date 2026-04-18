@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.personal.age_explicit",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Age (Explicit Mention)",
   "description": "Detects explicit age mentions with 'age:', 'years old', or similar context. Helps identify age-related PII.",
   "category_id": "personal",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.middle_east_uae_emirates_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "UAE Emirates ID",
   "description": "Detects United Arab Emirates national identity card numbers.",
   "category_id": "government",

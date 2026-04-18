@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.lei",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "LEI (Legal Entity Identifier)",
   "description": "Detects Legal Entity Identifiers with MOD-97 checksum validation. LEI is a 20-character code that uniquely identifies legal entities participating in financial transactions globally.",
   "category_id": "financial",

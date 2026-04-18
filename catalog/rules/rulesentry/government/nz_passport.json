@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.nz_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "New Zealand Passport Number",
   "description": "Detects New Zealand passport numbers. Format: 2 letters followed by 6 digits (e.g., LA123456), preceded by context keywords.",
   "category_id": "government",

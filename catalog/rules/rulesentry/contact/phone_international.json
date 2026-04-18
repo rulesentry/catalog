@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.phone_international",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "International Phone Number (E.164)",
   "description": "Detects international phone numbers in E.164 format: plus sign followed by country code and subscriber number (7-15 digits total). Complements country-specific phone rules with a global catch-all pattern.",
   "category_id": "contact",

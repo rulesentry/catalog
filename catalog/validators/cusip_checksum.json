@@ -1,7 +1,7 @@
 {
   "id": "cusip_checksum",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "CUSIP Checksum",
   "description": "Validates 9-character CUSIP securities identifiers. Values: digits 0-9, letters A-Z map to 10-35, *=36, @=37, #=38. Even positions (1-indexed) are doubled; digit products of each value*weight are summed and verified via remainder complement mod 10.",

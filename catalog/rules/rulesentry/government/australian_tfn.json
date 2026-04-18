@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.australian_tfn",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Australian Tax File Number (TFN)",
   "description": "Detects Australian Tax File Numbers with MOD-11 checksum validation. Format: XXX-XXX-XXX (9 digits).",
   "category_id": "government",

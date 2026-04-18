@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.phone_canada",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "name": "Canadian Phone Number",
   "description": "Detects Canadian phone numbers (NANP +1 country code). Bare unlabeled numbers require +1 prefix, parenthesized area code, or dash/dot separators to reduce false positives against healthcare IDs and other 10-digit sequences.",
   "category_id": "contact",

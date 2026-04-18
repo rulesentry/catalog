@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.africa_nigeria_vehicle_registration",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Nigerian Vehicle Registration Plate",
   "description": "Detects Nigerian vehicle registration plate numbers. Format: 3-letter LGA code + 3 digits + 2-letter code.",
   "category_id": "government",

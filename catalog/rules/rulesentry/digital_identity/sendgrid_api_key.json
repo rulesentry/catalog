@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.sendgrid_api_key",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "SendGrid API Key",
   "description": "Detects SendGrid email API keys. Format: SG. followed by base64. Can send emails, access contact lists.",
   "category_id": "digital_identity",

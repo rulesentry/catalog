@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.ifsc_india",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "IFSC Code (India)",
   "description": "Detects Indian Financial System Code (IFSC) used for electronic payments. Format: 4 letters (bank) + 0 (reserved) + 6 alphanumeric (branch).",
   "category_id": "financial",

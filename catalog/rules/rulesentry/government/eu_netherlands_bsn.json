@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_netherlands_bsn",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "name": "Dutch Citizen Service Number (BSN)",
   "description": "Detects Dutch BSN (Burgerservicenummer) with 11-test checksum validation.",
   "category_id": "government",

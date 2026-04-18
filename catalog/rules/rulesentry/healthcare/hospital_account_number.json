@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.hospital_account_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "name": "Hospital Account Number",
   "description": "Detects hospital and facility patient account numbers and encounter identifiers. Format: 6-12 alphanumeric characters with contextual keywords (hospital account, facility account, patient account, hospital, facility).",
   "category_id": "healthcare",

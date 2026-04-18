@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.ipv6_cidr",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "IPv6 CIDR Notation",
   "description": "Detects IPv6 addresses with CIDR prefix length notation (e.g., 2001:db8::/32).",
   "category_id": "network",

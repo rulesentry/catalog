@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.australian_medicare",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Australian Medicare Number",
   "description": "Detects Australian Medicare card numbers with MOD-10 checksum validation. Format: first digit 2-6, followed by 9 digits, with optional /N issue number suffix.",
   "category_id": "government",

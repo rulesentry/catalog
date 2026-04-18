@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.debit_card",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Debit Card (Luhn Validated)",
   "description": "Detects debit card numbers with Luhn checksum validation. Uses same pattern as credit cards but with debit-specific context detection.",
   "category_id": "financial",

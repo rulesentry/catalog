@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.japan_my_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Japan My Number",
   "description": "Detects Japanese Social Security and Tax Numbers (My Number). Format: XXXX-XXXX-XXXX (12 digits). Note: MOD-11 checksum validator to be implemented.",
   "category_id": "government",

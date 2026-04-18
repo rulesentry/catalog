@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.indian_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Indian Passport Number",
   "description": "Detects Indian passport numbers. Format: 1 letter + 2 digits (first non-zero) + optional space + 4 digits + 1 digit (non-zero). Context-anchored to reduce false positives.",
   "category_id": "government",

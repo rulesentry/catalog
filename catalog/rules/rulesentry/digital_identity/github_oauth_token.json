@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.github_oauth_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "GitHub OAuth Access Token",
   "description": "Detects GitHub OAuth access tokens. Format: gho_ prefix. Used by GitHub Apps and OAuth Apps.",
   "category_id": "digital_identity",

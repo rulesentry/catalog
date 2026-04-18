@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.city_state_zip",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "City, State, ZIP (US Format)",
   "description": "Detects US-style city, state, ZIP combinations (e.g., San Francisco, CA 94102).",
   "category_id": "contact",

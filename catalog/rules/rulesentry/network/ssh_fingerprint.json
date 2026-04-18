@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.ssh_fingerprint",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "SSH Key Fingerprint",
   "description": "Detects SSH key fingerprints in MD5 and SHA256 formats (e.g., 'SSH-RSA key fingerprint is ...').",
   "category_id": "network",

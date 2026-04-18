@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.phone_france",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "French Phone Number",
   "description": "Detects French phone numbers with +33 country code or 0 prefix. French numbers are 10 digits starting with 0 (domestic) or 9 digits after +33.",
   "category_id": "contact",

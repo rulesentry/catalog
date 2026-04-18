@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.cusip",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "CUSIP (North American Securities Identifier)",
   "description": "Detects CUSIP numbers with checksum validation. CUSIP uniquely identifies North American securities including US and Canadian stocks and bonds.",
   "category_id": "financial",

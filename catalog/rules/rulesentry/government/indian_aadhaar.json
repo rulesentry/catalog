@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.indian_aadhaar",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Indian Aadhaar Number",
   "description": "Detects Indian Aadhaar unique identification numbers with Verhoeff checksum validation. Format: XXXX-XXXX-XXXX (12 digits).",
   "category_id": "government",

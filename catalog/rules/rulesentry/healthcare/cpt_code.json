@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.cpt_code",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "status": "active",
   "name": "CPT Procedure Code",
   "summary": "Detects CPT (Current Procedural Terminology) codes with context markers",

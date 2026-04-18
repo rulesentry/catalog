@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.contact.country_name",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Country Name",
   "description": "Detects common country names in addresses and contact information. Limited to most common countries to avoid false positives.",
   "category_id": "contact",

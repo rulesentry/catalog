@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.account_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Bank Account Number (Generic)",
   "description": "Detects generic bank account numbers (8-17 digits). This is a broad pattern that may have false positives; use with caution or combine with context filters.",
   "category_id": "financial",

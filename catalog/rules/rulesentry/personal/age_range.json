@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.personal.age_range",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Age Range",
   "description": "Detects age ranges (e.g., 25-35 years old, ages 40-50). Used for demographic analysis but considered PII under some regulations.",
   "category_id": "personal",

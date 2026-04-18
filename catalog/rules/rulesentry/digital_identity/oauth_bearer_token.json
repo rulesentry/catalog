@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.oauth_bearer_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "OAuth Bearer Token",
   "description": "Detects OAuth 2.0 Bearer tokens in Authorization headers. Format: Bearer [token]. Used for API authentication.",
   "category_id": "digital_identity",

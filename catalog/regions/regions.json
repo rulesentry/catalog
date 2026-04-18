@@ -1,6 +1,6 @@
 {
   "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/region-registry.schema.json",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "regions": [
     {
       "code": "GLOBAL",

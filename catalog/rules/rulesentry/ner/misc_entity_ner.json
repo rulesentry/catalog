@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.ner.misc_entity",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "Miscellaneous Named Entity (NER)",
   "description": "Detects miscellaneous named entities (nationalities, events, awards, works of art) using an on-device NER model. The CoNLL-2003 MISC class partially covers nationality/religion/political entities. Requires an active ONNX model (distilbert-ner). Rule silently no-ops when no model is active.",

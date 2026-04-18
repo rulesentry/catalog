@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.npi_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "National Provider Identifier (NPI)",
   "description": "Detects National Provider Identifier (NPI) numbers with Luhn checksum validation. 10-digit unique identifier for healthcare providers in the US. Format: 1234567893.",
   "category_id": "healthcare",

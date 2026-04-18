@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.us_dea_number",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "US DEA Number",
   "description": "Detects Drug Enforcement Administration (DEA) registration numbers for healthcare providers authorized to prescribe controlled substances. Format: 2 letters + 7 digits (e.g., AB1234563).",
   "category_id": "healthcare",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.personal.date_of_birth",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Date of Birth",
   "description": "Detects dates of birth in various formats including MM/DD/YYYY, DD/MM/YYYY, YYYY-MM-DD, and Month DD, YYYY. Includes explicit 'DOB:', 'Date of Birth:', or 'Born:' context.",
   "category_id": "personal",

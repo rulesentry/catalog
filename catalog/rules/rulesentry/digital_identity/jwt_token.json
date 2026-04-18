@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.jwt_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "JWT Token",
   "description": "Detects JSON Web Tokens (JWT). Format: header.payload.signature (three base64 segments). Used for authentication and authorization.",
   "category_id": "digital_identity",

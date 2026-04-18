@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.asia_south_korea_driver_license",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "South Korean Driver License Number",
   "description": "Detects South Korean driver license numbers with region code validation. Format: 2-digit region code + 2-digit year + 6-digit serial + 2-digit check.",
   "category_id": "government",

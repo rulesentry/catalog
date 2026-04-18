@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.blood_type",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Blood Type",
   "description": "Detects blood type mentions (e.g., 'Blood Type: O+', 'A-', 'AB+'). Considered sensitive health data under GDPR Article 9 and HIPAA PHI.",
   "category_id": "healthcare",

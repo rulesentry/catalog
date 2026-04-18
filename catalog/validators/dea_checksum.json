@@ -1,7 +1,7 @@
 {
   "id": "dea_checksum",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "DEA Registration Number Checksum",
   "description": "Validates US Drug Enforcement Administration registration numbers. Format: 2 letters + 7 digits. Weights [1,2,1,2,1,2] on first 6 digits. Check digit (7th) = sum mod 10.",

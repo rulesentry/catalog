@@ -1,7 +1,7 @@
 {
   "id": "canadian_sin_mod10",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "Canadian SIN MOD-10 (Luhn)",
   "description": "Validates Canadian Social Insurance Numbers using the Luhn algorithm (MOD-10 checksum).",

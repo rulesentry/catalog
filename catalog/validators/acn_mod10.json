@@ -1,7 +1,7 @@
 {
   "id": "acn_mod10",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "Australian Company Number MOD-10",
   "description": "Validates Australian Company Numbers using weighted sum MOD-10 with complement check digit. First 8 digits are weighted [8,7,6,5,4,3,2,1], the 9th digit is the check digit (10 - remainder, or 0 if remainder is 0).",

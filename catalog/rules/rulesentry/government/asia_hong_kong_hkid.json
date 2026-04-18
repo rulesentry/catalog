@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.asia_hong_kong_hkid",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Hong Kong ID Card Number (HKID)",
   "description": "Detects Hong Kong Identity Card numbers with check digit validation.",
   "category_id": "government",

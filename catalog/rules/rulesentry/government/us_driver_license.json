@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.us_driver_license",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "name": "US Driver License Number",
   "description": "Detects US driver license numbers using context-anchored matching. Requires a keyword prefix (DL, driver license, license number, etc.) followed by an alphanumeric identifier. Trades recall for precision — per-state format rules are a future enhancement.",
   "category_id": "government",

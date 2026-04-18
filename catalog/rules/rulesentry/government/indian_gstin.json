@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.indian_gstin",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Indian GSTIN (GST Identification Number)",
   "description": "Detects Indian Goods and Services Tax Identification Numbers. Format: 2-digit state code (01-37) + PAN structure (5 letters + 4 digits + 1 letter) + registration digit + Z + check character.",
   "category_id": "government",

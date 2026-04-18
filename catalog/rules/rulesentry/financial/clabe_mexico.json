@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.clabe_mexico",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "CLABE Number (Mexico)",
   "description": "Detects Mexican CLABE (Clave Bancaria Estandarizada) numbers used for electronic transfers. Format: 18 digits with checksum.",
   "category_id": "financial",

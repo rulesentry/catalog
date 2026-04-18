@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.nhs_mod11",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "UK NHS Number (MOD-11 Validated)",
   "description": "Detects UK National Health Service numbers with MOD-11 checksum validation. NHS numbers uniquely identify patients in the UK healthcare system.",
   "category_id": "government",

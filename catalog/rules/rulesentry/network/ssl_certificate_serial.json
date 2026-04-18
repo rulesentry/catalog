@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.ssl_certificate_serial",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "SSL/TLS Certificate Serial Number",
   "description": "Detects SSL/TLS certificate serial numbers with explicit context. Hexadecimal format.",
   "category_id": "network",

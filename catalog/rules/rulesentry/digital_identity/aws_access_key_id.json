@@ -5,7 +5,7 @@
   "qualified_id": "rulesentry.digital_identity.aws_access_key_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "AWS Access Key ID",
   "description": "Detects Amazon Web Services (AWS) Access Key IDs. Format: AKIA followed by 16 alphanumeric characters. Exposure can lead to unauthorized access to AWS resources.",
   "category_id": "digital_identity",

@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.telegram_bot_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Telegram Bot Token",
   "description": "Detects Telegram Bot API tokens. Format: [0-9]{8,10}:[A-Za-z0-9_-]{35}. Can control Telegram bots, send messages.",
   "category_id": "digital_identity",

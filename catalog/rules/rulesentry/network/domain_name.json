@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.domain_name",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "Domain Name",
   "description": "Detects domain names (e.g., example.com, subdomain.example.co.uk). Excludes common email patterns to avoid false positives.",
   "category_id": "network",

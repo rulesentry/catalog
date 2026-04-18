@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.bic_swift",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.3.1",
+  "version": "4.0.0",
   "name": "BIC/SWIFT Code",
   "description": "Detects BIC (Bank Identifier Code) / SWIFT codes used for international wire transfers. Format: 4 letters (bank) + 2 letters (country) + 2 chars (location) + optional 3 chars (branch).",
   "category_id": "financial",

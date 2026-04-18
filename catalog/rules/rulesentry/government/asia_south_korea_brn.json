@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.asia_south_korea_brn",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "South Korean Business Registration Number (BRN)",
   "description": "Detects Korean Business Registration Numbers (사업자등록번호). Format: 3 digits + dash + 2 digits + dash + 5 digits.",
   "category_id": "government",

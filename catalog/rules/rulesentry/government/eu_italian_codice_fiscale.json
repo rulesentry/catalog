@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_italian_codice_fiscale",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Italian Tax Code (Codice Fiscale)",
   "description": "Detects Italian tax identification codes with checksum validation. Format: 16 alphanumeric characters (surname, name, birth date, birthplace).",
   "category_id": "government",

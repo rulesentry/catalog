@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.uk_driving_license",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "UK Driving License Number",
   "description": "Detects UK driving license numbers. Format: 5 letters (surname) + 6 digits (DOB) + 2 letters (initials) + 3 chars (checksum).",
   "category_id": "government",

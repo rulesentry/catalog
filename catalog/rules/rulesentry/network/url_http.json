@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.url_http",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "URL (All Protocols)",
   "description": "Detects URLs with various protocols (http, https, ftp, ssh, mysql, smtp, etc.). May contain sensitive information including credentials in the URL, paths, or query parameters.",
   "category_id": "network",

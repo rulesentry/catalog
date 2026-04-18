@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.npm_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "npm Access Token",
   "description": "Detects npm (Node Package Manager) access tokens. Can publish packages, access private packages.",
   "category_id": "digital_identity",

@@ -5,7 +5,7 @@
   "qualified_id": "rulesentry.digital_identity.github_personal_access_token",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "GitHub Personal Access Token",
   "description": "Detects GitHub Personal Access Tokens. Format: ghp_ (classic), github_pat_ (fine-grained). Can access repositories, create commits, modify issues.",
   "category_id": "digital_identity",

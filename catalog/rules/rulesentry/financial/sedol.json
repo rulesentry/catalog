@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.financial.sedol",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "SEDOL (UK/Irish Securities Identifier)",
   "description": "Detects SEDOL numbers with checksum validation. SEDOL uniquely identifies securities traded on the London Stock Exchange and Irish Stock Exchange.",
   "category_id": "financial",

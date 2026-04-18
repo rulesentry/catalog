@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.australian_abn",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Australian Business Number (ABN)",
   "description": "Detects Australian Business Numbers with MOD-89 checksum validation. Format: 11 digits (XX XXX XXX XXX) preceded by context keywords.",
   "category_id": "government",

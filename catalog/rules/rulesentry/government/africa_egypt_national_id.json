@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.africa_egypt_national_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Egyptian National ID Number",
   "description": "Detects Egyptian national identity card numbers. Encodes century, birth date, governorate, and sequence.",
   "category_id": "government",

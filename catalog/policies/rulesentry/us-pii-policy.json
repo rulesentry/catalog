@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.us-pii",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "US PII Protection Policy",
   "description": "Comprehensive PII protection policy for United States jurisdictions. Combines HIPAA PHI requirements with CCPA personal information protections. Includes direct rule references, category-based selective inclusion for healthcare rules, and dynamic filters for US-scoped high-severity HIPAA rules.",

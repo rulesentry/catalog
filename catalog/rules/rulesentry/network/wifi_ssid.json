@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.network.wifi_ssid",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "name": "WiFi SSID",
   "description": "Detects WiFi network names (SSID) with explicit context (e.g., 'SSID:', 'Network Name:'). May reveal location information.",
   "category_id": "network",

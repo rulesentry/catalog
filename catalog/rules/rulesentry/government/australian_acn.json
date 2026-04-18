@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.australian_acn",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Australian Company Number (ACN)",
   "description": "Detects Australian Company Numbers with MOD-10 complement checksum validation. Format: 9 digits (XXX XXX XXX) preceded by context keywords.",
   "category_id": "government",

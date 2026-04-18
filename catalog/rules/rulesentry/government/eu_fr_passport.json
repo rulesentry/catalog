@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_fr_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "French Passport Number",
   "description": "Detects French passport numbers. Format: 2 letters followed by 7 digits (ICAO biometric standard) or 8 digits (older series). Context-anchored to the keyword 'passport' or 'passeport' to avoid false positives from the short alphanumeric pattern.",
   "category_id": "government",

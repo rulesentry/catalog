@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.stripe_api_key",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Stripe API Key",
   "description": "Detects Stripe API keys (publishable and secret). Secret keys (sk_live_, sk_test_) grant full payment processing access.",
   "category_id": "digital_identity",

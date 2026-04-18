@@ -1,7 +1,7 @@
 {
   "id": "thailand_cid_mod11",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "Thailand Citizen ID MOD-11",
   "description": "Validates Thai 13-digit Citizen Identification Number. Weights [13,12,11,10,9,8,7,6,5,4,3,2] on first 12 digits, check digit = (11 - sum%11) % 10.",

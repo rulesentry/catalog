@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.asia_south_korea_rrn",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "South Korean Resident Registration Number (RRN)",
   "description": "Detects Korean RRN (Jumin Deungnok Beonho) with checksum validation. Format encodes birth date and gender.",
   "category_id": "government",

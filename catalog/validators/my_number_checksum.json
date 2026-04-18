@@ -1,7 +1,7 @@
 {
   "id": "my_number_checksum",
   "type": "validator-definition",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "publisher_id": "rulesentry",
   "name": "Japan My Number Checksum",
   "description": "Validates Japan Individual Number (My Number). 12 digits with weights [6,5,4,3,2,7,6,5,4,3,2] on the first 11 digits. Check digit = 11 - (sum mod 11), or 0 if remainder ≤ 1.",

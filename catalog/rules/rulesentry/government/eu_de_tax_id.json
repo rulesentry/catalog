@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.government.eu_de_tax_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "status": "active",
   "name": "German Tax ID (Steueridentifikationsnummer)",
   "summary": "Detects German tax identification numbers (11 digits) with context markers",

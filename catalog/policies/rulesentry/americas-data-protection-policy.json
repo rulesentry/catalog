@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.americas-data-protection",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "status": "active",
   "name": "Americas Data Protection Policy",
   "description": "Data protection policy for non-US Americas jurisdictions. Covers Canadian PIPEDA, Brazilian LGPD, and other regional data protection requirements for government ID detection across CA, MX, BR, AR, CL, and CO.",

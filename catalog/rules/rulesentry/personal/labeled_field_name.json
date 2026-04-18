@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.personal.labeled_field_name",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "1.3.2",
+  "version": "4.0.0",
   "name": "Person Name (Labeled Field)",
   "description": "Detects person names in labeled form fields (Name:, Employee Name:, Full Name:, Contact Name:, Agent:). Matches title-case First Last patterns following a name label. Serves as a deterministic fallback where NER model confidence is insufficient for structured form data.",
   "category_id": "personal",

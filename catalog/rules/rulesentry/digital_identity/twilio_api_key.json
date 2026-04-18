@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.digital_identity.twilio_api_key",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "name": "Twilio API Key",
   "description": "Detects Twilio API keys and Auth Tokens. Can send SMS, make calls, access phone numbers and usage data.",
   "category_id": "digital_identity",

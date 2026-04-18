@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "personal.biometric_data",
   "qualified_id": "rulesentry.personal.biometric_data",
   "publisher_id": "rulesentry",

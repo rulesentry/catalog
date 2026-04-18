@@ -1,6 +1,6 @@
 {
   "_note": "Canonical SSH private key rule as of v4.0. credentials.ssh_private_key is deprecated and will be removed in v4.1.",
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "digital_identity.ssh_private_key",
   "qualified_id": "rulesentry.digital_identity.ssh_private_key",
   "publisher_id": "rulesentry",

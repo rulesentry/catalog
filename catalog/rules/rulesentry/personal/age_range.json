@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "personal.age_range",
   "qualified_id": "rulesentry.personal.age_range",
   "publisher_id": "rulesentry",

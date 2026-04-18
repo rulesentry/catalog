@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/profile.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/profile.schema.json",
   "id": "uk-dpa",
   "type": "profile",
   "version": "3.0.0",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "healthcare.mrn_detect",
   "qualified_id": "rulesentry.healthcare.mrn_detect",
   "publisher_id": "rulesentry",

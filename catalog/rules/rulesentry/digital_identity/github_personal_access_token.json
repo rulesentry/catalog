@@ -1,6 +1,6 @@
 {
   "_note": "Overlaps with credentials.github_pat. The credentials/ version is canonical for secret detection; this version retained for category-based policy inclusion.",
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "digital_identity.github_personal_access_token",
   "qualified_id": "rulesentry.digital_identity.github_personal_access_token",
   "publisher_id": "rulesentry",

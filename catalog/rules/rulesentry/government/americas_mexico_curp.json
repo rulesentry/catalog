@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "government.americas_mexico_curp",
   "qualified_id": "rulesentry.government.americas_mexico_curp",
   "publisher_id": "rulesentry",

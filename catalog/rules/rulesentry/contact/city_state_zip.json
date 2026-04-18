@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "contact.city_state_zip",
   "qualified_id": "rulesentry.contact.city_state_zip",
   "publisher_id": "rulesentry",

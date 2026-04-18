@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "financial.iban_mod97",
   "qualified_id": "rulesentry.financial.iban_mod97",
   "publisher_id": "rulesentry",

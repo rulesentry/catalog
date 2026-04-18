@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "contact.phone_germany",
   "qualified_id": "rulesentry.contact.phone_germany",
   "publisher_id": "rulesentry",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "government.indian_voter_id",
   "qualified_id": "rulesentry.government.indian_voter_id",
   "publisher_id": "rulesentry",

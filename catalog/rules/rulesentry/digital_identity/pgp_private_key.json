@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "digital_identity.pgp_private_key",
   "qualified_id": "rulesentry.digital_identity.pgp_private_key",
   "publisher_id": "rulesentry",

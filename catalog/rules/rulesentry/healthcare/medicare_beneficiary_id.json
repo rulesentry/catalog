@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "healthcare.medicare_beneficiary_id",
   "qualified_id": "rulesentry.healthcare.medicare_beneficiary_id",
   "publisher_id": "rulesentry",

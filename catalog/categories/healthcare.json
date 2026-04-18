@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/category.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/category.schema.json",
   "id": "healthcare",
   "type": "category",
   "version": "3.0.0",

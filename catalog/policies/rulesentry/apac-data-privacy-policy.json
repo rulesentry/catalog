@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/policy.schema.json",
   "id": "policy.apac-data-privacy",
   "qualified_id": "rulesentry.policy.apac-data-privacy",
   "publisher_id": "rulesentry",

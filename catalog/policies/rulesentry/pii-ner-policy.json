@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/policy.schema.json",
   "id": "policy.pii-ner",
   "qualified_id": "rulesentry.policy.pii-ner",
   "publisher_id": "rulesentry",

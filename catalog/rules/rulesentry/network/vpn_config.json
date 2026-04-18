@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v3/core/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
   "id": "network.vpn_config",
   "qualified_id": "rulesentry.network.vpn_config",
   "publisher_id": "rulesentry",

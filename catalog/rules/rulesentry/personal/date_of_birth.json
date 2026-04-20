@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.personal.date_of_birth",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "name": "Date of Birth",
   "description": "Detects dates of birth in various formats including MM/DD/YYYY, DD/MM/YYYY, YYYY-MM-DD, and Month DD, YYYY. Includes explicit 'DOB:', 'Date of Birth:', or 'Born:' context.",
   "category_id": "personal",
@@ -31,10 +31,11 @@
     "priority": 75,
     "target": "content",
     "pattern": {
-      "pattern": "\\b(?:DOB|Date\\s+of\\s+Birth|Born)[:\\s]+(?:\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\\s+\\d{1,2},?\\s+\\d{4})\\b",
+      "pattern": "\\b(?:DOB|Date\\s+of\\s+Birth|Born)[:\\s]+(\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\\s+\\d{1,2},?\\s+\\d{4})\\b",
       "engine": "regex",
       "flags": {
-        "case_insensitive": true
+        "case_insensitive": true,
+        "capture_groups": true
       }
     },
     "effect": {
@@ -51,7 +52,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.987271Z",
+  "updated_at": "2026-04-21T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

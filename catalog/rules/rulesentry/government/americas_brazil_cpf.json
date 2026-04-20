@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "government.americas_brazil_cpf",
   "qualified_id": "rulesentry.government.americas_brazil_cpf",
   "publisher_id": "rulesentry",

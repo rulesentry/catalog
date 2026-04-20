@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "government.australian_acn",
   "qualified_id": "rulesentry.government.australian_acn",
   "publisher_id": "rulesentry",

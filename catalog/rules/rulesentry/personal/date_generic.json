@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "personal.date_generic",
   "qualified_id": "rulesentry.personal.date_generic",
   "publisher_id": "rulesentry",

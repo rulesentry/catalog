@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "contact.th-phone-number",
   "qualified_id": "mycos.contact.th-phone-number",
   "publisher_id": "mycos",

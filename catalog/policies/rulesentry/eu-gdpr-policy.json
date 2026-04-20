@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
   "id": "policy.eu-gdpr",
   "qualified_id": "rulesentry.policy.eu-gdpr",
   "publisher_id": "rulesentry",

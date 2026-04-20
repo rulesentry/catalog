@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "government.asia_south_korea_frn",
   "qualified_id": "rulesentry.government.asia_south_korea_frn",
   "publisher_id": "rulesentry",

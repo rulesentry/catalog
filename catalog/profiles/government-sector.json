@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/profile.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/profile.schema.json",
   "id": "government-sector",
   "type": "profile",
   "version": "4.0.0",

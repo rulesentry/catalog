@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "financial.clabe_mexico",
   "qualified_id": "rulesentry.financial.clabe_mexico",
   "publisher_id": "rulesentry",

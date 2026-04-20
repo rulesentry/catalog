@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
   "id": "policy.networking-global",
   "qualified_id": "rulesentry.policy.networking-global",
   "publisher_id": "rulesentry",

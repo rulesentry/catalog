@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "government.asia_hong_kong_hkid",
   "qualified_id": "rulesentry.government.asia_hong_kong_hkid",
   "publisher_id": "rulesentry",

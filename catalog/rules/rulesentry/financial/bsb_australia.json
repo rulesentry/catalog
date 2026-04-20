@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "financial.bsb_australia",
   "qualified_id": "rulesentry.financial.bsb_australia",
   "publisher_id": "rulesentry",

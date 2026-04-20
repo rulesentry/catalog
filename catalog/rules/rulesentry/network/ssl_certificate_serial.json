@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
   "id": "network.ssl_certificate_serial",
   "qualified_id": "rulesentry.network.ssl_certificate_serial",
   "publisher_id": "rulesentry",

@@ -1,143 +1,171 @@
-# RuleSentry Community Contributors
+# RuleSentry Catalog
 
-Community-contributed rules, policies, categories, profiles, and regions for [RuleSentry](https://rulesentry.io) — the rule evaluation engine for detecting sensitive data patterns, enforcing compliance policies, and applying transforms.
+Rules, policies, categories, profiles, validators, and regions for [RuleSentry](https://rulesentry.io) — the rule evaluation engine for detecting sensitive data patterns, enforcing compliance policies, and applying transforms.
 
-## Identity Principle
+This repository is the **canonical source of catalog data**. It is:
+- Embedded at compile time into RuleSentry's engine, CLI, WASM, and desktop binaries (via the `rulesentry-data` crate)
+- Synced at runtime into the public API at `https://api.rulesentry.io` (via a GitHub webhook — see [Consumers](#consumers))
 
-> **File path is storage layout, not canonical identity. Canonical identity is defined by the explicit metadata fields `id`, `qualified_id`, `publisher_id`, and `version` inside the JSON file.**
+Every push to `main` propagates to `api.rulesentry.io` within ~30 seconds.
+
+## What's in here
+
+```
+.
+├── catalog/                          # Core, RuleSentry-published entities
+│   ├── rules/rulesentry/             # 191 rules organized by category
+│   │   ├── contact/
+│   │   ├── financial/
+│   │   ├── government/
+│   │   ├── healthcare/
+│   │   └── ...
+│   ├── policies/rulesentry/          # 11 policies (regional + framework)
+│   ├── categories/                   # 9 data-category definitions
+│   ├── profiles/                     # 18 profile definitions (compliance frameworks, envs)
+│   ├── validators/                   # 28 declarative checksum validators
+│   └── regions/
+│       └── regions.json              # Region hierarchy (GLOBAL > AMERICAS > US > US-CA ...)
+├── configuration/
+│   └── tenants/                      # Tenant-specific overrides and extensions
+│       └── {tenant-id}/
+│           ├── rules/                # Tenant custom rules
+│           ├── policies/
+│           └── ...
+├── fixtures/
+│   └── samples/                      # Reference input/output samples for engine tests
+├── LICENSE
+└── README.md
+```
+
+**Layout rules:**
+- `catalog/` holds RuleSentry-published entities (`publisher_id: "rulesentry"`).
+- `configuration/tenants/{tenant-id}/` mirrors the `catalog/` shape for entities scoped to a specific tenant.
+- Category subdirectories under `rules/` are organizational only — a rule's canonical identity comes from its JSON fields, not its path.
+
+## Identity principle
+
+> **File path is storage layout, not canonical identity.** Canonical identity is defined by `id`, `qualified_id`, `publisher_id`, and `version` inside the JSON file.
 
 You can reorganize the directory tree without changing the meaning of any entity, as long as the identity fields inside the JSON remain unchanged.
 
-## Getting Started
+### ID conventions
 
-1. **Fork** this repository
-2. **Clone** your fork locally
-3. **Create** your rule, policy, or other entity (see below)
-4. **Open a PR** to `main`
+**`qualified_id` format:** `{publisher_id}.{category_id}.{name}`
 
-## Directory Structure
-
-```
-contributors/
-├── publishers/               # Registered publisher identities
-│   ├── rulesentry.json       # RuleSentry publisher
-│   └── mycos.json            # Example community publisher
-├── rules/
-│   ├── core/                 # RuleSentry-authored rules (~153)
-│   │   ├── contact/          # Category subdirectory
-│   │   ├── financial/
-│   │   ├── government/
-│   │   └── ...
-│   └── {publisher}/          # Community publisher rules
-│       └── {category}/
-├── policies/
-│   ├── core/                 # RuleSentry policies (11)
-│   └── {publisher}/          # Community policies
-├── categories/
-│   ├── core/                 # Core categories (8)
-│   └── {publisher}/
-├── profiles/
-│   ├── core/                 # Core profiles (8)
-│   └── {publisher}/
-├── regions/
-│   └── core/                 # Region registry
-└── LICENSE
-```
-
-**Directory conventions:**
-- `core/` holds RuleSentry-authored entities (`publisher_id: "rulesentry"`).
-- Other directories hold community publisher entities. The directory name should match the publisher's registered `id`.
-- Category subdirectories are optional — uncategorized entities sit directly under the publisher directory.
-- The directory layout is storage organization only. Identity comes from the JSON fields.
-
-## ID Conventions
-
-**`qualified_id` format: `{publisher_id}.{category_id}.{name}`**
-
-| Publisher | Example `qualified_id` | Example `publisher_id` |
-|-----------|------------------------|------------------------|
+| Publisher | Example `qualified_id` | `publisher_id` |
+|-----------|------------------------|----------------|
 | RuleSentry | `rulesentry.government.ssn_format` | `rulesentry` |
-| Community | `mycos.contact.th_phone_number` | `mycos` |
+| Tenant | `mycos.contact.th_phone_number` | `mycos` |
 
 Rules:
-- `publisher_id` must match a registered entry in `publishers/{id}.json`.
-- `qualified_id` must start with the publisher's `id` prefix.
+- `publisher_id` matches the publishing organization. For tenant entities, it matches the `{tenant-id}` directory.
+- `qualified_id` starts with `{publisher_id}`.
 - `id` is a local dotted identifier (e.g., `government.ssn_format`) — stable across reorganizations.
-- `version` is a semver string (`MAJOR.MINOR.PATCH`).
-- All four fields together define canonical identity. **File path is not part of identity.**
+- `version` is semver (`MAJOR.MINOR.PATCH`). Bump when publishing a changed entity.
 
-> **Note:** `publisher_id` is currently defined on `rule` entities. Policy, profile, and category entities are expected to follow the same convention in a future schema version.
+## Schema
 
-## Contributing a Rule
+Entities conform to v4 JSON schemas published at `https://schemas.rulesentry.io/schema/v4/`. Include a `$schema` URL in every file so editors (VS Code, JetBrains) validate and autocomplete:
 
-1. **Register as a publisher** (if first contribution):
+```json
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  ...
+}
+```
 
-   Create `publishers/{your-id}.json`:
-   ```json
-   {
-     "id": "your-id",
-     "name": "Your Name or Org",
-     "url": "https://your-site.com",
-     "contact": "you@example.com",
-     "description": "Brief description of your contributions"
-   }
-   ```
+Schema reference by entity type:
 
-2. **Create your rule** in `rules/{your-id}/{category}/`:
+| Entity | Schema |
+|--------|--------|
+| Rule | `catalog/rule.schema.json` |
+| Policy | `catalog/policy.schema.json` |
+| Category | `catalog/category.schema.json` |
+| Profile | `catalog/profile.schema.json` |
+| Validator | `catalog/validator-definition.schema.json` |
+| Region | `catalog/region.schema.json` |
+| Region registry | `catalog/region-registry.schema.json` |
 
-   ```json
-   {
-     "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
-     "id": "{category}.{rule-name}",
-     "qualified_id": "{your-id}.{category}.{rule-name}",
-     "publisher_id": "{your-id}",
-     "type": "rule",
-     "version": "1.0.0",
-     "name": "Human-Readable Name",
-     "description": "What this rule detects and why.",
-     "category_id": "{category}",
-     "severity": "medium",
-     "evaluation": {
-       "evaluation_type": "pattern_match",
-       "target": "content",
-       "pattern": {
-         "pattern": "your-regex-here",
-         "engine": "regex"
-       },
-       "effect": {
-         "type": "transform",
-         "transform": { "type": "redact", "params": {} },
-         "message": "Description of the action taken"
-       }
-     },
-     "status": "active",
-     "regions": ["GLOBAL"],
-     "origin": {
-       "source_type": "catalog",
-       "publisher": "{your-id}",
-       "author": "Your Name"
-     },
-     "created_at": "2026-01-01T00:00:00Z",
-     "modified_at": "2026-01-01T00:00:00Z"
-   }
-   ```
+Source of truth for the schemas themselves lives in the [`rulesentry/rulesentry`](https://github.com/rulesentry/rulesentry) repo under `schemas/`.
 
-3. **Open a PR**
+## Contributing
 
-## Contributing a Policy
+### 1. Fork + clone + branch
 
-Policies assemble rules via direct references, category inclusion, and filters. Your policy can reference:
+```bash
+git clone git@github.com:<your-fork>/catalog.git
+cd catalog
+git checkout -b feat/my-rule
+```
 
-- **Your own rules** — by their bare `id` (e.g., `contact.th-phone-number`)
-- **Core rules** — built-in RuleSentry rules (e.g., `government.ssn_format`)
+### 2. Add or edit an entity
 
-Create your policy in `policies/{your-id}/` with `publisher_id: "{your-id}"` and `qualified_id: "{your-id}.policy.{name}"`.
+Place your file under the appropriate path. Minimum rule example:
 
-## Schema Reference
+```json
+{
+  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "id": "contact.my_thing",
+  "qualified_id": "rulesentry.contact.my_thing",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "name": "My Thing",
+  "description": "Detects ...",
+  "category_id": "contact",
+  "severity": "medium",
+  "regions": ["GLOBAL"],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "target": "content",
+    "pattern": {
+      "pattern": "\\bmy-regex\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "transform": { "type": "redact", "params": {} },
+      "message": "Removed my_thing"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-04-20T00:00:00Z",
+  "modified_at": "2026-04-20T00:00:00Z"
+}
+```
 
-For the canonical JSON schemas that define rule, policy, category, profile, and region formats, see the `schemas/` directory in the [main RuleSentry repository](https://github.com/rulesentry/rulesentry).
+### 3. Open a PR
 
-Full schema documentation: [rulesentry.io/docs/schemas](https://rulesentry.io/docs/schemas)
+Target `main`. The PR's required `validate` status check runs JSON Schema validation. Merges to `main` propagate automatically to `api.rulesentry.io`.
+
+### Policies
+
+Policies assemble rules via three mechanisms: direct references (`rules[]`), category inclusion (`rule_categories[]`), and filters (`rule_filters[]`). A policy can reference any rule in the catalog by its `id` (when unique) or `qualified_id`. See existing policies under `catalog/policies/rulesentry/` for patterns.
+
+### Validators
+
+Validators are declarative checksum algorithms (Luhn, MOD-11, IBAN MOD-97, Verhoeff, prefix-check, multi-stage). Each is a JSON file in `catalog/validators/` that the engine loads into a registry at startup; rules reference them by name. To add a new validator, copy an existing one with the closest algorithm family and adjust params — no engine code change needed unless the algorithm is novel.
+
+### Tenant overrides
+
+Tenant-specific entities live under `configuration/tenants/{tenant-id}/`. Use this for custom rules, policies, or overrides that shouldn't ship in the public catalog. Each tenant directory mirrors the `catalog/` layout.
+
+## Consumers
+
+| Consumer | How it reads the catalog |
+|---|---|
+| **`rulesentry-api`** (api.rulesentry.io) | GitHub webhook on every push to `main` → background tarball fetch → upsert into `catalog_items` Postgres table. Catalog browseable via `GET /api/v1/catalog/public`. See the API's [README](https://github.com/rulesentry/rulesentry/blob/main/rulesentry-api/README.md) for sync internals. |
+| **`rulesentry-data`** (embedded defaults) | Build-time `include_str!` walks the `catalog/` tree and embeds all JSON into the engine/CLI/WASM/desktop binaries. Override the build source with `RULESENTRY_DATA_DIR=/path/to/local-clone`. |
+| **Desktop app** | Reads embedded defaults plus tenant overrides from local SQLite. Can optionally pull fresh data from the API. |
+| **Engine tests** | Load from `fixtures/samples/` for deterministic regression tests. |
+
+## Identity + versioning workflow
+
+- **Minor edits** (typo fix, pattern tightening, new example): bump `PATCH` and set `modified_at` to the commit timestamp.
+- **Breaking changes** (semantics, regions covered, `evaluation_type`): bump `MAJOR` and consider publishing under a new `id` so consumers can pin the old version.
+- **New entities**: start at `1.0.0`.
+
+The API catalog keeps all versions by `(item_id, version)`. Consumers choose the version via `pinned_version` in policies, or fetch latest via `GET /api/v1/catalog/public/{id}` without `?version=`.
 
 ## License
 

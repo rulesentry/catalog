@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.ner.person_name",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "status": "active",
   "name": "Person Name (NER)",
   "description": "Detects full person names using an on-device NER model. Requires an active ONNX model (distilbert-ner). Rules silently no-ops when no model is active.",
@@ -32,6 +32,12 @@
     "model": {
       "fallback": "skip"
     },
+    "validator": "context_filter",
+    "validator_params": {
+      "reject_keywords": [
+        "luhn"
+      ]
+    },
     "effect": {
       "type": "transform",
       "rationale": "compliance",
@@ -50,6 +56,6 @@
   },
   "created_at": "2026-03-18T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-03-18T00:00:00Z",
+  "modified_at": "2026-04-21T00:00:00Z",
   "modified_by": "claude-code"
 }

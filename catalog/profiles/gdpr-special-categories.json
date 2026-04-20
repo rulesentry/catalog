@@ -13,6 +13,9 @@
     "GDPR Article 9",
     "GDPR Recital 51-56"
   ],
+  "requires_profiles": [
+    "gdpr"
+  ],
   "display_order": 25,
   "is_system": true,
   "origin": {

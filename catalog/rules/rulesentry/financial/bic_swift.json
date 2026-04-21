@@ -4,9 +4,9 @@
   "qualified_id": "rulesentry.financial.bic_swift",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "name": "BIC/SWIFT Code",
-  "description": "Detects BIC (Bank Identifier Code) / SWIFT codes used for international wire transfers. Format: 4 letters (bank) + 2 letters (country) + 2 chars (location) + optional 3 chars (branch).",
+  "description": "Detects BIC (Bank Identifier Code) / SWIFT codes used for international wire transfers. Format: 4 letters (bank) + 2 letters (country) + 2 chars (location) + optional 3 chars (branch). Requires a BIC/SWIFT label in context (\"BIC:\", \"SWIFT:\", \"BIC/SWIFT:\") to avoid matching English words that happen to fit the BIC shape (e.g. RESOLVED, APPOINTMENT, EXAMPLES — all structurally valid BICs). Reported span narrows to just the code via capture_groups.",
   "category_id": "financial",
   "severity": "medium",
   "profiles": [
@@ -24,24 +24,10 @@
     "priority": 75,
     "target": "content",
     "pattern": {
-      "pattern": "\\b[A-Z]{4}(?:US|GB|DE|FR|CA|AU|JP|CN|IN|BR|IT|ES|NL|BE|CH|SE|NO|DK|FI|AT|IE|PT|GR|PL|CZ|HK|SG|AE|SA|ZA|MX|KR|TW|TH|MY|ID|PH|VN|NZ|LU|MT|CY|RU|UA|TR|IL|EG|NG|KE|GH|PK|BD|LK|NP|MM|KH|LA|BN|MO|MN|KZ|UZ|AZ|GE|AM|BY|MD|RS|HR|SI|SK|BG|RO|HU|LT|LV|EE|IS|AL|BA|MK|ME|XK|MA|TN|DZ|LY|SD|ET|TZ|UG|RW|SN|CI|CM|AO|MZ|ZM|ZW|BW|NA|MU|SC|MG|QA|KW|BH|OM|JO|LB|IQ|IR|YE|PY|UY|BO|EC|PE|CO|VE|CL|AR|CR|PA|DO|GT|HN|SV|NI|CU|JM|TT|BB|LC|VC|GD|AG|DM|BS|HT|BZ|GY|SR|TC|KY|VG|VI|PR|GU|AS|MP|PW|FM|MH|NR|TV|KI|SB|VU|TO|WS|FJ|PG|CK|WF|TK|NU|PF|NC|GF|GP|MQ|RE|YT|PM|MF|BL|SX|CW|AW|BQ|AI|MS|SH|AC|TA|IO|FK|GS|AQ|BV|HM|TF|UM|GL|FO|SJ|AX|GI|IM|JE|GG)[A-Z0-9]{2}(?:[A-Z0-9]{3})?\\b",
+      "pattern": "\\b(?i:BIC(?:[/\\-\\s]SWIFT)?|SWIFT(?:[/\\-\\s]BIC)?|SWIFT\\s+code|BIC\\s+code)[:\\s]+([A-Z]{4}(?:US|GB|DE|FR|CA|AU|JP|CN|IN|BR|IT|ES|NL|BE|CH|SE|NO|DK|FI|AT|IE|PT|GR|PL|CZ|HK|SG|AE|SA|ZA|MX|KR|TW|TH|MY|ID|PH|VN|NZ|LU|MT|CY|RU|UA|TR|IL|EG|NG|KE|GH|PK|BD|LK|NP|MM|KH|LA|BN|MO|MN|KZ|UZ|AZ|GE|AM|BY|MD|RS|HR|SI|SK|BG|RO|HU|LT|LV|EE|IS|AL|BA|MK|ME|XK|MA|TN|DZ|LY|SD|ET|TZ|UG|RW|SN|CI|CM|AO|MZ|ZM|ZW|BW|NA|MU|SC|MG|QA|KW|BH|OM|JO|LB|IQ|IR|YE|PY|UY|BO|EC|PE|CO|VE|CL|AR|CR|PA|DO|GT|HN|SV|NI|CU|JM|TT|BB|LC|VC|GD|AG|DM|BS|HT|BZ|GY|SR|TC|KY|VG|VI|PR|GU|AS|MP|PW|FM|MH|NR|TV|KI|SB|VU|TO|WS|FJ|PG|CK|WF|TK|NU|PF|NC|GF|GP|MQ|RE|YT|PM|MF|BL|SX|CW|AW|BQ|AI|MS|SH|AC|TA|IO|FK|GS|AQ|BV|HM|TF|UM|GL|FO|SJ|AX|GI|IM|JE|GG)[A-Z0-9]{2}(?:[A-Z0-9]{3})?)\\b",
       "engine": "regex",
-      "validator": "context_filter",
-      "validator_params": {
-        "reject_keywords": [
-          "customer",
-          "customers",
-          "business",
-          "provided",
-          "contains",
-          "container",
-          "continue",
-          "continued",
-          "training",
-          "together",
-          "required",
-          "thinking"
-        ]
+      "flags": {
+        "capture_groups": true
       }
     },
     "effect": {
@@ -59,7 +45,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
+  "updated_at": "2026-04-21T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

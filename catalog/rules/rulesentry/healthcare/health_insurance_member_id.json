@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.healthcare.health_insurance_member_id",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "name": "Health Insurance Member ID",
   "description": "Detects health insurance member/subscriber/policy identification numbers. Format: 6-20 alphanumeric characters with contextual keywords (member, subscriber, policy).",
   "category_id": "healthcare",
@@ -28,7 +28,7 @@
     "evaluation_type": "pattern_match",
     "target": "content",
     "pattern": {
-      "pattern": "(?i)\\b(?:member|subscriber|policy)\\s*(?:id|number|#)?\\s*:?\\s*([A-Z0-9]{6,20})\\b",
+      "pattern": "(?i)\\b(?:member|subscriber|policy)\\s*(?:id|number|#)\\s*:?\\s*([A-Z0-9]{6,20})\\b",
       "engine": "regex"
     },
     "effect": {
@@ -46,7 +46,7 @@
   },
   "status": "active",
   "created_at": "2026-01-28T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
+  "updated_at": "2026-04-23T00:00:00Z",
   "regions": [
     "US"
   ]

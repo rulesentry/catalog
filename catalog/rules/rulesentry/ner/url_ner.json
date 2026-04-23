@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.url",
+  "qualified_id": "rulesentry.ner.url",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "URL (NER)",
+  "description": "Detects URLs via an active NER provider (OPF's PRIVATE_URL label). Complements the regex-based network.url_http / network.url_https rules: the regex versions are precise on well-formed links; the NER version catches context-only URLs ('visit our website at example dot com'). Rule silently no-ops when no NER provider is active.",
+  "category_id": "ner",
+  "severity": "low",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "url",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "URL"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[URL]"
+        }
+      },
+      "message": "URL detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/url_ner"
+  },
+  "created_at": "2026-04-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

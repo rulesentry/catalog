@@ -57,6 +57,62 @@
       "notes": "Miscellaneous named entities via NER — nationalities, events, awards; partial NRP overlap"
     },
     {
+      "rule_id": "ner.email",
+      "pinned_version": "1.0.0",
+      "priority": 55,
+      "attached_at": "2026-04-23T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Email detection via OPF's PRIVATE_EMAIL label — complements contact.email_address regex"
+    },
+    {
+      "rule_id": "ner.phone",
+      "pinned_version": "1.0.0",
+      "priority": 55,
+      "attached_at": "2026-04-23T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Phone detection via OPF's PRIVATE_PHONE label — complements contact.phone_* regex"
+    },
+    {
+      "rule_id": "ner.address",
+      "pinned_version": "1.0.0",
+      "priority": 65,
+      "attached_at": "2026-04-23T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Street-address detection via OPF's PRIVATE_ADDRESS label — sibling to ner.location"
+    },
+    {
+      "rule_id": "ner.date",
+      "pinned_version": "1.0.0",
+      "priority": 40,
+      "attached_at": "2026-04-23T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Date detection via OPF's PRIVATE_DATE label — medium severity, prose-friendly"
+    },
+    {
+      "rule_id": "ner.url",
+      "pinned_version": "1.0.0",
+      "priority": 30,
+      "attached_at": "2026-04-23T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "URL detection via OPF's PRIVATE_URL label — low severity, fills gaps in network.url_* regex"
+    },
+    {
+      "rule_id": "ner.secret",
+      "pinned_version": "1.0.0",
+      "priority": 95,
+      "attached_at": "2026-04-23T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Secret/password detection via OPF's SECRET label — OPF hits F1 0.97 on ai4privacy passwords"
+    },
+    {
+      "rule_id": "ner.account_number",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-04-23T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Account number detection via OPF's ACCOUNT_NUMBER label — known to over-fire; consider disabling via RuleOverride"
+    },
+    {
       "rule_id": "personal.labeled_field_name",
       "pinned_version": "1.3.1",
       "priority": 70,

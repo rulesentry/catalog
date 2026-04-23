@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.account_number",
+  "qualified_id": "rulesentry.ner.account_number",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Account Number (NER)",
+  "description": "Detects financial account numbers, credit cards, IBANs, and similar numeric identifiers via an active NER provider (OPF's ACCOUNT_NUMBER label). WARNING: OPF's ACCOUNT_NUMBER label is known to over-fire — on our benchmark it produced 614 predictions for 0 ground-truth bank-account spans. This rule is off-by-default-intent (enabled but recommended to disable via RuleOverride unless you have a fine-tuned OPF checkpoint). Precision rules in financial.* (credit_card_luhn, iban_mod97, routing_number) remain the primary detectors for formatted account numbers; this rule is here to expose the OPF capability for users who want it. Rule silently no-ops when no NER provider is active.",
+  "category_id": "ner",
+  "severity": "critical",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "financial-industry",
+    "pci-dss",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "account",
+    "financial",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "ACCOUNT_NUMBER"
+    ],
+    "confidence_threshold": 0.9,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[ACCOUNT]"
+        }
+      },
+      "message": "Account number detected by NER redacted for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/account_number_ner"
+  },
+  "created_at": "2026-04-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

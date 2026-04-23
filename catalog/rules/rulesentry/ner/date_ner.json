@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.date",
+  "qualified_id": "rulesentry.ner.date",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Date (NER)",
+  "description": "Detects date references via an active NER provider (OPF's PRIVATE_DATE label). Covers formal ISO dates, spelled-out dates ('13th May 1990'), and ambiguous date-shaped text that regex underfits. Users who only want to redact dates-of-birth can leave ner.date disabled and rely on the personal.date_of_birth* regex rules. Rule silently no-ops when no NER provider is active.",
+  "category_id": "ner",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "date",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "DATE_TIME"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[DATE]"
+        }
+      },
+      "message": "Date detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/date_ner"
+  },
+  "created_at": "2026-04-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

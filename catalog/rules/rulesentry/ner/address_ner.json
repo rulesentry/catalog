@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.address",
+  "qualified_id": "rulesentry.ner.address",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Street Address (NER)",
+  "description": "Detects physical / street addresses via an active NER provider (OPF's PRIVATE_ADDRESS label). Sibling to ner.location: ner.address is address-shaped ('123 Main St', '742 Evergreen Terrace') while ner.location is place-shaped ('San Francisco', 'United States'). Users who want to redact personal addresses but keep mentions of cities or countries can disable ner.location and leave ner.address enabled, or vice versa. Rule silently no-ops when no NER provider is active.",
+  "category_id": "ner",
+  "severity": "high",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "address",
+    "location",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "LOCATION"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[ADDRESS]"
+        }
+      },
+      "message": "Address detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/address_ner"
+  },
+  "created_at": "2026-04-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

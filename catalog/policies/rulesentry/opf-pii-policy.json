@@ -1,0 +1,109 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "id": "policy.opf-pii",
+  "qualified_id": "rulesentry.policy.opf-pii",
+  "publisher_id": "rulesentry",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "OPF PII Detection Policy",
+  "description": "OpenAI Privacy Filter (OPF) sidecar-based PII detection across 8 entity types: person names, email addresses, phone numbers, addresses, dates, URLs, account numbers, and secrets. All rules require an active OPF sidecar (configured in Settings → Runtime Services). Rules silently no-op without a sidecar, so this policy is safe to activate at any time.",
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 50,
+  "tags": [
+    "pii",
+    "ner",
+    "opf",
+    "sidecar"
+  ],
+  "rules": [
+    {
+      "rule_id": "ner.opf_person",
+      "pinned_version": "1.0.0",
+      "priority": 60,
+      "attached_at": "2026-04-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Person name detection via OPF — GDPR Art. 4 direct personal identifier"
+    },
+    {
+      "rule_id": "ner.opf_email",
+      "pinned_version": "1.0.0",
+      "priority": 65,
+      "attached_at": "2026-04-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Email address detection via OPF — direct PII"
+    },
+    {
+      "rule_id": "ner.opf_phone",
+      "pinned_version": "1.0.0",
+      "priority": 65,
+      "attached_at": "2026-04-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Phone number detection via OPF — direct PII"
+    },
+    {
+      "rule_id": "ner.opf_address",
+      "pinned_version": "1.0.0",
+      "priority": 60,
+      "attached_at": "2026-04-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Address detection via OPF — combined with other identifiers for high risk"
+    },
+    {
+      "rule_id": "ner.opf_date",
+      "pinned_version": "1.0.0",
+      "priority": 50,
+      "attached_at": "2026-04-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Date detection via OPF — contextual PII when combined with other identifiers"
+    },
+    {
+      "rule_id": "ner.opf_url",
+      "pinned_version": "1.0.0",
+      "priority": 45,
+      "attached_at": "2026-04-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "URL detection via OPF — can reveal personal browsing or app usage"
+    },
+    {
+      "rule_id": "ner.opf_account_number",
+      "pinned_version": "1.0.0",
+      "priority": 80,
+      "attached_at": "2026-04-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Account number detection via OPF — credit cards, bank accounts, high-risk PII"
+    },
+    {
+      "rule_id": "ner.opf_secret",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-04-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Secret/credential detection via OPF — API keys, tokens, passwords; highest risk"
+    }
+  ],
+  "metadata": {
+    "frameworks": [
+      "GDPR",
+      "CCPA",
+      "HIPAA"
+    ],
+    "compliance_scope": "Named entity PII detection via OpenAI Privacy Filter sidecar",
+    "review_cycle": "quarterly",
+    "owner": "compliance-team"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-04-27T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-04-27T00:00:00Z",
+  "modified_by": "claude-code"
+}

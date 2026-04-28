@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.pii",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "status": "active",
   "name": "PII Protection Policy",
   "description": "Global baseline policy for personally identifiable information. Covers personal attributes and contact information across all regions. Government ID detection is delegated to regional policies (US-PII, EU-GDPR, UK-DPA, APAC, Americas, EMEA).",
@@ -250,6 +250,22 @@
       "attached_at": "2026-03-20T00:00:00Z",
       "attached_by": "claude-code",
       "notes": "ISO 8601 date detection (YYYY-MM-DD and variants)"
+    },
+    {
+      "rule_id": "personal.labeled_field_name",
+      "pinned_version": "1.3.1",
+      "priority": 70,
+      "attached_at": "2026-04-28T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Labeled form field name detection (Name: FirstLast) — migrated from policy.pii-ner"
+    },
+    {
+      "rule_id": "personal.pronoun_name_reference",
+      "pinned_version": "1.0.0",
+      "priority": 65,
+      "attached_at": "2026-04-28T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Pronoun-based name references (His name is John) — migrated from policy.pii-ner"
     }
   ],
   "metadata": {
@@ -266,6 +282,6 @@
   },
   "created_at": "2026-02-13T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-03-20T00:00:00Z",
+  "modified_at": "2026-04-28T00:00:00Z",
   "modified_by": "claude-code"
 }

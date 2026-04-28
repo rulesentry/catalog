@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "Date (NER)",
   "description": "Detects date references via an active NER provider (OPF's PRIVATE_DATE label). Covers formal ISO dates, spelled-out dates ('13th May 1990'), and ambiguous date-shaped text that regex underfits. Users who only want to redact dates-of-birth can leave ner.date disabled and rely on the personal.date_of_birth* regex rules. Rule silently no-ops when no NER provider is active.",
   "category_id": "ner",
@@ -50,6 +50,6 @@
   },
   "created_at": "2026-04-23T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_at": "2026-04-28T00:00:00Z",
   "modified_by": "claude-code"
 }

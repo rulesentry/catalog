@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "URL (NER)",
   "description": "Detects URLs via an active NER provider (OPF's PRIVATE_URL label). Complements the regex-based network.url_http / network.url_https rules: the regex versions are precise on well-formed links; the NER version catches context-only URLs ('visit our website at example dot com'). Rule silently no-ops when no NER provider is active.",
   "category_id": "ner",
@@ -50,6 +50,6 @@
   },
   "created_at": "2026-04-23T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_at": "2026-04-28T00:00:00Z",
   "modified_by": "claude-code"
 }

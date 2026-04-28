@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "Phone Number (NER)",
   "description": "Detects phone numbers via an active NER provider (OPF's PRIVATE_PHONE label or equivalent). Complements regex-based contact.phone_* rules for formats our regex doesn't cover or that appear in ambiguous contexts. Rule silently no-ops when no NER provider is active.",
   "category_id": "ner",
@@ -50,6 +50,6 @@
   },
   "created_at": "2026-04-23T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_at": "2026-04-28T00:00:00Z",
   "modified_by": "claude-code"
 }

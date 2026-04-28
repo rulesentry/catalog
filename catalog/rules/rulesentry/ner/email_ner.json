@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "Email Address (NER)",
   "description": "Detects email addresses via an active NER provider (OPF's PRIVATE_EMAIL label or equivalent). Complements the regex-based contact.email_address rule: regex wins on formatted cases, NER picks up ambiguous / embedded emails. Rule silently no-ops when no NER provider is active.",
   "category_id": "ner",
@@ -50,6 +50,6 @@
   },
   "created_at": "2026-04-23T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_at": "2026-04-28T00:00:00Z",
   "modified_by": "claude-code"
 }

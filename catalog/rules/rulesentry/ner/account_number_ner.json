@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "Account Number (NER)",
   "description": "Detects financial account numbers, credit cards, IBANs, and similar numeric identifiers via an active NER provider (OPF's ACCOUNT_NUMBER label). WARNING: OPF's ACCOUNT_NUMBER label is known to over-fire — on our benchmark it produced 614 predictions for 0 ground-truth bank-account spans. This rule is off-by-default-intent (enabled but recommended to disable via RuleOverride unless you have a fine-tuned OPF checkpoint). Precision rules in financial.* (credit_card_luhn, iban_mod97, routing_number) remain the primary detectors for formatted account numbers; this rule is here to expose the OPF capability for users who want it. Rule silently no-ops when no NER provider is active.",
   "category_id": "ner",
@@ -51,6 +51,6 @@
   },
   "created_at": "2026-04-23T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_at": "2026-04-28T00:00:00Z",
   "modified_by": "claude-code"
 }

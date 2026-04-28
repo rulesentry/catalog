@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "Street Address (NER)",
   "description": "Detects physical / street addresses via an active NER provider (OPF's PRIVATE_ADDRESS label). Sibling to ner.location: ner.address is address-shaped ('123 Main St', '742 Evergreen Terrace') while ner.location is place-shaped ('San Francisco', 'United States'). Users who want to redact personal addresses but keep mentions of cities or countries can disable ner.location and leave ner.address enabled, or vice versa. Rule silently no-ops when no NER provider is active.",
   "category_id": "ner",
@@ -51,6 +51,6 @@
   },
   "created_at": "2026-04-23T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-04-23T00:00:00Z",
+  "modified_at": "2026-04-28T00:00:00Z",
   "modified_by": "claude-code"
 }

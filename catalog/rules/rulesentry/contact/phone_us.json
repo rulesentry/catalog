@@ -24,7 +24,7 @@
       "+1 XXX XXX XXXX",
       "1-XXX-XXX-XXXX"
     ],
-    "pattern_rationale": "Same four-arm strategy as phone_canada: (1) phone keyword label — any NANP format; (2) +1 prefix; (3) 1-NXX-NXX-XXXX dash/dot; (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 is NOT matched without context.",
+    "pattern_rationale": "Same four-arm strategy as phone_canada: (1) phone keyword label — any NANP format; (2) +1 prefix; (3) 1-NXX-NXX-XXXX dash/dot; (4) (NXX) parenthesized area code; (5) NXX-NXX-XXXX or NXX.NXX.XXXX dash/dot bare. Bare space-separated 3-3-4 is NOT matched without context. ARM1 uses \\b before the keyword group to prevent mid-word matches (e.g. 'phone' inside 'Telephone'). capture_groups:true so the ARM1 keyword label is consumed by the outer match but only the number portion (group 1) is tokenised.",
     "needs_review": false
   },
   "evaluation": {
@@ -32,8 +32,11 @@
     "priority": 65,
     "target": "content",
     "pattern": {
-      "pattern": "(?:(?:ph(?:one)?|tel(?:ephone)?|mobile|cell(?:ular)?|call|fax)[:\\s#-]*(?:\\+?1[\\s.-]?)?(?:\\([2-9]\\d{2}\\)[\\s.-]?|[2-9]\\d{2}[\\s.-]?)[0-9]\\d{2}[\\s.-]?\\d{4}|\\+1[\\s.-]?(?:\\([2-9]\\d{2}\\)[\\s.-]?|[2-9]\\d{2}[\\s.-]?)[0-9]\\d{2}[\\s.-]?\\d{4}|1[.-][2-9]\\d{2}[.-]\\d{3}[.-]\\d{4}|\\([2-9]\\d{2}\\)[\\s.-]?[0-9]\\d{2}[\\s.-]?\\d{4}|\\b[2-9]\\d{2}[.-]\\d{3}[.-]\\d{4})\\b",
-      "engine": "regex"
+      "pattern": "(?:\\b(?:ph(?:one)?|tel(?:ephone)?|mobile|cell(?:ular)?|call|fax)[:\\s#-]*(?:\\+?1[\\s.-]?)?((?:\\([2-9]\\d{2}\\)[\\s.-]?|[2-9]\\d{2}[\\s.-]?)[0-9]\\d{2}[\\s.-]?\\d{4})|\\+1[\\s.-]?(?:\\([2-9]\\d{2}\\)[\\s.-]?|[2-9]\\d{2}[\\s.-]?)[0-9]\\d{2}[\\s.-]?\\d{4}|1[.-][2-9]\\d{2}[.-]\\d{3}[.-]\\d{4}|\\([2-9]\\d{2}\\)[\\s.-]?[0-9]\\d{2}[\\s.-]?\\d{4}|\\b[2-9]\\d{2}[.-]\\d{3}[.-]\\d{4})\\b",
+      "engine": "regex",
+      "flags": {
+        "capture_groups": true
+      }
     },
     "effect": {
       "type": "transform",
@@ -50,7 +53,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-04-15T00:00:00Z",
+  "updated_at": "2026-05-24T00:00:00Z",
   "regions": [
     "US"
   ]

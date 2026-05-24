@@ -30,7 +30,6 @@
       "validator": "ipv4_scope",
       "validator_params": {
         "reject_scopes": [
-          "private",
           "loopback",
           "link_local",
           "broadcast",
@@ -53,7 +52,7 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.963484Z",
+  "updated_at": "2026-05-24T00:00:00Z",
   "regions": [
     "GLOBAL"
   ]

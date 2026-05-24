@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.ettin_http_cookie",
+  "qualified_id": "rulesentry.ner.ettin_http_cookie",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "HTTP Cookie / Session Token (Ettin PII)",
+  "description": "Detects HTTP session cookies and tokens using the Ettin 68M PII on-device ONNX model. Session tokens grant access equivalent to credentials and must not be leaked. Rule silently no-ops when no model is active.",
+  "category_id": "ner",
+  "severity": "high",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "production"
+  ],
+  "tags": [
+    "credentials",
+    "session",
+    "security",
+    "ner",
+    "ettin"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "http_cookie"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "block",
+      "rationale": "security",
+      "message": "HTTP session cookie detected by Ettin PII NER — blocked to prevent session hijacking exposure"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/ettin_http_cookie"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-05-24T00:00:00Z",
+  "modified_by": "claude-code"
+}

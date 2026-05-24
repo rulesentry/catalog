@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.ettin_gender",
+  "qualified_id": "rulesentry.ner.ettin_gender",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Gender (Ettin PII)",
+  "description": "Detects gender information using the Ettin 68M PII on-device ONNX model. Rule silently no-ops when no model is active.",
+  "category_id": "ner",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "demographic",
+    "ner",
+    "ettin"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "gender"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[GENDER]"
+        }
+      },
+      "message": "Gender detected by Ettin PII NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/ettin_gender"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-05-24T00:00:00Z",
+  "modified_by": "claude-code"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.ettin_unique_id",
+  "qualified_id": "rulesentry.ner.ettin_unique_id",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Unique Identifier (Ettin PII)",
+  "description": "Detects unique personal identifiers (UUIDs, serial numbers, etc.) using the Ettin 68M PII on-device ONNX model. Rule silently no-ops when no model is active.",
+  "category_id": "ner",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "identifier",
+    "ner",
+    "ettin"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "unique_id"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[UNIQUE_ID]"
+        }
+      },
+      "message": "Unique identifier detected by Ettin PII NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/ettin_unique_id"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-05-24T00:00:00Z",
+  "modified_by": "claude-code"
+}

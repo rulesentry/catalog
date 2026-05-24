@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "Date (OPF)",
   "description": "Detects dates and temporal references using the OpenAI Privacy Filter (OPF) sidecar. PRIVATE_DATE entity type. Requires an active OPF sidecar (configured in Settings → Runtime Services). Rule silently no-ops when no sidecar is active.",
   "category_id": "ner",

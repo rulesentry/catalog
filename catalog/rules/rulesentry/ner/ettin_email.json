@@ -1,13 +1,13 @@
 {
   "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
-  "id": "ner.opf_email",
-  "qualified_id": "rulesentry.ner.opf_email",
+  "id": "ner.ettin_email",
+  "qualified_id": "rulesentry.ner.ettin_email",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "deprecated",
-  "name": "Email Address (OPF)",
-  "description": "Detects email addresses using the OpenAI Privacy Filter (OPF) sidecar. PRIVATE_EMAIL entity type. Requires an active OPF sidecar (configured in Settings → Runtime Services). Rule silently no-ops when no sidecar is active.",
+  "status": "active",
+  "name": "Email Address (Ettin PII)",
+  "description": "Detects email addresses using the Ettin 68M PII on-device ONNX model. Complements the regex-based contact.email_address rule. Rule silently no-ops when no model is active.",
   "category_id": "ner",
   "severity": "high",
   "regions": [
@@ -22,14 +22,14 @@
     "pii",
     "email",
     "ner",
-    "opf"
+    "ettin"
   ],
   "evaluation": {
     "evaluation_type": "ner_match",
     "entity_types": [
-      "PRIVATE_EMAIL"
+      "email"
     ],
-    "confidence_threshold": 0.5,
+    "confidence_threshold": 0.85,
     "model": {
       "fallback": "skip"
     },
@@ -42,14 +42,15 @@
           "replacement": "[EMAIL]"
         }
       },
-      "message": "Email address detected by OPF replaced for de-identification"
+      "message": "Email address detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {
-    "source_type": "local"
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/ettin_email"
   },
-  "created_at": "2026-04-27T00:00:00Z",
+  "created_at": "2026-05-24T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-04-27T00:00:00Z",
+  "modified_at": "2026-05-24T00:00:00Z",
   "modified_by": "claude-code"
 }

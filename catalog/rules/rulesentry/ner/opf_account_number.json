@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "Account Number (OPF)",
   "description": "Detects account numbers, credit card numbers, and financial identifiers using the OpenAI Privacy Filter (OPF) sidecar. ACCOUNT_NUMBER entity type. Requires an active OPF sidecar (configured in Settings → Runtime Services). Rule silently no-ops when no sidecar is active.",
   "category_id": "ner",

@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "deprecated",
   "name": "Phone Number (OPF)",
   "description": "Detects phone numbers using the OpenAI Privacy Filter (OPF) sidecar. PRIVATE_PHONE entity type. Requires an active OPF sidecar (configured in Settings → Runtime Services). Rule silently no-ops when no sidecar is active.",
   "category_id": "ner",

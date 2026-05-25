@@ -15,8 +15,7 @@
   ],
   "profiles": [
     "hipaa",
-    "gdpr-special-categories",
-    "production"
+    "gdpr-special-categories"
   ],
   "tags": [
     "pii",
@@ -52,6 +51,6 @@
   },
   "created_at": "2026-05-24T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-05-25T00:00:00Z",
+  "modified_at": "2026-05-26T00:00:00Z",
   "modified_by": "claude-code"
 }

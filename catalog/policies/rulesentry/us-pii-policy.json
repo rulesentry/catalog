@@ -4,10 +4,10 @@
   "qualified_id": "rulesentry.policy.us-pii",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "status": "active",
   "name": "US PII Protection Policy",
-  "description": "Comprehensive PII protection policy for United States jurisdictions. Combines HIPAA PHI requirements with CCPA personal information protections. Includes direct rule references, category-based selective inclusion for healthcare rules, and dynamic filters for US-scoped high-severity HIPAA rules.",
+  "description": "Comprehensive PII protection policy for United States jurisdictions. Extends the Global PII baseline (policy.pii) and adds HIPAA PHI requirements and CCPA personal information protections specific to the US. Includes direct rule references for US-specific identifiers and dynamic filters for US-scoped high-severity HIPAA rules.",
   "profiles": [
     "hipaa",
     "ccpa",
@@ -17,6 +17,7 @@
     "US"
   ],
   "priority": 75,
+  "extends": "policy.pii",
   "tags": [
     "pii",
     "phi",
@@ -24,14 +25,6 @@
     "healthcare"
   ],
   "rules": [
-    {
-      "rule_id": "personal.date_of_birth",
-      "pinned_version": "3.0.0",
-      "priority": 80,
-      "attached_at": "2026-02-10T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Core DOB detection rule - high priority for healthcare contexts"
-    },
     {
       "rule_id": "government.ssn_format",
       "pinned_version": "3.0.0",
@@ -185,22 +178,6 @@
       "notes": "DEA registration number detection (healthcare category)"
     },
     {
-      "rule_id": "healthcare.blood_type",
-      "pinned_version": "3.0.0",
-      "priority": 75,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Blood type detection (HIPAA Safe Harbor identifier)"
-    },
-    {
-      "rule_id": "healthcare.health_insurance_number",
-      "pinned_version": "3.0.0",
-      "priority": 75,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Health insurance number detection (HIPAA filter)"
-    },
-    {
       "rule_id": "healthcare.medical_record_number",
       "pinned_version": "3.0.0",
       "priority": 90,
@@ -215,70 +192,6 @@
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code",
       "notes": "Patient ID detection (HIPAA filter)"
-    },
-    {
-      "rule_id": "healthcare.prescription_number",
-      "pinned_version": "3.0.0",
-      "priority": 75,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Prescription number detection (HIPAA filter)"
-    },
-    {
-      "rule_id": "contact.apartment_number",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Apartment number detection (CCPA filter)"
-    },
-    {
-      "rule_id": "contact.city_state_zip",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "City/state/ZIP detection (CCPA filter)"
-    },
-    {
-      "rule_id": "contact.email_address",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Email address detection (CCPA filter)"
-    },
-    {
-      "rule_id": "contact.phone_us",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "US phone number detection (CCPA filter)"
-    },
-    {
-      "rule_id": "contact.po_box",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "PO Box address detection (CCPA filter)"
-    },
-    {
-      "rule_id": "contact.street_address",
-      "pinned_version": "3.1.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Street address detection (CCPA filter)"
-    },
-    {
-      "rule_id": "contact.zip_code_us",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "US ZIP code detection (CCPA filter)"
     },
     {
       "rule_id": "government.us_immigration_number",
@@ -324,6 +237,6 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_at": "2026-05-26T00:00:00Z",
   "modified_by": "claude-code"
 }

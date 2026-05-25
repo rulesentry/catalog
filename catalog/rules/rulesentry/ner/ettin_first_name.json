@@ -9,7 +9,7 @@
   "name": "First Name (Ettin PII)",
   "description": "Detects first names using the Ettin 68M PII on-device ONNX model. Requires ettin-pii to be active. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],

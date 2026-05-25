@@ -9,7 +9,7 @@
   "name": "Biometric Identifier (Ettin PII)",
   "description": "Detects biometric identifiers using the Ettin 68M PII on-device ONNX model. Biometric data is a GDPR Article 9 special category requiring the highest protection. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "critical",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -36,9 +36,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "Biometric identifier detected by Ettin PII NER — blocked to prevent exposure of GDPR special category data"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[BIOMETRIC_IDENTIFIER]"
+        }
+      },
+      "message": "Biometric Identifier detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

@@ -9,7 +9,7 @@
   "name": "Card Verification Value (CVV) (Ettin PII)",
   "description": "Detects card CVV/CVC security codes using the Ettin 68M PII on-device ONNX model. PCI-DSS prohibits storage of CVV data after authorization. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "critical",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -35,9 +35,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "Card CVV detected by Ettin PII NER — blocked per PCI-DSS prohibition on CVV storage"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[CVV]"
+        }
+      },
+      "message": "Card Verification Value (CVV) detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

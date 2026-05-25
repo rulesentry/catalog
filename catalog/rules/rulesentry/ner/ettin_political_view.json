@@ -9,7 +9,7 @@
   "name": "Political View (Ettin PII)",
   "description": "Detects political opinions and views using the Ettin 68M PII on-device ONNX model. Political opinions are a GDPR Article 9 special category requiring explicit consent to process. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -35,9 +35,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "Political view detected by Ettin PII NER — blocked to prevent exposure of GDPR special category data"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[POLITICAL_VIEW]"
+        }
+      },
+      "message": "Political View detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

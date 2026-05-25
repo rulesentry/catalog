@@ -9,7 +9,7 @@
   "name": "Bank Routing Number (Ettin PII)",
   "description": "Detects US bank routing numbers using the Ettin 68M PII on-device ONNX model. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "US"
   ],
@@ -34,9 +34,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "Bank routing number detected by Ettin PII NER — blocked to prevent financial identifier exposure"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[BANK_ROUTING_NUMBER]"
+        }
+      },
+      "message": "Bank Routing Number detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

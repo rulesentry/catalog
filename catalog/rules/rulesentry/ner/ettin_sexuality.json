@@ -9,7 +9,7 @@
   "name": "Sexual Orientation (Ettin PII)",
   "description": "Detects sexual orientation information using the Ettin 68M PII on-device ONNX model. Sexual orientation is a GDPR Article 9 special category requiring the highest level of protection. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -35,9 +35,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "Sexual orientation detected by Ettin PII NER — blocked to prevent exposure of GDPR special category data"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[SEXUALITY]"
+        }
+      },
+      "message": "Sexual Orientation detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

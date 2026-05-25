@@ -9,7 +9,7 @@
   "name": "Date of Birth (Ettin PII)",
   "description": "Detects dates of birth using the Ettin 68M PII on-device ONNX model. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],

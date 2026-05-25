@@ -9,7 +9,7 @@
   "name": "Race / Ethnicity (Ettin PII)",
   "description": "Detects racial and ethnic origin information using the Ettin 68M PII on-device ONNX model. Racial/ethnic data is a GDPR Article 9 special category. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],

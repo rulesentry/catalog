@@ -9,7 +9,7 @@
   "name": "Social Security Number (Ettin PII)",
   "description": "Detects US Social Security Numbers using the Ettin 68M PII on-device ONNX model. Complements the regex-based government.ssn_format rule. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "critical",
+  "severity": "medium",
   "regions": [
     "US"
   ],

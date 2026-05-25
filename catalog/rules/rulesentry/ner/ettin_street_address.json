@@ -9,7 +9,7 @@
   "name": "Street Address (Ettin PII)",
   "description": "Detects street-level addresses using the Ettin 68M PII on-device ONNX model. Complements the regex-based location.full_address rule. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],

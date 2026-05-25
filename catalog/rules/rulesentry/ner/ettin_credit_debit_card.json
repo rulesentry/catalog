@@ -9,7 +9,7 @@
   "name": "Credit/Debit Card Number (Ettin PII)",
   "description": "Detects credit and debit card numbers using the Ettin 68M PII on-device ONNX model. Complements the regex-based financial.credit_card rule. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "critical",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -34,9 +34,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "Credit/debit card number detected by Ettin PII NER — blocked to prevent financial data exposure"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[CREDIT_DEBIT_CARD]"
+        }
+      },
+      "message": "Credit/Debit Card Number detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

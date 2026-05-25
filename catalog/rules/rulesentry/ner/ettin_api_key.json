@@ -9,7 +9,7 @@
   "name": "API Key (Ettin PII)",
   "description": "Detects API keys and tokens using the Ettin 68M PII on-device ONNX model. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "critical",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -32,9 +32,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
-      "rationale": "security",
-      "message": "API key detected by Ettin PII NER — blocked to prevent credential exposure"
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[API_KEY]"
+        }
+      },
+      "message": "API Key detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

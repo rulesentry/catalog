@@ -9,7 +9,7 @@
   "name": "Medical Record Number (Ettin PII)",
   "description": "Detects medical record numbers (MRNs) using the Ettin 68M PII on-device ONNX model. MRNs are HIPAA-designated identifiers in the 18 PHI identifiers list. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "critical",
+  "severity": "medium",
   "regions": [
     "US"
   ],

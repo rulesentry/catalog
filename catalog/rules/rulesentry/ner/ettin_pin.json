@@ -9,7 +9,7 @@
   "name": "PIN (Ettin PII)",
   "description": "Detects personal identification numbers (PINs) using the Ettin 68M PII on-device ONNX model. PINs are authentication credentials and must not be stored or transmitted. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "critical",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -34,9 +34,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "PIN detected by Ettin PII NER — blocked to prevent authentication credential exposure"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[PIN]"
+        }
+      },
+      "message": "PIN detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

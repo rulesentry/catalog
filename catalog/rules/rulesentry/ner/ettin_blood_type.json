@@ -9,7 +9,7 @@
   "name": "Blood Type (Ettin PII)",
   "description": "Detects blood type information using the Ettin 68M PII on-device ONNX model. Health data is a GDPR Article 9 special category. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],

@@ -9,7 +9,7 @@
   "name": "GPS Coordinate (Ettin PII)",
   "description": "Detects GPS coordinates and geographic coordinates using the Ettin 68M PII on-device ONNX model. Precise location data may reveal home or work addresses. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],

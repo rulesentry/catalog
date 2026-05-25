@@ -9,7 +9,7 @@
   "name": "Religious Belief (Ettin PII)",
   "description": "Detects religious beliefs and affiliations using the Ettin 68M PII on-device ONNX model. Religious data is a GDPR Article 9 special category requiring explicit consent. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "high",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -35,9 +35,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "Religious belief detected by Ettin PII NER — blocked to prevent exposure of GDPR special category data"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[RELIGIOUS_BELIEF]"
+        }
+      },
+      "message": "Religious Belief detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

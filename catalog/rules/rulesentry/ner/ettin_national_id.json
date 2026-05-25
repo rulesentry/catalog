@@ -9,7 +9,7 @@
   "name": "National ID (Ettin PII)",
   "description": "Detects national identification numbers using the Ettin 68M PII on-device ONNX model. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "critical",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],
@@ -35,9 +35,15 @@
       "fallback": "skip"
     },
     "effect": {
-      "type": "block",
+      "type": "transform",
       "rationale": "compliance",
-      "message": "National ID detected by Ettin PII NER — blocked to prevent government identifier exposure"
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[NATIONAL_ID]"
+        }
+      },
+      "message": "National ID detected by Ettin PII NER replaced for de-identification"
     }
   },
   "origin": {

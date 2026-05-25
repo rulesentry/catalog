@@ -9,7 +9,7 @@
   "name": "Language (Ettin PII)",
   "description": "Detects language information in personal context using the Ettin 68M PII on-device ONNX model. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "low",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],

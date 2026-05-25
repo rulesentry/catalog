@@ -9,7 +9,7 @@
   "name": "Occupation (Ettin PII)",
   "description": "Detects occupation and job title information using the Ettin 68M PII on-device ONNX model. Rule silently no-ops when no model is active.",
   "category_id": "ner",
-  "severity": "low",
+  "severity": "medium",
   "regions": [
     "GLOBAL"
   ],

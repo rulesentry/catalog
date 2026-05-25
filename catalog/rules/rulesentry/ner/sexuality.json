@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.sexuality",
+  "qualified_id": "rulesentry.ner.sexuality",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Sexual Orientation",
+  "description": "Detects sexual orientation information using an on-device NER model. Sexual orientation is a GDPR Article 9 special category requiring the highest level of protection. Rule silently no-ops when no model is active.",
+  "category_id": "ner",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr-special-categories",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "sensitive",
+    "gdpr-special-category",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "sexuality"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[SEXUALITY]"
+        }
+      },
+      "message": "Sexual Orientation detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/sexuality"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-05-25T00:00:00Z",
+  "modified_by": "claude-code"
+}

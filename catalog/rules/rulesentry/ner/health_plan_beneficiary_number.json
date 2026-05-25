@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.health_plan_beneficiary_number",
+  "qualified_id": "rulesentry.ner.health_plan_beneficiary_number",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Health Plan Beneficiary Number",
+  "description": "Detects health plan beneficiary numbers using an on-device NER model. This is a HIPAA-designated identifier in the 18 PHI identifiers list. Rule silently no-ops when no model is active.",
+  "category_id": "ner",
+  "severity": "medium",
+  "regions": [
+    "US"
+  ],
+  "profiles": [
+    "hipaa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "medical",
+    "hipaa",
+    "phi",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "health_plan_beneficiary_number"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[HEALTH_PLAN_BENEFICIARY_NUMBER]"
+        }
+      },
+      "message": "Health Plan Beneficiary Number detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/health_plan_beneficiary_number"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-05-25T00:00:00Z",
+  "modified_by": "claude-code"
+}

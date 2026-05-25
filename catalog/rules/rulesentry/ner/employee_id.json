@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.employee_id",
+  "qualified_id": "rulesentry.ner.employee_id",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Employee ID",
+  "description": "Detects employee identifiers using an on-device NER model. Rule silently no-ops when no model is active.",
+  "category_id": "ner",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "identifier",
+    "hr",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "employee_id"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[EMPLOYEE_ID]"
+        }
+      },
+      "message": "Employee ID detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/employee_id"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-05-25T00:00:00Z",
+  "modified_by": "claude-code"
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "personal.datetime_iso8601",
+  "qualified_id": "rulesentry.personal.datetime_iso8601",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "name": "ISO-8601 Date-Time",
+  "description": "Detects full ISO-8601 date-time strings including timezone (e.g., 2026-05-26T14:30:00Z or 2026-05-26T14:30:00+05:30). Under HIPAA, date-time values can be Protected Health Information when linked to treatment, diagnosis, or patient records. Low severity — timestamps are typically indirect identifiers.",
+  "category_id": "personal",
+  "severity": "low",
+  "profiles": [
+    "hipaa",
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "standard": "ISO 8601 / RFC 3339",
+    "format": "YYYY-MM-DDTHH:MM:SS[.fff](Z|±HH:MM)",
+    "note": "Requires the time component and a timezone designator to reduce ambiguity with plain YYYY-MM-DD dates, which are covered by personal.date.",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])T(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|[+-](?:[01]\\d|2[0-3]):[0-5]\\d)\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[DATETIME]"
+        }
+      },
+      "message": "ISO-8601 date-time redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-05-26T00:00:00Z",
+  "updated_at": "2026-05-26T00:00:00Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "digital_identity.uuid",
+  "qualified_id": "rulesentry.digital_identity.uuid",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "name": "UUID / GUID",
+  "description": "Detects RFC 4122 Universally Unique Identifiers (UUIDs / GUIDs). UUIDs are frequently used as primary keys, session IDs, and user identifiers. Under GDPR, a UUID that consistently identifies a user or session is personal data. Matches versions 1-8 with the IETF variant bits.",
+  "category_id": "digital_identity",
+  "severity": "low",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "metadata": {
+    "standard": "RFC 4122 / RFC 9562",
+    "format": "8-4-4-4-12 hex digits separated by hyphens",
+    "versions": "v1 through v8 (version nibble constrained to 1-8)",
+    "note": "Version nibble [1-8] and variant bits [89aAbB] keep this tight; UUIDv0 and non-IETF-variant UUIDs are not matched.",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 50,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[UUID]"
+        }
+      },
+      "message": "UUID/GUID redacted (potential user or session identifier)"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-05-26T00:00:00Z",
+  "updated_at": "2026-05-26T00:00:00Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

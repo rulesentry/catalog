@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "personal.time_of_day",
+  "qualified_id": "rulesentry.personal.time_of_day",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "name": "Time of Day",
+  "description": "Detects time-of-day values in 12-hour (hh:mm am/pm) or 24-hour (HH:MM or HH:MM:SS) format. Under HIPAA, times of service, procedure, or medication are Protected Health Information when combined with other patient identifiers. Low severity — bare times are ambiguous without surrounding context.",
+  "category_id": "personal",
+  "severity": "low",
+  "profiles": [
+    "hipaa",
+    "production"
+  ],
+  "metadata": {
+    "formats": [
+      "HH:MM (24-hour)",
+      "HH:MM:SS (24-hour with seconds)",
+      "h:MM AM/PM (12-hour)",
+      "h:MM:SS AM/PM (12-hour with seconds)"
+    ],
+    "note": "Two-digit hour required to reduce false positives from version strings and other colon-separated numeric patterns. Companion to personal.datetime_iso8601 for full timestamps.",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 50,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d)?(?:\\s*[AaPp][Mm])?\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[TIME]"
+        }
+      },
+      "message": "Time of day redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-05-26T00:00:00Z",
+  "updated_at": "2026-05-26T00:00:00Z",
+  "regions": [
+    "GLOBAL"
+  ]
+}

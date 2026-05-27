@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "government.de_social_security",
+  "qualified_id": "rulesentry.government.de_social_security",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "status": "active",
+  "name": "German Social Security Number (Rentenversicherungsnummer)",
+  "description": "Detects German pension insurance numbers (Rentenversicherungsnummer, RVNR). Format: 2-digit area code + 6-digit birth date (DDMMYY) + 1 letter (initial of birth name) + 3 digits + 1 check digit.",
+  "category_id": "government",
+  "severity": "high",
+  "profiles": [
+    "government-sector",
+    "gdpr",
+    "production"
+  ],
+  "regions": [
+    "DE"
+  ],
+  "tags": [
+    "pii",
+    "government-id",
+    "social-security",
+    "gdpr"
+  ],
+  "metadata": {
+    "country": "Germany",
+    "pattern_source": "Based on Presidio DeIdRecognizer",
+    "attribution": "https://github.com/microsoft/presidio",
+    "format": "AABBMMYYCIIICD — 2-digit area + DDMMYY + letter + 3 digits + check digit",
+    "official_name": "Rentenversicherungsnummer",
+    "note": "VKVV §4 checksum requires letter-to-ordinal substitution (A=01..Z=26) before calculation; validator omitted pending hardcoded implementation",
+    "needs_review": true
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{2}(0[1-9]|[12]\\d|3[01]|6[1-9]|[78]\\d|9[01])(0[1-9]|1[0-2])\\d{2}[A-Z]\\d{3}\\d\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DE_RENTENVERSICHERUNG",
+          "reversible": false
+        }
+      },
+      "message": "German Rentenversicherungsnummer tokenized for de-identification"
+    }
+  },
+  "created_at": "2026-05-27T00:00:00Z",
+  "updated_at": "2026-05-27T00:00:00Z"
+}

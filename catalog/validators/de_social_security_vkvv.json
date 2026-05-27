@@ -1,0 +1,17 @@
+{
+  "id": "de_social_security_vkvv",
+  "type": "validator-definition",
+  "version": "4.0.0",
+  "publisher_id": "rulesentry",
+  "name": "German Rentenversicherungsnummer VKVV §4 Checksum",
+  "description": "Validates German social security numbers (Rentenversicherungsnummer) using the VKVV §4 algorithm. The letter at position 9 is replaced by its 2-digit ordinal (A=01..Z=26), yielding 12 effective digits. Weights [2,1,2,5,7,1,2,1,2,1,2,1] are applied; each product's cross-sum (Quersumme) is summed; result mod 10 must equal the check digit at position 12.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 12,
+    "weights": [2, 1, 2, 5, 7, 1, 2, 1, 2, 1, 2, 1],
+    "modulus": 10,
+    "check_rule": "sum_mod_zero",
+    "sum_digit_products": true
+  }
+}

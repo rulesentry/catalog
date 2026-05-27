@@ -1,0 +1,19 @@
+{
+  "id": "tr_license_plate_province",
+  "type": "validator-definition",
+  "version": "4.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Turkish License Plate Province Code Validation",
+  "description": "Validates that Turkish license plate province codes are in the valid range 01-81. Province codes 00 and 82-99 are not assigned to any Turkish province (Karayolları Trafik Kanunu KTK Madde 23). The validation extracts the first two digits and checks they fall within 01-81.",
+  "algorithm": "prefix_check",
+  "params": {
+    "extract": "digits",
+    "min_length": 5,
+    "prefix_length": 2,
+    "invalid_prefixes": [
+      "00",
+      "82", "83", "84", "85", "86", "87", "88", "89",
+      "90", "91", "92", "93", "94", "95", "96", "97", "98", "99"
+    ]
+  }
+}

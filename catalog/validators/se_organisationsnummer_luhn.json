@@ -1,0 +1,19 @@
+{
+  "id": "se_organisationsnummer_luhn",
+  "type": "validator-definition",
+  "version": "4.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Swedish Organisationsnummer Luhn Checksum",
+  "description": "Validates Swedish organization numbers (Organisationsnummer) using the Luhn algorithm on 10 digits. The third digit must be >= 2 (distinguishes organization numbers from Personnummer). The 10th digit is the Luhn check digit.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 10,
+    "luhn_doubling": true,
+    "modulus": 10,
+    "check_rule": "sum_mod_zero",
+    "reject_starts_with": ["000", "001", "010", "011", "020", "021",
+                           "100", "101", "110", "111", "120", "121",
+                           "000", "001"]
+  }
+}

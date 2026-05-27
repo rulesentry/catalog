@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "government.de_fuehrerschein",
+  "qualified_id": "rulesentry.government.de_fuehrerschein",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "status": "active",
+  "name": "German Driving License Number (Führerscheinnummer)",
+  "description": "Detects German driving license numbers in the EU harmonized format. Format: 2 letters (issuing authority) + 8 digits + 1 alphanumeric check character. No published normative check-digit algorithm.",
+  "category_id": "government",
+  "severity": "medium",
+  "profiles": [
+    "government-sector",
+    "gdpr",
+    "production"
+  ],
+  "regions": [
+    "DE"
+  ],
+  "tags": [
+    "pii",
+    "government-id",
+    "driving-license",
+    "gdpr"
+  ],
+  "metadata": {
+    "country": "Germany",
+    "pattern_source": "Based on Presidio DeFuehrerscheinRecognizer",
+    "attribution": "https://github.com/microsoft/presidio",
+    "format": "XX12345678Y — 2 letters + 8 digits + 1 alphanumeric",
+    "official_name": "Führerscheinnummer",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{2}\\d{8}[A-Z0-9]\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DE_FUEHRERSCHEIN",
+          "reversible": false
+        }
+      },
+      "message": "German driving license number tokenized for de-identification"
+    }
+  },
+  "created_at": "2026-05-27T00:00:00Z",
+  "updated_at": "2026-05-27T00:00:00Z"
+}

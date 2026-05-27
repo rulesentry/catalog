@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "government.eu_es_passport",
+  "qualified_id": "rulesentry.government.eu_es_passport",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "status": "active",
+  "name": "Spanish Passport Number",
+  "description": "Detects Spanish passport numbers. Format: 3 uppercase letters followed by 6 digits. Context-anchored to reduce false positives from this short pattern.",
+  "category_id": "government",
+  "severity": "high",
+  "profiles": [
+    "government-sector",
+    "gdpr",
+    "production"
+  ],
+  "regions": [
+    "ES"
+  ],
+  "tags": [
+    "pii",
+    "government-id",
+    "passport",
+    "gdpr"
+  ],
+  "metadata": {
+    "country": "Spain",
+    "pattern_source": "Based on Presidio EsPassportRecognizer",
+    "attribution": "https://github.com/microsoft/presidio",
+    "format": "ABC123456 — 3 letters + 6 digits",
+    "official_name": "Pasaporte",
+    "note": "Context prefix required to reduce false positives from generic alphanumeric sequences",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:pasaporte|passport|documento\\s+de\\s+viaje)[\\s:# -]*([A-Z]{3}\\d{6})\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "ES_PASSPORT",
+          "reversible": false
+        }
+      },
+      "message": "Spanish passport number tokenized for de-identification"
+    }
+  },
+  "created_at": "2026-05-27T00:00:00Z",
+  "updated_at": "2026-05-27T00:00:00Z"
+}

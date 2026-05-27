@@ -1,0 +1,17 @@
+{
+  "id": "de_passport_icao",
+  "type": "validator-definition",
+  "version": "4.0.0",
+  "publisher_id": "rulesentry",
+  "name": "German Passport ICAO Doc 9303 Check Digit",
+  "description": "Validates German passport numbers using the ICAO Doc 9303 check digit algorithm. Letters are mapped A=10..Z=35; digits keep face value. Weights [7,3,1] repeat across the first 8 characters. The sum mod 10 must equal the 9th character (digit). Also rejects characters outside the ICAO-restricted charset (excludes A,B,D,E,I,O,Q,S,U from positions 1-8).",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "alphanumeric",
+    "expected_length": 9,
+    "weights": [7, 3, 1, 7, 3, 1, 7, 3],
+    "modulus": 10,
+    "check_rule": "remainder",
+    "check_position": "last"
+  }
+}

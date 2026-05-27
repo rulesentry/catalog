@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "government.de_passport",
+  "qualified_id": "rulesentry.government.de_passport",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "status": "active",
+  "name": "German Passport Number (Reisepassnummer)",
+  "description": "Detects German passport numbers. Format: letter from restricted charset followed by 8 alphanumeric characters (ICAO Doc 9303 Machine Readable Travel Document). Validates ICAO Mod-10 weighted check digit.",
+  "category_id": "government",
+  "severity": "high",
+  "profiles": [
+    "government-sector",
+    "gdpr",
+    "production"
+  ],
+  "regions": [
+    "DE"
+  ],
+  "tags": [
+    "pii",
+    "government-id",
+    "passport",
+    "gdpr"
+  ],
+  "metadata": {
+    "country": "Germany",
+    "pattern_source": "Based on Presidio DePassportRecognizer",
+    "attribution": "https://github.com/microsoft/presidio",
+    "format": "C1234567X — 1 letter (CFGHJKLMNPRTVWXYZ) + 8 alphanumeric + check digit",
+    "official_name": "Reisepassnummer",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 80,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[CFGHJKLMNPRTVWXYZ][CFGHJKLMNPRTVWXYZ0-9]{8}\\b",
+      "engine": "regex",
+      "validator": "de_passport_icao"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DE_PASSPORT",
+          "reversible": false
+        }
+      },
+      "message": "German passport number tokenized for de-identification"
+    }
+  },
+  "created_at": "2026-05-27T00:00:00Z",
+  "updated_at": "2026-05-27T00:00:00Z"
+}

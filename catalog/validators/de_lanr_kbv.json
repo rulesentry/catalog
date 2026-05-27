@@ -1,0 +1,18 @@
+{
+  "id": "de_lanr_kbv",
+  "type": "validator-definition",
+  "version": "4.0.0",
+  "publisher_id": "rulesentry",
+  "name": "German Physician Number LANR KBV Checksum",
+  "description": "Validates German Lebenslange Arztnummer (LANR) per KBV Arztnummern-Richtlinie §75 SGB V. Weights [4,9,4,9,4,9] are applied to the first 6 digits. The check digit at position 7 equals (10 - (sum mod 10)) mod 10. Digits at positions 8-9 are the specialty code and are not part of the checksum.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 9,
+    "weights": [4, 9, 4, 9, 4, 9],
+    "modulus": 10,
+    "check_rule": "remainder_complement",
+    "check_position": "last",
+    "max_length": 7
+  }
+}

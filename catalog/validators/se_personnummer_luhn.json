@@ -1,0 +1,17 @@
+{
+  "id": "se_personnummer_luhn",
+  "type": "validator-definition",
+  "version": "4.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Swedish Personnummer Luhn Checksum",
+  "description": "Validates Swedish personal identity numbers (Personnummer) using the Luhn algorithm on the last 10 digits. The date component is the first 6 digits (YYMMDD); samordningsnummer adds 60 to the day. The 10th digit is the Luhn check digit. Supports both YYMMDD-XXXX and YYYYMMDD-XXXX formats — always validates the last 10 extracted digits.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "min_length": 10,
+    "max_length": 10,
+    "luhn_doubling": true,
+    "modulus": 10,
+    "check_rule": "sum_mod_zero"
+  }
+}

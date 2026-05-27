@@ -1,0 +1,61 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "healthcare.de_lanr",
+  "qualified_id": "rulesentry.healthcare.de_lanr",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "status": "active",
+  "name": "German Physician License Number (LANR)",
+  "description": "Detects German Lebenslange Arztnummer (LANR), the permanent physician identification number. Format: 9 digits — first 6 digits carry the checksum (KBV weights [4,9,4,9,4,9]), digit 7 is the check digit, digits 8-9 are the specialty code.",
+  "category_id": "healthcare",
+  "severity": "high",
+  "profiles": [
+    "healthcare-industry",
+    "gdpr",
+    "production"
+  ],
+  "regions": [
+    "DE"
+  ],
+  "tags": [
+    "phi",
+    "healthcare",
+    "provider-id",
+    "gdpr",
+    "hipaa"
+  ],
+  "metadata": {
+    "country": "Germany",
+    "pattern_source": "Based on Presidio DeLanrRecognizer",
+    "attribution": "https://github.com/microsoft/presidio",
+    "format": "XXXXXXXXX — 9 digits; pos 1-6 weighted, pos 7 check digit, pos 8-9 specialty code",
+    "official_name": "Lebenslange Arztnummer (LANR)",
+    "compliance": "KBV Arztnummern-Richtlinie §75 SGB V",
+    "needs_review": false
+  },
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 75,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{9}\\b",
+      "engine": "regex",
+      "validator": "de_lanr_kbv"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "DE_LANR",
+          "reversible": false
+        }
+      },
+      "message": "German physician LANR tokenized for de-identification"
+    }
+  },
+  "created_at": "2026-05-27T00:00:00Z",
+  "updated_at": "2026-05-27T00:00:00Z"
+}

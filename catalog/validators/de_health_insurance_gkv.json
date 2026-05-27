@@ -1,0 +1,16 @@
+{
+  "id": "de_health_insurance_gkv",
+  "type": "validator-definition",
+  "version": "4.0.0",
+  "publisher_id": "rulesentry",
+  "name": "German Health Insurance KVNR GKV §290 SGB V Checksum",
+  "description": "Validates German statutory health insurance numbers (KVNR / Krankenversicherungsnummer) per GKV-Spitzenverband §290 SGB V. The leading letter is replaced by its 2-digit ordinal (A=01..Z=26), giving 10 effective digits. Alternating factors [1,2,1,2,1,2,1,2,1,2] are applied with Luhn cross-sum (products >= 10 have their digits summed). The total mod 10 must equal the check digit at position 10.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "expected_length": 10,
+    "luhn_doubling": true,
+    "modulus": 10,
+    "check_rule": "sum_mod_zero"
+  }
+}

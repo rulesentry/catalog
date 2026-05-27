@@ -4,10 +4,10 @@
   "qualified_id": "rulesentry.policy.uk-data-protection",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.0.0",
+  "version": "4.2.0",
   "status": "active",
   "name": "UK Data Protection Policy",
-  "description": "Data protection policy for United Kingdom jurisdictions under the DPA 2018 and UK-GDPR. Covers national insurance numbers, NHS numbers, driving licences, passports, sort codes, and IBANs. UK is under EMEA but not under EU, reflecting post-Brexit regulatory independence.",
+  "description": "Data protection policy for United Kingdom jurisdictions under the DPA 2018 and UK-GDPR. Extends the Global PII baseline (policy.pii) and adds UK-specific contact formats (phone, postcode) and government identifiers (NINO, NHS, driving licence, passport). UK is under EMEA but not under EU, reflecting post-Brexit regulatory independence.",
   "profiles": [
     "uk-dpa",
     "production"
@@ -16,6 +16,7 @@
     "UK"
   ],
   "priority": 70,
+  "extends": "policy.pii",
   "tags": [
     "uk-dpa",
     "uk-gdpr",
@@ -23,6 +24,30 @@
     "nhs"
   ],
   "rules": [
+    {
+      "rule_id": "contact.phone_uk_landline",
+      "pinned_version": "3.0.0",
+      "priority": 50,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "UK landline phone detection (moved from policy.pii)"
+    },
+    {
+      "rule_id": "contact.phone_uk_mobile",
+      "pinned_version": "3.0.0",
+      "priority": 50,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "UK mobile phone detection (moved from policy.pii)"
+    },
+    {
+      "rule_id": "contact.postcode_uk",
+      "pinned_version": "3.0.0",
+      "priority": 45,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "UK postcode detection (moved from policy.pii)"
+    },
     {
       "rule_id": "government.nino_checksum",
       "pinned_version": "3.0.0",
@@ -109,6 +134,6 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-02-10T00:00:00Z",
+  "modified_at": "2026-05-27T00:00:00Z",
   "modified_by": "claude-code"
 }

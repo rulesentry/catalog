@@ -4,10 +4,10 @@
   "qualified_id": "rulesentry.policy.pii",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "status": "active",
   "name": "PII Protection Policy",
-  "description": "Global baseline policy for personally identifiable information. Covers personal attributes and contact information across all regions. Government ID detection is delegated to regional policies (US-PII, EU-GDPR, UK-DPA, APAC, Americas, EMEA).",
+  "description": "Global baseline policy for personally identifiable information. Covers universal personal attributes, generic contact information, and formats that apply across all regions. Country-specific contact rules (phone numbers, postal codes) are owned by regional policies that extend this baseline (policy.us-pii, policy.eu-gdpr, policy.uk-data-protection, policy.apac-data-privacy, policy.americas-data-protection, policy.emea-extended).",
   "profiles": [
     "production"
   ],
@@ -58,13 +58,6 @@
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "personal.date_of_birth_eu",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
       "rule_id": "personal.gender_marker",
       "pinned_version": "3.0.0",
       "priority": 40,
@@ -95,13 +88,6 @@
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "contact.city_state_zip",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
       "rule_id": "contact.country_name",
       "pinned_version": "3.0.0",
       "priority": 40,
@@ -123,91 +109,7 @@
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "contact.phone_australia",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.phone_canada",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.phone_china",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.phone_france",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.phone_germany",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.phone_india",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.phone_uk_landline",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.phone_uk_mobile",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.phone_us",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
       "rule_id": "contact.po_box",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.postal_code_canada",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.postal_code_germany",
-      "pinned_version": "3.0.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.postcode_uk",
       "pinned_version": "3.0.0",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
@@ -216,13 +118,6 @@
     {
       "rule_id": "contact.street_address",
       "pinned_version": "3.1.0",
-      "priority": 40,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "contact.zip_code_us",
-      "pinned_version": "3.0.1",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"
@@ -282,6 +177,6 @@
   },
   "created_at": "2026-02-13T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-04-28T00:00:00Z",
+  "modified_at": "2026-05-27T00:00:00Z",
   "modified_by": "claude-code"
 }

@@ -4,10 +4,10 @@
   "qualified_id": "rulesentry.policy.apac-data-privacy",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.0.0",
+  "version": "4.2.0",
   "status": "active",
   "name": "APAC Data Privacy Policy",
-  "description": "Data privacy policy for Asia-Pacific jurisdictions. Covers Singapore PDPA, Japan APPI, Australia Privacy Act, India DPDP Act, and government ID detection across AU, JP, IN, CN, HK, KR, TW, and TH.",
+  "description": "Data privacy policy for Asia-Pacific jurisdictions. Extends the Global PII baseline (policy.pii) and adds APAC-specific contact formats (AU, CN, IN phone numbers) and government ID detection across AU, JP, IN, CN, HK, KR, TW, NZ, and TH.",
   "profiles": [
     "pdpa-sg",
     "production"
@@ -16,6 +16,7 @@
     "APAC"
   ],
   "priority": 60,
+  "extends": "policy.pii",
   "tags": [
     "apac",
     "pdpa",
@@ -23,6 +24,30 @@
     "asia-pacific"
   ],
   "rules": [
+    {
+      "rule_id": "contact.phone_australia",
+      "pinned_version": "3.0.0",
+      "priority": 50,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Australian phone number detection (moved from policy.pii)"
+    },
+    {
+      "rule_id": "contact.phone_china",
+      "pinned_version": "3.0.0",
+      "priority": 50,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Chinese phone number detection (moved from policy.pii)"
+    },
+    {
+      "rule_id": "contact.phone_india",
+      "pinned_version": "3.0.0",
+      "priority": 50,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Indian phone number detection (moved from policy.pii)"
+    },
     {
       "rule_id": "government.singapore_nric",
       "pinned_version": "3.0.0",
@@ -251,6 +276,6 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-03-19T00:00:00Z",
+  "modified_at": "2026-05-27T00:00:00Z",
   "modified_by": "claude-code"
 }

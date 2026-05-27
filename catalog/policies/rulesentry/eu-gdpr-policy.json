@@ -4,10 +4,10 @@
   "qualified_id": "rulesentry.policy.eu-gdpr",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.0.0",
+  "version": "4.3.0",
   "status": "active",
   "name": "EU GDPR Data Protection Policy",
-  "description": "GDPR compliance policy for European Union jurisdictions. Protects personal data of EU residents including dates of birth, tax identifiers, and financial account numbers. Rules scoped to EU automatically apply to DE, FR, NL, ES, IT via region hierarchy.",
+  "description": "GDPR compliance policy for European Union jurisdictions. Extends the Global PII baseline (policy.pii) and adds EU-specific identifiers, country-specific phone and postal formats, and network identifiers. Rules scoped to EU automatically apply to DE, FR, NL, ES, IT via region hierarchy.",
   "profiles": [
     "gdpr",
     "production"
@@ -16,6 +16,7 @@
     "EU"
   ],
   "priority": 75,
+  "extends": "policy.pii",
   "tags": [
     "gdpr",
     "eu-compliance",
@@ -48,86 +49,6 @@
       "notes": "IBAN detection for EU financial data protection"
     },
     {
-      "rule_id": "personal.age_explicit",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Age detection (GDPR filter)"
-    },
-    {
-      "rule_id": "personal.age_range",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Age range detection (GDPR filter)"
-    },
-    {
-      "rule_id": "personal.biometric_data",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Biometric data detection (GDPR Article 9 special category)"
-    },
-    {
-      "rule_id": "healthcare.blood_type",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Blood type detection (GDPR Article 9 health data)"
-    },
-    {
-      "rule_id": "personal.date_of_birth",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Date of birth detection (GDPR filter)"
-    },
-    {
-      "rule_id": "personal.gender_marker",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Gender marker detection (GDPR filter)"
-    },
-    {
-      "rule_id": "contact.apartment_number",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Apartment number detection (GDPR filter)"
-    },
-    {
-      "rule_id": "contact.country_name",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Country name detection (GDPR filter)"
-    },
-    {
-      "rule_id": "contact.email_address",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Email address detection (GDPR filter)"
-    },
-    {
-      "rule_id": "contact.fax_number",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Fax number detection (GDPR filter)"
-    },
-    {
       "rule_id": "contact.phone_france",
       "pinned_version": "3.0.0",
       "priority": 60,
@@ -144,28 +65,12 @@
       "notes": "German phone number detection (GDPR filter)"
     },
     {
-      "rule_id": "contact.po_box",
-      "pinned_version": "3.0.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "PO Box detection (GDPR filter)"
-    },
-    {
       "rule_id": "contact.postal_code_germany",
       "pinned_version": "3.0.0",
       "priority": 60,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code",
       "notes": "German postal code detection (GDPR filter)"
-    },
-    {
-      "rule_id": "contact.street_address",
-      "pinned_version": "3.1.0",
-      "priority": 60,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Street address detection (GDPR filter)"
     },
     {
       "rule_id": "government.eu_french_carte_nationale",
@@ -248,6 +153,94 @@
       "notes": "Polish PESEL national ID — critical GDPR identifier"
     },
     {
+      "rule_id": "government.de_social_security",
+      "pinned_version": "4.0.0",
+      "priority": 90,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German Rentenversicherungsnummer — GDPR high-sensitivity identifier (needs_review: validator pending)"
+    },
+    {
+      "rule_id": "government.de_passport",
+      "pinned_version": "4.0.0",
+      "priority": 85,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German Reisepassnummer with ICAO Mod-10 check digit validation"
+    },
+    {
+      "rule_id": "government.de_health_insurance",
+      "pinned_version": "4.0.0",
+      "priority": 80,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German KVNR health insurance number — GDPR Article 9 health data (needs_review: validator pending)"
+    },
+    {
+      "rule_id": "government.de_steuernummer",
+      "pinned_version": "4.0.0",
+      "priority": 80,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German Steuernummer (state tax number) — context-anchored, distinct from Steuer-ID"
+    },
+    {
+      "rule_id": "government.de_vat_id",
+      "pinned_version": "4.0.0",
+      "priority": 70,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German USt-IdNr VAT ID with ISO 7064 Mod 11,10 heuristic checksum"
+    },
+    {
+      "rule_id": "healthcare.de_lanr",
+      "pinned_version": "4.0.0",
+      "priority": 75,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German physician LANR (KBV §75 SGB V checksum) — healthcare provider identifier"
+    },
+    {
+      "rule_id": "government.de_fuehrerschein",
+      "pinned_version": "4.0.0",
+      "priority": 65,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German Führerscheinnummer (EU harmonized driving licence format)"
+    },
+    {
+      "rule_id": "government.de_handelsregister",
+      "pinned_version": "4.0.0",
+      "priority": 65,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German Handelsregisternummer (HRA/HRB commercial register)"
+    },
+    {
+      "rule_id": "government.de_kfz",
+      "pinned_version": "4.0.0",
+      "priority": 50,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "German Kraftfahrzeugkennzeichen (vehicle registration plate)"
+    },
+    {
+      "rule_id": "government.se_personnummer",
+      "pinned_version": "4.0.0",
+      "priority": 90,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Swedish Personnummer with Luhn checksum — critical GDPR identifier"
+    },
+    {
+      "rule_id": "government.se_organisationsnummer",
+      "pinned_version": "4.0.0",
+      "priority": 70,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Swedish Organisationsnummer with Luhn checksum"
+    },
+    {
       "rule_id": "government.eu_it_driver_license",
       "pinned_version": "3.0.0",
       "priority": 75,
@@ -286,6 +279,14 @@
       "attached_at": "2026-03-19T00:00:00Z",
       "attached_by": "claude-code",
       "notes": "Spanish NIE (Número de Identidad de Extranjero) detection (GDPR compliance)"
+    },
+    {
+      "rule_id": "government.eu_es_passport",
+      "pinned_version": "4.0.0",
+      "priority": 85,
+      "attached_at": "2026-05-27T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Spanish passport number — context-anchored (GDPR compliance)"
     },
     {
       "rule_id": "network.ipv4_address",
@@ -334,6 +335,6 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-03-19T00:00:00Z",
+  "modified_at": "2026-05-27T12:00:00Z",
   "modified_by": "claude-code"
 }

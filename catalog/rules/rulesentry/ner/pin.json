@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "PIN",
   "description": "Detects personal identification numbers (PINs) using an on-device NER model. PINs are authentication credentials and must not be stored or transmitted. Rule silently no-ops when no model is active.",
   "category_id": "ner",

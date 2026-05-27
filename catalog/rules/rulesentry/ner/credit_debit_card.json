@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "Credit/Debit Card Number",
   "description": "Detects credit and debit card numbers using an on-device NER model. Complements the regex-based financial.credit_card rule. Rule silently no-ops when no model is active.",
   "category_id": "ner",

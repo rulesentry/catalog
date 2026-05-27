@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "URL",
   "description": "Detects URLs in personal context using an on-device NER model. URLs may contain personal identifiers, session tokens, or link to sensitive resources. Rule silently no-ops when no model is active.",
   "category_id": "ner",

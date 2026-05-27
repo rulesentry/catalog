@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "Vehicle Identifier / VIN",
   "description": "Detects vehicle identification numbers (VINs) and other vehicle identifiers using an on-device NER model. VINs are HIPAA-designated identifiers. Rule silently no-ops when no model is active.",
   "category_id": "ner",

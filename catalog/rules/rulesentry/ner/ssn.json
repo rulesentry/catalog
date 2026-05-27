@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "Social Security Number",
   "description": "Detects US Social Security Numbers using an on-device NER model. Complements the regex-based government.ssn_format rule. Rule silently no-ops when no model is active.",
   "category_id": "ner",

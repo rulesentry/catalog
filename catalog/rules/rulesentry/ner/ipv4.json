@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "IPv4 Address",
   "description": "Detects IPv4 addresses using an on-device NER model. Complements the regex-based network.ipv4_address rule. Rule silently no-ops when no model is active.",
   "category_id": "ner",

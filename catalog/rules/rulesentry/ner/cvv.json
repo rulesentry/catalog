@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "Card Verification Value (CVV)",
   "description": "Detects card CVV/CVC security codes using an on-device NER model. PCI-DSS prohibits storage of CVV data after authorization. Rule silently no-ops when no model is active.",
   "category_id": "ner",

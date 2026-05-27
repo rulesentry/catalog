@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "HTTP Cookie / Session Token",
   "description": "Detects HTTP session cookies and tokens using an on-device NER model. Session tokens grant access equivalent to credentials and must not be leaked. Rule silently no-ops when no model is active.",
   "category_id": "ner",

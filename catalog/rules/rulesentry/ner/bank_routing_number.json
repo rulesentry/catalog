@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "Bank Routing Number",
   "description": "Detects US bank routing numbers using an on-device NER model. Rule silently no-ops when no model is active.",
   "category_id": "ner",

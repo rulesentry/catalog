@@ -5,7 +5,7 @@
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
-  "status": "active",
+  "status": "inactive",
   "name": "MAC Address",
   "description": "Detects hardware MAC addresses using an on-device NER model. MAC addresses can uniquely identify a device and its user. Rule silently no-ops when no model is active.",
   "category_id": "ner",

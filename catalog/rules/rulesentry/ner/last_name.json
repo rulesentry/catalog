@@ -32,6 +32,7 @@
     "model": {
       "fallback": "skip"
     },
+    "validator": "single_word",
     "effect": {
       "type": "transform",
       "rationale": "compliance",

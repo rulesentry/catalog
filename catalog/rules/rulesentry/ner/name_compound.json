@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "ner.name_compound",
+  "qualified_id": "rulesentry.ner.name_compound",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Compound Person Name (NER)",
+  "description": "Catches multi-word first_name or last_name spans that ner.first_name and ner.last_name reject via single_word validation. Handles model misclassification where a full person name (e.g. 'Jordan Reese') is tagged as a single last_name or first_name entity. Replaced with [PERSON]. Rule ID sorts alphabetically after ner.first_name and ner.last_name so those rules always win tie-breaks on single-word spans.",
+  "category_id": "ner",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "name",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "first_name",
+      "last_name"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[PERSON]"
+        }
+      },
+      "message": "Compound person name detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/ner/name_compound"
+  },
+  "created_at": "2026-05-27T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-05-27T00:00:00Z",
+  "modified_by": "claude-code"
+}

@@ -81,7 +81,7 @@
     "key_difference_from_us_baseline": "Full anonymization required — case captions are blocked (not tokenized); contact details are critical; personal quasi-identifiers (DOB, age, gender) are included; agentic AI autonomous transmission is explicitly prohibited",
     "compliance_scope": "Attorney-client confidentiality for AI tool usage — California strict overlay",
     "review_cycle": "annually",
-    "reference_doc": "docs/calbar-generative-ai-guidance.pdf"
+    "reference_doc": "docs/legal/calbar-generative-ai-guidance.pdf"
   },
   "origin": {
     "source_type": "local"

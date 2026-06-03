@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.legal_privilege.case_caption",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "name": "Case Caption / Case Style",
   "description": "Detects US litigation case captions that identify parties: 'Smith v. Jones', 'In re: Company Name', 'People v. Defendant'. Per ABA Formal Opinion 512, party names must be removed or tokenized to prevent matter identification when submitting to AI.",
@@ -28,7 +28,7 @@
     "priority": 95,
     "target": "content",
     "pattern": {
-      "pattern": "(?:(?:In\\s+(?:re|the\\s+Matter\\s+of))\\s*[:\\s]+[A-Z][A-Za-z\\s,.&'-]+|(?:[A-Z][A-Za-z'-]+(?:\\s+[A-Za-z]{2}[A-Za-z.&'-]*){0,4}(?:,\\s*(?:Inc\\.|LLC|LLP|Ltd\\.|Corp\\.|Co\\.))?\\s+v\\.?\\s+[A-Z][A-Za-z'-]+(?:\\s+[A-Za-z]{2}[A-Za-z.&'-]*){0,4}(?:,\\s*(?:Inc\\.|LLC|LLP|Ltd\\.|Corp\\.|Co\\.))?)|(?:(?:People|State|Commonwealth|United\\s+States)\\s+v\\.?\\s+[A-Z][A-Za-z'-]+(?:\\s+[A-Za-z]{2}[A-Za-z.&'-]*){0,4}))",
+      "pattern": "(?:(?:In\\s+(?:re|the\\s+Matter\\s+of))\\s*[:\\s]+[A-Z][A-Za-z\\s&'-]+|(?:[A-Z][A-Za-z'-]+(?:\\s+[A-Za-z]{2}[A-Za-z.&'-]*){0,4}(?:,\\s*(?:Inc\\.|LLC|LLP|Ltd\\.|Corp\\.|Co\\.))?\\s+v\\.?\\s+[A-Z][A-Za-z'-]+(?:\\s+[A-Za-z]{2}[A-Za-z.&'-]*){0,4}(?:,\\s*(?:Inc\\.|LLC|LLP|Ltd\\.|Corp\\.|Co\\.))?)|(?:(?:People|State|Commonwealth|United\\s+States)\\s+v\\.?\\s+[A-Z][A-Za-z'-]+(?:\\s+[A-Za-z]{2}[A-Za-z.&'-]*){0,4}))",
       "engine": "regex",
       "flags": {
         "case_insensitive": false

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/profile.schema.json",
+  "id": "cal-bar-ethics",
+  "type": "profile",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "status": "active",
+  "name": "California State Bar AI Ethics",
+  "caption": "CA Bar",
+  "description": "California-specific attorney-client confidentiality requirements per Cal. Bus. & Prof. Code § 6068(e)(1) and the California State Bar COPRAC Practical Guidance for the Use of Generative AI in the Practice of Law (2026). Stricter than ABA baseline: requires full anonymization (not merely tokenization) to prevent re-identification; prohibits autonomous external transmission of confidential information; treats quasi-identifiers (DOB, age, gender, location) in combination as potentially identifying. Extends aba-ethics.",
+  "profile_type": "compliance_framework",
+  "frameworks": [
+    "Cal. Bus. & Prof. Code § 6068(e)(1)",
+    "CA Rules of Professional Conduct Rule 1.6",
+    "CA COPRAC Practical Guidance for Generative AI (2026)"
+  ],
+  "requires_profiles": ["aba-ethics"],
+  "display_order": 61,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/profiles/cal-bar-ethics"
+  },
+  "created_at": "2026-06-04T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-06-04T00:00:00Z",
+  "modified_by": "claude-code"
+}

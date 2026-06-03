@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.legal_privilege.privileged_communication_composite",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "active",
   "name": "Privileged Communication with Identifiable Parties",
   "description": "Composite rule: triggers when BOTH a privilege/confidentiality marker AND a case caption or docket number appear in the same content. This combination conclusively identifies privileged attorney-client material that contains an identifiable matter. Per ABA Formal Opinion 512, this content must not be submitted to any AI system.",
@@ -30,6 +30,7 @@
   "evaluation": {
     "evaluation_type": "composite",
     "operator": "all",
+    "propagate_matches": true,
     "evaluations": [
       {
         "evaluation_type": "rule_ref",

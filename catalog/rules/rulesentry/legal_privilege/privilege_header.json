@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "legal_privilege.privilege_header",
+  "qualified_id": "rulesentry.legal_privilege.privilege_header",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Attorney-Client Privilege Header/Footer",
+  "description": "Detects privilege and confidentiality markers: ATTORNEY-CLIENT PRIVILEGED, WORK PRODUCT, PRIVILEGED AND CONFIDENTIAL, etc. Per ABA Model Rule 1.6, content bearing these markers relates to the representation and must not be transmitted to external AI systems without attorney review.",
+  "category_id": "legal_privilege",
+  "severity": "high",
+  "profiles": [
+    "aba-ethics",
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "tags": [
+    "privilege",
+    "confidentiality",
+    "header",
+    "legal"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 90,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:ATTORNEY[- ]CLIENT\\s+PRIVILEGED|PRIVILEGED\\s+(?:AND|&)\\s+CONFIDENTIAL|WORK\\s+PRODUCT(?:\\s+DOCTRINE)?|ATTORNEY\\s+WORK\\s+PRODUCT|PROTECTED\\s+BY\\s+ATTORNEY[- ]CLIENT\\s+PRIVILEGE|CONFIDENTIAL\\s+LEGAL\\s+COMMUNICATION|LITIGATION\\s+PRIVILEGE|NOT\\s+FOR\\s+DISTRIBUTION|ATTORNEY[- ]CLIENT\\s+COMMUNICATION)",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[PRIVILEGE_NOTICE]"
+        }
+      },
+      "message": "Privilege/confidentiality marker redacted per ABA Model Rule 1.6"
+    }
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "updated_at": "2026-06-03T00:00:00Z"
+}

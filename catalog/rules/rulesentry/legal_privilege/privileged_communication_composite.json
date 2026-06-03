@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "id": "legal_privilege.privileged_communication_composite",
+  "qualified_id": "rulesentry.legal_privilege.privileged_communication_composite",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Privileged Communication with Identifiable Parties",
+  "description": "Composite rule: triggers when BOTH a privilege/confidentiality marker AND a case caption or docket number appear in the same content. This combination conclusively identifies privileged attorney-client material that contains an identifiable matter. Per ABA Formal Opinion 512, this content must not be submitted to any AI system.",
+  "category_id": "legal_privilege",
+  "severity": "critical",
+  "profiles": [
+    "aba-ethics",
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "tags": [
+    "privilege",
+    "composite",
+    "block",
+    "legal"
+  ],
+  "metadata": {
+    "composite_logic": "Triggers when privilege marker AND (case caption OR docket number) are both detected in the same content",
+    "compliance_notes": "Per ABA Opinion 512: content with privilege markers combined with matter-identifying information must not be transmitted to AI. This rule is the hard gate — it does not transform, it flags for mandatory review."
+  },
+  "evaluation": {
+    "evaluation_type": "composite",
+    "operator": "all",
+    "propagate_matches": true,
+    "evaluations": [
+      {
+        "evaluation_type": "rule_ref",
+        "rule_id": "legal_privilege.privilege_header",
+        "pinned_version": "1.0.0"
+      },
+      {
+        "evaluation_type": "composite",
+        "operator": "any",
+        "evaluations": [
+          {
+            "evaluation_type": "rule_ref",
+            "rule_id": "legal_privilege.case_caption",
+            "pinned_version": "1.0.0"
+          },
+          {
+            "evaluation_type": "rule_ref",
+            "rule_id": "legal_privilege.docket_number",
+            "pinned_version": "1.0.0"
+          }
+        ],
+        "effect": {
+          "type": "info",
+          "rationale": "compliance",
+          "message": "Matter identifier (case caption or docket number) detected"
+        }
+      }
+    ],
+    "effect": {
+      "type": "info",
+      "rationale": "compliance",
+      "message": "Content contains both privilege markers and matter-identifying information. Do not submit to any AI system per ABA Formal Opinion 512. Attorney review required before any transmission."
+    }
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "updated_at": "2026-06-03T00:00:00Z"
+}

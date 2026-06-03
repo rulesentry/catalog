@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/category.schema.json",
+  "id": "legal_privilege",
+  "type": "category",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "status": "active",
+  "name": "Legal Privilege & Confidentiality",
+  "description": "Rules detecting attorney-client privileged communications, work product, case identifiers, legal strategy, and other content that must be redacted before AI submission per ABA Model Rule 1.6, ABA Formal Opinion 512, and state ethics rules.",
+  "frameworks": [
+    "ABA Model Rules",
+    "ABA Formal Opinion 512",
+    "DC Bar Opinion 388",
+    "Florida Opinion 24-1",
+    "Cal. Bus. & Prof. Code 6068(e)(1)"
+  ],
+  "examples": [
+    "case caption",
+    "docket number",
+    "privilege header",
+    "settlement amount",
+    "legal strategy",
+    "bar number",
+    "legal citation"
+  ],
+  "display_order": 50,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/categories/legal_privilege"
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-06-03T00:00:00Z",
+  "modified_by": "claude-code"
+}

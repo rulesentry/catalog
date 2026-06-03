@@ -1,0 +1,169 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "id": "policy.us-attorney-ai-redaction",
+  "qualified_id": "rulesentry.policy.us-attorney-ai-redaction",
+  "publisher_id": "rulesentry",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "US Attorney-Client AI Redaction Policy",
+  "description": "Multi-state policy for protecting attorney-client confidential information before submission to AI systems. Detects and transforms case identifiers, privilege markers, legal citations, settlement figures, strategy language, and bar numbers. Based on ABA Model Rule 1.6, ABA Formal Opinion 512, and D.C. Bar Opinion 388. Applies to all US jurisdictions via the region hierarchy — state-specific overlays (CA, FL, NY) extend this policy in v2.",
+  "profiles": [
+    "aba-ethics",
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "priority": 85,
+  "tags": [
+    "attorney-client",
+    "ai-redaction",
+    "confidentiality",
+    "aba",
+    "legal-privilege",
+    "us-legal"
+  ],
+  "rules": [
+    {
+      "rule_id": "legal_privilege.privileged_communication_composite",
+      "pinned_version": "1.0.0",
+      "priority": 100,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Hard gate: privilege marker + case identifier = mandatory attorney review, no AI submission"
+    },
+    {
+      "rule_id": "legal_privilege.legal_strategy_keywords",
+      "pinned_version": "1.0.0",
+      "priority": 100,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Strategy/mental impressions language — flag for attorney review per ABA Rule 1.6"
+    },
+    {
+      "rule_id": "legal_privilege.case_caption",
+      "pinned_version": "1.0.0",
+      "priority": 95,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Case captions tokenized to prevent matter identification"
+    },
+    {
+      "rule_id": "legal_privilege.docket_number",
+      "pinned_version": "1.0.0",
+      "priority": 95,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Docket numbers tokenized — enables public record lookup if exposed"
+    },
+    {
+      "rule_id": "legal_privilege.privilege_header",
+      "pinned_version": "1.0.0",
+      "priority": 90,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Privilege/confidentiality headers redacted per ABA Model Rule 1.6"
+    },
+    {
+      "rule_id": "legal_privilege.settlement_amount",
+      "pinned_version": "1.0.0",
+      "priority": 85,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Settlement/reserve/demand figures redacted — core work product per D.C. Opinion 388"
+    },
+    {
+      "rule_id": "legal_privilege.court_filing_date",
+      "pinned_version": "1.0.0",
+      "priority": 70,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Court dates redacted — enable matter identification via public court calendars"
+    },
+    {
+      "rule_id": "legal_privilege.legal_citation",
+      "pinned_version": "1.0.0",
+      "priority": 55,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Citations tokenized — public but may identify matter when combined with party names"
+    },
+    {
+      "rule_id": "legal_privilege.bar_number",
+      "pinned_version": "1.0.0",
+      "priority": 60,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Bar numbers tokenized — link to public bar records and expose counsel identity"
+    },
+    {
+      "rule_id": "government.ssn_format",
+      "pinned_version": "3.0.0",
+      "priority": 100,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "SSN — always critical in legal documents (parties, clients, witnesses)"
+    },
+    {
+      "rule_id": "government.ein",
+      "pinned_version": "3.0.0",
+      "priority": 75,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "EIN identifies corporate entities and links to public filings"
+    },
+    {
+      "rule_id": "contact.email_address",
+      "pinned_version": "3.0.0",
+      "priority": 70,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "Email addresses identify attorneys, clients, and opposing parties"
+    },
+    {
+      "rule_id": "contact.phone_us",
+      "pinned_version": "3.0.0",
+      "priority": 65,
+      "attached_at": "2026-06-03T00:00:00Z",
+      "attached_by": "claude-code",
+      "notes": "US phone numbers identify contact parties"
+    }
+  ],
+  "overrides": [
+    {
+      "rule_id": "legal_privilege.*",
+      "priority": 90,
+      "reason": "Legal privilege rules evaluate before general PII rules"
+    },
+    {
+      "rule_id": "government.ssn_format",
+      "severity": "critical",
+      "reason": "SSN in legal documents elevated to critical — identifies parties directly"
+    },
+    {
+      "rule_id": "contact.email_address",
+      "severity": "high",
+      "reason": "Email addresses in legal documents identify attorneys and clients"
+    }
+  ],
+  "metadata": {
+    "frameworks": [
+      "ABA Model Rule 1.6",
+      "ABA Formal Opinion 512",
+      "DC Bar Opinion 388",
+      "Florida Opinion 24-1"
+    ],
+    "compliance_scope": "Attorney-client confidentiality for AI tool usage — multi-state US baseline",
+    "redaction_standard": "No reasonable likelihood the AI system or others can identify the client or matter (D.C. Opinion 388)",
+    "review_cycle": "semi-annually",
+    "v2_planned": "State overlays: policy.ca-attorney-ai-redaction (US-CA), policy.fl-attorney-ai-redaction (US-FL), policy.ny-attorney-ai-redaction (US-NY)"
+  },
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-06-03T00:00:00Z",
+  "modified_by": "claude-code"
+}

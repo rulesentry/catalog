@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v4/catalog/profile.schema.json",
+  "id": "aba-ethics",
+  "type": "profile",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "status": "active",
+  "name": "ABA Ethics / Attorney-Client AI Compliance",
+  "caption": "ABA Ethics",
+  "description": "Multi-state attorney-client confidentiality framework based on ABA Model Rule 1.6 and ABA Formal Opinion 512. Covers the duty to protect 'information relating to the representation' when using generative AI tools. Applies to ~40+ jurisdictions that track the ABA framework including D.C. (Opinion 388) and Florida (Opinion 24-1).",
+  "profile_type": "compliance_framework",
+  "frameworks": [
+    "ABA Model Rule 1.6",
+    "ABA Formal Opinion 512",
+    "DC Bar Opinion 388",
+    "Florida Opinion 24-1"
+  ],
+  "display_order": 60,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/profiles/aba-ethics"
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-06-03T00:00:00Z",
+  "modified_by": "claude-code"
+}

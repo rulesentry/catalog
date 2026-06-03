@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.legal_privilege.legal_citation",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "active",
   "name": "Legal Case Citation",
   "description": "Detects US legal reporter citations: U.S. Reports (456 U.S. 123), Federal Reporter (78 F.3d 456), state reporters (Cal.App., N.Y.S., Tex., etc.). Public citations may be kept for legal reasoning, but citations combined with identifying party names should be reviewed. Maps to LEGAL_CITATION canonical type.",
@@ -32,7 +32,7 @@
     "priority": 55,
     "target": "content",
     "pattern": {
-      "pattern": "\\d+\\s+(?:U\\.S\\.|F\\.(?:2d|3d|4th|Supp\\.(?:2d|3d)?)|S\\.\\s*Ct\\.|L\\.\\s*Ed\\.(?:\\s*2d)?|F\\.\\s*App'?x|Cal\\.(?:App\\.)?(?:2d|3d|4th|5th)?|N\\.Y\\.(?:S\\.(?:2d|3d)?|2d|3d)?|Tex\\.(?:App\\.)?|Ill\\.(?:App\\.(?:2d|3d)?|2d)?|Fla\\.(?:Dist\\.\\s*Ct\\.\\s*App\\.)?|A\\.(?:2d|3d)|P\\.(?:2d|3d)|S\\.W\\.(?:2d|3d)|N\\.W\\.(?:2d)|N\\.E\\.(?:2d|3d)|So\\.(?:2d|3d))\\s+\\d+",
+      "pattern": "\\d+\\s+(?:U\\.S\\.|F\\.(?:2d|3d|4th|Supp\\.(?:2d|3d)?)|S\\.\\s*Ct\\.|L\\.\\s*Ed\\.(?:\\s*2d)?|F\\.\\s*App'?x|Cal\\.\\s*(?:App\\.\\s*)?(?:2d|3d|4th|5th)?|N\\.Y\\.(?:S\\.(?:2d|3d)?|2d|3d)?|Tex\\.(?:App\\.)?|Ill\\.(?:App\\.(?:2d|3d)?|2d)?|Fla\\.(?:Dist\\.\\s*Ct\\.\\s*App\\.)?|A\\.(?:2d|3d)|P\\.(?:2d|3d)|S\\.W\\.(?:2d|3d)|N\\.W\\.(?:2d)|N\\.E\\.(?:2d|3d)|So\\.(?:2d|3d))\\s+\\d+(?:\\s*\\(\\d{4}\\))?",
       "engine": "regex",
       "flags": {
         "case_insensitive": false

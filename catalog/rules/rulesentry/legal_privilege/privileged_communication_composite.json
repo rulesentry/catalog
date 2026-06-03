@@ -25,7 +25,7 @@
   ],
   "metadata": {
     "composite_logic": "Triggers when privilege marker AND (case caption OR docket number) are both detected in the same content",
-    "compliance_notes": "Per ABA Opinion 512: content with privilege markers combined with matter-identifying information must not be transmitted to AI. This rule is the hard gate — it does not transform, it flags for mandatory review."
+    "compliance_notes": "This rule detects a high-risk combination: privilege/work-product marker + matter-identifying information. Identifier redaction alone does not clear this material for external AI submission — litigation strategy, settlement posture, and attorney mental impressions may remain. ABA Formal Opinion 512 requires lawyers to evaluate confidentiality duties, client consent/authorization, provider safeguards, and risk of disclosure before using GenAI with client-related material. RuleSentry blocks external AI submission; an attorney must perform the privilege/confidentiality review."
   },
   "evaluation": {
     "evaluation_type": "composite",
@@ -54,14 +54,14 @@
         "effect": {
           "type": "info",
           "rationale": "compliance",
-          "message": "Matter identifier (case caption or docket number) detected"
+          "message": "Matter-identifying information detected (case caption or docket number)"
         }
       }
     ],
     "effect": {
       "type": "info",
       "rationale": "compliance",
-      "message": "Content contains both privilege markers and matter-identifying information. Do not submit to any AI system per ABA Formal Opinion 512. Attorney review required before any transmission."
+      "message": "BLOCKED: Privilege / Work-Product Review Required. This content appears to contain a privilege or work-product marker together with matter-identifying information. Identifier redaction alone is not sufficient to clear this material for external AI submission. Under ABA Formal Opinion 512 and related guidance, a lawyer must evaluate confidentiality duties, client authorization and consent, provider safeguards, and risk of disclosure before submitting client-related material to any generative AI system. Action: block external AI submission pending attorney review."
     }
   },
   "created_at": "2026-06-03T00:00:00Z",

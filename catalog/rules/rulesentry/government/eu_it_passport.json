@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_it_passport",
   "qualified_id": "rulesentry.government.eu_it_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Italian Passport Number",
-  "description": "Detects Italian passport numbers. Format: 2 letters followed by 7 digits. Context-anchored to reduce false positives from this short pattern.",
+  "description": "Detects Italian passport numbers. Format: 2 letters followed by 7 digits. Context-anchored to reduce false positives from this short pattern.\n\nFormat: AA1234567 (2 letters + 7 digits)\nOfficial name: Passaporto\nNote: Weak pattern; context prefix required to reduce false positives",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
@@ -14,15 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "country": "Italy",
-    "pattern_source": "Based on Presidio ItPassportRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "AA1234567 (2 letters + 7 digits)",
-    "official_name": "Passaporto",
-    "note": "Weak pattern; context prefix required to reduce false positives",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 60,
@@ -49,8 +40,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "IT"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio ItPassportRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

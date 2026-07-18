@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.tr_license_plate",
   "qualified_id": "rulesentry.government.tr_license_plate",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "Turkish Vehicle License Plate",
-  "description": "Detects Turkish vehicle license plates. Format: 2-digit province code (01-81) + 1-3 letters + 2-4 digits. Province codes 00 and 82-99 are invalid (Karayolları Trafik Kanunu KTK Madde 23). Validates province range via prefix_check validator.",
+  "description": "Detects Turkish vehicle license plates. Format: 2-digit province code (01-81) + 1-3 letters + 2-4 digits. Province codes 00 and 82-99 are invalid (Karayolları Trafik Kanunu KTK Madde 23). Validates province range via prefix_check validator.\n\nFormat: 01 A 1234 — 2-digit province (01-81) + 1-3 letters + 2-4 digits\nOfficial name: Motorlu Taşıt Tescil Belgesi Plakası",
   "category_id": "government",
   "severity": "low",
   "profiles": [
@@ -23,14 +23,6 @@
     "vehicle",
     "gdpr"
   ],
-  "metadata": {
-    "country": "Turkey",
-    "pattern_source": "Based on Presidio TrLicensePlateRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "01 A 1234 — 2-digit province (01-81) + 1-3 letters + 2-4 digits",
-    "official_name": "Motorlu Taşıt Tescil Belgesi Plakası",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 55,
@@ -54,5 +46,13 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio TrLicensePlateRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

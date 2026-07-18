@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "personal.gender_marker",
   "qualified_id": "rulesentry.personal.gender_marker",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Gender Marker",
-  "description": "Detects explicit gender markers with context (e.g., 'Gender: Male', 'Sex: F'). Considered sensitive personal data under GDPR Article 9.",
+  "description": "Detects explicit gender markers with context (e.g., 'Gender: Male', 'Sex: F'). Considered sensitive personal data under GDPR Article 9.\n\nNote: GDPR Article 9 - special category data",
   "category_id": "personal",
   "severity": "medium",
   "profiles": [
@@ -14,12 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "note": "GDPR Article 9 - special category data",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -45,8 +39,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.987271Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-01-27T19:52:26.987271Z"
 }

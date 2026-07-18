@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
   "id": "policy.americas-data-protection",
   "qualified_id": "rulesentry.policy.americas-data-protection",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.2.0",
   "status": "active",
   "name": "Americas Data Protection Policy",
-  "description": "Data protection policy for non-US Americas jurisdictions. Extends the Global PII baseline (policy.pii) and adds Americas-specific contact formats (CA phone, postal code) and government ID detection across CA, MX, BR, AR, CL, and CO.",
+  "description": "Data protection policy for non-US Americas jurisdictions. Extends the Global PII baseline (policy.pii) and adds Americas-specific contact formats (CA phone, postal code) and government ID detection across CA, MX, BR, AR, CL, and CO.\n\nScope: Americas (non-US) government ID protection",
   "profiles": [
     "production"
   ],
@@ -94,21 +94,22 @@
       "notes": "Colombian CC (Cedula de Ciudadania) detection"
     }
   ],
-  "metadata": {
-    "frameworks": [
-      "PIPEDA",
-      "LGPD",
-      "Ley de Proteccion de Datos Personales"
-    ],
-    "compliance_scope": "Americas (non-US) government ID protection",
-    "review_cycle": "semi-annual",
-    "owner": "compliance-team"
-  },
   "origin": {
     "source_type": "local"
   },
   "created_at": "2026-02-26T00:00:00Z",
   "created_by": "claude-code",
   "modified_at": "2026-05-27T00:00:00Z",
-  "modified_by": "claude-code"
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "PIPEDA"
+    },
+    {
+      "note": "LGPD"
+    },
+    {
+      "note": "Ley de Proteccion de Datos Personales"
+    }
+  ]
 }

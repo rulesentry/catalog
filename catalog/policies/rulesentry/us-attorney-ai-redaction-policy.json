@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
   "id": "policy.us-attorney-ai-redaction",
   "qualified_id": "rulesentry.policy.us-attorney-ai-redaction",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "status": "active",
   "name": "US Attorney-Client AI Redaction Policy",
-  "description": "Multi-state policy for protecting attorney-client confidential information before submission to AI systems. Detects and transforms case identifiers, privilege markers, legal citations, settlement figures, strategy language, and bar numbers. Based on ABA Model Rule 1.6, ABA Formal Opinion 512, and D.C. Bar Opinion 388. Applies to all US jurisdictions via the region hierarchy — state-specific overlays (CA, FL, NY) extend this policy in v2.",
+  "description": "Multi-state policy for protecting attorney-client confidential information before submission to AI systems. Detects and transforms case identifiers, privilege markers, legal citations, settlement figures, strategy language, and bar numbers. Based on ABA Model Rule 1.6, ABA Formal Opinion 512, and D.C. Bar Opinion 388. Applies to all US jurisdictions via the region hierarchy — state-specific overlays (CA, FL, NY) extend this policy in v2.\n\nScope: Attorney-client confidentiality for AI tool usage — multi-state US baseline\nRedaction standard: No reasonable likelihood the AI system or others can identify the client or matter (D.C. Opinion 388)",
   "profiles": [
     "aba-ethics",
     "production"
@@ -147,23 +147,25 @@
       "reason": "Email addresses in legal documents identify attorneys and clients"
     }
   ],
-  "metadata": {
-    "frameworks": [
-      "ABA Model Rule 1.6",
-      "ABA Formal Opinion 512",
-      "DC Bar Opinion 388",
-      "Florida Opinion 24-1"
-    ],
-    "compliance_scope": "Attorney-client confidentiality for AI tool usage — multi-state US baseline",
-    "redaction_standard": "No reasonable likelihood the AI system or others can identify the client or matter (D.C. Opinion 388)",
-    "review_cycle": "semi-annually",
-    "v2_planned": "State overlays: policy.ca-attorney-ai-redaction (US-CA), policy.fl-attorney-ai-redaction (US-FL), policy.ny-attorney-ai-redaction (US-NY)"
-  },
   "origin": {
     "source_type": "local"
   },
   "created_at": "2026-06-03T00:00:00Z",
   "created_by": "claude-code",
   "modified_at": "2026-06-03T00:00:00Z",
-  "modified_by": "claude-code"
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "ABA Model Rule 1.6"
+    },
+    {
+      "note": "ABA Formal Opinion 512"
+    },
+    {
+      "note": "DC Bar Opinion 388"
+    },
+    {
+      "note": "Florida Opinion 24-1"
+    }
+  ]
 }

@@ -1,26 +1,18 @@
 {
-  "_note": "Overlaps with credentials.aws_access_key_id. The credentials/ version is canonical for secret detection; this version retained for category-based policy inclusion.",
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "digital_identity.aws_access_key_id",
   "qualified_id": "rulesentry.digital_identity.aws_access_key_id",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "AWS Access Key ID",
-  "description": "Detects Amazon Web Services (AWS) Access Key IDs. Format: AKIA followed by 16 alphanumeric characters. Exposure can lead to unauthorized access to AWS resources.",
+  "description": "Detects Amazon Web Services (AWS) Access Key IDs. Format: AKIA followed by 16 alphanumeric characters. Exposure can lead to unauthorized access to AWS resources.\n\nFormat: AKIA[A-Z0-9]{16}\nRisk: Complete AWS account compromise\n\nNote: Overlaps with credentials.aws_access_key_id. The credentials/ version is canonical for secret detection; this version retained for category-based policy inclusion.",
   "category_id": "digital_identity",
   "severity": "critical",
   "profiles": [
     "technology-sector",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "AKIA[A-Z0-9]{16}",
-    "risk": "Complete AWS account compromise",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 100,
@@ -43,8 +35,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

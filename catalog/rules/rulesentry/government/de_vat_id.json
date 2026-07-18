@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.de_vat_id",
   "qualified_id": "rulesentry.government.de_vat_id",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "German VAT ID (Umsatzsteuer-Identifikationsnummer)",
-  "description": "Detects German VAT identification numbers. Format: DE prefix followed by 9 digits. Validates using ISO 7064 Mod 11,10 iterative algorithm (community heuristic — BZSt does not publish a normative check-digit specification).",
+  "description": "Detects German VAT identification numbers. Format: DE prefix followed by 9 digits. Validates using ISO 7064 Mod 11,10 iterative algorithm (community heuristic — BZSt does not publish a normative check-digit specification).\n\nFormat: DE123456789 — DE prefix + 9 digits\nOfficial name: Umsatzsteuer-Identifikationsnummer (USt-IdNr.)\nNote: Checksum is a community heuristic; structural match is authoritative",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
@@ -25,15 +25,6 @@
     "vat",
     "gdpr"
   ],
-  "metadata": {
-    "country": "Germany",
-    "pattern_source": "Based on Presidio DeVatRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "DE123456789 — DE prefix + 9 digits",
-    "official_name": "Umsatzsteuer-Identifikationsnummer (USt-IdNr.)",
-    "note": "Checksum is a community heuristic; structural match is authoritative",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -57,5 +48,13 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio DeVatRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

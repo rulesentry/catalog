@@ -1,28 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.asia_south_korea_frn",
   "qualified_id": "rulesentry.government.asia_south_korea_frn",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "South Korean Foreigner Registration Number (FRN)",
-  "description": "Detects Korean Foreigner Registration Numbers (외국인등록번호) with checksum validation. Same structure as RRN but gender digit is 5-8 (indicating foreign national).",
+  "description": "Detects Korean Foreigner Registration Numbers (외국인등록번호) with checksum validation. Same structure as RRN but gender digit is 5-8 (indicating foreign national).\n\nValidator: Weighted sum modulo checksum (same as RRN)\nFormat: 6 digits (YYMMDD) + dash + gender digit (5-8) + 6 digits\nOfficial name: 외국인등록번호 (Foreigner Registration Number)\nNote: PIPA (Personal Information Protection Act) requires strict handling",
   "category_id": "government",
   "severity": "critical",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "South Korea",
-    "pattern_source": "Based on Presidio KrFrnRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "validator_algorithm": "Weighted sum modulo checksum (same as RRN)",
-    "format": "6 digits (YYMMDD) + dash + gender digit (5-8) + 6 digits",
-    "official_name": "외국인등록번호 (Foreigner Registration Number)",
-    "note": "PIPA (Personal Information Protection Act) requires strict handling",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 90,
@@ -46,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "KR"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio KrFrnRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

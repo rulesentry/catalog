@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "ner.religious_belief",
   "qualified_id": "rulesentry.ner.religious_belief",
   "publisher_id": "rulesentry",

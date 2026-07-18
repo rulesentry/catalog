@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "healthcare.blood_type",
   "qualified_id": "rulesentry.healthcare.blood_type",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Blood Type",
-  "description": "Detects blood type mentions (e.g., 'Blood Type: O+', 'A-', 'AB+'). Considered sensitive health data under GDPR Article 9 and HIPAA PHI.",
+  "description": "Detects blood type mentions (e.g., 'Blood Type: O+', 'A-', 'AB+'). Considered sensitive health data under GDPR Article 9 and HIPAA PHI.\n\nNote: GDPR Article 9 - special category data, HIPAA PHI",
   "category_id": "healthcare",
   "severity": "high",
   "profiles": [
@@ -15,12 +15,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "note": "GDPR Article 9 - special category data, HIPAA PHI",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -46,8 +40,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

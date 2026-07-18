@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "personal.date_of_birth_eu",
   "qualified_id": "rulesentry.personal.date_of_birth_eu",
   "publisher_id": "rulesentry",
@@ -8,7 +8,7 @@
   "status": "active",
   "name": "Date of Birth (EU)",
   "summary": "Detects EU-formatted dates of birth with explicit DOB context markers",
-  "description": "Detects dates of birth in EU-common formats including DD/MM/YYYY, DD.MM.YYYY, and YYYY-MM-DD. Requires explicit context markers like 'DOB:', 'Date of Birth:', 'Geburtsdatum:', or 'Date de naissance:'. Designed for GDPR compliance in EU jurisdictions.",
+  "description": "Detects dates of birth in EU-common formats including DD/MM/YYYY, DD.MM.YYYY, and YYYY-MM-DD. Requires explicit context markers like 'DOB:', 'Date of Birth:', 'Geburtsdatum:', or 'Date de naissance:'. Designed for GDPR compliance in EU jurisdictions.\n\nFormats: DD/MM/YYYY, DD.MM.YYYY, YYYY-MM-DD\nCompliance notes: DOB is personal data under GDPR Article 4(1)\nFalse positive notes: Requires explicit DOB context to avoid matching generic dates",
   "category_id": "personal",
   "severity": "high",
   "profiles": [
@@ -24,17 +24,6 @@
     "personal-identifier",
     "gdpr"
   ],
-  "metadata": {
-    "pattern_source": "Adapted from OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "formats": [
-      "DD/MM/YYYY",
-      "DD.MM.YYYY",
-      "YYYY-MM-DD"
-    ],
-    "compliance_notes": "DOB is personal data under GDPR Article 4(1)",
-    "false_positive_notes": "Requires explicit DOB context to avoid matching generic dates"
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -60,5 +49,13 @@
     }
   },
   "created_at": "2026-02-10T00:00:00Z",
-  "updated_at": "2026-03-10T00:00:00Z"
+  "references": [
+    {
+      "note": "Adapted from OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-10T00:00:00Z"
 }

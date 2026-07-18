@@ -1,27 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.africa_nigeria_nin",
   "qualified_id": "rulesentry.government.africa_nigeria_nin",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Nigerian NIN (National Identification Number)",
-  "description": "Detects Nigerian national identification numbers.",
+  "description": "Detects Nigerian national identification numbers.\n\nFormat: 11 digits\nOfficial name: National Identification Number (NIN)\nNote: Nigeria Data Protection Regulation (NDPR)",
   "category_id": "government",
   "severity": "high",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "Nigeria",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "11 digits",
-    "official_name": "National Identification Number (NIN)",
-    "note": "Nigeria Data Protection Regulation (NDPR)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 80,
@@ -45,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "NG"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.uk_utr",
   "qualified_id": "rulesentry.government.uk_utr",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "UK Unique Taxpayer Reference (UTR)",
-  "description": "Detects UK Unique Taxpayer References issued by HMRC. Format: 10 digits preceded by context keywords (UTR, unique taxpayer reference, tax reference).",
+  "description": "Detects UK Unique Taxpayer References issued by HMRC. Format: 10 digits preceded by context keywords (UTR, unique taxpayer reference, tax reference).\n\nFormat: 10 digits with context keywords",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -14,12 +14,6 @@
     "uk-dpa",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "HMRC UTR format specification",
-    "attribution": "HM Revenue & Customs",
-    "format": "10 digits with context keywords",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -46,8 +40,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "UK"
-  ]
+  ],
+  "references": [
+    {
+      "note": "HMRC UTR format specification"
+    },
+    {
+      "note": "HM Revenue & Customs"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "ner.medical_record_number",
   "qualified_id": "rulesentry.ner.medical_record_number",
   "publisher_id": "rulesentry",

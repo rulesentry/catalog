@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.uk_company_number",
   "qualified_id": "rulesentry.government.uk_company_number",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "UK Companies House Number",
-  "description": "Detects UK company registration numbers issued by Companies House. Format: 8 digits or 2-letter prefix (e.g., SC, NI, OC) followed by 6 digits, preceded by context keywords.",
+  "description": "Detects UK company registration numbers issued by Companies House. Format: 8 digits or 2-letter prefix (e.g., SC, NI, OC) followed by 6 digits, preceded by context keywords.\n\nFormat: 8 digits or 2-letter prefix + 6 digits",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
@@ -14,12 +14,6 @@
     "uk-dpa",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Companies House registration number format",
-    "attribution": "UK Companies House",
-    "format": "8 digits or 2-letter prefix + 6 digits",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 60,
@@ -45,8 +39,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "UK"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Companies House registration number format"
+    },
+    {
+      "note": "UK Companies House"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

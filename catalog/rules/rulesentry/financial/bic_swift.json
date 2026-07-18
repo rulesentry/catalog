@@ -1,24 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "financial.bic_swift",
   "qualified_id": "rulesentry.financial.bic_swift",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.1",
   "name": "BIC/SWIFT Code",
-  "description": "Detects BIC (Bank Identifier Code) / SWIFT codes used for international wire transfers. Format: 4 letters (bank) + 2 letters (country) + 2 chars (location) + optional 3 chars (branch). Requires a BIC/SWIFT label in context (\"BIC:\", \"SWIFT:\", \"BIC/SWIFT:\") to avoid matching English words that happen to fit the BIC shape (e.g. RESOLVED, APPOINTMENT, EXAMPLES — all structurally valid BICs). Reported span narrows to just the code via capture_groups.",
+  "description": "Detects BIC (Bank Identifier Code) / SWIFT codes used for international wire transfers. Format: 4 letters (bank) + 2 letters (country) + 2 chars (location) + optional 3 chars (branch). Requires a BIC/SWIFT label in context (\"BIC:\", \"SWIFT:\", \"BIC/SWIFT:\") to avoid matching English words that happen to fit the BIC shape (e.g. RESOLVED, APPOINTMENT, EXAMPLES — all structurally valid BICs). Reported span narrows to just the code via capture_groups.\n\nFormat: AAAABBCCXXX (8 or 11 characters)",
   "category_id": "financial",
   "severity": "medium",
   "profiles": [
     "financial-industry",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "AAAABBCCXXX (8 or 11 characters)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -45,8 +39,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-04-21T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-04-21T00:00:00Z"
 }

@@ -1,28 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.americas_colombia_cc",
   "qualified_id": "rulesentry.government.americas_colombia_cc",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Colombian Citizenship Card (Cédula de Ciudadanía)",
-  "description": "Detects Colombian national ID card numbers. Dot-separated form requires a keyword label (cc, cédula, etc.) because 3-octet IPv4 prefixes (e.g. 192.168.100) match the same pattern.",
+  "description": "Detects Colombian national ID card numbers. Dot-separated form requires a keyword label (cc, cédula, etc.) because 3-octet IPv4 prefixes (e.g. 192.168.100) match the same pattern.\n\nFormat: 8-10 digits (formatted with dots or spaces)\nOfficial name: Cédula de Ciudadanía\nNote: Law 1581 Personal Data Protection\nRationale: Two arms: (1) with cc/cédula/documento label — any separator including dots; (2) without label — comma or space separator only (dots excluded to prevent IPv4 collision e.g. 192.168.100).",
   "category_id": "government",
   "severity": "high",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "Colombia",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "8-10 digits (formatted with dots or spaces)",
-    "official_name": "Cédula de Ciudadanía",
-    "note": "Law 1581 Personal Data Protection",
-    "pattern_rationale": "Two arms: (1) with cc/cédula/documento label — any separator including dots; (2) without label — comma or space separator only (dots excluded to prevent IPv4 collision e.g. 192.168.100).",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 80,
@@ -46,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-04-15T00:00:00Z",
   "regions": [
     "CO"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-04-15T00:00:00Z"
 }

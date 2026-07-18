@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "contact.email_address",
   "qualified_id": "rulesentry.contact.email_address",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.1",
   "name": "Email Address",
-  "description": "Detects email addresses using RFC 5322 compliant pattern. Includes support for international domains (IDN), subdomains, and plus addressing (user+tag@domain.com).",
+  "description": "Detects email addresses using RFC 5322 compliant pattern. Includes support for international domains (IDN), subdomains, and plus addressing (user+tag@domain.com).\n\nSupports: plus addressing, subdomains, international domains",
   "category_id": "contact",
   "severity": "medium",
   "profiles": [
@@ -15,17 +15,6 @@
     "pipeda",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "standard": "RFC 5322",
-    "supports": [
-      "plus addressing",
-      "subdomains",
-      "international domains"
-    ],
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -103,8 +92,19 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-04-21T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    },
+    {
+      "note": "RFC 5322"
+    }
+  ],
+  "modified_at": "2026-04-21T00:00:00Z"
 }

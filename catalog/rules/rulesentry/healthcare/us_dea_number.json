@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "healthcare.us_dea_number",
   "qualified_id": "rulesentry.healthcare.us_dea_number",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "US DEA Number",
-  "description": "Detects Drug Enforcement Administration (DEA) registration numbers for healthcare providers authorized to prescribe controlled substances. Format: 2 letters + 7 digits (e.g., AB1234563).",
+  "description": "Detects Drug Enforcement Administration (DEA) registration numbers for healthcare providers authorized to prescribe controlled substances. Format: 2 letters + 7 digits (e.g., AB1234563).\n\nOfficial name: Drug Enforcement Administration Registration Number\nPHI category: Provider Identifier\nHIPAA category: National provider identifier\nValidator: Weighted sum MOD-10 checksum",
   "category_id": "healthcare",
   "severity": "high",
   "profiles": [
@@ -16,15 +16,6 @@
     "phi-detection",
     "production"
   ],
-  "metadata": {
-    "country": "United States",
-    "official_name": "Drug Enforcement Administration Registration Number",
-    "phi_category": "Provider Identifier",
-    "hipaa_category": "National provider identifier",
-    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
-    "validator_algorithm": "Weighted sum MOD-10 checksum",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "target": "content",
@@ -48,8 +39,13 @@
   },
   "status": "active",
   "created_at": "2026-01-28T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "US"
-  ]
+  ],
+  "references": [
+    {
+      "note": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

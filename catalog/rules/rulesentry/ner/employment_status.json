@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "ner.employment_status",
   "qualified_id": "rulesentry.ner.employment_status",
   "publisher_id": "rulesentry",

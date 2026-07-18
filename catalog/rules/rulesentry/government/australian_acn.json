@@ -1,25 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.australian_acn",
   "qualified_id": "rulesentry.government.australian_acn",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Australian Company Number (ACN)",
-  "description": "Detects Australian Company Numbers with MOD-10 complement checksum validation. Format: 9 digits (XXX XXX XXX) preceded by context keywords.",
+  "description": "Detects Australian Company Numbers with MOD-10 complement checksum validation. Format: 9 digits (XXX XXX XXX) preceded by context keywords.\n\nFormat: 9 digits (XXX XXX XXX)\nValidator: Weighted sum MOD-10 with complement check digit",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "ASIC Australian Company Number format",
-    "attribution": "Australian Securities and Investments Commission (ASIC)",
-    "format": "9 digits (XXX XXX XXX)",
-    "validator_algorithm": "Weighted sum MOD-10 with complement check digit",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -47,8 +40,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "AU"
-  ]
+  ],
+  "references": [
+    {
+      "note": "ASIC Australian Company Number format"
+    },
+    {
+      "note": "Australian Securities and Investments Commission (ASIC)"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

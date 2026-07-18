@@ -1,24 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "contact.phone_germany",
   "qualified_id": "rulesentry.contact.phone_germany",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "German Phone Number",
-  "description": "Detects German phone numbers with +49 country code or 0 prefix. Supports various formatting styles.",
+  "description": "Detects German phone numbers with +49 country code or 0 prefix. Supports various formatting styles.\n\nFormat: +49 XXX XXXXXXX or 0XXX XXXXXXX",
   "category_id": "contact",
   "severity": "medium",
   "profiles": [
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "+49 XXX XXXXXXX or 0XXX XXXXXXX",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 65,
@@ -42,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.946580Z",
   "regions": [
     "DE"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-01-27T19:52:26.946580Z"
 }

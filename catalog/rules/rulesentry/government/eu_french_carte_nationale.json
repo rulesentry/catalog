@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_french_carte_nationale",
   "qualified_id": "rulesentry.government.eu_french_carte_nationale",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "French National ID (Carte Nationale d'Identité)",
-  "description": "Detects French national identity card numbers. Format: 12 alphanumeric characters.",
+  "description": "Detects French national identity card numbers. Format: 12 alphanumeric characters.\n\nFormat: 12 alphanumeric characters\nOfficial name: Carte Nationale d'Identité",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -14,14 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "country": "France",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "12 alphanumeric characters",
-    "official_name": "Carte Nationale d'Identité",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 80,
@@ -44,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "FR"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

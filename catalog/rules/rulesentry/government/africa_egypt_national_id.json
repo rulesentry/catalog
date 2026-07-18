@@ -1,27 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.africa_egypt_national_id",
   "qualified_id": "rulesentry.government.africa_egypt_national_id",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Egyptian National ID Number",
-  "description": "Detects Egyptian national identity card numbers. Encodes century, birth date, governorate, and sequence.",
+  "description": "Detects Egyptian national identity card numbers. Encodes century, birth date, governorate, and sequence.\n\nFormat: 14 digits (C YY MM DD GG SSSS S where C=century, YY=year, MM=month, DD=day, GG=governorate, SSSS=sequence, S=gender)\nOfficial name: الرقم القومي (National ID)\nNote: Data Protection Law No. 151 of 2020",
   "category_id": "government",
   "severity": "high",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "Egypt",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "14 digits (C YY MM DD GG SSSS S where C=century, YY=year, MM=month, DD=day, GG=governorate, SSSS=sequence, S=gender)",
-    "official_name": "الرقم القومي (National ID)",
-    "note": "Data Protection Law No. 151 of 2020",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -45,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "EG"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

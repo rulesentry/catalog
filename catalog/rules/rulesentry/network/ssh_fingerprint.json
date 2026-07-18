@@ -1,26 +1,17 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "network.ssh_fingerprint",
   "qualified_id": "rulesentry.network.ssh_fingerprint",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "SSH Key Fingerprint",
-  "description": "Detects SSH key fingerprints in MD5 and SHA256 formats (e.g., 'SSH-RSA key fingerprint is ...').",
+  "description": "Detects SSH key fingerprints in MD5 and SHA256 formats (e.g., 'SSH-RSA key fingerprint is ...').\n\nFormats: MD5 (16 hex pairs), SHA256 (base64)",
   "category_id": "network",
   "severity": "medium",
   "profiles": [
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "formats": [
-      "MD5 (16 hex pairs)",
-      "SHA256 (base64)"
-    ],
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 65,
@@ -47,8 +38,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.963484Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-01-27T19:52:26.963484Z"
 }

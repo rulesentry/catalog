@@ -1,25 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "financial.clabe_mexico",
   "qualified_id": "rulesentry.financial.clabe_mexico",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "CLABE Number (Mexico)",
-  "description": "Detects Mexican CLABE (Clave Bancaria Estandarizada) numbers used for electronic transfers. Format: 18 digits with checksum.",
+  "description": "Detects Mexican CLABE (Clave Bancaria Estandarizada) numbers used for electronic transfers. Format: 18 digits with checksum.\n\nFormat: 18 digits (3 bank + 3 branch + 11 account + 1 checksum)\nValidator: Weighted checksum (3,7,1 cycle) with MOD-10",
   "category_id": "financial",
   "severity": "high",
   "profiles": [
     "financial-industry",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "18 digits (3 bank + 3 branch + 11 account + 1 checksum)",
-    "validator_algorithm": "Weighted checksum (3,7,1 cycle) with MOD-10",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -44,8 +37,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "MX"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

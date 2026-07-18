@@ -1,29 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "network.mac_address",
   "qualified_id": "rulesentry.network.mac_address",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "MAC Address",
-  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Colon-separated form requires a label keyword (mac, ether, hw-addr) because SSH MD5 fingerprints share the same 6×2-hex-colon syntax.",
+  "description": "Detects MAC (Media Access Control) addresses in various formats (colon, hyphen, dot-separated). Colon-separated form requires a label keyword (mac, ether, hw-addr) because SSH MD5 fingerprints share the same 6×2-hex-colon syntax.\n\nFormats: XX:XX:XX:XX:XX:XX, XX-XX-XX-XX-XX-XX, XXXX.XXXX.XXXX\nRationale: Colon-separated form changed to require label (mac/ether/hw-addr/link/ether) because SSH MD5 fingerprints (aa:bb:cc:dd:ee:ff:...) have the same 6-group colon-hex syntax. Hyphen-separated and Cisco dot-separated forms have no equivalent collision so they remain label-free.",
   "category_id": "network",
   "severity": "medium",
   "profiles": [
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "formats": [
-      "XX:XX:XX:XX:XX:XX",
-      "XX-XX-XX-XX-XX-XX",
-      "XXXX.XXXX.XXXX"
-    ],
-    "pattern_rationale": "Colon-separated form changed to require label (mac/ether/hw-addr/link/ether) because SSH MD5 fingerprints (aa:bb:cc:dd:ee:ff:...) have the same 6-group colon-hex syntax. Hyphen-separated and Cisco dot-separated forms have no equivalent collision so they remain label-free.",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -50,8 +39,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-04-15T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-04-15T00:00:00Z"
 }

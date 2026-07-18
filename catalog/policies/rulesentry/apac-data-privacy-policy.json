@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
   "id": "policy.apac-data-privacy",
   "qualified_id": "rulesentry.policy.apac-data-privacy",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.2.0",
   "status": "active",
   "name": "APAC Data Privacy Policy",
-  "description": "Data privacy policy for Asia-Pacific jurisdictions. Extends the Global PII baseline (policy.pii) and adds APAC-specific contact formats (AU, CN, IN phone numbers) and government ID detection across AU, JP, IN, CN, HK, KR, TW, NZ, and TH.",
+  "description": "Data privacy policy for Asia-Pacific jurisdictions. Extends the Global PII baseline (policy.pii) and adds APAC-specific contact formats (AU, CN, IN phone numbers) and government ID detection across AU, JP, IN, CN, HK, KR, TW, NZ, and TH.\n\nScope: APAC personal data protection",
   "profiles": [
     "pdpa-sg",
     "production"
@@ -257,25 +257,34 @@
       "notes": "Singapore Unique Entity Number (PDPA compliance)"
     }
   ],
-  "metadata": {
-    "frameworks": [
-      "PDPA 2012",
-      "APPI",
-      "Privacy Act 1988",
-      "DPDP Act 2023",
-      "PIPL",
-      "PDPO",
-      "PIPA"
-    ],
-    "compliance_scope": "APAC personal data protection",
-    "review_cycle": "semi-annual",
-    "owner": "apac-compliance-team"
-  },
   "origin": {
     "source_type": "local"
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
   "modified_at": "2026-05-27T00:00:00Z",
-  "modified_by": "claude-code"
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "PDPA 2012"
+    },
+    {
+      "note": "APPI"
+    },
+    {
+      "note": "Privacy Act 1988"
+    },
+    {
+      "note": "DPDP Act 2023"
+    },
+    {
+      "note": "PIPL"
+    },
+    {
+      "note": "PDPO"
+    },
+    {
+      "note": "PIPA"
+    }
+  ]
 }

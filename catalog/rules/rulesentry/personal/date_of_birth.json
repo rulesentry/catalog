@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "personal.date_of_birth",
   "qualified_id": "rulesentry.personal.date_of_birth",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.1",
   "name": "Date of Birth",
-  "description": "Detects dates of birth in various formats including MM/DD/YYYY, DD/MM/YYYY, YYYY-MM-DD, and Month DD, YYYY. Includes explicit 'DOB:', 'Date of Birth:', or 'Born:' context.",
+  "description": "Detects dates of birth in various formats including MM/DD/YYYY, DD/MM/YYYY, YYYY-MM-DD, and Month DD, YYYY. Includes explicit 'DOB:', 'Date of Birth:', or 'Born:' context.\n\nFormats: MM/DD/YYYY, DD/MM/YYYY, YYYY-MM-DD, Month DD, YYYY",
   "category_id": "personal",
   "severity": "high",
   "profiles": [
@@ -15,17 +15,6 @@
     "ccpa",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "formats": [
-      "MM/DD/YYYY",
-      "DD/MM/YYYY",
-      "YYYY-MM-DD",
-      "Month DD, YYYY"
-    ],
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -52,8 +41,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-04-21T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-04-21T00:00:00Z"
 }

@@ -1,23 +1,17 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "network.hostname",
   "qualified_id": "rulesentry.network.hostname",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Hostname",
-  "description": "Detects hostnames with explicit context (e.g., 'hostname:', 'server:'). Requires a colon separator to prevent matching prose phrases like '# Server Configuration'.",
+  "description": "Detects hostnames with explicit context (e.g., 'hostname:', 'server:'). Requires a colon separator to prevent matching prose phrases like '# Server Configuration'.\n\nRationale: Changed separator from [:\\s]+ to \\s*:\\s* — requiring a colon prevents 'server'/'host' keyword in prose (e.g. '# Server Configuration', '# Server Identity') from being treated as a hostname label.",
   "category_id": "network",
   "severity": "low",
   "profiles": [
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "pattern_rationale": "Changed separator from [:\\s]+ to \\s*:\\s* — requiring a colon prevents 'server'/'host' keyword in prose (e.g. '# Server Configuration', '# Server Identity') from being treated as a hostname label.",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 60,
@@ -43,8 +37,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-06-07T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-06-07T00:00:00Z"
 }

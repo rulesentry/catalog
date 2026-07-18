@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.ssn_format",
   "qualified_id": "rulesentry.government.ssn_format",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "US Social Security Number (Format Validated)",
-  "description": "Detects US Social Security Numbers with format validation. Excludes invalid area/group/serial combinations per SSA rules.",
+  "description": "Detects US Social Security Numbers with format validation. Excludes invalid area/group/serial combinations per SSA rules.\n\nValidator: SSN format rules (SSA Publication No. 05-10633)",
   "category_id": "government",
   "severity": "critical",
   "profiles": [
@@ -15,12 +15,6 @@
     "ccpa",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "SSN format rules (SSA Publication No. 05-10633)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 100,
@@ -45,8 +39,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-04-18T00:00:00Z",
   "regions": [
     "US"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-04-18T00:00:00Z"
 }

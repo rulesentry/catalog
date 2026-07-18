@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_netherlands_bsn",
   "qualified_id": "rulesentry.government.eu_netherlands_bsn",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Dutch Citizen Service Number (BSN)",
-  "description": "Detects Dutch BSN (Burgerservicenummer) with 11-test checksum validation.",
+  "description": "Detects Dutch BSN (Burgerservicenummer) with 11-test checksum validation.\n\nValidator: 11-test (elfproef) checksum\nFormat: 9 consecutive digits (e.g. 123456789)\nOfficial name: Burgerservicenummer",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -14,15 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "country": "Netherlands",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "11-test (elfproef) checksum",
-    "format": "9 consecutive digits (e.g. 123456789)",
-    "official_name": "Burgerservicenummer",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -47,8 +38,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "NL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

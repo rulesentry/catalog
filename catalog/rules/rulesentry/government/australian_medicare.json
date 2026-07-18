@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.australian_medicare",
   "qualified_id": "rulesentry.government.australian_medicare",
   "publisher_id": "rulesentry",
@@ -13,11 +13,6 @@
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on Presidio AuMedicareRecognizer",
-    "attribution": "Services Australia Medicare card number format",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -42,8 +37,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "AU"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio AuMedicareRecognizer"
+    },
+    {
+      "note": "Services Australia Medicare card number format"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.french_nir",
   "qualified_id": "rulesentry.government.french_nir",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "French NIR (Social Security Number)",
-  "description": "Detects French Numéro d'Inscription au Répertoire (NIR/INSEE number) with MOD-97 checksum validation. Format: 15 digits.",
+  "description": "Detects French Numéro d'Inscription au Répertoire (NIR/INSEE number) with MOD-97 checksum validation. Format: 15 digits.\n\nFormat: 1 YYMMSS DDD CCC KK (15 digits)",
   "category_id": "government",
   "severity": "critical",
   "profiles": [
@@ -14,12 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "1 YYMMSS DDD CCC KK (15 digits)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 100,
@@ -43,8 +37,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "FR"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

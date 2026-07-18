@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "legal_privilege.legal_strategy_keywords",
   "qualified_id": "rulesentry.legal_privilege.legal_strategy_keywords",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "1.1.0",
   "status": "active",
   "name": "Legal Strategy / Mental Impressions",
-  "description": "Detects legal strategy language that should never be sent to AI without attorney review: litigation strategy, BATNA, impeachment plan, settlement authority, mental impressions. Per D.C. Bar Opinion 388 and ABA Model Rule 1.6, these represent core work product. This rule flags content for human review — it does not determine whether privilege applies.",
+  "description": "Detects legal strategy language that should never be sent to AI without attorney review: litigation strategy, BATNA, impeachment plan, settlement authority, mental impressions. Per D.C. Bar Opinion 388 and ABA Model Rule 1.6, these represent core work product. This rule flags content for human review — it does not determine whether privilege applies.\n\nDetection note: List membership detects known strategy phrases. It does not detect novel strategy language — attorney review is always required for documents containing legal analysis or recommendations.",
   "category_id": "legal_privilege",
   "severity": "critical",
   "profiles": [
@@ -23,9 +23,6 @@
     "work-product",
     "legal"
   ],
-  "metadata": {
-    "detection_note": "List membership detects known strategy phrases. It does not detect novel strategy language — attorney review is always required for documents containing legal analysis or recommendations."
-  },
   "evaluation": {
     "evaluation_type": "list_membership",
     "list": {
@@ -65,5 +62,5 @@
     }
   },
   "created_at": "2026-06-03T00:00:00Z",
-  "updated_at": "2026-06-03T00:00:00Z"
+  "modified_at": "2026-06-03T00:00:00Z"
 }

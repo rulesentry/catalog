@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "healthcare.phi_composite",
   "qualified_id": "rulesentry.healthcare.phi_composite",
   "publisher_id": "rulesentry",
@@ -8,7 +8,7 @@
   "status": "active",
   "name": "PHI Composite Detection",
   "summary": "Triggers when both a medical record number and date of birth appear together",
-  "description": "Composite rule that triggers only when both a medical identifier (MRN) and a personal identifier (DOB) appear together in the same content. This combination constitutes Protected Health Information (PHI) under HIPAA and warrants elevated protection.",
+  "description": "Composite rule that triggers only when both a medical identifier (MRN) and a personal identifier (DOB) appear together in the same content. This combination constitutes Protected Health Information (PHI) under HIPAA and warrants elevated protection.\n\nCompliance notes: Combination of medical + personal identifiers constitutes PHI under HIPAA Privacy Rule\nComposite logic: Triggers when MRN AND DOB are both present in the same content",
   "category_id": "healthcare",
   "severity": "critical",
   "profiles": [
@@ -25,10 +25,6 @@
     "composite",
     "hipaa"
   ],
-  "metadata": {
-    "compliance_notes": "Combination of medical + personal identifiers constitutes PHI under HIPAA Privacy Rule",
-    "composite_logic": "Triggers when MRN AND DOB are both present in the same content"
-  },
   "evaluation": {
     "evaluation_type": "composite",
     "operator": "all",
@@ -58,5 +54,5 @@
     }
   },
   "created_at": "2026-02-10T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z"
+  "modified_at": "2026-03-21T00:00:00Z"
 }

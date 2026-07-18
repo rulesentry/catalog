@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
   "id": "policy.us-pii",
   "qualified_id": "rulesentry.policy.us-pii",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.2.0",
   "status": "active",
   "name": "US PII Protection Policy",
-  "description": "Comprehensive PII protection policy for United States jurisdictions. Extends the Global PII baseline (policy.pii) and adds HIPAA PHI requirements and CCPA personal information protections specific to the US. Includes US-specific contact formats (phone, zip code, city/state/zip) and direct rule references for US government identifiers.",
+  "description": "Comprehensive PII protection policy for United States jurisdictions. Extends the Global PII baseline (policy.pii) and adds HIPAA PHI requirements and CCPA personal information protections specific to the US. Includes US-specific contact formats (phone, zip code, city/state/zip) and direct rule references for US government identifiers.\n\nScope: Healthcare and consumer data protection",
   "profiles": [
     "hipaa",
     "ccpa",
@@ -246,21 +246,22 @@
       "reason": "Elevated to critical for HIPAA compliance - DOB is a Safe Harbor identifier"
     }
   ],
-  "metadata": {
-    "frameworks": [
-      "HIPAA",
-      "CCPA",
-      "CPRA"
-    ],
-    "compliance_scope": "Healthcare and consumer data protection",
-    "review_cycle": "quarterly",
-    "owner": "compliance-team"
-  },
   "origin": {
     "source_type": "local"
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
   "modified_at": "2026-05-27T00:00:00Z",
-  "modified_by": "claude-code"
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "HIPAA"
+    },
+    {
+      "note": "CCPA"
+    },
+    {
+      "note": "CPRA"
+    }
+  ]
 }

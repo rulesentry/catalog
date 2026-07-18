@@ -1,0 +1,8 @@
+{
+  "generated_by": "migrate-v5.mjs",
+  "rules": [
+    "government.de_health_insurance",
+    "government.de_social_security",
+    "legal_privilege.bar_number"
+  ]
+}

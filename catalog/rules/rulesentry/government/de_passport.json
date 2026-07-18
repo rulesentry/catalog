@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.de_passport",
   "qualified_id": "rulesentry.government.de_passport",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "German Passport Number (Reisepassnummer)",
-  "description": "Detects German passport numbers. Format: letter from restricted charset followed by 8 alphanumeric characters (ICAO Doc 9303 Machine Readable Travel Document). Validates ICAO Mod-10 weighted check digit.",
+  "description": "Detects German passport numbers. Format: letter from restricted charset followed by 8 alphanumeric characters (ICAO Doc 9303 Machine Readable Travel Document). Validates ICAO Mod-10 weighted check digit.\n\nFormat: C1234567X — 1 letter (CFGHJKLMNPRTVWXYZ) + 8 alphanumeric + check digit\nOfficial name: Reisepassnummer",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -24,14 +24,6 @@
     "passport",
     "gdpr"
   ],
-  "metadata": {
-    "country": "Germany",
-    "pattern_source": "Based on Presidio DePassportRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "C1234567X — 1 letter (CFGHJKLMNPRTVWXYZ) + 8 alphanumeric + check digit",
-    "official_name": "Reisepassnummer",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 80,
@@ -55,5 +47,13 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio DePassportRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

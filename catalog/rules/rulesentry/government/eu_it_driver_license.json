@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_it_driver_license",
   "qualified_id": "rulesentry.government.eu_it_driver_license",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Italian Driver License Number",
-  "description": "Detects Italian driver license numbers. Two formats: standard (AA1234567A) and newer U1-prefix format.",
+  "description": "Detects Italian driver license numbers. Two formats: standard (AA1234567A) and newer U1-prefix format.\n\nFormat: Standard: AA1234567A | Newer: U1XXXXXXXC\nOfficial name: Patente di Guida",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
@@ -14,14 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "country": "Italy",
-    "pattern_source": "Based on Presidio ItDriverLicenseRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "Standard: AA1234567A | Newer: U1XXXXXXXC",
-    "official_name": "Patente di Guida",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -48,8 +40,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "IT"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio ItDriverLicenseRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.de_handelsregister",
   "qualified_id": "rulesentry.government.de_handelsregister",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "German Commercial Register Number (Handelsregisternummer)",
-  "description": "Detects German commercial register numbers. Format: HRA or HRB followed by 1-6 digits. HRA for sole traders and partnerships; HRB for limited liability companies (GmbH, AG). Optionally followed by court identifier.",
+  "description": "Detects German commercial register numbers. Format: HRA or HRB followed by 1-6 digits. HRA for sole traders and partnerships; HRB for limited liability companies (GmbH, AG). Optionally followed by court identifier.\n\nFormat: HRA 12345 or HRB 123456 — HRA/HRB prefix + 1-6 digits\nOfficial name: Handelsregisternummer",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
@@ -24,14 +24,6 @@
     "business-id",
     "gdpr"
   ],
-  "metadata": {
-    "country": "Germany",
-    "pattern_source": "Based on Presidio DeHandelsregisterRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "HRA 12345 or HRB 123456 — HRA/HRB prefix + 1-6 digits",
-    "official_name": "Handelsregisternummer",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -57,5 +49,13 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio DeHandelsregisterRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

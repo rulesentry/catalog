@@ -1,27 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.indian_gstin",
   "qualified_id": "rulesentry.government.indian_gstin",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Indian GSTIN (GST Identification Number)",
-  "description": "Detects Indian Goods and Services Tax Identification Numbers. Format: 2-digit state code (01-37) + PAN structure (5 letters + 4 digits + 1 letter) + registration digit + Z + check character.",
+  "description": "Detects Indian Goods and Services Tax Identification Numbers. Format: 2-digit state code (01-37) + PAN structure (5 letters + 4 digits + 1 letter) + registration digit + Z + check character.\n\nFormat: 15 characters: 2-digit state code + PAN (10 chars) + registration digit + Z + check char\nOfficial name: Goods and Services Tax Identification Number (GSTIN)\nNote: State code 01-37 and mandatory Z at position 14 validated by regex structure",
   "category_id": "government",
   "severity": "high",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "India",
-    "pattern_source": "Based on Presidio InGstinRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "15 characters: 2-digit state code + PAN (10 chars) + registration digit + Z + check char",
-    "official_name": "Goods and Services Tax Identification Number (GSTIN)",
-    "note": "State code 01-37 and mandatory Z at position 14 validated by regex structure",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -45,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "IN"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio InGstinRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

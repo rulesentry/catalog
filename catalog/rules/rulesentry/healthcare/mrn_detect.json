@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "healthcare.mrn_detect",
   "qualified_id": "rulesentry.healthcare.mrn_detect",
   "publisher_id": "rulesentry",
@@ -8,7 +8,7 @@
   "status": "active",
   "name": "Medical Record Number (MRN)",
   "summary": "Detects medical record numbers with explicit MRN context markers",
-  "description": "Detects medical record numbers (MRN) in healthcare documents. Requires explicit context markers like 'MRN:', 'Medical Record:', or 'Patient ID:' followed by alphanumeric identifiers.",
+  "description": "Detects medical record numbers (MRN) in healthcare documents. Requires explicit context markers like 'MRN:', 'Medical Record:', or 'Patient ID:' followed by alphanumeric identifiers.\n\nCompliance notes: MRN is PHI under HIPAA Safe Harbor (18 identifiers)\nFalse positive notes: Requires explicit MRN context to avoid matching generic alphanumeric strings",
   "category_id": "healthcare",
   "severity": "critical",
   "profiles": [
@@ -25,10 +25,6 @@
     "medical-record",
     "hipaa"
   ],
-  "metadata": {
-    "compliance_notes": "MRN is PHI under HIPAA Safe Harbor (18 identifiers)",
-    "false_positive_notes": "Requires explicit MRN context to avoid matching generic alphanumeric strings"
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 95,
@@ -53,5 +49,5 @@
     }
   },
   "created_at": "2026-02-10T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z"
+  "modified_at": "2026-03-21T00:00:00Z"
 }

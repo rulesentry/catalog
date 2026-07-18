@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "financial.isin",
   "qualified_id": "rulesentry.financial.isin",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "ISIN (International Securities Identifier)",
-  "description": "Detects International Securities Identification Numbers with Luhn checksum validation. ISIN is a 12-character code that uniquely identifies securities (stocks, bonds, derivatives) globally.",
+  "description": "Detects International Securities Identification Numbers with Luhn checksum validation. ISIN is a 12-character code that uniquely identifies securities (stocks, bonds, derivatives) globally.\n\nValidator: ISIN MOD-10 (ISO 6166)\nFormat: 2-letter country code + 9 alphanumeric + 1 check digit",
   "category_id": "financial",
   "severity": "medium",
   "profiles": [
@@ -15,14 +15,6 @@
     "sec",
     "mifid"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "ISIN MOD-10 (ISO 6166)",
-    "standard": "ISO 6166",
-    "format": "2-letter country code + 9 alphanumeric + 1 check digit",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 80,
@@ -47,8 +39,19 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    },
+    {
+      "note": "ISO 6166"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

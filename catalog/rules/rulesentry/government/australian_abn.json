@@ -1,25 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.australian_abn",
   "qualified_id": "rulesentry.government.australian_abn",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Australian Business Number (ABN)",
-  "description": "Detects Australian Business Numbers with MOD-89 checksum validation. Format: 11 digits (XX XXX XXX XXX) preceded by context keywords.",
+  "description": "Detects Australian Business Numbers with MOD-89 checksum validation. Format: 11 digits (XX XXX XXX XXX) preceded by context keywords.\n\nFormat: 11 digits (XX XXX XXX XXX)\nValidator: Weighted sum MOD-89 with first digit adjustment",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Australian Business Register ABN format",
-    "attribution": "Australian Business Register (ABR)",
-    "format": "11 digits (XX XXX XXX XXX)",
-    "validator_algorithm": "Weighted sum MOD-89 with first digit adjustment",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -47,8 +40,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "AU"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Australian Business Register ABN format"
+    },
+    {
+      "note": "Australian Business Register (ABR)"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

@@ -1,27 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.asia_south_korea_driver_license",
   "qualified_id": "rulesentry.government.asia_south_korea_driver_license",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "South Korean Driver License Number",
-  "description": "Detects South Korean driver license numbers with region code validation. Format: 2-digit region code + 2-digit year + 6-digit serial + 2-digit check.",
+  "description": "Detects South Korean driver license numbers with region code validation. Format: 2-digit region code + 2-digit year + 6-digit serial + 2-digit check.\n\nValidator: Region code prefix check (valid codes: 11-26, 28)\nFormat: 12-34-567890-12 (region + year + serial + check)\nOfficial name: 운전면허번호 (Driver License Number)",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "South Korea",
-    "pattern_source": "Based on Presidio KrDriverLicenseRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "validator_algorithm": "Region code prefix check (valid codes: 11-26, 28)",
-    "format": "12-34-567890-12 (region + year + serial + check)",
-    "official_name": "운전면허번호 (Driver License Number)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -46,8 +37,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "KR"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio KrDriverLicenseRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

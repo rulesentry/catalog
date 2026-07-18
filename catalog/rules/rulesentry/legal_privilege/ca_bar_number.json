@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "legal_privilege.ca_bar_number",
   "qualified_id": "rulesentry.legal_privilege.ca_bar_number",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "status": "active",
   "name": "California State Bar Number (SBN)",
-  "description": "Detects California State Bar Numbers in SBN format (6-7 digits). California lawyers are identified in public records by their SBN — exposure allows lookup of the attorney's name, firm, and discipline history, which in turn can identify the client matter. Elevated severity under Cal. Bus. & Prof. Code § 6068(e)(1): counsel identity is a quasi-identifier that contributes to matter re-identification.",
+  "description": "Detects California State Bar Numbers in SBN format (6-7 digits). California lawyers are identified in public records by their SBN — exposure allows lookup of the attorney's name, firm, and discipline history, which in turn can identify the client matter. Elevated severity under Cal. Bus. & Prof. Code § 6068(e)(1): counsel identity is a quasi-identifier that contributes to matter re-identification.\n\nPattern note: SBN format: 6-7 digits, always preceded by 'SBN', 'State Bar No.', or 'Cal. Bar No.' context cue. California bar numbers are 6 digits (pre-2000 admissions) or 7 digits (post-2000). Higher severity than the US baseline rule because CA's full-anonymization standard treats counsel identity as a quasi-identifier.",
   "category_id": "legal_privilege",
   "severity": "high",
   "profiles": [
@@ -25,9 +25,6 @@
     "california",
     "legal"
   ],
-  "metadata": {
-    "pattern_note": "SBN format: 6-7 digits, always preceded by 'SBN', 'State Bar No.', or 'Cal. Bar No.' context cue. California bar numbers are 6 digits (pre-2000 admissions) or 7 digits (post-2000). Higher severity than the US baseline rule because CA's full-anonymization standard treats counsel identity as a quasi-identifier."
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -53,5 +50,5 @@
     }
   },
   "created_at": "2026-06-04T00:00:00Z",
-  "updated_at": "2026-06-04T00:00:00Z"
+  "modified_at": "2026-06-04T00:00:00Z"
 }

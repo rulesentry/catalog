@@ -1,31 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "personal.date",
   "qualified_id": "rulesentry.personal.date",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Date",
-  "description": "Detects standalone dates in numeric (MM/DD/YYYY, DD/MM/YYYY) and written month formats (March 10, 2026 / 28 February 2026). Low severity — bare dates are ambiguous without surrounding context.",
+  "description": "Detects standalone dates in numeric (MM/DD/YYYY, DD/MM/YYYY) and written month formats (March 10, 2026 / 28 February 2026). Low severity — bare dates are ambiguous without surrounding context.\n\nFormats: MM/DD/YYYY, DD/MM/YYYY, MM-DD-YYYY, DD-MM-YYYY, Month DD, YYYY, Month DDth, YYYY, DD Month YYYY\nNote: Companion to personal.date_of_birth. Use that rule for higher-confidence context-anchored matches (with 'DOB:' or 'Date of Birth:' prefix). This rule catches bare dates without a label.",
   "category_id": "personal",
   "severity": "low",
   "profiles": [
     "hipaa",
     "gdpr"
   ],
-  "metadata": {
-    "formats": [
-      "MM/DD/YYYY",
-      "DD/MM/YYYY",
-      "MM-DD-YYYY",
-      "DD-MM-YYYY",
-      "Month DD, YYYY",
-      "Month DDth, YYYY",
-      "DD Month YYYY"
-    ],
-    "note": "Companion to personal.date_of_birth. Use that rule for higher-confidence context-anchored matches (with 'DOB:' or 'Date of Birth:' prefix). This rule catches bare dates without a label.",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -51,8 +38,8 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-06-02T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "modified_at": "2026-06-02T00:00:00Z"
 }

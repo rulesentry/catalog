@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "healthcare.npi_luhn",
   "qualified_id": "rulesentry.healthcare.npi_luhn",
   "publisher_id": "rulesentry",
@@ -8,7 +8,7 @@
   "status": "active",
   "name": "National Provider Identifier (NPI)",
   "summary": "Detects US NPI numbers with Luhn checksum validation",
-  "description": "Detects US National Provider Identifier (NPI) numbers with Luhn checksum validation. NPI is a 10-digit number assigned to healthcare providers by CMS.",
+  "description": "Detects US National Provider Identifier (NPI) numbers with Luhn checksum validation. NPI is a 10-digit number assigned to healthcare providers by CMS.\n\nCompliance notes: NPI is used in HIPAA transactions and is considered a provider identifier\nFormat: 10 digits with Luhn check digit (prefix 80840 for Luhn calculation)",
   "category_id": "healthcare",
   "severity": "high",
   "profiles": [
@@ -25,10 +25,6 @@
     "provider-id",
     "hipaa"
   ],
-  "metadata": {
-    "compliance_notes": "NPI is used in HIPAA transactions and is considered a provider identifier",
-    "format": "10 digits with Luhn check digit (prefix 80840 for Luhn calculation)"
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -55,5 +51,5 @@
     }
   },
   "created_at": "2026-02-10T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z"
+  "modified_at": "2026-03-21T00:00:00Z"
 }

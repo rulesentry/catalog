@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_es_passport",
   "qualified_id": "rulesentry.government.eu_es_passport",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "Spanish Passport Number",
-  "description": "Detects Spanish passport numbers. Format: 3 uppercase letters followed by 6 digits. Context-anchored to reduce false positives from this short pattern.",
+  "description": "Detects Spanish passport numbers. Format: 3 uppercase letters followed by 6 digits. Context-anchored to reduce false positives from this short pattern.\n\nFormat: ABC123456 — 3 letters + 6 digits\nOfficial name: Pasaporte\nNote: Context prefix required to reduce false positives from generic alphanumeric sequences",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -24,15 +24,6 @@
     "passport",
     "gdpr"
   ],
-  "metadata": {
-    "country": "Spain",
-    "pattern_source": "Based on Presidio EsPassportRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "ABC123456 — 3 letters + 6 digits",
-    "official_name": "Pasaporte",
-    "note": "Context prefix required to reduce false positives from generic alphanumeric sequences",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 65,
@@ -58,5 +49,13 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio EsPassportRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

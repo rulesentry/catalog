@@ -1,0 +1,24 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: All catalog JSON parses
+        run: |
+          find catalog -name '*.json' -print0 | xargs -0 -n1 node -e '
+            const f = process.argv[1];
+            try { JSON.parse(require("fs").readFileSync(f, "utf8")); }
+            catch (e) { console.error(`INVALID JSON: ${f}: ${e.message}`); process.exit(1); }
+          '
+      - name: v5 gate (tightened-envelope lint)
+        run: node tools/v5-lint.mjs catalog

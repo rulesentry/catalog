@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "financial.credit_card_luhn",
   "qualified_id": "rulesentry.financial.credit_card_luhn",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Credit Card (Luhn Validated)",
-  "description": "Detects credit card numbers with Luhn checksum validation to reduce false positives. Supports Visa, Mastercard, Discover, Amex, Diners Club, and JCB.",
+  "description": "Detects credit card numbers with Luhn checksum validation to reduce false positives. Supports Visa, Mastercard, Discover, Amex, Diners Club, and JCB.\n\nValidator: Luhn checksum (ISO/IEC 7812-1)\nSupported issuers: Visa, Mastercard, American Express, Discover, Diners Club, JCB",
   "category_id": "financial",
   "severity": "critical",
   "profiles": [
@@ -14,20 +14,6 @@
     "pci-dss",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "Luhn checksum (ISO/IEC 7812-1)",
-    "supported_issuers": [
-      "Visa",
-      "Mastercard",
-      "American Express",
-      "Discover",
-      "Diners Club",
-      "JCB"
-    ],
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 100,
@@ -66,8 +52,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

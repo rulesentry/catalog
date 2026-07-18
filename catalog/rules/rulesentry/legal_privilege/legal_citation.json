@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "legal_privilege.legal_citation",
   "qualified_id": "rulesentry.legal_privilege.legal_citation",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "1.1.0",
   "status": "active",
   "name": "Legal Case Citation",
-  "description": "Detects US legal reporter citations: U.S. Reports (456 U.S. 123), Federal Reporter (78 F.3d 456), state reporters (Cal.App., N.Y.S., Tex., etc.). Public citations may be kept for legal reasoning, but citations combined with identifying party names should be reviewed. Maps to LEGAL_CITATION canonical type.",
+  "description": "Detects US legal reporter citations: U.S. Reports (456 U.S. 123), Federal Reporter (78 F.3d 456), state reporters (Cal.App., N.Y.S., Tex., etc.). Public citations may be kept for legal reasoning, but citations combined with identifying party names should be reviewed. Maps to LEGAL_CITATION canonical type.\n\nPattern note: Matches volume-reporter-page format only. Does not match party names — use case_caption rule for those. Public citations are often legally necessary; tokenize rather than redact to preserve legal utility.",
   "category_id": "legal_privilege",
   "severity": "medium",
   "profiles": [
@@ -23,10 +23,6 @@
     "case-law",
     "legal"
   ],
-  "metadata": {
-    "pattern_note": "Matches volume-reporter-page format only. Does not match party names — use case_caption rule for those. Public citations are often legally necessary; tokenize rather than redact to preserve legal utility.",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 55,
@@ -52,5 +48,5 @@
     }
   },
   "created_at": "2026-06-03T00:00:00Z",
-  "updated_at": "2026-06-03T00:00:00Z"
+  "modified_at": "2026-06-03T00:00:00Z"
 }

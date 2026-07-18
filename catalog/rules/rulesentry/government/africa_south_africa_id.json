@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.africa_south_africa_id",
   "qualified_id": "rulesentry.government.africa_south_africa_id",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "South African ID Number",
-  "description": "Detects South African identity numbers with Luhn checksum validation. Encodes birth date, gender, and citizenship.",
+  "description": "Detects South African identity numbers with Luhn checksum validation. Encodes birth date, gender, and citizenship.\n\nValidator: Luhn checksum (last digit)\nFormat: 13 digits (YYMMDD SSSS C A Z where YYMMDD=birth date, SSSS=gender, C=citizenship, A=always 8, Z=checksum)\nOfficial name: South African ID Number\nNote: POPIA (Protection of Personal Information Act) requires protection",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -14,16 +14,6 @@
     "popia",
     "production"
   ],
-  "metadata": {
-    "country": "South Africa",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "Luhn checksum (last digit)",
-    "format": "13 digits (YYMMDD SSSS C A Z where YYMMDD=birth date, SSSS=gender, C=citizenship, A=always 8, Z=checksum)",
-    "official_name": "South African ID Number",
-    "note": "POPIA (Protection of Personal Information Act) requires protection",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -48,8 +38,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "ZA"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

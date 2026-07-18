@@ -1,28 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.middle_east_turkey_tc_kimlik",
   "qualified_id": "rulesentry.government.middle_east_turkey_tc_kimlik",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Turkish TC Kimlik No (Turkish ID)",
-  "description": "Detects Turkish Republic citizenship ID numbers with custom checksum validation.",
+  "description": "Detects Turkish Republic citizenship ID numbers with custom checksum validation.\n\nValidator: Custom Turkish ID checksum (10th and 11th digits)\nFormat: 11 digits (cannot start with 0)\nOfficial name: TC Kimlik Numarası\nNote: KVKK (Personal Data Protection Law No. 6698)",
   "category_id": "government",
   "severity": "high",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "Turkey",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "Custom Turkish ID checksum (10th and 11th digits)",
-    "format": "11 digits (cannot start with 0)",
-    "official_name": "TC Kimlik Numarası",
-    "note": "KVKK (Personal Data Protection Law No. 6698)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -47,8 +37,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "TR"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

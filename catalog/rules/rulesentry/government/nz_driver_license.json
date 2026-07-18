@@ -1,24 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.nz_driver_license",
   "qualified_id": "rulesentry.government.nz_driver_license",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "New Zealand Driver Licence Number",
-  "description": "Detects New Zealand driver licence numbers. Format: 2 letters followed by 6 digits, preceded by context keywords.",
+  "description": "Detects New Zealand driver licence numbers. Format: 2 letters followed by 6 digits, preceded by context keywords.\n\nFormat: 2 letters + 6 digits (e.g., AB123456)",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "NZ Transport Agency driver licence format",
-    "attribution": "Waka Kotahi NZ Transport Agency",
-    "format": "2 letters + 6 digits (e.g., AB123456)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 65,
@@ -45,8 +39,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "NZ"
-  ]
+  ],
+  "references": [
+    {
+      "note": "NZ Transport Agency driver licence format"
+    },
+    {
+      "note": "Waka Kotahi NZ Transport Agency"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

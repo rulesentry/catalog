@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.se_personnummer",
   "qualified_id": "rulesentry.government.se_personnummer",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "Swedish Personal Identity Number (Personnummer)",
-  "description": "Detects Swedish personal identity numbers (personnummer). Format: YYMMDD-NNNNC or YYYYMMDD-NNNNC. Samordningsnummer adds 60 to the day component. Luhn checksum validates the last 10 digits.",
+  "description": "Detects Swedish personal identity numbers (personnummer). Format: YYMMDD-NNNNC or YYYYMMDD-NNNNC. Samordningsnummer adds 60 to the day component. Luhn checksum validates the last 10 digits.\n\nFormat: YYMMDD-NNNNC or YYYYMMDD-NNNNC; day 61-91 = samordningsnummer\nOfficial name: Personnummer",
   "category_id": "government",
   "severity": "critical",
   "profiles": [
@@ -24,14 +24,6 @@
     "national-id",
     "gdpr"
   ],
-  "metadata": {
-    "country": "Sweden",
-    "pattern_source": "Based on Presidio SvPersonnummerRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "YYMMDD-NNNNC or YYYYMMDD-NNNNC; day 61-91 = samordningsnummer",
-    "official_name": "Personnummer",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 90,
@@ -55,5 +47,13 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio SvPersonnummerRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

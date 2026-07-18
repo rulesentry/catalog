@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
   "id": "policy.ca-attorney-ai-redaction",
   "qualified_id": "rulesentry.policy.ca-attorney-ai-redaction",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "status": "active",
   "name": "California Attorney-Client AI Redaction Policy",
-  "description": "California-specific strict overlay extending the US baseline. California requires full anonymization — not mere tokenization — before inputting client matter information into external AI systems (Cal. Bus. & Prof. Code § 6068(e)(1), CA COPRAC Practical Guidance 2026). Key differences from US baseline: (1) case captions are blocked for human review rather than tokenized, because sending any token to an external AI risks re-identification; (2) contact details are elevated to critical — quasi-identifiers in combination can re-identify a client without names; (3) personal quasi-identifiers (DOB, age, gender) are added as they contribute to re-identification under CA's stricter standard; (4) the 2026 agentic AI guidance prohibits autonomous external transmission of confidential information — this policy enforces the hardest available gate on privilege markers.",
+  "description": "California-specific strict overlay extending the US baseline. California requires full anonymization — not mere tokenization — before inputting client matter information into external AI systems (Cal. Bus. & Prof. Code § 6068(e)(1), CA COPRAC Practical Guidance 2026). Key differences from US baseline: (1) case captions are blocked for human review rather than tokenized, because sending any token to an external AI risks re-identification; (2) contact details are elevated to critical — quasi-identifiers in combination can re-identify a client without names; (3) personal quasi-identifiers (DOB, age, gender) are added as they contribute to re-identification under CA's stricter standard; (4) the 2026 agentic AI guidance prohibits autonomous external transmission of confidential information — this policy enforces the hardest available gate on privilege markers.\n\nKey difference from US baseline: Full anonymization required — case captions are blocked (not tokenized); contact details are critical; personal quasi-identifiers (DOB, age, gender) are included; agentic AI autonomous transmission is explicitly prohibited\nScope: Attorney-client confidentiality for AI tool usage — California strict overlay",
   "extends": "policy.us-attorney-ai-redaction",
   "regions": [
     "US-CA"
@@ -72,22 +72,25 @@
       "reason": "CA: personal attributes (age, gender, DOB) are quasi-identifiers under CA's full-anonymization standard — included as they contribute to re-identification in combination"
     }
   ],
-  "metadata": {
-    "frameworks": [
-      "Cal. Bus. & Prof. Code § 6068(e)(1)",
-      "CA Rules of Professional Conduct Rule 1.6",
-      "CA COPRAC Practical Guidance for Generative AI (2026)"
-    ],
-    "key_difference_from_us_baseline": "Full anonymization required — case captions are blocked (not tokenized); contact details are critical; personal quasi-identifiers (DOB, age, gender) are included; agentic AI autonomous transmission is explicitly prohibited",
-    "compliance_scope": "Attorney-client confidentiality for AI tool usage — California strict overlay",
-    "review_cycle": "annually",
-    "reference_doc": "docs/legal/calbar-generative-ai-guidance.pdf"
-  },
   "origin": {
     "source_type": "local"
   },
   "created_at": "2026-06-04T00:00:00Z",
   "created_by": "claude-code",
   "modified_at": "2026-06-04T00:00:00Z",
-  "modified_by": "claude-code"
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "Cal. Bus. & Prof. Code § 6068(e)(1)"
+    },
+    {
+      "note": "CA Rules of Professional Conduct Rule 1.6"
+    },
+    {
+      "note": "CA COPRAC Practical Guidance for Generative AI (2026)"
+    },
+    {
+      "note": "docs/legal/calbar-generative-ai-guidance.pdf"
+    }
+  ]
 }

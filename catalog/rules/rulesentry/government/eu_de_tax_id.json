@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_de_tax_id",
   "qualified_id": "rulesentry.government.eu_de_tax_id",
   "publisher_id": "rulesentry",
@@ -8,7 +8,7 @@
   "status": "active",
   "name": "German Tax ID (Steueridentifikationsnummer)",
   "summary": "Detects German tax identification numbers (11 digits) with context markers",
-  "description": "Detects German tax identification numbers. Format: 11 digits.",
+  "description": "Detects German tax identification numbers. Format: 11 digits.\n\nFormat: XXXXXXXXXXX (11 digits)",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -25,11 +25,6 @@
     "tax",
     "gdpr"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "XXXXXXXXXXX (11 digits)"
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -55,5 +50,13 @@
     }
   },
   "created_at": "2026-02-10T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

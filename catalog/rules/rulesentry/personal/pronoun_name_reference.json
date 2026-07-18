@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "personal.pronoun_name_reference",
   "qualified_id": "rulesentry.personal.pronoun_name_reference",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Person Name (Pronoun/Role Reference)",
-  "description": "Detects person names introduced via pronoun or role reference (e.g. 'His name was Sam Jones', 'The customer's name is John Smith'). Complements NER for terse or low-context inputs where NER confidence falls below threshold.",
+  "description": "Detects person names introduced via pronoun or role reference (e.g. 'His name was Sam Jones', 'The customer's name is John Smith'). Complements NER for terse or low-context inputs where NER confidence falls below threshold.\n\nRationale: Matches pronoun ('his', 'her', 'their') or role phrase ('the customer's') followed by 'name is/was/will be/has been' and 1-3 TitleCase words. Uses [ \\t]+ (not \\s+) in the name word group to prevent newline-crossing. Priority 65 is below labeled_field_name (70) since this pattern is slightly less precise.\nNER relationship: Deterministic fallback for pronoun-context names where NER confidence is insufficient. If NER fires on the same span, labeled_field_name or NER at higher priority wins; otherwise this rule ensures coverage.",
   "category_id": "personal",
   "severity": "high",
   "regions": [
@@ -45,10 +45,5 @@
   },
   "status": "active",
   "created_at": "2026-03-18T00:00:00Z",
-  "updated_at": "2026-03-18T00:00:00Z",
-  "metadata": {
-    "pattern_rationale": "Matches pronoun ('his', 'her', 'their') or role phrase ('the customer's') followed by 'name is/was/will be/has been' and 1-3 TitleCase words. Uses [ \\t]+ (not \\s+) in the name word group to prevent newline-crossing. Priority 65 is below labeled_field_name (70) since this pattern is slightly less precise.",
-    "ner_relationship": "Deterministic fallback for pronoun-context names where NER confidence is insufficient. If NER fires on the same span, labeled_field_name or NER at higher priority wins; otherwise this rule ensures coverage.",
-    "needs_review": false
-  }
+  "modified_at": "2026-03-18T00:00:00Z"
 }

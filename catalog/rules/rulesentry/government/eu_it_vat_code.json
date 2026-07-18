@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_it_vat_code",
   "qualified_id": "rulesentry.government.eu_it_vat_code",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Italian VAT Code (Partita IVA)",
-  "description": "Detects Italian VAT identification numbers (Partita IVA) with Luhn checksum validation. Format: 11 digits.",
+  "description": "Detects Italian VAT identification numbers (Partita IVA) with Luhn checksum validation. Format: 11 digits.\n\nValidator: Luhn checksum (standard ISO/IEC 7812-1)\nFormat: 11 digits\nOfficial name: Partita IVA",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -14,15 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "country": "Italy",
-    "pattern_source": "Based on Presidio ItVatCodeRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "validator_algorithm": "Luhn checksum (standard ISO/IEC 7812-1)",
-    "format": "11 digits",
-    "official_name": "Partita IVA",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -53,8 +44,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "IT"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio ItVatCodeRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

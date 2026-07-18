@@ -1,23 +1,17 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "network.domain_name",
   "qualified_id": "rulesentry.network.domain_name",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Domain Name",
-  "description": "Detects domain names (e.g., example.com, subdomain.example.co.uk). Excludes common email patterns to avoid false positives.",
+  "description": "Detects domain names (e.g., example.com, subdomain.example.co.uk). Excludes common email patterns to avoid false positives.\n\nNote: May match domains in emails; email rules will match full addresses with higher priority. Uses tld_reject validator to exclude common file extensions (txt, pdf, json, etc.) from matching as domain TLDs.",
   "category_id": "network",
   "severity": "info",
   "profiles": [
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "note": "May match domains in emails; email rules will match full addresses with higher priority. Uses tld_reject validator to exclude common file extensions (txt, pdf, json, etc.) from matching as domain TLDs.",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 55,
@@ -73,8 +67,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-01-27T19:52:26.963484Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-01-27T19:52:26.963484Z"
 }

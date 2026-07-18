@@ -1,27 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.asia_south_korea_passport",
   "qualified_id": "rulesentry.government.asia_south_korea_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "South Korean Passport Number",
-  "description": "Detects South Korean passport numbers in current format. Format: prefix letter (M/S/R/O/D) + 3 digits + 1 letter + 4 digits.",
+  "description": "Detects South Korean passport numbers in current format. Format: prefix letter (M/S/R/O/D) + 3 digits + 1 letter + 4 digits.\n\nFormat: M123A4567 (prefix letter + 3 digits + letter + 4 digits)\nOfficial name: 여권 (Korean Passport)\nNote: Current format only; older 9-digit format (prefix + 8 digits) omitted as less reliable",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "South Korea",
-    "pattern_source": "Based on Presidio KrPassportRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "M123A4567 (prefix letter + 3 digits + letter + 4 digits)",
-    "official_name": "여권 (Korean Passport)",
-    "note": "Current format only; older 9-digit format (prefix + 8 digits) omitted as less reliable",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 65,
@@ -45,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "KR"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio KrPassportRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

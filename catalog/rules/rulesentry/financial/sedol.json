@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "financial.sedol",
   "qualified_id": "rulesentry.financial.sedol",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "SEDOL (UK/Irish Securities Identifier)",
-  "description": "Detects SEDOL numbers with checksum validation. SEDOL uniquely identifies securities traded on the London Stock Exchange and Irish Stock Exchange.",
+  "description": "Detects SEDOL numbers with checksum validation. SEDOL uniquely identifies securities traded on the London Stock Exchange and Irish Stock Exchange.\n\nValidator: SEDOL checksum algorithm\nFormat: 6 alphanumeric characters + 1 check digit",
   "category_id": "financial",
   "severity": "medium",
   "profiles": [
@@ -15,14 +15,6 @@
     "fca",
     "gdpr"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "SEDOL checksum algorithm",
-    "standard": "London Stock Exchange",
-    "format": "6 alphanumeric characters + 1 check digit",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -47,9 +39,20 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "UK",
     "IE"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    },
+    {
+      "note": "London Stock Exchange"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

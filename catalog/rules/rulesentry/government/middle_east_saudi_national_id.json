@@ -1,28 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.middle_east_saudi_national_id",
   "qualified_id": "rulesentry.government.middle_east_saudi_national_id",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Saudi National ID (Iqama/National ID)",
-  "description": "Detects Saudi Arabian national ID and residence permit (Iqama) numbers. Requires a keyword label (national id, iqama, or Arabic equivalents) because the bare 10-digit format collides with NPIs, phone numbers, and other global IDs.",
+  "description": "Detects Saudi Arabian national ID and residence permit (Iqama) numbers. Requires a keyword label (national id, iqama, or Arabic equivalents) because the bare 10-digit format collides with NPIs, phone numbers, and other global IDs.\n\nFormat: 10 digits (National ID: starts with 1, Iqama: starts with 2)\nOfficial name: رقم الهوية الوطنية / رقم الإقامة\nNote: Covers both citizens (National ID) and residents (Iqama)\nRationale: Bare \\b[12][0-9]{9}\\b collides with US NPIs (10 digits, starts with 1/2), NANP phone numbers, and many other IDs. Keyword label required to anchor the match. Accepts English (national id, iqama) and Arabic (هوية, إقامة, رقم الهوية).",
   "category_id": "government",
   "severity": "high",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "Saudi Arabia",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "10 digits (National ID: starts with 1, Iqama: starts with 2)",
-    "official_name": "رقم الهوية الوطنية / رقم الإقامة",
-    "note": "Covers both citizens (National ID) and residents (Iqama)",
-    "pattern_rationale": "Bare \\b[12][0-9]{9}\\b collides with US NPIs (10 digits, starts with 1/2), NANP phone numbers, and many other IDs. Keyword label required to anchor the match. Accepts English (national id, iqama) and Arabic (هوية, إقامة, رقم الهوية).",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -46,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-04-15T00:00:00Z",
   "regions": [
     "SA"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-04-15T00:00:00Z"
 }

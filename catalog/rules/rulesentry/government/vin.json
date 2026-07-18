@@ -1,23 +1,17 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.vin",
   "qualified_id": "rulesentry.government.vin",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
   "name": "Vehicle Identification Number (VIN)",
-  "description": "Detects ISO 3779 Vehicle Identification Numbers (VINs). VINs are 17-character alphanumeric codes that uniquely identify motor vehicles and can be linked to registered owners via DMV records. Characters I, O, and Q are excluded per the standard. Position 9 (check digit) is constrained to 0-9 or X.",
+  "description": "Detects ISO 3779 Vehicle Identification Numbers (VINs). VINs are 17-character alphanumeric codes that uniquely identify motor vehicles and can be linked to registered owners via DMV records. Characters I, O, and Q are excluded per the standard. Position 9 (check digit) is constrained to 0-9 or X.\n\nFormat: 17-char alphanumeric, no I/O/Q, position 1 must be a letter, position 9 is check digit (0-9 or X)\nNote: ISO 3779 position-9 check-digit validation requires a dedicated validator not yet implemented; pattern alone filters most false positives. VINs are not PII directly but are linkable to registered owners via DMV.",
   "category_id": "government",
   "severity": "low",
   "profiles": [
     "production"
   ],
-  "metadata": {
-    "standard": "ISO 3779",
-    "format": "17-char alphanumeric, no I/O/Q, position 1 must be a letter, position 9 is check digit (0-9 or X)",
-    "note": "ISO 3779 position-9 check-digit validation requires a dedicated validator not yet implemented; pattern alone filters most false positives. VINs are not PII directly but are linkable to registered owners via DMV.",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 60,
@@ -40,8 +34,13 @@
   },
   "status": "active",
   "created_at": "2026-05-26T00:00:00Z",
-  "updated_at": "2026-05-26T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "ISO 3779"
+    }
+  ],
+  "modified_at": "2026-05-26T00:00:00Z"
 }

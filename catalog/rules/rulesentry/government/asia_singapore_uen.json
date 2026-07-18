@@ -1,27 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.asia_singapore_uen",
   "qualified_id": "rulesentry.government.asia_singapore_uen",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Singapore Unique Entity Number (UEN)",
-  "description": "Detects Singapore Unique Entity Numbers in three formats: Format A (8 digits + letter), Format B (9 digits + letter), Format C (T/S prefix + 2 digits + 2 entity letters + 4 digits + letter).",
+  "description": "Detects Singapore Unique Entity Numbers in three formats: Format A (8 digits + letter), Format B (9 digits + letter), Format C (T/S prefix + 2 digits + 2 entity letters + 4 digits + letter).\n\nFormat: Format A: 12345678A | Format B: 123456789A | Format C: T12LP1234A\nOfficial name: Unique Entity Number (UEN)\nNote: Three distinct checksum algorithms (one per format) are too complex for a single declarative validator; deferred to future implementation",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "Singapore",
-    "pattern_source": "Based on Presidio SgUenRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "Format A: 12345678A | Format B: 123456789A | Format C: T12LP1234A",
-    "official_name": "Unique Entity Number (UEN)",
-    "note": "Three distinct checksum algorithms (one per format) are too complex for a single declarative validator; deferred to future implementation",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 65,
@@ -54,8 +45,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "SG"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio SgUenRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

@@ -1,12 +1,11 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/profile.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/profile.schema.json",
   "id": "sox",
   "type": "profile",
   "version": "4.0.0",
   "publisher_id": "rulesentry",
   "status": "active",
   "name": "SOX Compliance Framework",
-  "caption": "SOX",
   "description": "Sarbanes-Oxley Act (SOX) compliance framework for protecting financial records and internal controls of publicly traded companies. Covers financial reporting data, audit trails, and access controls over financial systems.",
   "profile_type": "compliance_framework",
   "frameworks": [
@@ -23,5 +22,6 @@
   "created_at": "2026-03-13T00:00:00Z",
   "created_by": "rulesentry-catalog",
   "modified_at": "2026-03-13T00:00:00Z",
-  "modified_by": "claude-code"
+  "modified_by": "claude-code",
+  "summary": "SOX"
 }

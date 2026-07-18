@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "healthcare.cpt_code",
   "qualified_id": "rulesentry.healthcare.cpt_code",
   "publisher_id": "rulesentry",
@@ -8,7 +8,7 @@
   "status": "active",
   "name": "CPT Procedure Code",
   "summary": "Detects CPT (Current Procedural Terminology) codes with context markers",
-  "description": "Detects CPT procedure codes in healthcare documents. Matches 5-digit CPT codes (00100-99499) and Category II/III codes (e.g., 0042F, 0019T). Requires context keywords to reduce false positives from arbitrary 5-digit numbers.",
+  "description": "Detects CPT procedure codes in healthcare documents. Matches 5-digit CPT codes (00100-99499) and Category II/III codes (e.g., 0042F, 0019T). Requires context keywords to reduce false positives from arbitrary 5-digit numbers.\n\nCompliance notes: CPT codes linked to a patient constitute PHI under HIPAA. CPT is maintained by the AMA.\nFormat: 5 digits (00100-99499) or 4 digits + F/T suffix (Category II/III)\nFalse positive notes: Context keywords required to avoid matching arbitrary 5-digit numbers",
   "category_id": "healthcare",
   "severity": "medium",
   "profiles": [
@@ -26,11 +26,6 @@
     "billing",
     "clinical"
   ],
-  "metadata": {
-    "compliance_notes": "CPT codes linked to a patient constitute PHI under HIPAA. CPT is maintained by the AMA.",
-    "format": "5 digits (00100-99499) or 4 digits + F/T suffix (Category II/III)",
-    "false_positive_notes": "Context keywords required to avoid matching arbitrary 5-digit numbers"
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -55,5 +50,5 @@
     }
   },
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z"
+  "modified_at": "2026-03-21T00:00:00Z"
 }

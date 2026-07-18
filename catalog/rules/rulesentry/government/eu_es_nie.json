@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_es_nie",
   "qualified_id": "rulesentry.government.eu_es_nie",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Spanish NIE (Foreigner Identity Number)",
-  "description": "Detects Spanish Número de Identidad de Extranjero. Format: X/Y/Z prefix + 7 digits + check letter. Uses MOD-23 lookup table (same as DNI) after letter-to-digit substitution.",
+  "description": "Detects Spanish Número de Identidad de Extranjero. Format: X/Y/Z prefix + 7 digits + check letter. Uses MOD-23 lookup table (same as DNI) after letter-to-digit substitution.\n\nValidator: MOD-23 with X→0, Y→1, Z→2 prefix substitution and letter lookup table TRWAGMYFPDXBNJZSQVHLCKE\nFormat: X1234567A (X/Y/Z + 7 digits + check letter)\nOfficial name: Número de Identidad de Extranjero (NIE)\nNote: Checksum validation deferred to future hardcoded validator; pattern structure provides moderate precision",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -14,16 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "country": "Spain",
-    "pattern_source": "Based on Presidio EsNieRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "validator_algorithm": "MOD-23 with X→0, Y→1, Z→2 prefix substitution and letter lookup table TRWAGMYFPDXBNJZSQVHLCKE",
-    "format": "X1234567A (X/Y/Z + 7 digits + check letter)",
-    "official_name": "Número de Identidad de Extranjero (NIE)",
-    "note": "Checksum validation deferred to future hardcoded validator; pattern structure provides moderate precision",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 80,
@@ -56,8 +46,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "ES"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio EsNieRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "healthcare.de_lanr",
   "qualified_id": "rulesentry.healthcare.de_lanr",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "German Physician License Number (LANR)",
-  "description": "Detects German Lebenslange Arztnummer (LANR), the permanent physician identification number. Format: 9 digits — first 6 digits carry the checksum (KBV weights [4,9,4,9,4,9]), digit 7 is the check digit, digits 8-9 are the specialty code.",
+  "description": "Detects German Lebenslange Arztnummer (LANR), the permanent physician identification number. Format: 9 digits — first 6 digits carry the checksum (KBV weights [4,9,4,9,4,9]), digit 7 is the check digit, digits 8-9 are the specialty code.\n\nFormat: XXXXXXXXX — 9 digits; pos 1-6 weighted, pos 7 check digit, pos 8-9 specialty code\nOfficial name: Lebenslange Arztnummer (LANR)",
   "category_id": "healthcare",
   "severity": "high",
   "profiles": [
@@ -25,15 +25,6 @@
     "gdpr",
     "hipaa"
   ],
-  "metadata": {
-    "country": "Germany",
-    "pattern_source": "Based on Presidio DeLanrRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "XXXXXXXXX — 9 digits; pos 1-6 weighted, pos 7 check digit, pos 8-9 specialty code",
-    "official_name": "Lebenslange Arztnummer (LANR)",
-    "compliance": "KBV Arztnummern-Richtlinie §75 SGB V",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -57,5 +48,16 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio DeLanrRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    },
+    {
+      "note": "KBV Arztnummern-Richtlinie §75 SGB V"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

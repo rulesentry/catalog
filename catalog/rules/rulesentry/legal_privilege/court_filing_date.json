@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "legal_privilege.court_filing_date",
   "qualified_id": "rulesentry.legal_privilege.court_filing_date",
   "publisher_id": "rulesentry",
@@ -47,5 +47,5 @@
     }
   },
   "created_at": "2026-06-03T00:00:00Z",
-  "updated_at": "2026-06-03T00:00:00Z"
+  "modified_at": "2026-06-03T00:00:00Z"
 }

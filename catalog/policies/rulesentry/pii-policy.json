@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
   "id": "policy.pii",
   "qualified_id": "rulesentry.policy.pii",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.2.0",
   "status": "active",
   "name": "PII Protection Policy",
-  "description": "Global baseline policy for personally identifiable information. Covers universal personal attributes, generic contact information, and formats that apply across all regions. Country-specific contact rules (phone numbers, postal codes) are owned by regional policies that extend this baseline (policy.us-pii, policy.eu-gdpr, policy.uk-data-protection, policy.apac-data-privacy, policy.americas-data-protection, policy.emea-extended).",
+  "description": "Global baseline policy for personally identifiable information. Covers universal personal attributes, generic contact information, and formats that apply across all regions. Country-specific contact rules (phone numbers, postal codes) are owned by regional policies that extend this baseline (policy.us-pii, policy.eu-gdpr, policy.uk-data-protection, policy.apac-data-privacy, policy.americas-data-protection, policy.emea-extended).\n\nScope: Global PII protection baseline",
   "profiles": [
     "production"
   ],
@@ -163,20 +163,19 @@
       "notes": "Pronoun-based name references (His name is John) — migrated from policy.pii-ner"
     }
   ],
-  "metadata": {
-    "frameworks": [
-      "ISO 27701",
-      "NIST Privacy Framework"
-    ],
-    "compliance_scope": "Global PII protection baseline",
-    "review_cycle": "quarterly",
-    "owner": "compliance-team"
-  },
   "origin": {
     "source_type": "local"
   },
   "created_at": "2026-02-13T00:00:00Z",
   "created_by": "claude-code",
   "modified_at": "2026-05-27T00:00:00Z",
-  "modified_by": "claude-code"
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "ISO 27701"
+    },
+    {
+      "note": "NIST Privacy Framework"
+    }
+  ]
 }

@@ -1,24 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "financial.ifsc_india",
   "qualified_id": "rulesentry.financial.ifsc_india",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "IFSC Code (India)",
-  "description": "Detects Indian Financial System Code (IFSC) used for electronic payments. Format: 4 letters (bank) + 0 (reserved) + 6 alphanumeric (branch).",
+  "description": "Detects Indian Financial System Code (IFSC) used for electronic payments. Format: 4 letters (bank) + 0 (reserved) + 6 alphanumeric (branch).\n\nFormat: ABCD0123456 (11 characters)",
   "category_id": "financial",
   "severity": "medium",
   "profiles": [
     "financial-industry",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "format": "ABCD0123456 (11 characters)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -42,8 +36,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "IN"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

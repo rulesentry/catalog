@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_fr_passport",
   "qualified_id": "rulesentry.government.eu_fr_passport",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "French Passport Number",
-  "description": "Detects French passport numbers. Format: 2 letters followed by 7 digits (ICAO biometric standard) or 8 digits (older series). Context-anchored to the keyword 'passport' or 'passeport' to avoid false positives from the short alphanumeric pattern.",
+  "description": "Detects French passport numbers. Format: 2 letters followed by 7 digits (ICAO biometric standard) or 8 digits (older series). Context-anchored to the keyword 'passport' or 'passeport' to avoid false positives from the short alphanumeric pattern.\n\nFormat: AA1234567 (2 letters + 7 digits, biometric) or AA12345678 (2 letters + 8 digits, older series)\nOfficial name: Passeport\nNote: Context prefix (passport/passeport) required to distinguish from other 9-char alphanumeric codes",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -14,15 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "country": "France",
-    "pattern_source": "Based on Presidio FrPassportRecognizer and ICAO Doc 9303",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "AA1234567 (2 letters + 7 digits, biometric) or AA12345678 (2 letters + 8 digits, older series)",
-    "official_name": "Passeport",
-    "note": "Context prefix (passport/passeport) required to distinguish from other 9-char alphanumeric codes",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -49,8 +40,16 @@
   },
   "status": "active",
   "created_at": "2026-03-18T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "FR"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio FrPassportRecognizer and ICAO Doc 9303"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

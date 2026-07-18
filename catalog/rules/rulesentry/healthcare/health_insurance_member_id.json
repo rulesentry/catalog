@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "healthcare.health_insurance_member_id",
   "qualified_id": "rulesentry.healthcare.health_insurance_member_id",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.1",
   "name": "Health Insurance Member ID",
-  "description": "Detects health insurance member/subscriber/policy identification numbers. Format: 6-20 alphanumeric characters with contextual keywords (member, subscriber, policy).",
+  "description": "Detects health insurance member/subscriber/policy identification numbers. Format: 6-20 alphanumeric characters with contextual keywords (member, subscriber, policy).\n\nOfficial name: Health Insurance Member Identifier\nPHI category: Health Plan Beneficiary Number\nHIPAA category: Health plan beneficiary numbers",
   "category_id": "healthcare",
   "severity": "high",
   "profiles": [
@@ -16,14 +16,6 @@
     "phi-detection",
     "production"
   ],
-  "metadata": {
-    "country": "United States",
-    "official_name": "Health Insurance Member Identifier",
-    "phi_category": "Health Plan Beneficiary Number",
-    "hipaa_category": "Health plan beneficiary numbers",
-    "pattern_source": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "target": "content",
@@ -46,8 +38,13 @@
   },
   "status": "active",
   "created_at": "2026-01-28T00:00:00Z",
-  "updated_at": "2026-04-23T00:00:00Z",
   "regions": [
     "US"
-  ]
+  ],
+  "references": [
+    {
+      "note": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)"
+    }
+  ],
+  "modified_at": "2026-04-23T00:00:00Z"
 }

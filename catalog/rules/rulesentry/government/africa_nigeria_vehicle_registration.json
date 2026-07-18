@@ -1,25 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.africa_nigeria_vehicle_registration",
   "qualified_id": "rulesentry.government.africa_nigeria_vehicle_registration",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Nigerian Vehicle Registration Plate",
-  "description": "Detects Nigerian vehicle registration plate numbers. Format: 3-letter LGA code + 3 digits + 2-letter code.",
+  "description": "Detects Nigerian vehicle registration plate numbers. Format: 3-letter LGA code + 3 digits + 2-letter code.\n\nFormat: ABC-123DE (LGA code + serial + year/batch code)",
   "category_id": "government",
   "severity": "low",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "Nigeria",
-    "pattern_source": "Based on Presidio NgVehicleRegistrationRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "ABC-123DE (LGA code + serial + year/batch code)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 50,
@@ -51,8 +44,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "NG"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio NgVehicleRegistrationRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

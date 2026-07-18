@@ -1,24 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "digital_identity.imei",
   "qualified_id": "rulesentry.digital_identity.imei",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "1.0.0",
   "name": "IMEI Number",
-  "description": "Detects mobile device IMEI (International Mobile Equipment Identity) numbers. IMEIs are 15-digit device identifiers used by mobile networks to uniquely identify handsets. Under GDPR they are considered personal data because they can be linked to a subscriber. Luhn checksum validation eliminates most false positives.",
+  "description": "Detects mobile device IMEI (International Mobile Equipment Identity) numbers. IMEIs are 15-digit device identifiers used by mobile networks to uniquely identify handsets. Under GDPR they are considered personal data because they can be linked to a subscriber. Luhn checksum validation eliminates most false positives.\n\nFormat: 15 digits: AA-BBBBBB-CCCCCC-D (reporting body - TAC - serial - check digit)\nValidator: Luhn checksum (ISO/IEC 7812-1)",
   "category_id": "digital_identity",
   "severity": "medium",
   "profiles": [
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "standard": "GSM 02.16 / 3GPP TS 22.016",
-    "format": "15 digits: AA-BBBBBB-CCCCCC-D (reporting body - TAC - serial - check digit)",
-    "validator_algorithm": "Luhn checksum (ISO/IEC 7812-1)",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -45,8 +39,13 @@
   },
   "status": "active",
   "created_at": "2026-05-26T00:00:00Z",
-  "updated_at": "2026-05-26T00:00:00Z",
   "regions": [
     "GLOBAL"
-  ]
+  ],
+  "references": [
+    {
+      "note": "GSM 02.16 / 3GPP TS 22.016"
+    }
+  ],
+  "modified_at": "2026-05-26T00:00:00Z"
 }

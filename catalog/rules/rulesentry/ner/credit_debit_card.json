@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "ner.credit_debit_card",
   "qualified_id": "rulesentry.ner.credit_debit_card",
   "publisher_id": "rulesentry",

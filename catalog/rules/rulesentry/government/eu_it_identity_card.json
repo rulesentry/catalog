@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.eu_it_identity_card",
   "qualified_id": "rulesentry.government.eu_it_identity_card",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Italian Identity Card Number",
-  "description": "Detects Italian identity card numbers in three formats: paper (AA 1234567), CIE 2.0 (1234567AA), and CIE 3.0 (AA12345AA). Context-anchored to reduce false positives.",
+  "description": "Detects Italian identity card numbers in three formats: paper (AA 1234567), CIE 2.0 (1234567AA), and CIE 3.0 (AA12345AA). Context-anchored to reduce false positives.\n\nFormat: Paper: AA 1234567 | CIE 2.0: 1234567AA | CIE 3.0: AA12345AA\nOfficial name: Carta d'Identità\nNote: Weak patterns; context prefix required to reduce false positives",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
@@ -14,15 +14,6 @@
     "gdpr",
     "production"
   ],
-  "metadata": {
-    "country": "Italy",
-    "pattern_source": "Based on Presidio ItIdentityCardRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "Paper: AA 1234567 | CIE 2.0: 1234567AA | CIE 3.0: AA12345AA",
-    "official_name": "Carta d'Identità",
-    "note": "Weak patterns; context prefix required to reduce false positives",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 60,
@@ -49,8 +40,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "IT"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio ItIdentityCardRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

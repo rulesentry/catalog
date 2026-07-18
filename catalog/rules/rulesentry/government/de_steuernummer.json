@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.de_steuernummer",
   "qualified_id": "rulesentry.government.de_steuernummer",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "German State Tax Number (Steuernummer)",
-  "description": "Detects German state-specific tax numbers (Steuernummer). Distinct from the federal Steueridentifikationsnummer (EU DE_TAX_ID). Format varies by state: 10-13 digits; the first 2-4 digits encode the issuing Finanzamt. No universal published check-digit algorithm.",
+  "description": "Detects German state-specific tax numbers (Steuernummer). Distinct from the federal Steueridentifikationsnummer (EU DE_TAX_ID). Format varies by state: 10-13 digits; the first 2-4 digits encode the issuing Finanzamt. No universal published check-digit algorithm.\n\nFormat: 10-13 digits; state-prefixed (e.g., 18181508155 for Bayern)\nOfficial name: Steuernummer\nNote: Distinct from Steuer-ID (Steueridentifikationsnummer); context required to reduce false positives from generic digit runs",
   "category_id": "government",
   "severity": "high",
   "profiles": [
@@ -24,15 +24,6 @@
     "tax",
     "gdpr"
   ],
-  "metadata": {
-    "country": "Germany",
-    "pattern_source": "Based on Presidio DeSteuernummerRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "10-13 digits; state-prefixed (e.g., 18181508155 for Bayern)",
-    "official_name": "Steuernummer",
-    "note": "Distinct from Steuer-ID (Steueridentifikationsnummer); context required to reduce false positives from generic digit runs",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 70,
@@ -58,5 +49,13 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio DeSteuernummerRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

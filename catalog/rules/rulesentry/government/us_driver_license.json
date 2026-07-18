@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.us_driver_license",
   "qualified_id": "rulesentry.government.us_driver_license",
   "publisher_id": "rulesentry",
@@ -15,11 +15,6 @@
     "ccpa",
     "production"
   ],
-  "metadata": {
-    "pattern_source": "Based on Presidio UsLicenseRecognizer and OpenRedaction DRIVING_LICENSE_US",
-    "attribution": "Context-anchored broad pattern approach used by both competitors",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -57,8 +52,16 @@
   },
   "status": "active",
   "created_at": "2026-03-17T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "US"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on Presidio UsLicenseRecognizer and OpenRedaction DRIVING_LICENSE_US"
+    },
+    {
+      "note": "Context-anchored broad pattern approach used by both competitors"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

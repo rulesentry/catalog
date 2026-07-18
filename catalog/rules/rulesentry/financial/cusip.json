@@ -1,12 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "financial.cusip",
   "qualified_id": "rulesentry.financial.cusip",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "CUSIP (North American Securities Identifier)",
-  "description": "Detects CUSIP numbers with checksum validation. CUSIP uniquely identifies North American securities including US and Canadian stocks and bonds.",
+  "description": "Detects CUSIP numbers with checksum validation. CUSIP uniquely identifies North American securities including US and Canadian stocks and bonds.\n\nValidator: CUSIP checksum algorithm\nFormat: 8 alphanumeric characters + 1 check digit",
   "category_id": "financial",
   "severity": "medium",
   "profiles": [
@@ -14,14 +14,6 @@
     "production",
     "sec"
   ],
-  "metadata": {
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "CUSIP checksum algorithm",
-    "standard": "CUSIP Global Services",
-    "format": "8 alphanumeric characters + 1 check digit",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -46,9 +38,20 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "US",
     "CA"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    },
+    {
+      "note": "CUSIP Global Services"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

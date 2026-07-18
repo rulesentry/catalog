@@ -1,28 +1,18 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.americas_mexico_curp",
   "qualified_id": "rulesentry.government.americas_mexico_curp",
   "publisher_id": "rulesentry",
   "type": "rule",
   "version": "4.0.0",
   "name": "Mexican CURP (Clave Única de Registro de Población)",
-  "description": "Detects Mexican unique population registry codes with check digit validation. Encodes name, birth date, gender, and birthplace.",
+  "description": "Detects Mexican unique population registry codes with check digit validation. Encodes name, birth date, gender, and birthplace.\n\nValidator: Check digit calculated from alphanumeric encoding\nFormat: 18 characters (4 letters + 6 digits + 1 letter + 5 alphanumeric + 1 digit)\nOfficial name: Clave Única de Registro de Población\nNote: Encodes surname, name, birth date, gender, state",
   "category_id": "government",
   "severity": "high",
   "profiles": [
     "government-sector",
     "production"
   ],
-  "metadata": {
-    "country": "Mexico",
-    "pattern_source": "Based on OpenRedaction community patterns",
-    "attribution": "https://github.com/openredact/openredact",
-    "validator_algorithm": "Check digit calculated from alphanumeric encoding",
-    "format": "18 characters (4 letters + 6 digits + 1 letter + 5 alphanumeric + 1 digit)",
-    "official_name": "Clave Única de Registro de Población",
-    "note": "Encodes surname, name, birth date, gender, state",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 85,
@@ -47,8 +37,16 @@
   },
   "status": "active",
   "created_at": "2026-01-27T00:00:00Z",
-  "updated_at": "2026-03-21T00:00:00Z",
   "regions": [
     "MX"
-  ]
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-03-21T00:00:00Z"
 }

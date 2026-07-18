@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/policy.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
   "id": "policy.uk-data-protection",
   "qualified_id": "rulesentry.policy.uk-data-protection",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.2.0",
   "status": "active",
   "name": "UK Data Protection Policy",
-  "description": "Data protection policy for United Kingdom jurisdictions under the DPA 2018 and UK-GDPR. Extends the Global PII baseline (policy.pii) and adds UK-specific contact formats (phone, postcode) and government identifiers (NINO, NHS, driving licence, passport). UK is under EMEA but not under EU, reflecting post-Brexit regulatory independence.",
+  "description": "Data protection policy for United Kingdom jurisdictions under the DPA 2018 and UK-GDPR. Extends the Global PII baseline (policy.pii) and adds UK-specific contact formats (phone, postcode) and government identifiers (NINO, NHS, driving licence, passport). UK is under EMEA but not under EU, reflecting post-Brexit regulatory independence.\n\nScope: UK personal data and special category data protection",
   "profiles": [
     "uk-dpa",
     "production"
@@ -120,20 +120,19 @@
       "reason": "Elevated to critical - NHS numbers are special category data under UK-GDPR Article 9"
     }
   ],
-  "metadata": {
-    "frameworks": [
-      "DPA 2018",
-      "UK-GDPR"
-    ],
-    "compliance_scope": "UK personal data and special category data protection",
-    "review_cycle": "quarterly",
-    "owner": "uk-compliance-team"
-  },
   "origin": {
     "source_type": "local"
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
   "modified_at": "2026-05-27T00:00:00Z",
-  "modified_by": "claude-code"
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "DPA 2018"
+    },
+    {
+      "note": "UK-GDPR"
+    }
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "government.se_organisationsnummer",
   "qualified_id": "rulesentry.government.se_organisationsnummer",
   "publisher_id": "rulesentry",
@@ -7,7 +7,7 @@
   "version": "4.0.0",
   "status": "active",
   "name": "Swedish Organization Number (Organisationsnummer)",
-  "description": "Detects Swedish organization numbers. Format: NNNNNN-NNNN (10 digits, third digit must be >= 2 to distinguish from personnummer). Luhn checksum on all 10 digits.",
+  "description": "Detects Swedish organization numbers. Format: NNNNNN-NNNN (10 digits, third digit must be >= 2 to distinguish from personnummer). Luhn checksum on all 10 digits.\n\nFormat: NNNNNN-NNNN — third digit >= 2 distinguishes from personnummer\nOfficial name: Organisationsnummer",
   "category_id": "government",
   "severity": "medium",
   "profiles": [
@@ -24,14 +24,6 @@
     "business-id",
     "gdpr"
   ],
-  "metadata": {
-    "country": "Sweden",
-    "pattern_source": "Based on Presidio SvOrganisationsnummerRecognizer",
-    "attribution": "https://github.com/microsoft/presidio",
-    "format": "NNNNNN-NNNN — third digit >= 2 distinguishes from personnummer",
-    "official_name": "Organisationsnummer",
-    "needs_review": false
-  },
   "evaluation": {
     "evaluation_type": "pattern_match",
     "priority": 75,
@@ -55,5 +47,13 @@
     }
   },
   "created_at": "2026-05-27T00:00:00Z",
-  "updated_at": "2026-05-27T00:00:00Z"
+  "references": [
+    {
+      "note": "Based on Presidio SvOrganisationsnummerRecognizer"
+    },
+    {
+      "url": "https://github.com/microsoft/presidio"
+    }
+  ],
+  "modified_at": "2026-05-27T00:00:00Z"
 }

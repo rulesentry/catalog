@@ -1,0 +1,14 @@
+{
+  "schema_version": "5.0.0",
+  "compatibility": {
+    "deprecations": [
+      {
+        "feature": "credentials.ssh_private_key",
+        "deprecated_in": "4.0.0",
+        "sunset_date": "2026-11-19",
+        "replacement": "digital_identity.ssh_private_key",
+        "reason": "Deprecated in v4.0. Use digital_identity.ssh_private_key (canonical). Scheduled for removal in v4.1. Policy authors: update rule_refs to digital_identity.ssh_private_key."
+      }
+    ]
+  }
+}

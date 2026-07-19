@@ -1,0 +1,23 @@
+{
+  "id": "curp_checksum",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Mexico CURP Checksum",
+  "description": "Validates Mexican CURP identifiers (18 characters). Characters map to their index in the official dictionary '0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ' (note Ñ occupies 24, shifting O-Z up by one); the first 17 values are weighted 18 down to 2 and the final digit must equal (10 - sum mod 10) mod 10.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "char_map",
+    "char_map": {
+      "A": 10, "B": 11, "C": 12, "D": 13, "E": 14, "F": 15, "G": 16, "H": 17,
+      "I": 18, "J": 19, "K": 20, "L": 21, "M": 22, "N": 23, "Ñ": 24, "O": 25,
+      "P": 26, "Q": 27, "R": 28, "S": 29, "T": 30, "U": 31, "V": 32, "W": 33,
+      "X": 34, "Y": 35, "Z": 36
+    },
+    "expected_length": 18,
+    "weights": [18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2],
+    "modulus": 10,
+    "check_rule": "remainder_complement",
+    "check_position": "last"
+  }
+}

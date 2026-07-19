@@ -1,0 +1,26 @@
+{
+  "id": "hkid_checksum",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Hong Kong ID Checksum",
+  "description": "Validates Hong Kong Identity Card numbers (1-2 letters + 6 digits + check character, e.g. A123456(3)). Letters map A=10..Z=35; single-letter IDs are left-padded with the implicit space value 36; values are weighted [9..1] and the total (including the check character, where 'A' = 10) must be divisible by 11.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "char_map",
+    "strip_chars": "() ",
+    "char_map": {
+      "A": 10, "B": 11, "C": 12, "D": 13, "E": 14, "F": 15, "G": 16, "H": 17,
+      "I": 18, "J": 19, "K": 20, "L": 21, "M": 22, "N": 23, "O": 24, "P": 25,
+      "Q": 26, "R": 27, "S": 28, "T": 29, "U": 30, "V": 31, "W": 32, "X": 33,
+      "Y": 34, "Z": 35
+    },
+    "pad_left_value": 36,
+    "pad_left_to_length": 9,
+    "expected_length": 9,
+    "weights": [9, 8, 7, 6, 5, 4, 3, 2, 1],
+    "modulus": 11,
+    "check_rule": "sum_mod_zero",
+    "check_position": "none"
+  }
+}

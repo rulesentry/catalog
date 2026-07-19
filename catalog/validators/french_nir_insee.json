@@ -1,0 +1,19 @@
+{
+  "id": "french_nir_insee",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "name": "French NIR INSEE Key",
+  "description": "Validates French social security numbers (NIR, 13 digits + 2-digit key) where key = 97 - (number mod 97), i.e. number + key is divisible by 97. Expressed as a weighted sum with weights 10^i mod 97. Corsica departments 2A/2B substitute to 19/18 before computation (data-ready even though the current rule pattern is digits-only).",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "digits",
+    "strip_chars": " .-",
+    "substitutions": { "2A": "19", "2B": "18" },
+    "expected_length": 15,
+    "weights": [50, 5, 49, 34, 81, 76, 27, 90, 9, 30, 3, 10, 1, 10, 1],
+    "modulus": 97,
+    "check_rule": "sum_mod_zero",
+    "check_position": "none"
+  }
+}

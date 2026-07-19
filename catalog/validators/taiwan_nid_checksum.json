@@ -1,0 +1,23 @@
+{
+  "id": "taiwan_nid_checksum",
+  "type": "validator-definition",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "name": "Taiwan National ID Checksum",
+  "description": "Validates Taiwan National Identification numbers (letter + 9 digits). The leading letter converts to a two-digit value via the official (non-alphabetical) MOI table and is expanded into separate digits; the 11 resulting values are weighted [1,9,8,7,6,5,4,3,2,1,1] and the sum must be divisible by 10.",
+  "algorithm": "weighted_mod",
+  "params": {
+    "extract": "char_map_expanded",
+    "char_map": {
+      "A": 10, "B": 11, "C": 12, "D": 13, "E": 14, "F": 15, "G": 16, "H": 17,
+      "I": 34, "J": 18, "K": 19, "L": 20, "M": 21, "N": 22, "O": 35, "P": 23,
+      "Q": 24, "R": 25, "S": 26, "T": 27, "U": 28, "V": 29, "W": 32, "X": 30,
+      "Y": 31, "Z": 33
+    },
+    "expected_length": 11,
+    "weights": [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1],
+    "modulus": 10,
+    "check_rule": "sum_mod_zero",
+    "check_position": "none"
+  }
+}

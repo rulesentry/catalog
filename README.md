@@ -13,16 +13,16 @@ Every push to `main` propagates to `api.rulesentry.io` within ~30 seconds.
 ```
 .
 ├── catalog/                          # Core, RuleSentry-published entities
-│   ├── rules/rulesentry/             # 191 rules organized by category
+│   ├── rules/rulesentry/             # 279 rules organized by category
 │   │   ├── contact/
 │   │   ├── financial/
 │   │   ├── government/
 │   │   ├── healthcare/
 │   │   └── ...
-│   ├── policies/rulesentry/          # 11 policies (regional + framework)
-│   ├── categories/                   # 9 data-category definitions
-│   ├── profiles/                     # 18 profile definitions (compliance frameworks, envs)
-│   ├── validators/                   # 28 declarative checksum validators
+│   ├── policies/rulesentry/          # 12 policies (regional + framework)
+│   ├── categories/                   # 10 data-category definitions
+│   ├── profiles/                     # 21 profile definitions (compliance frameworks, envs)
+│   ├── validators/                   # 40 declarative checksum validators
 │   └── regions/
 │       └── regions.json              # Region hierarchy (GLOBAL > AMERICAS > US > US-CA ...)
 ├── configuration/

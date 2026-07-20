@@ -1,13 +1,12 @@
 {
-  "$schema": "https://schemas.rulesentry.io/v4/catalog/region-registry.schema.json",
-  "version": "4.0.0",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/region-registry.schema.json",
+  "version": "5.0.0",
   "regions": [
     {
       "code": "GLOBAL",
       "name": "Global",
       "level": "global",
       "parent_code": null,
-      "default_inheritance": true,
       "flag_emoji": "🌐",
       "display_order": 0
     },
@@ -16,7 +15,6 @@
       "name": "Americas",
       "level": "region",
       "parent_code": "GLOBAL",
-      "default_inheritance": true,
       "flag_emoji": "🌎",
       "display_order": 10
     },
@@ -25,7 +23,6 @@
       "name": "United States",
       "level": "country",
       "parent_code": "AMERICAS",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "HIPAA",
@@ -40,7 +37,6 @@
       "name": "California",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "CCPA",
@@ -53,7 +49,6 @@
       "name": "New York",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "SHIELD Act",
@@ -66,7 +61,6 @@
       "name": "Texas",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "TDPSA"
@@ -78,7 +72,6 @@
       "name": "Florida",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "FL Bar Opinion 24-1"
@@ -90,7 +83,6 @@
       "name": "District of Columbia",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "DC Bar Opinion 388"
@@ -102,7 +94,6 @@
       "name": "Illinois",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "BIPA"
@@ -114,7 +105,6 @@
       "name": "Colorado",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "CPA",
@@ -127,7 +117,6 @@
       "name": "Virginia",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "VCDPA"
@@ -139,7 +128,6 @@
       "name": "Connecticut",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "CTDPA"
@@ -151,7 +139,6 @@
       "name": "Delaware",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "DPDPA"
@@ -163,7 +150,6 @@
       "name": "Iowa",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "IA-CDPA"
@@ -175,7 +161,6 @@
       "name": "Indiana",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "IN-CDPA"
@@ -187,7 +172,6 @@
       "name": "Kentucky",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "KY-CDPA"
@@ -199,7 +183,6 @@
       "name": "Maryland",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "MODPA"
@@ -211,7 +194,6 @@
       "name": "Montana",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "MCDPA"
@@ -223,7 +205,6 @@
       "name": "Nebraska",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "NDPA"
@@ -235,7 +216,6 @@
       "name": "New Hampshire",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "NHPA"
@@ -247,7 +227,6 @@
       "name": "New Jersey",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "display_order": 119
     },
@@ -256,7 +235,6 @@
       "name": "Oregon",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "OR-CPA"
@@ -268,7 +246,6 @@
       "name": "Rhode Island",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "RI-DTPPA"
@@ -280,7 +257,6 @@
       "name": "Tennessee",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "TIPA"
@@ -292,7 +268,6 @@
       "name": "Utah",
       "level": "subdivision",
       "parent_code": "US",
-      "default_inheritance": true,
       "flag_emoji": "🇺🇸",
       "frameworks": [
         "UCPA"
@@ -300,11 +275,242 @@
       "display_order": 123
     },
     {
+      "code": "US-AL",
+      "name": "Alabama",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 124
+    },
+    {
+      "code": "US-AK",
+      "name": "Alaska",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 125
+    },
+    {
+      "code": "US-AZ",
+      "name": "Arizona",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 126
+    },
+    {
+      "code": "US-AR",
+      "name": "Arkansas",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 127
+    },
+    {
+      "code": "US-GA",
+      "name": "Georgia",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 128
+    },
+    {
+      "code": "US-HI",
+      "name": "Hawaii",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 129
+    },
+    {
+      "code": "US-ID",
+      "name": "Idaho",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 130
+    },
+    {
+      "code": "US-KS",
+      "name": "Kansas",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 131
+    },
+    {
+      "code": "US-LA",
+      "name": "Louisiana",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 132
+    },
+    {
+      "code": "US-ME",
+      "name": "Maine",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 133
+    },
+    {
+      "code": "US-MA",
+      "name": "Massachusetts",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 134
+    },
+    {
+      "code": "US-MI",
+      "name": "Michigan",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 135
+    },
+    {
+      "code": "US-MN",
+      "name": "Minnesota",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 136
+    },
+    {
+      "code": "US-MS",
+      "name": "Mississippi",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 137
+    },
+    {
+      "code": "US-MO",
+      "name": "Missouri",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 138
+    },
+    {
+      "code": "US-NV",
+      "name": "Nevada",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 139
+    },
+    {
+      "code": "US-NM",
+      "name": "New Mexico",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 140
+    },
+    {
+      "code": "US-NC",
+      "name": "North Carolina",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 141
+    },
+    {
+      "code": "US-ND",
+      "name": "North Dakota",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 142
+    },
+    {
+      "code": "US-OH",
+      "name": "Ohio",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 143
+    },
+    {
+      "code": "US-OK",
+      "name": "Oklahoma",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 144
+    },
+    {
+      "code": "US-PA",
+      "name": "Pennsylvania",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 145
+    },
+    {
+      "code": "US-SC",
+      "name": "South Carolina",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 146
+    },
+    {
+      "code": "US-SD",
+      "name": "South Dakota",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 147
+    },
+    {
+      "code": "US-VT",
+      "name": "Vermont",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 148
+    },
+    {
+      "code": "US-WA",
+      "name": "Washington",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 149
+    },
+    {
+      "code": "US-WV",
+      "name": "West Virginia",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 150
+    },
+    {
+      "code": "US-WI",
+      "name": "Wisconsin",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 151
+    },
+    {
+      "code": "US-WY",
+      "name": "Wyoming",
+      "level": "subdivision",
+      "parent_code": "US",
+      "flag_emoji": "🇺🇸",
+      "display_order": 152
+    },
+    {
       "code": "CA",
       "name": "Canada",
       "level": "country",
       "parent_code": "AMERICAS",
-      "default_inheritance": true,
       "flag_emoji": "🇨🇦",
       "frameworks": [
         "PIPEDA",
@@ -317,7 +523,6 @@
       "name": "Quebec",
       "level": "subdivision",
       "parent_code": "CA",
-      "default_inheritance": true,
       "flag_emoji": "🇨🇦",
       "frameworks": [
         "Law 25"
@@ -329,7 +534,6 @@
       "name": "Mexico",
       "level": "country",
       "parent_code": "AMERICAS",
-      "default_inheritance": true,
       "flag_emoji": "🇲🇽",
       "frameworks": [
         "LFPDPPP"
@@ -341,7 +545,6 @@
       "name": "Argentina",
       "level": "country",
       "parent_code": "AMERICAS",
-      "default_inheritance": true,
       "flag_emoji": "🇦🇷",
       "frameworks": [
         "PDPA"
@@ -353,7 +556,6 @@
       "name": "Brazil",
       "level": "country",
       "parent_code": "AMERICAS",
-      "default_inheritance": true,
       "flag_emoji": "🇧🇷",
       "frameworks": [
         "LGPD"
@@ -365,7 +567,6 @@
       "name": "Chile",
       "level": "country",
       "parent_code": "AMERICAS",
-      "default_inheritance": true,
       "flag_emoji": "🇨🇱",
       "display_order": 213
     },
@@ -374,7 +575,6 @@
       "name": "Colombia",
       "level": "country",
       "parent_code": "AMERICAS",
-      "default_inheritance": true,
       "flag_emoji": "🇨🇴",
       "display_order": 214
     },
@@ -383,7 +583,6 @@
       "name": "Europe, Middle East & Africa",
       "level": "region",
       "parent_code": "GLOBAL",
-      "default_inheritance": true,
       "flag_emoji": "🌍",
       "display_order": 20
     },
@@ -392,7 +591,6 @@
       "name": "European Union",
       "level": "region",
       "parent_code": "EMEA",
-      "default_inheritance": true,
       "flag_emoji": "🇪🇺",
       "frameworks": [
         "GDPR",
@@ -405,7 +603,6 @@
       "name": "Germany",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇩🇪",
       "frameworks": [
         "GDPR",
@@ -418,7 +615,6 @@
       "name": "France",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇫🇷",
       "frameworks": [
         "GDPR",
@@ -431,7 +627,6 @@
       "name": "Netherlands",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇳🇱",
       "frameworks": [
         "GDPR"
@@ -443,7 +638,6 @@
       "name": "Spain",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇪🇸",
       "frameworks": [
         "GDPR"
@@ -455,7 +649,6 @@
       "name": "Ireland",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇮🇪",
       "frameworks": [
         "GDPR"
@@ -467,7 +660,6 @@
       "name": "Italy",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇮🇹",
       "frameworks": [
         "GDPR"
@@ -479,7 +671,6 @@
       "name": "Belgium",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇧🇪",
       "frameworks": [
         "GDPR"
@@ -491,7 +682,6 @@
       "name": "Austria",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇦🇹",
       "frameworks": [
         "GDPR",
@@ -504,7 +694,6 @@
       "name": "Poland",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇵🇱",
       "frameworks": [
         "GDPR"
@@ -516,7 +705,6 @@
       "name": "Finland",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇫🇮",
       "frameworks": [
         "GDPR"
@@ -528,7 +716,6 @@
       "name": "Sweden",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇸🇪",
       "frameworks": [
         "GDPR"
@@ -540,7 +727,6 @@
       "name": "Portugal",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇵🇹",
       "frameworks": [
         "GDPR"
@@ -552,7 +738,6 @@
       "name": "Denmark",
       "level": "country",
       "parent_code": "EU",
-      "default_inheritance": true,
       "flag_emoji": "🇩🇰",
       "frameworks": [
         "GDPR"
@@ -564,7 +749,6 @@
       "name": "United Kingdom",
       "level": "country",
       "parent_code": "EMEA",
-      "default_inheritance": true,
       "flag_emoji": "🇬🇧",
       "frameworks": [
         "UK-GDPR",
@@ -577,7 +761,6 @@
       "name": "Turkey",
       "level": "country",
       "parent_code": "ME",
-      "default_inheritance": true,
       "flag_emoji": "🇹🇷",
       "frameworks": [
         "KVKK"
@@ -589,7 +772,6 @@
       "name": "Israel",
       "level": "country",
       "parent_code": "ME",
-      "default_inheritance": true,
       "flag_emoji": "🇮🇱",
       "display_order": 362
     },
@@ -598,7 +780,6 @@
       "name": "Saudi Arabia",
       "level": "country",
       "parent_code": "ME",
-      "default_inheritance": true,
       "flag_emoji": "🇸🇦",
       "display_order": 363
     },
@@ -607,7 +788,6 @@
       "name": "United Arab Emirates",
       "level": "country",
       "parent_code": "ME",
-      "default_inheritance": true,
       "flag_emoji": "🇦🇪",
       "display_order": 364
     },
@@ -616,7 +796,6 @@
       "name": "Qatar",
       "level": "country",
       "parent_code": "ME",
-      "default_inheritance": true,
       "flag_emoji": "🇶🇦",
       "display_order": 365
     },
@@ -625,7 +804,6 @@
       "name": "Norway",
       "level": "country",
       "parent_code": "EMEA",
-      "default_inheritance": true,
       "flag_emoji": "🇳🇴",
       "frameworks": [
         "GDPR"
@@ -637,7 +815,6 @@
       "name": "Africa",
       "level": "region",
       "parent_code": "EMEA",
-      "default_inheritance": true,
       "flag_emoji": "🌍",
       "display_order": 499
     },
@@ -646,7 +823,6 @@
       "name": "Switzerland",
       "level": "country",
       "parent_code": "EMEA",
-      "default_inheritance": true,
       "flag_emoji": "🇨🇭",
       "frameworks": [
         "nFADP"
@@ -658,7 +834,6 @@
       "name": "Middle East",
       "level": "region",
       "parent_code": "EMEA",
-      "default_inheritance": true,
       "flag_emoji": "🕌",
       "display_order": 360
     },
@@ -667,7 +842,6 @@
       "name": "Egypt",
       "level": "country",
       "parent_code": "AF",
-      "default_inheritance": true,
       "flag_emoji": "🇪🇬",
       "display_order": 500
     },
@@ -676,7 +850,6 @@
       "name": "Ghana",
       "level": "country",
       "parent_code": "AF",
-      "default_inheritance": true,
       "flag_emoji": "🇬🇭",
       "display_order": 501
     },
@@ -685,7 +858,6 @@
       "name": "Kenya",
       "level": "country",
       "parent_code": "AF",
-      "default_inheritance": true,
       "flag_emoji": "🇰🇪",
       "display_order": 502
     },
@@ -694,7 +866,6 @@
       "name": "Nigeria",
       "level": "country",
       "parent_code": "AF",
-      "default_inheritance": true,
       "flag_emoji": "🇳🇬",
       "frameworks": [
         "NDPR"
@@ -706,7 +877,6 @@
       "name": "South Africa",
       "level": "country",
       "parent_code": "AF",
-      "default_inheritance": true,
       "flag_emoji": "🇿🇦",
       "frameworks": [
         "POPIA"
@@ -718,7 +888,6 @@
       "name": "Asia-Pacific",
       "level": "region",
       "parent_code": "GLOBAL",
-      "default_inheritance": true,
       "flag_emoji": "🌏",
       "display_order": 30
     },
@@ -727,7 +896,6 @@
       "name": "Australia",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇦🇺",
       "frameworks": [
         "Privacy Act 1988"
@@ -739,7 +907,6 @@
       "name": "Singapore",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇸🇬",
       "frameworks": [
         "PDPA"
@@ -751,7 +918,6 @@
       "name": "Japan",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇯🇵",
       "frameworks": [
         "APPI"
@@ -763,7 +929,6 @@
       "name": "India",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇮🇳",
       "frameworks": [
         "DPDP Act 2023"
@@ -775,7 +940,6 @@
       "name": "China",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇨🇳",
       "frameworks": [
         "PIPL"
@@ -787,7 +951,6 @@
       "name": "Hong Kong",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇭🇰",
       "frameworks": [
         "PDPO"
@@ -799,7 +962,6 @@
       "name": "South Korea",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇰🇷",
       "frameworks": [
         "PIPA"
@@ -811,7 +973,6 @@
       "name": "Taiwan",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇹🇼",
       "frameworks": [
         "PDPA"
@@ -823,7 +984,6 @@
       "name": "Thailand",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇹🇭",
       "frameworks": [
         "PDPA"
@@ -835,7 +995,6 @@
       "name": "Malaysia",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇲🇾",
       "frameworks": [
         "PDPA 2010"
@@ -847,7 +1006,6 @@
       "name": "Philippines",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇵🇭",
       "frameworks": [
         "DPA 2012"
@@ -859,7 +1017,6 @@
       "name": "New Zealand",
       "level": "country",
       "parent_code": "APAC",
-      "default_inheritance": true,
       "flag_emoji": "🇳🇿",
       "frameworks": [
         "Privacy Act 2020"

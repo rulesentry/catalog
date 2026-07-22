@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "financial.pin_ner",
+  "qualified_id": "rulesentry.financial.pin_ner",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "inactive",
+  "name": "PIN",
+  "description": "Detects personal identification numbers (PINs) using an on-device NER model. PINs are authentication credentials and must not be stored or transmitted. Rule silently no-ops when no model is active.",
+  "category_id": "financial",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "pci-dss"
+  ],
+  "tags": [
+    "credentials",
+    "financial",
+    "pin",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "pin"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[PIN]"
+        }
+      },
+      "message": "PIN detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/financial/pin_ner"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

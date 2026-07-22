@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.us-pii",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "status": "active",
   "name": "US PII Protection Policy",
   "description": "Comprehensive PII protection policy for United States jurisdictions. Extends the Global PII baseline (policy.pii) and adds HIPAA PHI requirements and CCPA personal information protections specific to the US. Includes US-specific contact formats (phone, zip code, city/state/zip) and direct rule references for US government identifiers.\n\nScope: Healthcare and consumer data protection",
@@ -26,7 +26,7 @@
   ],
   "rules": [
     {
-      "rule_id": "contact.phone_us",
+      "rule_id": "personal.phone_us",
       "pinned_version": "3.0.0",
       "priority": 50,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -34,7 +34,7 @@
       "notes": "US phone number detection (moved from policy.pii)"
     },
     {
-      "rule_id": "contact.city_state_zip",
+      "rule_id": "personal.city_state_zip",
       "pinned_version": "3.0.0",
       "priority": 45,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -42,7 +42,7 @@
       "notes": "US city/state/ZIP address detection (moved from policy.pii)"
     },
     {
-      "rule_id": "contact.zip_code_us",
+      "rule_id": "personal.zip_code_us",
       "pinned_version": "3.0.1",
       "priority": 45,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -251,7 +251,7 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-05-27T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
   "modified_by": "claude-code",
   "references": [
     {

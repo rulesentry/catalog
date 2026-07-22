@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "legal.privileged_communication_composite",
+  "qualified_id": "rulesentry.legal.privileged_communication_composite",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.2.0",
+  "status": "active",
+  "name": "Privileged Communication with Identifiable Parties",
+  "description": "Composite rule: triggers when BOTH a privilege/confidentiality marker AND a case caption or docket number appear in the same content. This combination conclusively identifies privileged attorney-client material that contains an identifiable matter. Per ABA Formal Opinion 512, this content must not be submitted to any AI system.\n\nComposite logic: Triggers when privilege marker AND (case caption OR docket number) are both detected in the same content\nCompliance notes: This rule detects a high-risk combination: privilege/work-product marker + matter-identifying information. Identifier redaction alone does not clear this material for external AI submission — litigation strategy, settlement posture, and attorney mental impressions may remain. ABA Formal Opinion 512 requires lawyers to evaluate confidentiality duties, client consent/authorization, provider safeguards, and risk of disclosure before using GenAI with client-related material. RuleSentry blocks external AI submission; an attorney must perform the privilege/confidentiality review.",
+  "category_id": "legal",
+  "severity": "critical",
+  "profiles": [
+    "aba-ethics",
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "tags": [
+    "privilege",
+    "composite",
+    "block",
+    "legal"
+  ],
+  "evaluation": {
+    "evaluation_type": "composite",
+    "operator": "all",
+    "propagate_matches": true,
+    "evaluations": [
+      {
+        "evaluation_type": "rule_ref",
+        "rule_id": "legal.privilege_header",
+        "pinned_version": "1.0.0"
+      },
+      {
+        "evaluation_type": "composite",
+        "operator": "any",
+        "evaluations": [
+          {
+            "evaluation_type": "rule_ref",
+            "rule_id": "legal.case_caption",
+            "pinned_version": "1.0.0"
+          },
+          {
+            "evaluation_type": "rule_ref",
+            "rule_id": "legal.docket_number",
+            "pinned_version": "1.0.0"
+          }
+        ],
+        "effect": {
+          "type": "info",
+          "rationale": "compliance",
+          "message": "Matter-identifying information detected (case caption or docket number)"
+        }
+      }
+    ],
+    "effect": {
+      "type": "info",
+      "rationale": "compliance",
+      "message": "BLOCKED: Privilege / Work-Product Review Required. This content appears to contain a privilege or work-product marker together with matter-identifying information. Identifier redaction alone is not sufficient to clear this material for external AI submission. Under ABA Formal Opinion 512 and related guidance, a lawyer must evaluate confidentiality duties, client authorization and consent, provider safeguards, and risk of disclosure before submitting client-related material to any generative AI system. Action: block external AI submission pending attorney review."
+    }
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

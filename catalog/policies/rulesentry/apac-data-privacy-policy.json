@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.apac-data-privacy",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "status": "active",
   "name": "APAC Data Privacy Policy",
   "description": "Data privacy policy for Asia-Pacific jurisdictions. Extends the Global PII baseline (policy.pii) and adds APAC-specific contact formats (AU, CN, IN phone numbers) and government ID detection across AU, JP, IN, CN, HK, KR, TW, NZ, and TH.\n\nScope: APAC personal data protection",
@@ -25,7 +25,7 @@
   ],
   "rules": [
     {
-      "rule_id": "contact.phone_australia",
+      "rule_id": "personal.phone_australia",
       "pinned_version": "3.0.0",
       "priority": 50,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -33,7 +33,7 @@
       "notes": "Australian phone number detection (moved from policy.pii)"
     },
     {
-      "rule_id": "contact.phone_china",
+      "rule_id": "personal.phone_china",
       "pinned_version": "3.0.0",
       "priority": 50,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -41,7 +41,7 @@
       "notes": "Chinese phone number detection (moved from policy.pii)"
     },
     {
-      "rule_id": "contact.phone_india",
+      "rule_id": "personal.phone_india",
       "pinned_version": "3.0.0",
       "priority": 50,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -262,7 +262,7 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-05-27T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
   "modified_by": "claude-code",
   "references": [
     {

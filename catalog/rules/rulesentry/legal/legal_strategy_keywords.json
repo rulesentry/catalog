@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "legal.legal_strategy_keywords",
+  "qualified_id": "rulesentry.legal.legal_strategy_keywords",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.1.0",
+  "status": "active",
+  "name": "Legal Strategy / Mental Impressions",
+  "description": "Detects legal strategy language that should never be sent to AI without attorney review: litigation strategy, BATNA, impeachment plan, settlement authority, mental impressions. Per D.C. Bar Opinion 388 and ABA Model Rule 1.6, these represent core work product. This rule flags content for human review — it does not determine whether privilege applies.\n\nDetection note: List membership detects known strategy phrases. It does not detect novel strategy language — attorney review is always required for documents containing legal analysis or recommendations.",
+  "category_id": "legal",
+  "severity": "critical",
+  "profiles": [
+    "aba-ethics",
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "tags": [
+    "strategy",
+    "mental-impressions",
+    "work-product",
+    "legal"
+  ],
+  "evaluation": {
+    "evaluation_type": "list_membership",
+    "list": {
+      "values": [
+        "impeachment plan",
+        "litigation strategy",
+        "settlement authority",
+        "negotiation strategy",
+        "risk assessment score",
+        "candid assessment",
+        "weak points in our case",
+        "our exposure is",
+        "likelihood of prevailing",
+        "probability of success",
+        "recommended settlement range",
+        "walk-away number",
+        "BATNA",
+        "worst-case scenario assessment",
+        "deposition strategy",
+        "cross-examination plan",
+        "trial strategy",
+        "motion strategy",
+        "our vulnerability",
+        "privileged strategy memo",
+        "mental impressions",
+        "attorney mental impressions",
+        "work product protected",
+        "do not disclose",
+        "attorney eyes only"
+      ],
+      "case_sensitive": false
+    },
+    "effect": {
+      "type": "info",
+      "rationale": "compliance",
+      "message": "Litigation strategy / work-product language detected. Content of this type — settlement authority, negotiation posture, exposure analysis, litigation strategy — is not cleared for external AI submission by identifier redaction alone. ABA Model Rule 1.6 and D.C. Bar Opinion 388 require confidentiality protection and attorney judgment before using such material with any generative AI tool. Action: flag for attorney review before any external submission."
+    }
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

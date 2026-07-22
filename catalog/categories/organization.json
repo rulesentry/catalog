@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/category.schema.json",
+  "id": "organization",
+  "type": "category",
+  "version": "1.0.0",
+  "publisher_id": "rulesentry",
+  "status": "active",
+  "name": "Organization",
+  "description": "Rules detecting organizational identity and business-system identifiers: company and organization names, customer IDs, and employee IDs. Distinct from personal data (about individuals) and government identifiers (state-issued): this is data that identifies or is scoped to a business entity and its internal record systems.",
+  "frameworks": [
+    "GDPR",
+    "CCPA"
+  ],
+  "examples": [
+    "company name",
+    "organization name",
+    "customer ID",
+    "employee ID"
+  ],
+  "display_order": 12,
+  "is_system": true,
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/categories/organization"
+  },
+  "created_at": "2026-07-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "personal.phone_france",
+  "qualified_id": "rulesentry.personal.phone_france",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "name": "French Phone Number",
+  "description": "Detects French phone numbers with +33 country code or 0 prefix. French numbers are 10 digits starting with 0 (domestic) or 9 digits after +33.\n\nFormat: +33 X XX XX XX XX or 0X XX XX XX XX",
+  "category_id": "personal",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "production"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:\\b0[1-9]|\\+33\\s?[1-9])(?:[\\s.-]?\\d{2}){4}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "TEL"
+        }
+      },
+      "message": "French phone number tokenized"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "regions": [
+    "FR"
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

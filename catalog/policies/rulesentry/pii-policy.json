@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.pii",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "status": "active",
   "name": "PII Protection Policy",
   "description": "Global baseline policy for personally identifiable information. Covers universal personal attributes, generic contact information, and formats that apply across all regions. Country-specific contact rules (phone numbers, postal codes) are owned by regional policies that extend this baseline (policy.us-pii, policy.eu-gdpr, policy.uk-data-protection, policy.apac-data-privacy, policy.americas-data-protection, policy.emea-extended).\n\nScope: Global PII protection baseline",
@@ -81,49 +81,49 @@
       "notes": "Prescription number detection (global)"
     },
     {
-      "rule_id": "contact.apartment_number",
+      "rule_id": "personal.apartment_number",
       "pinned_version": "3.0.0",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "contact.country_name",
+      "rule_id": "personal.country_name",
       "pinned_version": "3.0.0",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "contact.email_address",
+      "rule_id": "personal.email_address",
       "pinned_version": "3.0.0",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "contact.fax_number",
+      "rule_id": "personal.fax_number",
       "pinned_version": "3.0.0",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "contact.po_box",
+      "rule_id": "personal.po_box",
       "pinned_version": "3.0.0",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "contact.street_address",
+      "rule_id": "personal.street_address",
       "pinned_version": "3.1.0",
       "priority": 40,
       "attached_at": "2026-03-07T00:00:00Z",
       "attached_by": "claude-code"
     },
     {
-      "rule_id": "contact.phone_international",
+      "rule_id": "personal.phone_international",
       "pinned_version": "3.0.0",
       "priority": 40,
       "attached_at": "2026-03-17T00:00:00Z",
@@ -168,7 +168,7 @@
   },
   "created_at": "2026-02-13T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-05-27T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
   "modified_by": "claude-code",
   "references": [
     {

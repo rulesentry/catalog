@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.ca-attorney-ai-redaction",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "status": "active",
   "name": "California Attorney-Client AI Redaction Policy",
   "description": "California-specific strict overlay extending the US baseline. California requires full anonymization — not mere tokenization — before inputting client matter information into external AI systems (Cal. Bus. & Prof. Code § 6068(e)(1), CA COPRAC Practical Guidance 2026). Key differences from US baseline: (1) case captions are blocked for human review rather than tokenized, because sending any token to an external AI risks re-identification; (2) contact details are elevated to critical — quasi-identifiers in combination can re-identify a client without names; (3) personal quasi-identifiers (DOB, age, gender) are added as they contribute to re-identification under CA's stricter standard; (4) the 2026 agentic AI guidance prohibits autonomous external transmission of confidential information — this policy enforces the hardest available gate on privilege markers.\n\nKey difference from US baseline: Full anonymization required — case captions are blocked (not tokenized); contact details are critical; personal quasi-identifiers (DOB, age, gender) are included; agentic AI autonomous transmission is explicitly prohibited\nScope: Attorney-client confidentiality for AI tool usage — California strict overlay",
@@ -27,7 +27,7 @@
   ],
   "rules": [
     {
-      "rule_id": "legal_privilege.ca_bar_number",
+      "rule_id": "legal.ca_bar_number",
       "pinned_version": "1.0.0",
       "priority": 70,
       "attached_at": "2026-06-04T00:00:00Z",
@@ -48,7 +48,7 @@
   ],
   "overrides": [
     {
-      "rule_id": "legal_privilege.case_caption",
+      "rule_id": "legal.case_caption",
       "effect": {
         "type": "info",
         "rationale": "compliance",
@@ -57,19 +57,24 @@
       "reason": "CA requires full anonymization; tokenization is insufficient — the token itself can be used to identify the matter in public records"
     },
     {
-      "rule_id": "legal_privilege.privileged_communication_composite",
+      "rule_id": "legal.privileged_communication_composite",
       "severity": "critical",
       "reason": "CA: composite privilege detection elevates to hard block given agentic AI autonomous transmission prohibition"
-    },
-    {
-      "rule_id": "contact.*",
-      "severity": "critical",
-      "reason": "CA: contact details are quasi-identifiers that can re-identify a client when combined, per the stricter anonymization standard of § 6068(e)(1)"
     },
     {
       "rule_id": "personal.*",
       "severity": "high",
       "reason": "CA: personal attributes (age, gender, DOB) are quasi-identifiers under CA's full-anonymization standard — included as they contribute to re-identification in combination"
+    },
+    {
+      "rule_id": "personal.email_address",
+      "severity": "critical",
+      "reason": "CA: contact details are quasi-identifiers that can re-identify a client when combined, per the stricter anonymization standard of § 6068(e)(1) (Was a contact.* wildcard before the contact→personal merge; enumerated to the two contact rules this policy resolves so the pre-merge scope is preserved — placed after the personal.* entry so critical wins.)"
+    },
+    {
+      "rule_id": "personal.phone_us",
+      "severity": "critical",
+      "reason": "CA: contact details are quasi-identifiers that can re-identify a client when combined, per the stricter anonymization standard of § 6068(e)(1) (Was a contact.* wildcard before the contact→personal merge; enumerated to the two contact rules this policy resolves so the pre-merge scope is preserved — placed after the personal.* entry so critical wins.)"
     }
   ],
   "origin": {
@@ -77,7 +82,7 @@
   },
   "created_at": "2026-06-04T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-06-04T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
   "modified_by": "claude-code",
   "references": [
     {

@@ -2,22 +2,27 @@
   "$schema": "https://schemas.rulesentry.io/v5/catalog/category.schema.json",
   "id": "personal",
   "type": "category",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "publisher_id": "rulesentry",
   "status": "active",
   "name": "Personal Information",
-  "description": "Rules detecting demographic and biometric personal attributes: dates of birth, age, gender markers, and biometric data. Covers purely identity-descriptive attributes that are not healthcare-specific. For healthcare identifiers (health insurance numbers, medical record numbers, patient IDs, prescription numbers, blood type), see the healthcare category.",
+  "description": "Rules detecting personal identifiers and attributes: names, contact and location data (email addresses, phone numbers, physical addresses, postal codes), dates of birth, age, gender markers, demographics, and biometric data. Absorbs the former contact category — contact details are personal identifiers. For healthcare identifiers (health insurance numbers, medical record numbers, patient IDs, prescription numbers, blood type), see the healthcare category.",
   "frameworks": [
     "HIPAA",
     "GDPR",
-    "CCPA"
+    "CCPA",
+    "PIPEDA"
   ],
   "examples": [
     "date of birth",
     "full name",
     "age",
     "gender",
-    "biometric data"
+    "biometric data",
+    "email address",
+    "phone number",
+    "mailing address",
+    "postal code"
   ],
   "display_order": 10,
   "is_system": true,
@@ -27,6 +32,6 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "rulesentry-catalog",
-  "modified_at": "2026-03-13T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
   "modified_by": "claude-code"
 }

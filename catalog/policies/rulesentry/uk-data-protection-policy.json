@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.uk-data-protection",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "status": "active",
   "name": "UK Data Protection Policy",
   "description": "Data protection policy for United Kingdom jurisdictions under the DPA 2018 and UK-GDPR. Extends the Global PII baseline (policy.pii) and adds UK-specific contact formats (phone, postcode) and government identifiers (NINO, NHS, driving licence, passport). UK is under EMEA but not under EU, reflecting post-Brexit regulatory independence.\n\nScope: UK personal data and special category data protection",
@@ -25,7 +25,7 @@
   ],
   "rules": [
     {
-      "rule_id": "contact.phone_uk_landline",
+      "rule_id": "personal.phone_uk_landline",
       "pinned_version": "3.0.0",
       "priority": 50,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -33,7 +33,7 @@
       "notes": "UK landline phone detection (moved from policy.pii)"
     },
     {
-      "rule_id": "contact.phone_uk_mobile",
+      "rule_id": "personal.phone_uk_mobile",
       "pinned_version": "3.0.0",
       "priority": 50,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -41,7 +41,7 @@
       "notes": "UK mobile phone detection (moved from policy.pii)"
     },
     {
-      "rule_id": "contact.postcode_uk",
+      "rule_id": "personal.postcode_uk",
       "pinned_version": "3.0.0",
       "priority": 45,
       "attached_at": "2026-05-27T00:00:00Z",
@@ -125,7 +125,7 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-05-27T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
   "modified_by": "claude-code",
   "references": [
     {

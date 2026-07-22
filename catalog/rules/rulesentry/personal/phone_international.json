@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "personal.phone_international",
+  "qualified_id": "rulesentry.personal.phone_international",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "name": "International Phone Number (E.164)",
+  "description": "Detects international phone numbers in E.164 format: plus sign followed by country code and subscriber number (7-15 digits total). Complements country-specific phone rules with a global catch-all pattern.",
+  "category_id": "personal",
+  "severity": "medium",
+  "profiles": [
+    "production"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 50,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\+[1-9]\\d{6,14}\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "TEL",
+          "reversible": false
+        }
+      },
+      "message": "International phone number tokenized for privacy for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-03-17T00:00:00Z",
+  "regions": [
+    "GLOBAL"
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction PHONE_INTERNATIONAL pattern"
+    },
+    {
+      "note": "ITU-T E.164 numbering plan"
+    }
+  ],
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

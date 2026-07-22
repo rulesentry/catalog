@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "legal.legal_citation",
+  "qualified_id": "rulesentry.legal.legal_citation",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.1.0",
+  "status": "active",
+  "name": "Legal Case Citation",
+  "description": "Detects US legal reporter citations: U.S. Reports (456 U.S. 123), Federal Reporter (78 F.3d 456), state reporters (Cal.App., N.Y.S., Tex., etc.). Public citations may be kept for legal reasoning, but citations combined with identifying party names should be reviewed. Maps to LEGAL_CITATION canonical type.\n\nPattern note: Matches volume-reporter-page format only. Does not match party names — use case_caption rule for those. Public citations are often legally necessary; tokenize rather than redact to preserve legal utility.",
+  "category_id": "legal",
+  "severity": "medium",
+  "profiles": [
+    "aba-ethics",
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "tags": [
+    "citation",
+    "reporter",
+    "case-law",
+    "legal"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 55,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\d+\\s+(?:U\\.S\\.|F\\.(?:2d|3d|4th|Supp\\.(?:2d|3d)?)|S\\.\\s*Ct\\.|L\\.\\s*Ed\\.(?:\\s*2d)?|F\\.\\s*App'?x|Cal\\.\\s*(?:App\\.\\s*)?(?:2d|3d|4th|5th)?|N\\.Y\\.(?:S\\.(?:2d|3d)?|2d|3d)?|Tex\\.(?:App\\.)?|Ill\\.(?:App\\.(?:2d|3d)?|2d)?|Fla\\.(?:Dist\\.\\s*Ct\\.\\s*App\\.)?|A\\.(?:2d|3d)|P\\.(?:2d|3d)|S\\.W\\.(?:2d|3d)|N\\.W\\.(?:2d)|N\\.E\\.(?:2d|3d)|So\\.(?:2d|3d))\\s+\\d+(?:\\s*\\(\\d{4}\\))?",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": false
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "CITATION",
+          "reversible": false
+        }
+      },
+      "message": "Legal citation tokenized — verify citation is not combined with identifying party information before restoring"
+    }
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

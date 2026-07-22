@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "personal.last_name_ner",
+  "qualified_id": "rulesentry.personal.last_name_ner",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Last Name",
+  "description": "Detects last names using an on-device NER model. Requires ettin-pii to be active. Rule silently no-ops when no model is active.",
+  "category_id": "personal",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "name",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "last_name"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "validator": "single_word",
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[LAST_NAME]"
+        }
+      },
+      "message": "Last name detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/personal/last_name_ner"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

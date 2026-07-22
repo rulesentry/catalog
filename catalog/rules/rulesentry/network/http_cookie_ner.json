@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "network.http_cookie_ner",
+  "qualified_id": "rulesentry.network.http_cookie_ner",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "inactive",
+  "name": "HTTP Cookie / Session Token",
+  "description": "Detects HTTP session cookies and tokens using an on-device NER model. Session tokens grant access equivalent to credentials and must not be leaked. Rule silently no-ops when no model is active.",
+  "category_id": "network",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [],
+  "tags": [
+    "credentials",
+    "session",
+    "security",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "http_cookie"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[HTTP_COOKIE]"
+        }
+      },
+      "message": "HTTP Cookie / Session Token detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/network/http_cookie_ner"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

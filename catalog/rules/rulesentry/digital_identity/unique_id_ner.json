@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "digital_identity.unique_id_ner",
+  "qualified_id": "rulesentry.digital_identity.unique_id_ner",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "inactive",
+  "name": "Unique Identifier",
+  "description": "Detects unique personal identifiers (UUIDs, serial numbers, etc.) using an on-device NER model. Rule silently no-ops when no model is active.",
+  "category_id": "digital_identity",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr"
+  ],
+  "tags": [
+    "pii",
+    "identifier",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "unique_id"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[UNIQUE_ID]"
+        }
+      },
+      "message": "Unique identifier detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/digital_identity/unique_id_ner"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

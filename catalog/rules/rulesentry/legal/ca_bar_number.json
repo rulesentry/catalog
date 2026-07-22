@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "legal.ca_bar_number",
+  "qualified_id": "rulesentry.legal.ca_bar_number",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "California State Bar Number (SBN)",
+  "description": "Detects California State Bar Numbers in SBN format (6-7 digits). California lawyers are identified in public records by their SBN — exposure allows lookup of the attorney's name, firm, and discipline history, which in turn can identify the client matter. Elevated severity under Cal. Bus. & Prof. Code § 6068(e)(1): counsel identity is a quasi-identifier that contributes to matter re-identification.\n\nPattern note: SBN format: 6-7 digits, always preceded by 'SBN', 'State Bar No.', or 'Cal. Bar No.' context cue. California bar numbers are 6 digits (pre-2000 admissions) or 7 digits (post-2000). Higher severity than the US baseline rule because CA's full-anonymization standard treats counsel identity as a quasi-identifier.",
+  "category_id": "legal",
+  "severity": "high",
+  "profiles": [
+    "cal-bar-ethics",
+    "aba-ethics",
+    "production"
+  ],
+  "regions": [
+    "US-CA"
+  ],
+  "tags": [
+    "bar-number",
+    "sbn",
+    "attorney",
+    "california",
+    "legal"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:SBN|Cal(?:ifornia)?\\.?\\s+(?:State\\s+)?Bar\\s+(?:No\\.?|Number|#)|State\\s+Bar\\s+(?:of\\s+California\\s+)?(?:No\\.?|Number|#))\\s*:?\\s*\\d{6,7}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "SBN",
+          "reversible": false
+        }
+      },
+      "message": "California State Bar Number tokenized — SBN enables public lookup of attorney identity, which can re-identify the client matter under Cal. Bus. & Prof. Code § 6068(e)(1)"
+    }
+  },
+  "created_at": "2026-06-04T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

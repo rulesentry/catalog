@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.policy.eu-gdpr",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "status": "active",
   "name": "EU GDPR Data Protection Policy",
   "description": "GDPR compliance policy for European Union jurisdictions. Extends the Global PII baseline (policy.pii) and adds EU-specific identifiers, country-specific phone and postal formats, and network identifiers. Rules scoped to EU automatically apply to DE, FR, NL, ES, IT via region hierarchy.\n\nScope: EU personal data protection",
@@ -49,7 +49,7 @@
       "notes": "IBAN detection for EU financial data protection"
     },
     {
-      "rule_id": "contact.phone_france",
+      "rule_id": "personal.phone_france",
       "pinned_version": "3.0.0",
       "priority": 60,
       "attached_at": "2026-03-07T00:00:00Z",
@@ -57,7 +57,7 @@
       "notes": "French phone number detection (GDPR filter)"
     },
     {
-      "rule_id": "contact.phone_germany",
+      "rule_id": "personal.phone_germany",
       "pinned_version": "3.0.0",
       "priority": 60,
       "attached_at": "2026-03-07T00:00:00Z",
@@ -65,7 +65,7 @@
       "notes": "German phone number detection (GDPR filter)"
     },
     {
-      "rule_id": "contact.postal_code_germany",
+      "rule_id": "personal.postal_code_germany",
       "pinned_version": "3.0.0",
       "priority": 60,
       "attached_at": "2026-03-07T00:00:00Z",
@@ -326,7 +326,7 @@
   },
   "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-05-27T12:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
   "modified_by": "claude-code",
   "references": [
     {

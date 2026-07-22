@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "personal.street_address",
+  "qualified_id": "rulesentry.personal.street_address",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "name": "Street Address",
+  "description": "Detects street addresses with number + street name pattern (e.g., 123 Main St, 456 Oak Avenue). Generic pattern may have false positives.\n\nNote: Generic pattern - may need context-specific tuning",
+  "category_id": "personal",
+  "severity": "low",
+  "profiles": [
+    "gdpr",
+    "ccpa",
+    "production"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 55,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b\\d{1,5}\\s+(?:[A-Z][a-z]*|\\d+(?:st|nd|rd|th))(?:\\s+(?:[A-Z][a-z]*|\\d+(?:st|nd|rd|th)))*\\s+(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Lane|Ln|Boulevard|Blvd|Way|Court|Ct|Place|Pl|Circle|Cir|Terrace|Ter|Highway|Hwy|Parkway|Pkwy|Trail|Trl|Pike|Square|Sq)(?:\\s+(?:NW|NE|SW|SE|N|S|E|W))?\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "inference",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[ADDRESS]"
+        }
+      },
+      "message": "Street address redacted"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "regions": [
+    "GLOBAL"
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

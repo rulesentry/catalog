@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "legal.court_filing_date",
+  "qualified_id": "rulesentry.legal.court_filing_date",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Court Filing / Hearing Date",
+  "description": "Detects dates in litigation context: filed on, hearing date, trial date, deposition scheduled, arraignment, sentencing. Exact court dates combined with case details enable matter identification in public court calendars.",
+  "category_id": "legal",
+  "severity": "high",
+  "profiles": [
+    "aba-ethics",
+    "production"
+  ],
+  "regions": [
+    "US"
+  ],
+  "tags": [
+    "filing-date",
+    "hearing",
+    "court-date",
+    "legal"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 70,
+    "target": "content",
+    "pattern": {
+      "pattern": "(?:filed\\s+(?:on)?|hearing\\s+(?:date|on|scheduled)|trial\\s+(?:date|set|scheduled)|deposition\\s+(?:on|scheduled|set)|motion\\s+(?:filed|due)|response\\s+due|deadline\\s+(?:of|is)|arraignment\\s+(?:on|date)|sentencing\\s+(?:on|date))\\s*:?\\s*(?:(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\.?\\s+\\d{1,2},?\\s+\\d{4}|\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4})",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "redact",
+        "params": {
+          "marker": "[COURT_DATE_REDACTED]"
+        }
+      },
+      "message": "Court/filing date redacted — exact dates enable matter identification via public court calendars"
+    }
+  },
+  "created_at": "2026-06-03T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

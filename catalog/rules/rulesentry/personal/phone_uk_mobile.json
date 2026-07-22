@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "personal.phone_uk_mobile",
+  "qualified_id": "rulesentry.personal.phone_uk_mobile",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "name": "UK Mobile Phone Number",
+  "description": "Detects UK mobile phone numbers starting with 07. Supports various formatting styles including spaces, dashes, and parentheses.\n\nFormat: 07XXX XXXXXX",
+  "category_id": "personal",
+  "severity": "medium",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "production"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 65,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b(?:\\+44\\s?7|07)(?:\\d{3}[\\s.-]?\\d{6}|\\d{9})\\b",
+      "engine": "regex"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "TEL",
+          "reversible": false
+        }
+      },
+      "message": "UK mobile number tokenized for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "regions": [
+    "UK"
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

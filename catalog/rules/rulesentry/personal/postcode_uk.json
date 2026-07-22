@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "personal.postcode_uk",
+  "qualified_id": "rulesentry.personal.postcode_uk",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "4.0.0",
+  "name": "UK Postcode",
+  "description": "Detects UK postcodes in various formats (e.g., SW1A 1AA, M1 1AE, B33 8TH). Supports all UK postcode patterns including London, Manchester, Birmingham, etc.\n\nFormat: A(A)N(A/N)(A/N) NAA",
+  "category_id": "personal",
+  "severity": "low",
+  "profiles": [
+    "gdpr",
+    "uk-dpa",
+    "production"
+  ],
+  "evaluation": {
+    "evaluation_type": "pattern_match",
+    "priority": 60,
+    "target": "content",
+    "pattern": {
+      "pattern": "\\b[A-Z]{1,2}\\d[A-Z\\d]?\\s?\\d[A-Z]{2}\\b",
+      "engine": "regex",
+      "flags": {
+        "case_insensitive": true
+      }
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "verification",
+      "transform": {
+        "type": "tokenize",
+        "params": {
+          "prefix": "POSTAL",
+          "reversible": false
+        }
+      },
+      "message": "UK postcode tokenized, outward code visible for de-identification"
+    }
+  },
+  "status": "active",
+  "created_at": "2026-01-27T00:00:00Z",
+  "regions": [
+    "UK"
+  ],
+  "references": [
+    {
+      "note": "Based on OpenRedaction community patterns"
+    },
+    {
+      "url": "https://github.com/openredact/openredact"
+    }
+  ],
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

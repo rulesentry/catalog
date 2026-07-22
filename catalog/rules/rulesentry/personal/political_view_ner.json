@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
+  "id": "personal.political_view_ner",
+  "qualified_id": "rulesentry.personal.political_view_ner",
+  "publisher_id": "rulesentry",
+  "type": "rule",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Political View",
+  "description": "Detects political opinions and views using an on-device NER model. Political opinions are a GDPR Article 9 special category requiring explicit consent to process. Rule silently no-ops when no model is active.",
+  "category_id": "personal",
+  "severity": "medium",
+  "regions": [
+    "GLOBAL"
+  ],
+  "profiles": [
+    "gdpr-special-categories",
+    "production"
+  ],
+  "tags": [
+    "pii",
+    "sensitive",
+    "gdpr-special-category",
+    "political",
+    "ner"
+  ],
+  "evaluation": {
+    "evaluation_type": "ner_match",
+    "entity_types": [
+      "political_view"
+    ],
+    "confidence_threshold": 0.85,
+    "model": {
+      "fallback": "skip"
+    },
+    "effect": {
+      "type": "transform",
+      "rationale": "compliance",
+      "transform": {
+        "type": "replace",
+        "params": {
+          "replacement": "[POLITICAL_VIEW]"
+        }
+      },
+      "message": "Political View detected by NER replaced for de-identification"
+    }
+  },
+  "origin": {
+    "source_type": "catalog",
+    "catalog_url": "https://catalog.rulesentry.io/rules/rulesentry/personal/political_view_ner"
+  },
+  "created_at": "2026-05-24T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code"
+}

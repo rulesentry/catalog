@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
+  "id": "policy.uk-dpa",
+  "qualified_id": "rulesentry.policy.uk-dpa",
+  "publisher_id": "rulesentry",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "UK Data Protection Act Overlay",
+  "description": "Regime overlay for the UK Data Protection Act 2018 / UK-GDPR. Carries no membership of its own — it contributes overrides on top of whatever the selected theme policies resolve.\n\nWhat it enforces: an NHS number is health data, which UK-GDPR Article 9 classes as a special category requiring a higher condition for processing; it is elevated to critical rather than treated as an ordinary national identifier.\n\nPair with: the pii and healthcare themes, and a configuration whose region lens includes UK.\n\nScope: UK DPA / UK-GDPR — overrides only",
+  "profiles": [
+    "uk-dpa"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 105,
+  "tags": [
+    "uk-dpa",
+    "uk-gdpr",
+    "nhs",
+    "overlay",
+    "regime"
+  ],
+  "overrides": [
+    {
+      "rule_id": "government.nhs_mod11",
+      "severity": "critical",
+      "reason": "NHS numbers are special category data under UK-GDPR Article 9"
+    }
+  ],
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-07-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "UK Data Protection Act 2018"
+    },
+    {
+      "note": "UK-GDPR Article 9"
+    }
+  ]
+}

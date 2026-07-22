@@ -1,0 +1,97 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
+  "id": "policy.legal",
+  "qualified_id": "rulesentry.policy.legal",
+  "publisher_id": "rulesentry",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Legal Data Protection Policy",
+  "description": "Thematic policy for legal matter data: case captions and docket numbers, privilege markers and headers, work-product and strategy language, settlement figures, court filing dates, legal citations, and bar numbers. Membership is the whole legal category.\n\nThe overrides here are the theme's own evaluation sequencing, not regime doctrine: legal identifiers must arbitrate ahead of general PII when their spans overlap, and the ladder within the category reflects how strongly each signal identifies a matter (a privilege marker beside a case identifier outranks a citation that is public record anyway). Attorney-ethics escalation of non-legal data — SSNs, EINs, contact details in a legal document — lives in the aba-ethics and cal-bar-ethics overlays, because it is a duty of the practitioner, not a property of the data.\n\nRenamed from the legal_privilege category's scope in D17: privilege is a subset of legal data, and the broader name accommodates legal-matter rules that are not privilege per se.\n\nScope: Legal matter and attorney work-product data — category-driven",
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 60,
+  "tags": [
+    "legal",
+    "attorney-client",
+    "work-product",
+    "theme"
+  ],
+  "rule_categories": [
+    {
+      "category_id": "legal",
+      "mode": "all"
+    }
+  ],
+  "overrides": [
+    {
+      "rule_id": "legal.privileged_communication_composite",
+      "priority": 100,
+      "reason": "Hard gate: privilege marker + case identifier — arbitrates ahead of every other legal signal"
+    },
+    {
+      "rule_id": "legal.legal_strategy_keywords",
+      "priority": 100,
+      "reason": "Strategy/mental impressions are core work product — arbitrates with the composite"
+    },
+    {
+      "rule_id": "legal.case_caption",
+      "priority": 95,
+      "reason": "Case captions identify the matter directly"
+    },
+    {
+      "rule_id": "legal.docket_number",
+      "priority": 95,
+      "reason": "Docket numbers enable public-record lookup of the matter"
+    },
+    {
+      "rule_id": "legal.privilege_header",
+      "priority": 90,
+      "reason": "Privilege/confidentiality headers mark the whole document"
+    },
+    {
+      "rule_id": "legal.settlement_amount",
+      "priority": 85,
+      "reason": "Settlement/reserve/demand figures are core work product"
+    },
+    {
+      "rule_id": "legal.court_filing_date",
+      "priority": 70,
+      "reason": "Court dates identify the matter via public court calendars"
+    },
+    {
+      "rule_id": "legal.ca_bar_number",
+      "priority": 70,
+      "reason": "CA State Bar numbers link to public bar records; ranks with the other counsel identifiers"
+    },
+    {
+      "rule_id": "legal.bar_number",
+      "priority": 60,
+      "reason": "Bar numbers link to public bar records and expose counsel identity"
+    },
+    {
+      "rule_id": "legal.legal_citation",
+      "priority": 55,
+      "reason": "Citations are public but may identify a matter combined with party names — lowest of the ladder"
+    }
+  ],
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-07-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "ABA Model Rule 1.6"
+    },
+    {
+      "note": "Fed. R. Civ. P. 26(b)(3) (work-product doctrine)"
+    }
+  ]
+}

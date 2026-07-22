@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
+  "id": "policy.hipaa",
+  "qualified_id": "rulesentry.policy.hipaa",
+  "publisher_id": "rulesentry",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "HIPAA Overlay",
+  "description": "Regime overlay for HIPAA. Carries no membership of its own — it contributes overrides on top of whatever the selected theme policies resolve, so adding it to a configuration changes how existing detections are treated rather than which rules run.\n\nWhat it enforces: the Safe-Harbor de-identification list (45 CFR 164.514(b)(2)) treats a Social Security number and a date of birth as direct identifiers of an individual, so both are elevated to critical wherever they appear — not only inside health records.\n\nPair with: the pii and healthcare themes (an empty overlay on its own protects nothing).\n\nScope: HIPAA — overrides only",
+  "profiles": [
+    "hipaa"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 105,
+  "tags": [
+    "hipaa",
+    "phi",
+    "overlay",
+    "regime"
+  ],
+  "overrides": [
+    {
+      "rule_id": "government.ssn_format",
+      "severity": "critical",
+      "reason": "HIPAA Safe-Harbor identifier — SSN identifies the individual directly"
+    },
+    {
+      "rule_id": "personal.date_of_birth",
+      "severity": "critical",
+      "reason": "HIPAA Safe-Harbor identifier — dates of birth must be removed or generalized to year"
+    }
+  ],
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-07-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "45 CFR 164.514(b)(2) — Safe Harbor de-identification"
+    },
+    {
+      "note": "HIPAA Privacy Rule"
+    }
+  ]
+}

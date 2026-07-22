@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
+  "id": "policy.network",
+  "qualified_id": "rulesentry.policy.network",
+  "publisher_id": "rulesentry",
+  "type": "policy",
+  "version": "5.0.0",
+  "status": "active",
+  "name": "Network Infrastructure Policy",
+  "description": "Thematic policy for network and infrastructure identifiers: IP addresses, MAC addresses, URLs and hostnames, DNS records, SSH fingerprints, HTTP cookies, and VPN configuration data. Membership is the whole network category.\n\nRenamed from policy.networking-global in D17 — the \"-global\" suffix belonged to the old jurisdictional taxonomy, where a name had to say which policies were NOT jurisdictional. Every theme is global now.\n\nScope: Network infrastructure data — global, category-driven",
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 50,
+  "tags": [
+    "network",
+    "infrastructure",
+    "theme"
+  ],
+  "rule_categories": [
+    {
+      "category_id": "network",
+      "mode": "all"
+    }
+  ],
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-02-10T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "NIST 800-53"
+    }
+  ]
+}

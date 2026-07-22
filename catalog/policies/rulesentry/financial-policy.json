@@ -4,12 +4,11 @@
   "qualified_id": "rulesentry.policy.financial",
   "publisher_id": "rulesentry",
   "type": "policy",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "status": "active",
-  "name": "Financial Data Policy",
-  "description": "Global baseline policy for financial data protection. Covers all financial rules including credit cards, bank accounts, routing numbers, IBAN, cryptocurrency addresses, and securities identifiers across all regions.\n\nScope: Global financial data protection",
+  "name": "Financial Data Protection Policy",
+  "description": "Thematic policy for financial data: payment cards and their verification values, bank accounts, routing and sort codes, IBAN and SWIFT/BIC identifiers, cryptocurrency addresses, securities identifiers, and the country-specific account formats the catalog carries. Membership is the whole financial category.\n\nJurisdiction-free by design (D17) — the configuration's region lens narrows country-specific formats to the jurisdictions the user operates in. PCI-DSS-specific handling belongs in the pci overlay, not here; this theme answers \"is this financial data?\", not \"which regime governs it?\".\n\nScope: Financial and cardholder data — global, category-driven",
   "profiles": [
-    "pci-dss",
     "production"
   ],
   "regions": [
@@ -19,162 +18,28 @@
   "tags": [
     "financial",
     "banking",
-    "pci-dss",
     "cardholder-data",
-    "global"
+    "theme"
   ],
-  "rules": [
+  "rule_categories": [
     {
-      "rule_id": "financial.account_number",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.bic_swift",
-      "pinned_version": "3.2.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.bitcoin_address",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.bsb_australia",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.clabe_mexico",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.credit_card_luhn",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.cusip",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.cvv_cvc",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.debit_card",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.ethereum_address",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.iban_mod97",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.ifsc_india",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.isin",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.lei",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.pin_code",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.routing_number",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.sedol",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.uk_sort_code",
-      "pinned_version": "3.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-07T00:00:00Z",
-      "attached_by": "claude-code"
-    },
-    {
-      "rule_id": "financial.card_expiration",
-      "pinned_version": "1.0.0",
-      "priority": 45,
-      "attached_at": "2026-03-19T00:00:00Z",
-      "attached_by": "claude-code",
-      "notes": "Card expiration date detection (PCI-DSS cardholder data)"
+      "category_id": "financial",
+      "mode": "all"
     }
   ],
   "origin": {
     "source_type": "local"
   },
-  "created_at": "2026-02-13T00:00:00Z",
+  "created_at": "2026-02-10T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-03-19T00:00:00Z",
+  "modified_at": "2026-07-23T00:00:00Z",
   "modified_by": "claude-code",
   "references": [
     {
-      "note": "PCI-DSS 4.0"
+      "note": "PCI-DSS v4.0"
     },
     {
-      "note": "GLBA"
-    },
-    {
-      "note": "SOX"
+      "note": "ISO 20022"
     }
   ]
 }

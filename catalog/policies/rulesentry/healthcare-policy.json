@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
+  "id": "policy.healthcare",
+  "qualified_id": "rulesentry.policy.healthcare",
+  "publisher_id": "rulesentry",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "Healthcare Data Protection Policy",
+  "description": "Thematic policy for protected health information: medical record and health-plan identifiers, provider identifiers, diagnosis and prescription data, and the national health-service numbers of every jurisdiction the catalog covers. Membership is the whole healthcare category.\n\nPHI is deliberately its own theme rather than a slice of PII — to a compliance user \"do you protect health data?\" is a different question from \"do you protect personal data?\", and the two are governed by different regimes. Regime-specific escalation (HIPAA Safe-Harbor identifiers, UK-GDPR Article 9 special-category data) lives in the matching overlay policy, not here.\n\nScope: Protected health information — global, category-driven",
+  "profiles": [
+    "production"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 55,
+  "tags": [
+    "healthcare",
+    "phi",
+    "theme"
+  ],
+  "rule_categories": [
+    {
+      "category_id": "healthcare",
+      "mode": "all"
+    }
+  ],
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-07-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "HIPAA Privacy Rule 45 CFR 164.514(b)(2)"
+    },
+    {
+      "note": "ISO 27799"
+    }
+  ]
+}

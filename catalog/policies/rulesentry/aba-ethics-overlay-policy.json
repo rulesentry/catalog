@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/policy.schema.json",
+  "id": "policy.aba-ethics",
+  "qualified_id": "rulesentry.policy.aba-ethics",
+  "publisher_id": "rulesentry",
+  "type": "policy",
+  "version": "1.0.0",
+  "status": "active",
+  "name": "ABA Attorney Ethics Overlay",
+  "description": "Regime overlay for US attorney-client confidentiality when work product is submitted to AI systems (ABA Model Rule 1.6, ABA Formal Opinion 512, D.C. Bar Opinion 388). Carries no membership of its own — it contributes overrides on top of whatever the selected theme policies resolve.\n\nWhat it enforces: ordinary personal data becomes matter-identifying inside a legal document, so it must arbitrate ahead of the legal signals it accompanies rather than behind them. A Social Security number in a filing identifies a party directly (critical, top of the ladder); an EIN links a corporate party to public filings; an email address identifies counsel or client; a phone number identifies contacting parties. The legal category's own sequencing lives in the legal theme — this overlay only relocates the attorney-context escalation of NON-legal data (D17 T0 §3, D-1).\n\nPair with: the legal and pii themes. California practitioners add the cal-bar-ethics overlay on top; that overlay declares a profile dependency on this one, so the engine rejects a configuration that takes CA's stricter rules without the ABA baseline.\n\nScope: US attorney-client confidentiality — overrides only",
+  "profiles": [
+    "aba-ethics"
+  ],
+  "regions": [
+    "GLOBAL"
+  ],
+  "priority": 110,
+  "tags": [
+    "aba",
+    "attorney-client",
+    "ai-redaction",
+    "confidentiality",
+    "overlay",
+    "regime"
+  ],
+  "overrides": [
+    {
+      "rule_id": "government.ssn_format",
+      "severity": "critical",
+      "priority": 100,
+      "reason": "SSN in a legal document identifies a party, client or witness directly — always critical, arbitrates first"
+    },
+    {
+      "rule_id": "government.ein",
+      "priority": 75,
+      "reason": "EIN identifies corporate entities and links to public filings"
+    },
+    {
+      "rule_id": "personal.email_address",
+      "severity": "high",
+      "priority": 70,
+      "reason": "Email addresses identify attorneys, clients and opposing parties"
+    },
+    {
+      "rule_id": "personal.phone_us",
+      "priority": 65,
+      "reason": "US phone numbers identify contacting parties"
+    }
+  ],
+  "origin": {
+    "source_type": "local"
+  },
+  "created_at": "2026-07-23T00:00:00Z",
+  "created_by": "claude-code",
+  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_by": "claude-code",
+  "references": [
+    {
+      "note": "ABA Model Rule 1.6"
+    },
+    {
+      "note": "ABA Formal Opinion 512"
+    },
+    {
+      "note": "DC Bar Opinion 388"
+    },
+    {
+      "note": "Florida Opinion 24-1"
+    }
+  ]
+}

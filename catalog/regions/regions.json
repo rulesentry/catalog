@@ -42,7 +42,10 @@
         "CCPA",
         "CPRA"
       ],
-      "display_order": 101
+      "display_order": 101,
+      "profile_ids": [
+        "ccpa"
+      ]
     },
     {
       "code": "US-NY",
@@ -516,7 +519,10 @@
         "PIPEDA",
         "PHIPA"
       ],
-      "display_order": 200
+      "display_order": 200,
+      "profile_ids": [
+        "pipeda"
+      ]
     },
     {
       "code": "CA-QC",
@@ -596,7 +602,10 @@
         "GDPR",
         "ePrivacy Directive"
       ],
-      "display_order": 300
+      "display_order": 300,
+      "profile_ids": [
+        "gdpr"
+      ]
     },
     {
       "code": "DE",
@@ -754,7 +763,10 @@
         "UK-GDPR",
         "DPA 2018"
       ],
-      "display_order": 350
+      "display_order": 350,
+      "profile_ids": [
+        "uk-dpa"
+      ]
     },
     {
       "code": "TR",
@@ -911,7 +923,10 @@
       "frameworks": [
         "PDPA 2012"
       ],
-      "display_order": 410
+      "display_order": 410,
+      "profile_ids": [
+        "pdpa-sg"
+      ]
     },
     {
       "code": "JP",
@@ -988,7 +1003,10 @@
       "frameworks": [
         "PDPA B.E. 2562"
       ],
-      "display_order": 444
+      "display_order": 444,
+      "profile_ids": [
+        "pdpa-th"
+      ]
     },
     {
       "code": "MY",

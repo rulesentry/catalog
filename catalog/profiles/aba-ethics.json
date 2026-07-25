@@ -9,6 +9,7 @@
   "description": "Multi-state attorney-client confidentiality framework based on ABA Model Rule 1.6 and ABA Formal Opinion 512. Covers the duty to protect 'information relating to the representation' when using generative AI tools. Applies to ~40+ jurisdictions that track the ABA framework including D.C. (Opinion 388) and Florida (Opinion 24-1).",
   "profile_type": "compliance_framework",
   "frameworks": [
+    "ABA Model Rules",
     "ABA Model Rule 1.6",
     "ABA Formal Opinion 512",
     "DC Bar Opinion 388",

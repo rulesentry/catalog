@@ -9,6 +9,7 @@
   "description": "Payment Card Industry Data Security Standard (PCI-DSS) compliance framework for protecting cardholder data. Covers card numbers, CVVs, PINs, and authentication data.",
   "profile_type": "compliance_framework",
   "frameworks": [
+    "PCI-DSS",
     "PCI-DSS 4.0"
   ],
   "display_order": 40,

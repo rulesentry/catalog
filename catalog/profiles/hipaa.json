@@ -9,6 +9,7 @@
   "description": "Health Insurance Portability and Accountability Act (HIPAA) compliance framework for protecting Protected Health Information (PHI). Covers the Privacy Rule, Security Rule, and Breach Notification Rule.",
   "profile_type": "compliance_framework",
   "frameworks": [
+    "HIPAA",
     "HIPAA 45 CFR 164",
     "HITECH Act"
   ],

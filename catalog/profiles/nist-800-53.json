@@ -9,6 +9,7 @@
   "description": "NIST Special Publication 800-53 security and privacy controls for federal information systems and organizations. Covers access control, configuration management, identification and authentication, system and communications protection, and incident response.",
   "profile_type": "compliance_framework",
   "frameworks": [
+    "NIST 800-53",
     "NIST SP 800-53 Rev 5",
     "FISMA"
   ],

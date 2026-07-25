@@ -9,6 +9,7 @@
   "description": "Sarbanes-Oxley Act (SOX) compliance framework for protecting financial records and internal controls of publicly traded companies. Covers financial reporting data, audit trails, and access controls over financial systems.",
   "profile_type": "compliance_framework",
   "frameworks": [
+    "SOX",
     "SOX Section 302",
     "SOX Section 404",
     "PCAOB"

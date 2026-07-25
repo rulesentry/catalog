@@ -9,6 +9,7 @@
   "description": "ISO/IEC 27001 information security management system (ISMS) standard. Covers controls for information security, including access management, cryptography, network security, and supplier relationships. Applicable to organizations of any size seeking international ISMS certification.",
   "profile_type": "compliance_framework",
   "frameworks": [
+    "ISO 27001",
     "ISO/IEC 27001:2022",
     "ISO/IEC 27002:2022"
   ],

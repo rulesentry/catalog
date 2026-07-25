@@ -11,7 +11,6 @@
   "severity": "high",
   "profiles": [
     "government-sector",
-    "popia",
     "production"
   ],
   "evaluation": {

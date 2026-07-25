@@ -11,8 +11,7 @@
   "severity": "medium",
   "profiles": [
     "financial-industry",
-    "production",
-    "sec"
+    "production"
   ],
   "evaluation": {
     "evaluation_type": "pattern_match",

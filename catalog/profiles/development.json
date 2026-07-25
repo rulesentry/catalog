@@ -9,8 +9,7 @@
   "description": "Development environment profile. Rules tagged with this profile apply in local development contexts. Enables relaxed enforcement and detailed diagnostics.",
   "profile_type": "environment",
   "conflicts_with_profiles": [
-    "production",
-    "staging"
+    "production"
   ],
   "display_order": 90,
   "is_system": true,

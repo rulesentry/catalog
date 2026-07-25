@@ -9,8 +9,7 @@
   "description": "Production environment profile. Rules tagged with this profile are active in production deployments. Enables strict enforcement and audit logging.",
   "profile_type": "environment",
   "conflicts_with_profiles": [
-    "development",
-    "staging"
+    "development"
   ],
   "display_order": 80,
   "is_system": true,

@@ -1,5 +1,6 @@
 {
   "id": "de_vat_id_mod11",
+  "qualified_id": "rulesentry.de_vat_id_mod11",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

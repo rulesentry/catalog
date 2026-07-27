@@ -1,6 +1,7 @@
 {
   "$schema": "https://schemas.rulesentry.io/v5/catalog/profile.schema.json",
   "id": "iso-27001",
+  "qualified_id": "rulesentry.iso-27001",
   "type": "profile",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

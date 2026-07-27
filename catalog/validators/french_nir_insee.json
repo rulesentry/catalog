@@ -1,5 +1,6 @@
 {
   "id": "french_nir_insee",
+  "qualified_id": "rulesentry.french_nir_insee",
   "type": "validator-definition",
   "version": "1.0.0",
   "publisher_id": "rulesentry",

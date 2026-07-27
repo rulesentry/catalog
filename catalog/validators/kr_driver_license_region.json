@@ -1,5 +1,6 @@
 {
   "id": "kr_driver_license_region",
+  "qualified_id": "rulesentry.kr_driver_license_region",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

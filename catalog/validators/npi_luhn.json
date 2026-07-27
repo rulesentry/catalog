@@ -1,5 +1,6 @@
 {
   "id": "npi_luhn",
+  "qualified_id": "rulesentry.npi_luhn",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

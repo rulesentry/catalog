@@ -1,5 +1,6 @@
 {
   "id": "tc_kimlik_checksum",
+  "qualified_id": "rulesentry.tc_kimlik_checksum",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

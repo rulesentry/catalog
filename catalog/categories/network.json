@@ -1,6 +1,7 @@
 {
   "$schema": "https://schemas.rulesentry.io/v5/catalog/category.schema.json",
   "id": "network",
+  "qualified_id": "rulesentry.network",
   "type": "category",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

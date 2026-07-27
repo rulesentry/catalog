@@ -1,5 +1,6 @@
 {
   "id": "hkid_checksum",
+  "qualified_id": "rulesentry.hkid_checksum",
   "type": "validator-definition",
   "version": "1.0.0",
   "publisher_id": "rulesentry",

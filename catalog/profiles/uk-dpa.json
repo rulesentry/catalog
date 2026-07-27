@@ -1,6 +1,7 @@
 {
   "$schema": "https://schemas.rulesentry.io/v5/catalog/profile.schema.json",
   "id": "uk-dpa",
+  "qualified_id": "rulesentry.uk-dpa",
   "type": "profile",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

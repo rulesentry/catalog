@@ -1,5 +1,6 @@
 {
   "id": "iban_mod97",
+  "qualified_id": "rulesentry.iban_mod97",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

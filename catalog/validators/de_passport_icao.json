@@ -1,5 +1,6 @@
 {
   "id": "de_passport_icao",
+  "qualified_id": "rulesentry.de_passport_icao",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

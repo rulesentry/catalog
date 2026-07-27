@@ -1,5 +1,6 @@
 {
   "id": "acn_mod10",
+  "qualified_id": "rulesentry.acn_mod10",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

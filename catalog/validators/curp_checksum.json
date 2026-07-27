@@ -1,5 +1,6 @@
 {
   "id": "curp_checksum",
+  "qualified_id": "rulesentry.curp_checksum",
   "type": "validator-definition",
   "version": "1.0.0",
   "publisher_id": "rulesentry",

@@ -1,6 +1,7 @@
 {
   "$schema": "https://schemas.rulesentry.io/v5/catalog/profile.schema.json",
   "id": "aba-ethics",
+  "qualified_id": "rulesentry.aba-ethics",
   "type": "profile",
   "version": "1.0.0",
   "publisher_id": "rulesentry",

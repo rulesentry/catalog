@@ -1,5 +1,6 @@
 {
   "id": "tr_license_plate_province",
+  "qualified_id": "rulesentry.tr_license_plate_province",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

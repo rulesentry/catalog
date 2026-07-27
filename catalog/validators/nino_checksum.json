@@ -1,5 +1,6 @@
 {
   "id": "nino_checksum",
+  "qualified_id": "rulesentry.nino_checksum",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

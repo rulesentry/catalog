@@ -1,5 +1,6 @@
 {
   "id": "clabe_checksum",
+  "qualified_id": "rulesentry.clabe_checksum",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

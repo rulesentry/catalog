@@ -1,5 +1,6 @@
 {
   "id": "se_personnummer_luhn",
+  "qualified_id": "rulesentry.se_personnummer_luhn",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

@@ -1,5 +1,6 @@
 {
   "id": "ein_prefix_validation",
+  "qualified_id": "rulesentry.ein_prefix_validation",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

@@ -1,5 +1,6 @@
 {
   "id": "dea_checksum",
+  "qualified_id": "rulesentry.dea_checksum",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

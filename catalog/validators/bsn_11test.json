@@ -1,5 +1,6 @@
 {
   "id": "bsn_11test",
+  "qualified_id": "rulesentry.bsn_11test",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

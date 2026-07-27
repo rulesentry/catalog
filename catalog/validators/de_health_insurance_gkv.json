@@ -1,5 +1,6 @@
 {
   "id": "de_health_insurance_gkv",
+  "qualified_id": "rulesentry.de_health_insurance_gkv",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

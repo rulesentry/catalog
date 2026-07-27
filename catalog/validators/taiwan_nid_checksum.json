@@ -1,5 +1,6 @@
 {
   "id": "taiwan_nid_checksum",
+  "qualified_id": "rulesentry.taiwan_nid_checksum",
   "type": "validator-definition",
   "version": "1.0.0",
   "publisher_id": "rulesentry",

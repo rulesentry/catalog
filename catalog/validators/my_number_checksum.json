@@ -1,5 +1,6 @@
 {
   "id": "my_number_checksum",
+  "qualified_id": "rulesentry.my_number_checksum",
   "type": "validator-definition",
   "version": "4.0.0",
   "publisher_id": "rulesentry",

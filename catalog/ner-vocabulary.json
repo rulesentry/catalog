@@ -1,0 +1,409 @@
+{
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/ner-vocabulary.schema.json",
+  "id": "ner-vocabulary",
+  "type": "ner-vocabulary",
+  "version": "1.0.0",
+  "name": "Canonical NER entity types",
+  "description": "The vocabulary a rule speaks when it asks for a named-entity type, and the map from each model's own labels onto it. Two levels: a coarse parent a coarse model can emit, and the fine types beneath it. A rule targeting a parent is satisfied by any of its children; a rule targeting a child is NOT satisfied by a parent-level span, because a coarse model cannot tell which child it found.",
+  "types": [
+    {
+      "id": "contact",
+      "label": "Contact detail",
+      "parent": null
+    },
+    {
+      "id": "credential",
+      "label": "Credential",
+      "parent": null
+    },
+    {
+      "id": "demographic",
+      "label": "Demographic",
+      "parent": null
+    },
+    {
+      "id": "financial",
+      "label": "Financial",
+      "parent": null
+    },
+    {
+      "id": "government_id",
+      "label": "Government ID",
+      "parent": null
+    },
+    {
+      "id": "health",
+      "label": "Health",
+      "parent": null
+    },
+    {
+      "id": "identifier",
+      "label": "Identifier",
+      "parent": null
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "parent": null
+    },
+    {
+      "id": "network",
+      "label": "Network",
+      "parent": null
+    },
+    {
+      "id": "organization",
+      "label": "Organization",
+      "parent": null
+    },
+    {
+      "id": "person_name",
+      "label": "Person name",
+      "parent": null
+    },
+    {
+      "id": "temporal",
+      "label": "Date or time",
+      "parent": null
+    },
+    {
+      "id": "email",
+      "label": "Email",
+      "parent": "contact"
+    },
+    {
+      "id": "fax_number",
+      "label": "Fax number",
+      "parent": "contact"
+    },
+    {
+      "id": "phone_number",
+      "label": "Phone number",
+      "parent": "contact"
+    },
+    {
+      "id": "api_key",
+      "label": "Api key",
+      "parent": "credential"
+    },
+    {
+      "id": "password",
+      "label": "Password",
+      "parent": "credential"
+    },
+    {
+      "id": "user_name",
+      "label": "User name",
+      "parent": "credential"
+    },
+    {
+      "id": "age",
+      "label": "Age",
+      "parent": "demographic"
+    },
+    {
+      "id": "biometric_identifier",
+      "label": "Biometric identifier",
+      "parent": "demographic"
+    },
+    {
+      "id": "date_of_birth",
+      "label": "Date of birth",
+      "parent": "demographic"
+    },
+    {
+      "id": "education_level",
+      "label": "Education level",
+      "parent": "demographic"
+    },
+    {
+      "id": "employment_status",
+      "label": "Employment status",
+      "parent": "demographic"
+    },
+    {
+      "id": "gender",
+      "label": "Gender",
+      "parent": "demographic"
+    },
+    {
+      "id": "language",
+      "label": "Language",
+      "parent": "demographic"
+    },
+    {
+      "id": "occupation",
+      "label": "Occupation",
+      "parent": "demographic"
+    },
+    {
+      "id": "political_view",
+      "label": "Political view",
+      "parent": "demographic"
+    },
+    {
+      "id": "race_ethnicity",
+      "label": "Race ethnicity",
+      "parent": "demographic"
+    },
+    {
+      "id": "religious_belief",
+      "label": "Religious belief",
+      "parent": "demographic"
+    },
+    {
+      "id": "sexuality",
+      "label": "Sexuality",
+      "parent": "demographic"
+    },
+    {
+      "id": "account_number",
+      "label": "Account number",
+      "parent": "financial"
+    },
+    {
+      "id": "bank_routing_number",
+      "label": "Bank routing number",
+      "parent": "financial"
+    },
+    {
+      "id": "credit_debit_card",
+      "label": "Credit debit card",
+      "parent": "financial"
+    },
+    {
+      "id": "cvv",
+      "label": "Cvv",
+      "parent": "financial"
+    },
+    {
+      "id": "pin",
+      "label": "Pin",
+      "parent": "financial"
+    },
+    {
+      "id": "swift_bic",
+      "label": "Swift bic",
+      "parent": "financial"
+    },
+    {
+      "id": "certificate_license_number",
+      "label": "Certificate license number",
+      "parent": "government_id"
+    },
+    {
+      "id": "license_plate",
+      "label": "License plate",
+      "parent": "government_id"
+    },
+    {
+      "id": "national_id",
+      "label": "National id",
+      "parent": "government_id"
+    },
+    {
+      "id": "ssn",
+      "label": "Ssn",
+      "parent": "government_id"
+    },
+    {
+      "id": "tax_id",
+      "label": "Tax id",
+      "parent": "government_id"
+    },
+    {
+      "id": "vehicle_identifier",
+      "label": "Vehicle identifier",
+      "parent": "government_id"
+    },
+    {
+      "id": "blood_type",
+      "label": "Blood type",
+      "parent": "health"
+    },
+    {
+      "id": "health_plan_beneficiary_number",
+      "label": "Health plan beneficiary number",
+      "parent": "health"
+    },
+    {
+      "id": "medical_record_number",
+      "label": "Medical record number",
+      "parent": "health"
+    },
+    {
+      "id": "customer_id",
+      "label": "Customer id",
+      "parent": "identifier"
+    },
+    {
+      "id": "device_identifier",
+      "label": "Device identifier",
+      "parent": "identifier"
+    },
+    {
+      "id": "employee_id",
+      "label": "Employee id",
+      "parent": "identifier"
+    },
+    {
+      "id": "unique_id",
+      "label": "Unique id",
+      "parent": "identifier"
+    },
+    {
+      "id": "city",
+      "label": "City",
+      "parent": "location"
+    },
+    {
+      "id": "coordinate",
+      "label": "Coordinate",
+      "parent": "location"
+    },
+    {
+      "id": "country",
+      "label": "Country",
+      "parent": "location"
+    },
+    {
+      "id": "county",
+      "label": "County",
+      "parent": "location"
+    },
+    {
+      "id": "postcode",
+      "label": "Postcode",
+      "parent": "location"
+    },
+    {
+      "id": "state",
+      "label": "State",
+      "parent": "location"
+    },
+    {
+      "id": "street_address",
+      "label": "Street address",
+      "parent": "location"
+    },
+    {
+      "id": "http_cookie",
+      "label": "Http cookie",
+      "parent": "network"
+    },
+    {
+      "id": "ipv4",
+      "label": "Ipv4",
+      "parent": "network"
+    },
+    {
+      "id": "ipv6",
+      "label": "Ipv6",
+      "parent": "network"
+    },
+    {
+      "id": "mac_address",
+      "label": "Mac address",
+      "parent": "network"
+    },
+    {
+      "id": "url",
+      "label": "Url",
+      "parent": "network"
+    },
+    {
+      "id": "company_name",
+      "label": "Company name",
+      "parent": "organization"
+    },
+    {
+      "id": "first_name",
+      "label": "First name",
+      "parent": "person_name"
+    },
+    {
+      "id": "last_name",
+      "label": "Last name",
+      "parent": "person_name"
+    },
+    {
+      "id": "date",
+      "label": "Date",
+      "parent": "temporal"
+    },
+    {
+      "id": "date_time",
+      "label": "Date time",
+      "parent": "temporal"
+    },
+    {
+      "id": "time",
+      "label": "Time",
+      "parent": "temporal"
+    }
+  ],
+  "models": {
+    "distilbert-ner": {
+      "PERSON": "person_name",
+      "LOCATION": "location",
+      "ORGANIZATION": "organization"
+    },
+    "ettin-32m-pii": {
+      "account_number": "account_number",
+      "age": "age",
+      "api_key": "api_key",
+      "bank_routing_number": "bank_routing_number",
+      "biometric_identifier": "biometric_identifier",
+      "blood_type": "blood_type",
+      "certificate_license_number": "certificate_license_number",
+      "city": "city",
+      "company_name": "company_name",
+      "coordinate": "coordinate",
+      "country": "country",
+      "county": "county",
+      "credit_debit_card": "credit_debit_card",
+      "customer_id": "customer_id",
+      "cvv": "cvv",
+      "date": "date",
+      "date_of_birth": "date_of_birth",
+      "date_time": "date_time",
+      "device_identifier": "device_identifier",
+      "education_level": "education_level",
+      "email": "email",
+      "employee_id": "employee_id",
+      "employment_status": "employment_status",
+      "fax_number": "fax_number",
+      "first_name": "first_name",
+      "gender": "gender",
+      "health_plan_beneficiary_number": "health_plan_beneficiary_number",
+      "http_cookie": "http_cookie",
+      "ipv4": "ipv4",
+      "ipv6": "ipv6",
+      "language": "language",
+      "last_name": "last_name",
+      "license_plate": "license_plate",
+      "mac_address": "mac_address",
+      "medical_record_number": "medical_record_number",
+      "national_id": "national_id",
+      "occupation": "occupation",
+      "password": "password",
+      "phone_number": "phone_number",
+      "pin": "pin",
+      "political_view": "political_view",
+      "postcode": "postcode",
+      "race_ethnicity": "race_ethnicity",
+      "religious_belief": "religious_belief",
+      "sexuality": "sexuality",
+      "ssn": "ssn",
+      "state": "state",
+      "street_address": "street_address",
+      "swift_bic": "swift_bic",
+      "tax_id": "tax_id",
+      "time": "time",
+      "unique_id": "unique_id",
+      "url": "url",
+      "user_name": "user_name",
+      "vehicle_identifier": "vehicle_identifier"
+    }
+  }
+}

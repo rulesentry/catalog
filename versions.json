@@ -8,6 +8,41 @@
         "sunset_date": "2026-11-19",
         "replacement": "digital_identity.ssh_private_key",
         "reason": "Deprecated in v4.0. Use digital_identity.ssh_private_key (canonical). Scheduled for removal in v4.1. Policy authors: update rule_refs to digital_identity.ssh_private_key."
+      },
+      {
+        "feature": "financial.bank_routing_number_ner",
+        "deprecated_in": "5.0.0",
+        "sunset_date": "2026-07-29",
+        "replacement": "financial.routing_number",
+        "reason": "Removed. financial.routing_number detects the same canonical type over the same regions and VERIFIES it with the routing_checksum validator, so the NER twin could only re-admit spans the validator deliberately rejected. It shipped inactive, so nothing that was running stops."
+      },
+      {
+        "feature": "financial.credit_debit_card_ner",
+        "deprecated_in": "5.0.0",
+        "sunset_date": "2026-07-29",
+        "replacement": "financial.credit_card_luhn",
+        "reason": "Removed. financial.credit_card_luhn detects the same canonical type over the same regions and VERIFIES it with the luhn validator, so the NER twin could only re-admit spans the validator deliberately rejected. It shipped inactive, so nothing that was running stops."
+      },
+      {
+        "feature": "government.ssn_ner",
+        "deprecated_in": "5.0.0",
+        "sunset_date": "2026-07-29",
+        "replacement": "government.ssn_format",
+        "reason": "Removed. government.ssn_format detects the same canonical type over the same regions and VERIFIES it with the ssn_format validator, so the NER twin could only re-admit spans the validator deliberately rejected. It shipped inactive, so nothing that was running stops."
+      },
+      {
+        "feature": "network.ipv4_ner",
+        "deprecated_in": "5.0.0",
+        "sunset_date": "2026-07-29",
+        "replacement": "network.ipv4_address",
+        "reason": "Removed. network.ipv4_address detects the same canonical type over the same regions and VERIFIES it with the ipv4_scope validator, so the NER twin could only re-admit spans the validator deliberately rejected. It shipped inactive, so nothing that was running stops."
+      },
+      {
+        "feature": "personal.email_ner",
+        "deprecated_in": "5.0.0",
+        "sunset_date": "2026-07-29",
+        "replacement": "personal.email_address",
+        "reason": "Removed. personal.email_address detects the same canonical type over the same regions and VERIFIES it with the tld_reject validator, so the NER twin could only re-admit spans the validator deliberately rejected. It shipped inactive, so nothing that was running stops."
       }
     ]
   }

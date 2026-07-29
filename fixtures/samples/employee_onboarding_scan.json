@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.samples.employee_onboarding_scan",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "name": "Employee Onboarding Document Scanner",
   "summary": "Detects SSN + credit card co-occurrence in HR onboarding documents",
   "description": "Composite rule demonstrating multi-signal detection for HR onboarding workflows. Fires when BOTH an SSN and a credit card number appear in the same document, indicating a direct deposit or benefits enrollment form that requires elevated handling. Each referenced rule validates independently (SSA format check, Luhn checksum), and the composite triggers only when both signals are present.",
@@ -40,12 +40,12 @@
       {
         "evaluation_type": "rule_ref",
         "rule_id": "government.ssn_format",
-        "pinned_version": "3.0.0"
+        "pinned_version": "4.0.0"
       },
       {
         "evaluation_type": "rule_ref",
         "rule_id": "financial.credit_card_luhn",
-        "pinned_version": "3.0.0"
+        "pinned_version": "4.0.0"
       }
     ],
     "propagate_matches": true,
@@ -63,5 +63,7 @@
   },
   "status": "active",
   "created_at": "2026-03-12T00:00:00Z",
-  "updated_at": "2026-03-12T00:00:00Z"
+  "updated_at": "2026-03-12T00:00:00Z",
+  "modified_at": "2026-07-29T00:00:00Z",
+  "modified_by": "claude-code"
 }

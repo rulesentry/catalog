@@ -4,8 +4,8 @@
   "qualified_id": "rulesentry.government.license_plate_ner",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "1.0.0",
-  "status": "active",
+  "version": "1.1.0",
+  "status": "inactive",
   "name": "License Plate",
   "description": "Detects vehicle license plate numbers using an on-device NER model. Rule silently no-ops when no model is active.",
   "category_id": "government",
@@ -49,6 +49,6 @@
   },
   "created_at": "2026-05-24T00:00:00Z",
   "created_by": "claude-code",
-  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_at": "2026-07-29T00:00:00Z",
   "modified_by": "claude-code"
 }

@@ -146,6 +146,39 @@ Policies assemble rules via three mechanisms: direct references (`rules[]`), cat
 
 Validators are declarative checksum algorithms (Luhn, MOD-11, IBAN MOD-97, Verhoeff, prefix-check, multi-stage). Each is a JSON file in `catalog/validators/` that the engine loads into a registry at startup; rules reference them by name. To add a new validator, copy an existing one with the closest algorithm family and adjust params — no engine code change needed unless the algorithm is novel.
 
+### NER rules and the deterministic boundary
+
+A `ner_match` rule declares the canonical entity types it wants, and the engine
+intersects those with what the bound model can emit. Two model families ship:
+DistilBERT (4 coarse types — person, location, organization) and Ettin 32M PII
+(55 fine types).
+
+**The convention: a NER rule for a type that a VALIDATED deterministic rule
+already owns ships `status: "inactive"`.**
+
+The line is verifiability, not existence. It is not "does a regex for this exist"
+— plenty of types have both and both earn their place. It is whether the
+deterministic rule *proves* the value:
+
+| The deterministic partner | The NER rule | Why |
+|---|---|---|
+| carries a **validator** (checksum, format, scope) | ships `inactive` | The regex does not merely find the value, it adjudicates it. A model re-finding a card number that failed Luhn is overriding a proof with a guess — and because a rejection is a `RejectedMatch` rather than a result, nothing opposes it downstream. |
+| pattern-match only, no validator | ships `active` | The regex is a proxy, not a proof. A model may genuinely be better in prose — `street_address`, `city`, `date` — and both findings are worth having. |
+| does not exist | ships `active` | Free-form semantics no regex can reach: `person_name`, `occupation`, `organization`, `religious_belief`. This is what the capability is for. |
+
+`inactive` is disabled-by-default, NOT deleted: an operator who wants the backup
+detector turns it on with an `enabled: true` override per configuration. The
+complement case — NER finding something in prose where the regex form never
+appears — is preserved where it is real, and switched off where the format IS
+the identity and a checksum already settles it.
+
+Measured 2026-07-29: validators reject about a quarter of all deterministic
+candidate spans on realistic text, and roughly three quarters of those
+rejections fall on a canonical type some NER rule claims. That is the size of
+the problem this convention removes.
+
+Reference: `docs/dev/ner-decoupling-execution.md` in the code repo (D-6/D-7, §5).
+
 ### Tenant overrides
 
 Tenant-specific entities live under `configuration/tenants/{tenant-id}/`. Use this for custom rules, policies, or overrides that shouldn't ship in the public catalog. Each tenant directory mirrors the `catalog/` layout.

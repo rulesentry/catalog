@@ -4,7 +4,7 @@
   "qualified_id": "rulesentry.legal.privileged_communication_composite",
   "publisher_id": "rulesentry",
   "type": "rule",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "status": "active",
   "name": "Privileged Communication with Identifiable Parties",
   "description": "Composite rule: triggers when BOTH a privilege/confidentiality marker AND a case caption or docket number appear in the same content. This combination conclusively identifies privileged attorney-client material that contains an identifiable matter. Per ABA Formal Opinion 512, this content must not be submitted to any AI system.\n\nComposite logic: Triggers when privilege marker AND (case caption OR docket number) are both detected in the same content\nCompliance notes: This rule detects a high-risk combination: privilege/work-product marker + matter-identifying information. Identifier redaction alone does not clear this material for external AI submission — litigation strategy, settlement posture, and attorney mental impressions may remain. ABA Formal Opinion 512 requires lawyers to evaluate confidentiality duties, client consent/authorization, provider safeguards, and risk of disclosure before using GenAI with client-related material. RuleSentry blocks external AI submission; an attorney must perform the privilege/confidentiality review.",
@@ -31,7 +31,7 @@
       {
         "evaluation_type": "rule_ref",
         "rule_id": "legal.privilege_header",
-        "pinned_version": "1.0.0"
+        "pinned_version": "1.1.0"
       },
       {
         "evaluation_type": "composite",
@@ -40,7 +40,7 @@
           {
             "evaluation_type": "rule_ref",
             "rule_id": "legal.case_caption",
-            "pinned_version": "1.0.0"
+            "pinned_version": "1.2.0"
           },
           {
             "evaluation_type": "rule_ref",
@@ -62,6 +62,6 @@
     }
   },
   "created_at": "2026-06-03T00:00:00Z",
-  "modified_at": "2026-07-23T00:00:00Z",
+  "modified_at": "2026-07-29T00:00:00Z",
   "modified_by": "claude-code"
 }

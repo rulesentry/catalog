@@ -13,14 +13,14 @@ Every push to `main` propagates to `api.rulesentry.io` within ~30 seconds.
 ```
 .
 ├── catalog/                          # Core, RuleSentry-published entities
-│   ├── rules/rulesentry/             # 279 rules organized by category
+│   ├── rules/rulesentry/             # 273 rules organized by category
 │   │   ├── contact/
 │   │   ├── financial/
 │   │   ├── government/
 │   │   ├── healthcare/
 │   │   └── ...
-│   ├── policies/rulesentry/          # 12 policies (regional + framework)
-│   ├── categories/                   # 10 data-category definitions
+│   ├── policies/rulesentry/          # 10 policies (6 themes + 4 regime overlays)
+│   ├── categories/                   # 9 data-category definitions
 │   ├── profiles/                     # 21 profile definitions (compliance frameworks, envs)
 │   ├── validators/                   # 40 declarative checksum validators
 │   └── regions/
@@ -65,11 +65,11 @@ Rules:
 
 ## Schema
 
-Entities conform to v4 JSON schemas published at `https://schemas.rulesentry.io/schema/v4/`. Include a `$schema` URL in every file so editors (VS Code, JetBrains) validate and autocomplete:
+Entities conform to **v5** JSON schemas published at `https://schemas.rulesentry.io/v5/`. v5 is the only supported schema version — every file in this repository already carries a v5 `$schema` URL, and the engine rejects anything else. Include one in every new file so editors (VS Code, JetBrains) validate and autocomplete:
 
 ```json
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   ...
 }
 ```
@@ -104,7 +104,7 @@ Place your file under the appropriate path. Minimum rule example:
 
 ```json
 {
-  "$schema": "https://schemas.rulesentry.io/schema/v4/catalog/rule.schema.json",
+  "$schema": "https://schemas.rulesentry.io/v5/catalog/rule.schema.json",
   "id": "contact.my_thing",
   "qualified_id": "rulesentry.contact.my_thing",
   "publisher_id": "rulesentry",
@@ -177,7 +177,9 @@ candidate spans on realistic text, and roughly three quarters of those
 rejections fall on a canonical type some NER rule claims. That is the size of
 the problem this convention removes.
 
-Reference: `docs/dev/ner-decoupling-execution.md` in the code repo (D-6/D-7, §5).
+Reference: `docs/architecture/architecture.md` in the code repo, "Deterministic vs
+NER on the same span (D-6, D-7)". The execution plan that produced those
+decisions was deleted once they shipped; git has it.
 
 ### Tenant overrides
 
